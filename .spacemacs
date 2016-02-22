@@ -2,14 +2,23 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
-(when (< emacs-major-version 24)
-  ;; For important compatibility libraries like cl-lib
-  (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
-(package-initialize)
 
+
+(require 'package)
+(setq package-archives '(
+                         ("melpa" . "http://melpa.org/packages/")
+                         ("org" . "http://orgmode.org/elpa/")
+                         ("gnu" . "http://elpa.gnu.org/packages/")
+			 ;("marmalade" . "http://marmalade-repo.org/packages/")
+			 ;("melpa" . "http://melpa.milkbox.net/packages/")
+			 ))
+
+; Apparently needed for the package auto-complete (why?)
+;(add-to-list 'package-archives
+;             '("melpa" . "https://melpa.org/packages/") t)
+
+(package-initialize)
+(setq url-http-attempt-keepalives nil)
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
@@ -32,24 +41,29 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     xhyang
      better-defaults
      emacs-lisp
      gtags
+     semantic
      c-c++
      java
+     git
      common-lisp
      python
      auto-completion
      git
      ;; markdown
-     ;; org
+     org
+     (chinese :variables
+              chinese-enable-youdao-dict t)
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
      ;; syntax-checking
-     version-control
+     ;; version-control ;;not user for git gutter
+     ome
+     ome-git
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -221,7 +235,7 @@ values."
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers t
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -245,7 +259,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup nil
+   dotspacemacs-whitespace-cleanup t
    ))
 
 (defun dotspacemacs/user-init ()
@@ -253,13 +267,96 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
+  (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
+  ;; set environment coding system
+  (set-language-environment "UTF-8")
+  ;; auto revert buffer globally
+  (global-auto-revert-mode t)
+  ;; set TAB and indention
+  (setq-default tab-width 8)
+  (setq-default indent-tabs-mode nil)
+  ;; y or n is suffice for a yes or no question
+  (fset 'yes-or-no-p 'y-or-n-p)
+  ;; always add new line to the end of a file
+  (setq require-final-newline t)
+  ;; add no new lines when "arrow-down key" at the end of a buffer
+  (setq next-line-add-newlines nil)
+  ;; prevent the annoying beep on errors
+  (setq ring-bell-function 'ignore)
+  ;; remove trailing whitespaces before save
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
+  ;; enable to support navigate in camelCase words
+  (global-subword-mode t)
+
+  (global-set-key "\M-'" 'set-mark-command)
+  (global-set-key "\M-r" 'replace-string)
+
+  ;;debug
+  ;;(toggle-debug-on-quit)
+  ;;https://github.com/dholm/benchmark-init-el.git
+  ;;make
+  ;;(add-to-list 'load-path "~/.emacs.d/benchmark-init-el/")
+  ;;(require 'benchmark-init-loaddefs)
+  ;;(benchmark-init/activate)
   )
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+  (load-file (concat user-emacs-directory "private/init.el"))
   )
+
+(defun org-clock-persist-save-file ()
+  (if (equal 'windows-nt system-type)
+      (if (file-exists-p "D:/note/my-org.el")
+          "D:/note/org-clock-save.el"
+        "~/.emacs.d/org-clock-save.el"
+        )
+    (if (file-exists-p "~/note/my-org.el")
+        "~/note/org-clock-save.el"
+      "~/.emacs.d/org-clock-save.el"
+      )))
+
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(gdb-many-windows t t)
+ '(gdb-show-main t t)
+ '(git-gutter:added-sign "++")
+ '(git-gutter:deleted-sign "--")
+ '(git-gutter:diff-option "-w")
+ '(git-gutter:hide-gutter t)
+ '(git-gutter:modified-sign "  ")
+ '(global-linum-mode t)
+ '(helm-grep-default-command "grep --color=always -a -d recurse %e -n%cH -e %p %f")
+ '(helm-gtags-path-style (quote relative))
+ '(large-file-warning-threshold 10000000)
+ '(org-babel-load-languages (quote ((emacs-lisp . t) (shell . t))))
+ '(org-clock-persist-file (org-clock-persist-save-file) t)
+ '(org-emphasis-alist
+   (quote
+    (("*" bold)
+     ("/" italic)
+     ("_" underline)
+     ("=" org-verbatim verbatim)
+     ("~" org-code verbatim)
+     ("+"
+      (:strike-through t)))))
+ '(vlf-application (quote dont-ask))
+ '(vlf-batch-size 10485760)
+ '(vlf-tune-enabled t)
+ '(vlf-tune-max 402702600)
+ '(which-function-mode t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))

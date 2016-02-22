@@ -1,13 +1,13 @@
-#+TITLE: xhyang layer
+#+TITLE: ome layer
 #+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="../css/readtheorg.css" />
 
 #+CAPTION: logo
 
 # The maximum height of the logo should be 200 pixels.
-[[img/xhyang.png]]
+[[img/ome.png]]
 
 * Table of Contents                                        :TOC_4_org:noexport:
- - [[Decsription][Description]]
+ - [[Description][Description]]
  - [[Install][Install]]
  - [[Key bindings][Key bindings]]
 
@@ -19,7 +19,7 @@ This layer does wonderful things:
 To use this contribution add it to your =~/.spacemacs=
 
 #+begin_src emacs-lisp
-  (setq-default dotspacemacs-configuration-layers '(xhyang))
+  (setq-default dotspacemacs-configuration-layers '(ome))
 #+end_src
 
 * Key bindings
