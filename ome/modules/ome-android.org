@@ -18,7 +18,7 @@
 (defvar android-jdb-activity-class-history ()
  "history of activity classes supplied to `start-android-activity'")
 
-(defcustom  android-jdb-command-name "jdb"
+(defcustom  android-jdb-command-name "/usr/local/jdk1.6/bin/jdb"
   "Name of Java debugger."
   :type 'string
   :group 'android)

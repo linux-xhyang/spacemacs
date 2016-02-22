@@ -11,6 +11,18 @@
 (ome-load "modules/ome-linemark.org")
 (ome-load "modules/ome-ifdef-jump.org")
 (ome-load "modules/ome-android.org")
+(ome-load "modules/ome-common-lisp.org")
+(ome-load "modules/ome-define.org")
 
 (setq helm-gtags-use-input-at-cursor nil)
 (evil-mode)
+
+(if (equal 'windows-nt system-type)
+    (progn
+      (if (file-exists-p "D:/note/my-org.el")
+          (progn
+            (load "D:/note/my-org.el"))))
+  (progn
+    (if (file-exists-p "~/note/my-org.el")
+        (progn
+          (load "~/note/my-org.el")))))

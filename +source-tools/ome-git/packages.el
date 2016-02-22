@@ -112,4 +112,10 @@
     :config
     (progn
       (require 'vlf-setup)
+      ;;file auto mode
+      (add-to-list 'auto-mode-alist '("\\.img\\'" . hexl-mode))
+      (add-to-list 'auto-mode-alist '("\\.mbn\\'" . hexl-mode))
+      (add-to-list 'auto-mode-alist '("\\.bin\\'" . hexl-mode))
+      (add-to-list 'auto-mode-alist '("\\.elf\\'" . hexl-mode))
+      (add-to-list 'auto-mode-alist '("\\.hex\\'" . hexl-mode))
       )))

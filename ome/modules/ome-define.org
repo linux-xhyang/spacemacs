@@ -1,0 +1,333 @@
+#+TITLE: Oh My Emacs Pre Define For CC-Mode
+#+OPTIONS: toc:2 num:nil ^:nil
+
+This is part of [[https://github.com/xiaohanyu/oh-my-emacs][oh-my-emacs]].
+
+This file contains some settings for =cc-mode=.
+* Pre Define for CC-Mode
+#+BEGIN_SRC emacs-lisp
+
+(defvar history-file nil)
+
+(defun xdefine-file-name(prompt &optional initial)
+  (read-file-name prompt nil default-directory (confirm-nonexistent-file-or-buffer) initial))
+
+(defun xdefine-file-history()
+  (let* ((file-name (xdefine-file-name "Find File:" (file-name-nondirectory history-file))))
+    (unless (string= "" (file-name-nondirectory file-name))
+      (setq history-file file-name))
+    (when (string= "" (file-name-nondirectory file-name))
+      (setq file-name history-file))
+    file-name))
+
+(defun func-equal (src dst)
+  "thisandthat."
+  (interactive)
+  (let ((src-type (cdr (assoc 'return src)))
+        (dst-type (cdr (assoc 'return dst)))
+        (src-name (cdr (assoc 'func src)))
+        (dst-name (cdr (assoc 'func dst))))
+    (if (and (string= src-type dst-type) (string= src-name dst-name))
+        t
+      nil
+      )
+    ))
+
+(defun find-function( src buffer )
+  "thisandthat."
+  (interactive)
+  (let (var1)
+    (save-excursion
+      (set-buffer buffer)
+      (goto-char (point-min))
+      (if (re-search-forward (concat (cdr (assoc 'return src))
+                                     "[ \n\t]+"
+                                     (cdr (assoc 'func src)))
+                             nil t)
+          t
+        nil))
+    ))
+
+(defun copy-line ()
+  (interactive)
+  (let (start end)
+    (move-beginning-of-line 1)
+    (setq start (point))
+    (move-end-of-line 1)
+    (setq end (point))
+    (buffer-substring-no-properties start end)))
+
+(defun list-to-string (list)
+  "thisandthat."
+  (interactive)
+  (when (consp list)
+    (let ((var1 (car list)))
+      (if (stringp (car list))
+          (cond ((consp (cdr list)) (concat (car list) " " (list-to-string (cdr list))))
+                (t (car list)))
+        (list-to-string (cdr list)))
+      )))
+
+(defun xdefine-find-next-func ()
+  "Returns a list describing next function declaration, or nil if not found.
+
+;(cdr (assoc 'func (doxymacs-find-next-func))) is the function name (string).
+;(cdr (assoc 'args (doxymacs-find-next-func))) is a list of arguments.
+;(cdr (assoc 'return (doxymacs-find-next-func))) is the return type (string).
+
+The argument list is a list of strings."
+  (interactive)
+  (save-excursion
+    (if (re-search-forward
+         (concat
+          ;; return type
+          "\\(\\(const[ \t\n]+\\)?[a-zA-Z0-9_]+[ \t\n*&]+\\)?"
+
+          ;; name
+          "\\(\\([a-zA-Z0-9_~:<,>*&]\\|\\([ \t\n]+::[ \t\n]+\\)\\)+"
+          "\\(o?perator[ \t\n]*.[^(]*\\)?\\)[ \t\n]*("
+          ) nil t)
+
+        (let* ((func (buffer-substring (match-beginning 3) (match-end 3)))
+               (args (buffer-substring (point) (progn
+                                                 (backward-char 1)
+                                                 (forward-list)
+                                                 (backward-char 1)
+                                                 (point))))
+               (ret (cond
+                     ;; Return type specified
+                     ((match-beginning 1)
+                      (buffer-substring (match-beginning 1) (match-end 1)))
+                     ;;Constructor/destructor
+                     ((string-match
+                       "^\\([a-zA-Z0-9_<,>:*&]+\\)[ \t\n]*::[ \t\n]*~?\\1$"
+                       func) "void")
+                     ;;Constructor in class decl.
+                     ((save-match-data
+                        (re-search-backward
+                         (concat
+                          "class[ \t\n]+" (regexp-quote func) "[ \t\n]*{")
+                         nil t))
+                      "void")
+                     ;;Destructor in class decl.
+                     ((save-match-data
+                        (and (string-match "^~\\([a-zA-Z0-9_]+\\)$" func)
+                             (save-match-data
+                               (re-search-backward
+                                (concat
+                                 "class[ \t\n]+" (regexp-quote
+                                                  (match-string 1 func))
+                                 "[ \t\n]*{") nil t))))
+                      "void")
+                     ;;Default
+                     (t "int"))))
+          (list (cons 'func func)
+                (cons 'args args)
+                (cons 'return (list-to-string (split-string ret "[ \n\r]" t)))))
+      nil)))
+
+(defun read-symbol-name( prompt &optional inital string )
+  (unless (string-match ":" prompt)
+    (setq prompt (concat prompt " :"))
+    )
+  (let ((name (read-string prompt inital )))
+    (while (string= name "")
+      (setq name (read-string prompt)))
+    name))
+
+(defun add-c-function ()
+  "thisandthat."
+  (interactive)
+  (let ((type (read-symbol-name "type:" "int"))
+        (name (read-symbol-name "function:" (current-word))))
+    (list (cons 'func name)
+          ;;         (cons 'args (doxymacs-extract-args-list args))
+          (cons 'return type))
+    ))
+
+(defun xdefine-find-curr-func ()
+  "thisandthat."
+  (interactive)
+  (let (var1)
+    (c-beginning-of-defun)
+    (xdefine-find-next-func)
+    )
+  )
+
+(defun add-not-def-sym(filename &optional wildcards)
+  ""
+  (interactive
+   (list (xdefine-file-history)
+         t))
+  (let* ((function (add-c-function))
+         (buffer (find-file-noselect filename nil nil wildcards)))
+    (if (find-function function buffer)
+        (progn (message "function has defined!")
+               (switch-to-buffer buffer))
+      (save-excursion
+        (set-buffer (switch-to-buffer buffer))
+        (goto-char (point-max))
+        ;;the type
+        (insert (cdr (assoc 'return function)))
+        (insert " ")
+        ;;function name
+        (insert (cdr (assoc 'func function)))
+        (insert "(  )")
+        ))))
+
+(defun add-define-func(filename &optional wildcards)
+  (interactive
+   (list (xdefine-file-history)
+         t))
+  (let* ((function (xdefine-find-curr-func))
+         (buffer (find-file-noselect filename nil nil wildcards)))
+    (if (find-function function buffer)
+        (progn (message "function has defined!")
+               (switch-to-buffer buffer))
+      (save-excursion
+        (set-buffer (switch-to-buffer buffer))
+        (goto-char (point-max))
+        (re-search-backward "\\(#endif\\)" nil t)
+        ;;the type
+        (insert (cdr (assoc 'return function)))
+        (insert " ")
+        ;;function name
+        (insert (cdr (assoc 'func function)))
+        (insert "("(cdr (assoc 'args function)) ")")
+        (insert ";\n")))))
+
+(defvar xdefine-minor-mode nil
+  "")
+
+(make-variable-buffer-local 'xdefine-minor-mode)
+
+(put 'xdefine-minor-mode 'permanent-local t)
+
+(defun xdefine-minor-mode (&optional arg)
+  ""
+  (progn
+    (setq xdefine-minor-mode (if (null arg) t (car arg)))
+    (if xdefine-minor-mode
+        (progn
+          ;;   (easy-menu-add cscope:menu cscope:map)
+          (run-hooks 'xdefine-minor-mode-hooks)
+          ))
+    xdefine-minor-mode
+    ))
+
+(defvar xdefine:map nil)
+(if xdefine:map
+    nil
+  (setq xdefine:map (make-sparse-keymap))
+  (define-key xdefine:map "\C-cdn" 'add-not-def-sym)
+  (define-key xdefine:map "\C-cdd" 'add-define-func))
+
+(defun xdefine:hook ()
+  (progn
+    (xdefine-minor-mode)
+    ))
+(or (assq 'xdefine-minor-mode minor-mode-map-alist)
+    (setq minor-mode-map-alist (cons (cons 'xdefine-minor-mode xdefine:map)
+                                     minor-mode-map-alist)))
+
+(setq history-file "unused")
+(add-hook 'c-mode-hook (function xdefine:hook))
+(add-hook 'c++-mode-hook (function xdefine:hook))
+(add-hook 'dired-mode-hook (function xdefine:hook))
+(provide 'xdefine)
+
+(add-hook 'c-mode-common-hook   'hs-minor-mode)
+(global-set-key (kbd "RET") 'newline-and-indent)  ; automatically indent when press RET
+
+;; activate whitespace-mode to view all whitespace characters
+(global-set-key (kbd "C-c w") 'whitespace-mode)
+
+;; use space to indent by default
+(setq-default indent-tabs-mode nil)
+
+;; show unncessary whitespace that can mess up your diff
+(add-hook 'prog-mode-hook (lambda () (interactive) (setq show-trailing-whitespace 1)))
+
+(global-set-key (kbd "<f5>") (lambda ()
+                               (interactive)
+                               (setq-local compilation-read-command nil)
+                               (call-interactively 'compile)))
+
+
+(defadvice gud-display-line (around one-source-window activate)
+  "Always use the same window to show source code."
+  (let ((buf (get-file-buffer true-file)))
+    (when (and buf gdb-source-window)
+      (set-window-buffer gdb-source-window buf)))
+  (let (split-width-threshold split-width-threshold)
+    ad-do-it
+    ))
+
+(defun gdb-mouse-set-clear-tracepoint (event)
+  "Set/clear breakpoint in left fringe/margin at mouse click.
+If not in a source or disassembly buffer just set point."
+  (interactive "e")
+  (mouse-minibuffer-check event)
+  (let ((posn (event-end event)))
+    (with-selected-window (posn-window posn)
+      (if (or (buffer-file-name) (derived-mode-p 'gdb-disassembly-mode))
+          (if (numberp (posn-point posn))
+              (save-excursion
+                (goto-char (posn-point posn))
+                (if (or (posn-object posn)
+                        (eq (car (fringe-bitmaps-at-pos (posn-point posn)))
+                            'tracepoint))
+                    (gud-remove nil)
+                  (gud-trace nil)))))
+      (posn-set-point posn))))
+
+(defun walk-directory (dirname fn &optional directories-p testfn)
+  (let ((directories (and directories-p t))
+        (test (or (if (functionp testfn) testfn nil) #'(lambda (name) t))))
+    (cl-labels
+        ((walk (name)
+               (let ((fnd (file-name-nondirectory name)))
+                 (cond
+                  ((file-directory-p name)
+                   (if (not (string-match "^\\.+$" fnd))
+                       (progn
+                         (when (and directories (funcall test name))
+                           (funcall fn name))
+                         (dolist (x (directory-files name t)) (walk x)))))
+                  ((funcall test name) (funcall fn name))))))
+      (walk dirname))))
+
+(defun xgdb-source-load (name)
+  (if (string-match (file-name-nondirectory name) "xsource.gdb")
+      (progn
+        (setenv "GDB_XSOURCE_ROOT" (file-name-directory name))
+        (setenv "GDB_XSOURCE_DIRS" (concat (file-name-directory name) "/xsource.d"))
+        )))
+
+(add-hook 'gdb-mode-hook #'(lambda ()
+                             (gud-def gud-trace (if (not (string-match "Disassembly" mode-name))
+                                                    (gud-call "trace %f:%l" arg)
+                                                  (save-excursion
+                                                    (beginning-of-line)
+                                                    (forward-char 2)
+                                                    (gud-call "trace *%a" arg)))
+                                      "\C-l" "Set tracepoint at current line or address.")
+                             (gud-def gud-trace-remove (if (not (string-match "Disassembly" mode-name))
+                                                           (gud-call "clear %f:%l" arg)
+                                                         (save-excursion
+                                                           (beginning-of-line)
+                                                           (forward-char 2)
+                                                           (gud-call "clear *%a" arg)))
+                                      "\C-k" "Remove tracepoint at current line or address.")
+                             (define-key gud-minor-mode-map [left-margin S-mouse-1]
+                               'gdb-mouse-set-clear-tracepoint)
+                             (define-key gud-minor-mode-map [left-fringe S-mouse-1]
+                               'gdb-mouse-set-clear-tracepoint)
+                             (yas-minor-mode)
+                             (walk-directory note-root-dir #'(lambda (name)
+                                              (let ((fnd (file-name-nondirectory name)))
+                                                (when (string-match (concat "^[^\\.].*\\.\\(" "gdb" "\\)$") fnd)
+                                                  (gdb-input (concat "source " name) 'ignore)
+                                                  ))))
+                             ))
+#+END_SRC

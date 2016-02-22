@@ -45,7 +45,8 @@ values."
      emacs-lisp
      gtags
      semantic
-     c-c++
+     (c-c++ :variables
+            c-c++-default-mode-for-headers 'c++-mode)
      java
      git
      common-lisp
@@ -56,11 +57,14 @@ values."
      org
      (chinese :variables
               chinese-enable-youdao-dict t)
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     ;; spell-checking
-     ;; syntax-checking
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom)
+     (python :variables python-enable-yapf-format-on-save t)
+     shell-scripts
+     spell-checking
+     syntax-checking
+     html
      ;; version-control ;;not user for git gutter
      ome
      ome-git
