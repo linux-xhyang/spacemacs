@@ -8,6 +8,7 @@
                              :fetcher github
                              :repo "tsgates/git-emacs"))
     vlf
+    dts-mode
     ))
 
 (defun ome-git/init-git-gutter ()
@@ -118,4 +119,12 @@
       (add-to-list 'auto-mode-alist '("\\.bin\\'" . hexl-mode))
       (add-to-list 'auto-mode-alist '("\\.elf\\'" . hexl-mode))
       (add-to-list 'auto-mode-alist '("\\.hex\\'" . hexl-mode))
+      )))
+
+(defun ome-git/init-dts-mode ()
+  (use-package vlf
+    :config
+    (progn
+      (require 'dts-mode)
+      ;;file auto mode
       )))

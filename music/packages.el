@@ -208,7 +208,6 @@
 
       (setq emms-player-mplayer-parameters '("-ao" "alsa" "-vo" "null"))
       ;;(setq emms-cache-file "~/.spacemacs.d/layer/music/emms/cache")
-      (setq emms-directory "~/.spacemacs.d/private/music/emms")
 
       (evil-leader/set-key
         "oo" 'emms-start
