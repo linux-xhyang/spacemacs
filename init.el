@@ -13,6 +13,7 @@
 (ome-load "modules/ome-android.org")
 (ome-load "modules/ome-common-lisp.org")
 (ome-load "modules/ome-define.org")
+(ome-load "modules/ome-taskjuggler.org")
 
 (setq helm-gtags-use-input-at-cursor nil)
 (evil-mode)
