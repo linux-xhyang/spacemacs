@@ -30,6 +30,10 @@
               (ccl64 (,(executable-find "ccl64")))
               (clisp (,(executable-find "clisp")))))
 
+      (if (file-exists-p (expand-file-name "~/quicklisp/slime-helper.el"))
+          (load (expand-file-name "~/quicklisp/slime-helper.el"))
+        )
+
       (defslime-start slime-sbcl 'sbcl)
       (defslime-start slime-ccl 'ccl)
       (defslime-start slime-ccl64 'ccl64)
