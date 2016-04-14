@@ -3,7 +3,6 @@
   '(
     ;;git-gutter
     git-gutter-fringe
-    git-emacs
     (git-emacs :location (recipe
                              :fetcher github
                              :repo "tsgates/git-emacs"))
