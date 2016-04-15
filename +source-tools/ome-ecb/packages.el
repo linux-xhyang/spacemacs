@@ -16,4 +16,10 @@
                                "~/src/linux"))
        (setq ecb-layout-name "left9")
        (setq ecb-tip-of-the-day nil)
+
+       (require 'ggtags)
+       (add-hook 'c-mode-common-hook
+                 (lambda ()
+                   (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
+                     (ggtags-mode 1))))
        )))
