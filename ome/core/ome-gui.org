@@ -41,6 +41,7 @@ This is part of [[https://github.com/xiaohanyu/oh-my-emacs][oh-my-emacs]].
       (progn (fundamental-mode)
              (hl-line-mode -1))))
   ;;(add-hook 'find-file-hook 'spacemacs/check-large-file)
+  (global-visual-line-mode t)
 #+END_SRC
 
 * buffer read only default
