@@ -351,9 +351,6 @@ layers configuration. You are free to put any user code."
      ("~" org-code verbatim)
      ("+"
       (:strike-through t)))))
- '(package-selected-packages
-   (quote
-    (evil-paredit evil-smartparens ac-slime gmail-message-mode ham-mode markdown-mode html-to-markdown edit-server dts-mode youdao-dictionary xterm-color xgtags ws-butler window-numbering which-key web-mode volatile-highlights vlf vi-tilde-fringe use-package toc-org tagedit symon stickyfunc-enhance srefactor spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle slime slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters quelpa pyvenv pytest pyenv-mode popwin pip-requirements persp-mode pcre2el paradox pangu-spacing page-break-lines orgit org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets open-junk-file neotree multi-term move-text magit-gitflow lorem-ipsum linum-relative leuven-theme less-css-mode jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flyspell helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-gutter-fringe git-emacs ggtags flycheck-pos-tip flx-ido fish-mode find-by-pinyin-dired fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-jumper evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu eshell-prompt-extras esh-help emms emmet-mode emacs-eclim elisp-slime-nav disaster define-word cython-mode company-web company-statistics company-quickhelp company-c-headers company-anaconda cmake-mode clean-aindent-mode clang-format chinese-pyim buffer-move bracketed-paste auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-ispell)))
  '(vlf-application (quote dont-ask))
  '(vlf-batch-size 10485760)
  '(vlf-tune-enabled t)
@@ -379,70 +376,14 @@ layers configuration. You are free to put any user code."
       "~/.emacs.d/org-clock-save.el"
       )))
 
-
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(company-idle-delay 2)
- '(company-minimum-prefix-length 4)
- '(ecb-layout-name "left9")
- '(ecb-options-version "2.40")
- '(ecb-other-window-behavior (quote all))
- '(ecb-tip-of-the-day nil)
- '(eclim-eclipse-dirs
-   (quote
-    ("/Applications/eclipse" "/usr/lib/eclipse" "/usr/local/lib/eclipse" "/usr/share/eclipse" "~/eclipse")))
- '(gdb-many-windows t t)
- '(gdb-show-main t t)
- '(ggtags-oversize-limit 16)
- '(git-gutter:added-sign "++")
- '(git-gutter:deleted-sign "--")
- '(git-gutter:diff-option "-w")
- '(git-gutter:hide-gutter t)
- '(git-gutter:modified-sign "  ")
- '(global-eclim-mode t)
- '(global-linum-mode t)
- '(global-semantic-idle-completions-mode t nil (semantic/idle))
- '(global-semantic-show-parser-state-mode t)
- '(helm-grep-default-command "grep --color=always -a -d recurse %e -n%cH -e %p %f")
- '(helm-gtags-path-style (quote relative))
- '(large-file-warning-threshold 10000000)
- '(magit-diff-arguments
-   (quote
-    ("--ignore-all-space" "--no-ext-diff" "--stat" "-- " "--diff-algorithm=default")))
- '(magit-diff-section-arguments
-   (quote
-    ("--ignore-all-space" "--no-ext-diff" "--diff-algorithm=default")))
- '(org-babel-load-languages (quote ((emacs-lisp . t) (shell . t))))
- '(org-clock-persist-file (org-clock-persist-save-file) t)
- '(org-emphasis-alist
-   (quote
-    (("*" bold)
-     ("/" italic)
-     ("_" underline)
-     ("=" org-verbatim verbatim)
-     ("~" org-code verbatim)
-     ("+"
-      (:strike-through t)))))
  '(package-selected-packages
    (quote
-    (py-yapf evil-paredit evil-smartparens ac-slime gmail-message-mode ham-mode markdown-mode html-to-markdown edit-server dts-mode youdao-dictionary xterm-color xgtags ws-butler window-numbering which-key web-mode volatile-highlights vlf vi-tilde-fringe use-package toc-org tagedit symon stickyfunc-enhance srefactor spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle slime slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters quelpa pyvenv pytest pyenv-mode popwin pip-requirements persp-mode pcre2el paradox pangu-spacing page-break-lines orgit org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets open-junk-file neotree multi-term move-text magit-gitflow lorem-ipsum linum-relative leuven-theme less-css-mode jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flyspell helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-gutter-fringe git-emacs ggtags flycheck-pos-tip flx-ido fish-mode find-by-pinyin-dired fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-jumper evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu eshell-prompt-extras esh-help emms emmet-mode emacs-eclim elisp-slime-nav disaster define-word cython-mode company-web company-statistics company-quickhelp company-c-headers company-anaconda cmake-mode clean-aindent-mode clang-format chinese-pyim buffer-move bracketed-paste auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-ispell)))
- '(projectile-enable-caching t)
- '(projectile-enable-idle-timer nil)
- '(projectile-indexing-method (quote alien))
- '(slime-enable-evaluate-in-emacs t)
- '(sr-speedbar-default-width 25)
- '(sr-speedbar-right-side nil)
- '(symon-delay 60)
- '(vlf-application (quote dont-ask))
- '(vlf-batch-size 10485760)
- '(vlf-tune-enabled t)
- '(vlf-tune-max 402702600)
- '(which-function-mode t))
+    (xgtags youdao-dictionary names chinese-word-at-point xterm-color ws-butler window-numbering web-mode volatile-highlights vlf vi-tilde-fringe toc-org tagedit symon stickyfunc-enhance srefactor sr-speedbar spacemacs-theme spaceline powerline smooth-scrolling smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-yapf popwin pip-requirements persp-mode pcre2el paradox hydra spinner pangu-spacing page-break-lines orgit org-repo-todo org-present org-pomodoro alert log4e gntp org-plus-contrib org-bullets open-junk-file neotree multi-term move-text magit-gitflow lorem-ipsum linum-relative leuven-theme less-css-mode jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make projectile helm-gtags helm-gitignore request helm-flyspell helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haml-mode google-translate golden-ratio gnuplot gmail-message-mode ham-mode markdown-mode html-to-markdown gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-gutter-fringe fringe-helper git-gutter git-emacs ggtags flycheck-pos-tip flycheck pkg-info epl flx-ido flx fish-mode find-by-pinyin-dired fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-smartparens evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu eval-sexp-fu highlight eshell-prompt-extras esh-help emms emmet-mode emacs-eclim elisp-slime-nav edit-server ecb dts-mode disaster define-word cython-mode company-web web-completion-data company-statistics company-quickhelp company-c-headers company-anaconda company cmake-mode clean-aindent-mode clang-format chinese-pyim pos-tip buffer-move bracketed-paste auto-yasnippet yasnippet auto-highlight-symbol auto-dictionary auto-compile packed anaconda-mode pythonic f s aggressive-indent adaptive-wrap ace-window ace-pinyin pinyinlib ace-jump-mode ace-link ace-jump-helm-line helm avy helm-core async ac-slime slime macrostep ac-ispell auto-complete popup quelpa package-build use-package which-key bind-key bind-map evil solarized-theme dash))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
