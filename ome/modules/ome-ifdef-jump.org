@@ -257,9 +257,6 @@
       )
     )
 
-    (if
-        (message-box "hello"))
-
     (defun if-jump-what-is ()
       "Determinate what is in the current line. If current line is a
     preprocessor directive returns its type ('if, 'else or 'endif). If
