@@ -381,9 +381,45 @@ layers configuration. You are free to put any user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(company-idle-delay 1)
+ '(company-minimum-prefix-length 4)
+ '(gdb-many-windows t t)
+ '(gdb-show-main t t)
+ '(git-gutter:added-sign "++")
+ '(git-gutter:deleted-sign "--")
+ '(git-gutter:diff-option "-w")
+ '(git-gutter:hide-gutter t)
+ '(git-gutter:modified-sign "  ")
+ '(global-linum-mode t)
+ '(helm-grep-default-command "grep --color=always -a -d recurse %e -n%cH -e %p %f")
+ '(helm-gtags-path-style (quote relative))
+ '(jit-lock-stealth-time 10)
+ '(large-file-warning-threshold 10000000)
+ '(magit-diff-arguments
+   (quote
+    ("--ignore-all-space" "--no-ext-diff" "--stat" "-- " "--diff-algorithm=default")))
+ '(magit-diff-section-arguments
+   (quote
+    ("--ignore-all-space" "--no-ext-diff" "--diff-algorithm=default")))
+ '(org-babel-load-languages (quote ((emacs-lisp . t) (shell . t))))
+ '(org-clock-persist-file (org-clock-persist-save-file))
+ '(org-emphasis-alist
+   (quote
+    (("*" bold)
+     ("/" italic)
+     ("_" underline)
+     ("=" org-verbatim verbatim)
+     ("~" org-code verbatim)
+     ("+"
+      (:strike-through t)))))
  '(package-selected-packages
    (quote
-    (xgtags youdao-dictionary names chinese-word-at-point xterm-color ws-butler window-numbering web-mode volatile-highlights vlf vi-tilde-fringe toc-org tagedit symon stickyfunc-enhance srefactor sr-speedbar spacemacs-theme spaceline powerline smooth-scrolling smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-yapf popwin pip-requirements persp-mode pcre2el paradox hydra spinner pangu-spacing page-break-lines orgit org-repo-todo org-present org-pomodoro alert log4e gntp org-plus-contrib org-bullets open-junk-file neotree multi-term move-text magit-gitflow lorem-ipsum linum-relative leuven-theme less-css-mode jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make projectile helm-gtags helm-gitignore request helm-flyspell helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haml-mode google-translate golden-ratio gnuplot gmail-message-mode ham-mode markdown-mode html-to-markdown gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-gutter-fringe fringe-helper git-gutter git-emacs ggtags flycheck-pos-tip flycheck pkg-info epl flx-ido flx fish-mode find-by-pinyin-dired fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-smartparens evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu eval-sexp-fu highlight eshell-prompt-extras esh-help emms emmet-mode emacs-eclim elisp-slime-nav edit-server ecb dts-mode disaster define-word cython-mode company-web web-completion-data company-statistics company-quickhelp company-c-headers company-anaconda company cmake-mode clean-aindent-mode clang-format chinese-pyim pos-tip buffer-move bracketed-paste auto-yasnippet yasnippet auto-highlight-symbol auto-dictionary auto-compile packed anaconda-mode pythonic f s aggressive-indent adaptive-wrap ace-window ace-pinyin pinyinlib ace-jump-mode ace-link ace-jump-helm-line helm avy helm-core async ac-slime slime macrostep ac-ispell auto-complete popup quelpa package-build use-package which-key bind-key bind-map evil solarized-theme dash))))
+    (xgtags youdao-dictionary names chinese-word-at-point xterm-color ws-butler window-numbering web-mode volatile-highlights vlf vi-tilde-fringe toc-org tagedit symon stickyfunc-enhance srefactor sr-speedbar spacemacs-theme spaceline powerline smooth-scrolling smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-yapf popwin pip-requirements persp-mode pcre2el paradox hydra spinner pangu-spacing page-break-lines orgit org-repo-todo org-present org-pomodoro alert log4e gntp org-plus-contrib org-bullets open-junk-file neotree multi-term move-text magit-gitflow lorem-ipsum linum-relative leuven-theme less-css-mode jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make projectile helm-gtags helm-gitignore request helm-flyspell helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haml-mode google-translate golden-ratio gnuplot gmail-message-mode ham-mode markdown-mode html-to-markdown gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-gutter-fringe fringe-helper git-gutter git-emacs ggtags flycheck-pos-tip flycheck pkg-info epl flx-ido flx fish-mode find-by-pinyin-dired fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-smartparens evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu eval-sexp-fu highlight eshell-prompt-extras esh-help emms emmet-mode emacs-eclim elisp-slime-nav edit-server ecb dts-mode disaster define-word cython-mode company-web web-completion-data company-statistics company-quickhelp company-c-headers company-anaconda company cmake-mode clean-aindent-mode clang-format chinese-pyim pos-tip buffer-move bracketed-paste auto-yasnippet yasnippet auto-highlight-symbol auto-dictionary auto-compile packed anaconda-mode pythonic f s aggressive-indent adaptive-wrap ace-window ace-pinyin pinyinlib ace-jump-mode ace-link ace-jump-helm-line helm avy helm-core async ac-slime slime macrostep ac-ispell auto-complete popup quelpa package-build use-package which-key bind-key bind-map evil solarized-theme dash)))
+ '(vlf-application (quote dont-ask))
+ '(vlf-batch-size 10485760)
+ '(vlf-tune-enabled t)
+ '(vlf-tune-max 402702600)
+ '(which-function-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
