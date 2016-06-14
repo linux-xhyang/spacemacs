@@ -81,6 +81,7 @@
     :config
     (progn
       (require 'xgtags)
+      (diminish 'xgtags-mode " ")
       (add-hook 'c-mode-common-hook
                 (lambda ()
                   (xgtags-mode 1)))

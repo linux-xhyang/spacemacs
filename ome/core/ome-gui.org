@@ -96,3 +96,14 @@ This is part of [[https://github.com/xiaohanyu/oh-my-emacs][oh-my-emacs]].
 )
 (global-set-key [double-mouse-1] 'select-word)
 #+END_SRC
+
+* company key
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-<return>") 'company-complete)
+#+END_SRC
+
+* diminish mode
+#+BEGIN_SRC emacs-lisp
+(diminish 'git-gutter-mode "")
+(diminish 'helm-gtags-mode "")
+#+END_SRC

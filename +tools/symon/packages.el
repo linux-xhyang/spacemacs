@@ -11,4 +11,5 @@
     :init
     (progn
       (require 'symon)
+      (setq symon-delay 60)
       (symon-mode))))
