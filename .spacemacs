@@ -78,6 +78,7 @@ values."
      ome-ccl
      music
      symon
+     android-mode
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -338,6 +339,17 @@ layers configuration. You are free to put any user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(android-mode-builder "make")
+ '(android-mode-build-command-alist
+   (quote
+    ((make . "make")
+     (ant . "ant -e")
+     (gradle . "./gradlew")
+     (maven . "mvn")
+     )))
+ '(android-mode-root-file-plist
+   (quote
+    (make "\.projectile" ant "AndroidManifest.xml" gradle "build.gradle" maven "AndroidManifest.xml" )))
  '(company-idle-delay 1)
  '(company-minimum-prefix-length 4)
  '(gdb-many-windows t t)
@@ -348,9 +360,9 @@ layers configuration. You are free to put any user code."
  '(git-gutter:hide-gutter t)
  '(git-gutter:modified-sign "  ")
  '(global-linum-mode t)
- '(jit-lock-stealth-time 10)
  '(helm-grep-default-command "grep --color=always -a -d recurse %e -n%cH -e %p %f")
  '(helm-gtags-path-style (quote relative))
+ '(jit-lock-stealth-time 10)
  '(large-file-warning-threshold 10000000)
  '(magit-diff-arguments
    (quote
@@ -374,14 +386,6 @@ layers configuration. You are free to put any user code."
  '(vlf-batch-size 10485760)
  '(vlf-tune-enabled t)
  '(vlf-tune-max 402702600)
- '(magit-diff-arguments
-   (quote
-    ("--ignore-all-space" "--no-ext-diff" "--stat" "-- " "--diff-algorithm=default")))
- '(magit-diff-section-arguments
-   (quote
-    ("--ignore-all-space" "--no-ext-diff" "--diff-algorithm=default")))
- '(org-babel-load-languages (quote ((emacs-lisp . t) (shell . t))))
- '(org-clock-persist-file (org-clock-persist-save-file))
  '(which-function-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
