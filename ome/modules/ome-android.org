@@ -136,14 +136,14 @@ Specify the package name --- and not the name of the application e.g., com.andro
 #+END_SRC
 * Andorid JDB
 #+BEGIN_SRC emacs-lisp
-(require 'android)
-(setq android-build-top (getenv "ANDROID_BUILD_TOP"))
+  (require 'android)
+  (setq android-build-top (getenv "ANDROID_BUILD_TOP"))
 
-(if android-build-top
- (setq android-mode-sdk-dir (concat android-build-top "/prebuilts/sdk"))
-(progn
- (setq android-build-top "/home/xhyang/src/Android-L/android/"))
- (setq android-mode-sdk-dir (concat android-build-top "/prebuilts/sdk")))
+  ;; (if android-build-top
+  ;;  (setq android-mode-sdk-dir (concat android-build-top "/prebuilts/sdk"))
+  ;; (progn
+  ;;  (setq android-build-top "/home/xhyang/src/Android-L/android/"))
+  ;;  (setq android-mode-sdk-dir (concat android-build-top "/prebuilts/sdk")))
 
-(add-hook 'gud-mode-hook (lambda () (add-to-list 'gud-jdb-classpath (concat android-mode-sdk-dir "/current/android.jar"))))
+  ;; (add-hook 'gud-mode-hook (lambda () (add-to-list 'gud-jdb-classpath (concat android-mode-sdk-dir "/current/android.jar"))))
 #+END_SRC
