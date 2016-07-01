@@ -100,7 +100,7 @@
       (require 'emms-source-file)
       (require 'emms-source-playlist)
       (require 'emms-player-simple)
-      (require 'emms-player-mplayer)
+      (require 'emms-player-vlc)
       (require 'emms-playlist-mode)
       (require 'emms-info)
       (require 'emms-cache)
@@ -206,8 +206,15 @@
 
       (setq emms-playing-time-style 'bar)
 
-      (setq emms-player-mplayer-parameters '("-ao" "alsa" "-vo" "null"))
+      ;;(setq emms-player-mplayer-parameters '("-ao" "alsa" "-vo" "null"))
       ;;(setq emms-cache-file "~/.spacemacs.d/layer/music/emms/cache")
+      (setq-default emms-player-vlc-parameters (cons "--no-video"
+                                                     emms-player-vlc-parameters))
+
+      (setq emms-player-list '(emms-player-vlc
+                               emms-player-mpg321
+                               emms-player-ogg123
+                               emms-player-mplayer))
 
       (evil-leader/set-key
         "oo" 'emms-start
