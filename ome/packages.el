@@ -33,6 +33,7 @@
   '(
     (ome :location built-in)
     (xgtags :location (recipe :fetcher wiki :url "http://www.emacswiki.org/emacs/download/xgtags.el"))
+    nlinum
     ))
 
 (defvar ome-dir (file-name-directory (or load-file-name (buffer-file-name)))
@@ -103,6 +104,12 @@
                   (xgtags-mode 1)))
 
       )))
+
+(defun ome/init-nlinum()
+  (use-package nlinum
+    :config
+    (progn
+      (require 'nlinum))))
 
 (defun ome/init-ome ()
   (use-package org-mode

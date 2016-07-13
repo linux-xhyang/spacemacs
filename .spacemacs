@@ -321,6 +321,11 @@ This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (load-file (concat user-emacs-directory "private/init.el"))
   (global-company-mode)
+  (add-hook 'org-mode-hook 'spacemacs/toggle-spelling-checking-on)
+  (add-hook 'nroff-mode-hook 'spacemacs/toggle-spelling-checking-on)
+  (add-hook 'js2-mode-hook 'spacemacs/toggle-spelling-checking-off)
+  (add-hook 'clojure-mode-hook 'spacemacs/toggle-spelling-checking-off)
+  (add-hook 'emacs-lisp-mode-hook 'spacemacs/toggle-spelling-checking-off)
   (setq projectile-global-mode t)
   ;; Do not write anything past this comment. This is where Emacs will
   ;; auto-generate custom variable definitions.
@@ -341,6 +346,7 @@ layers configuration. You are free to put any user code."
  ;; If there is more than one, they won't work right.
  '(company-idle-delay 1)
  '(company-minimum-prefix-length 4)
+ ;;'(global-font-lock-mode nil)
  '(gdb-many-windows t t)
  '(gdb-show-main t t)
  '(git-gutter:added-sign "++")
@@ -349,10 +355,18 @@ layers configuration. You are free to put any user code."
  '(git-gutter:hide-gutter t)
  '(git-gutter:modified-sign "  ")
  '(global-linum-mode t)
+ ;;'(global-nlinum-mode t)
  '(helm-grep-default-command "grep --color=always -a -d recurse %e -n%cH -e %p %f")
  '(helm-gtags-path-style (quote relative))
+ '(jit-lock-chunk-size 6000)
+ '(jit-lock-stealth-load 100)
+ '(jit-lock-stealth-nice 0.5)
  '(jit-lock-stealth-time 10)
- '(large-file-warning-threshold 10000000)
+ '(jit-lock-defer-time 0.2)
+ '(jit-lock-context-time 0.1)
+ ;;'(jit-lock-stealth-verbose t)
+ '(jit-lock-contextually t)
+ '(large-file-warning-threshold 10000)
  '(magit-diff-arguments
    (quote
     ("--ignore-all-space" "--no-ext-diff" "--stat" "-- " "--diff-algorithm=default")))
