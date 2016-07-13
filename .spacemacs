@@ -327,6 +327,10 @@ layers configuration. You are free to put any user code."
   (add-hook 'clojure-mode-hook 'spacemacs/toggle-spelling-checking-off)
   (add-hook 'emacs-lisp-mode-hook 'spacemacs/toggle-spelling-checking-off)
   (setq projectile-global-mode t)
+  ;;remove all keybinds from insert-state keymap,use emacs-state when editing
+  (setcdr evil-insert-state-map nil)
+  ;;ESC to switch back normal-state
+  (define-key evil-insert-state-map [escape] 'evil-normal-state)
   ;; Do not write anything past this comment. This is where Emacs will
   ;; auto-generate custom variable definitions.
   (defun org-clock-persist-save-file ()
