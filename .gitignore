@@ -1,5 +1,6 @@
 # the generated el files by org-babel
 ome*el
+*.pyc
 *ome*part*el
 *ome*part*org
 

@@ -12,12 +12,13 @@ git submodule update --init --recursiv
 
 * 配置 ycmd
 #+BEGIN_SRC emacs-lisp
-(set-variable 'ycmd-server-command (list "python" (concat user-home-directory "src/ycmd/ycmd")))
-;;(set-variable 'ycmd-global-config "/path/to/global_config.py")
+  (set-variable 'ycmd-server-command (list "python" (concat user-home-directory "src/ycmd/ycmd")))
+  ;;(set-variable 'ycmd-global-config "/path/to/global_config.py")
 
-;;If you've got project-specific ycmd configurations (almost certainly called .ycm_extra_conf.py),
-;;and if you want them automatically loaded by ycmd as needed (which you probably do), then you can
-;;whitelist them by adding entries to ycmd-extra-conf-whitelist. For example, this will allow automatic
-;;loading of all .ycm_extra_conf.py files anywhere under ~/my_projects
-(set-variable 'ycmd-extra-conf-whitelist '("~/src/pulpfiction/*"))
+  ;;If you've got project-specific ycmd configurations (almost certainly called .ycm_extra_conf.py),
+  ;;and if you want them automatically loaded by ycmd as needed (which you probably do), then you can
+  ;;whitelist them by adding entries to ycmd-extra-conf-whitelist. For example, this will allow automatic
+  ;;loading of all .ycm_extra_conf.py files anywhere under ~/my_projects
+  (set-variable 'ycmd-global-config (concat ome-dir "modules/global_conf.py"))
+  (set-variable 'ycmd-extra-conf-whitelist '("~/src/pulpfiction/common/*"))
 #+END_SRC
