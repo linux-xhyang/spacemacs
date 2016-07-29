@@ -99,7 +99,7 @@ This is part of [[https://github.com/xiaohanyu/oh-my-emacs][oh-my-emacs]].
 
 * company key
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-<return>") 'company-complete)
+(global-set-key (kbd "C-<return>") 'company-complete-common)
 #+END_SRC
 
 * diminish mode

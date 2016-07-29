@@ -12,8 +12,9 @@
 (ome-load "modules/ome-ifdef-jump.org")
 (ome-load "modules/ome-android.org")
 (ome-load "modules/ome-common-lisp.org")
-(ome-load "modules/ome-define.org")
 (ome-load "modules/ome-taskjuggler.org")
+(ome-load "modules/ome-define.org")
+(ome-load "modules/ome-ycmd.org")
 
 (setq helm-gtags-use-input-at-cursor nil)
 (evil-mode)

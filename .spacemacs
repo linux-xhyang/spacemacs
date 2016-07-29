@@ -44,6 +44,7 @@ values."
      better-defaults
      emacs-lisp
      gtags
+     ycmd
      semantic
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode)
@@ -54,6 +55,7 @@ values."
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-sort-by-usage t
+                      auto-completion-enable-help-tooltip t
                       auto-completion-complete-with-key-sequence "ja"
                       auto-completion-complete-with-key-sequence-delay 0.1
       )
@@ -302,7 +304,6 @@ in `dotspacemacs/user-config'."
   (add-hook 'before-save-hook 'delete-trailing-whitespace)
   ;; enable to support navigate in camelCase words
   (global-subword-mode t)
-
   (global-set-key "\M-'" 'set-mark-command)
   (global-set-key "\M-r" 'replace-string)
 
@@ -320,6 +321,14 @@ in `dotspacemacs/user-config'."
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (load-file (concat user-emacs-directory "private/init.el"))
+  ;;company-gtags
+  (setq company-backends-c-mode-common '( company-ycmd
+                                          company-c-headers
+                                          company-dabbrev-code
+                                          company-files ))
+  (with-eval-after-load 'company
+    (define-key company-mode-map (kbd "C-<tab>") 'company-other-backend)
+    )
   (global-company-mode)
   (add-hook 'org-mode-hook 'spacemacs/toggle-spelling-checking-on)
   (add-hook 'nroff-mode-hook 'spacemacs/toggle-spelling-checking-on)
@@ -348,8 +357,12 @@ layers configuration. You are free to put any user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(company-idle-delay 1)
- '(company-minimum-prefix-length 4)
+ '(company-auto-complete t)
+ '(company-auto-complete-chars (quote (32 95 41 46 34 39 60 62)))
+ '(company-idle-delay 0.3)
+ '(company-minimum-prefix-length 3)
+ '(company-show-numbers t)
+ '(company-selection-wrap-around t)
  ;;'(global-font-lock-mode nil)
  '(gdb-many-windows t t)
  '(gdb-show-main t t)

@@ -232,6 +232,7 @@ The argument list is a list of strings."
 
 (setq history-file "unused")
 (add-hook 'c-mode-hook (function xdefine:hook))
+(add-hook 'c-mode-hook (function ycmd-mode))
 (add-hook 'c++-mode-hook (function xdefine:hook))
 (add-hook 'dired-mode-hook (function xdefine:hook))
 (provide 'xdefine)
