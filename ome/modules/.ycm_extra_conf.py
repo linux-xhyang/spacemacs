@@ -64,19 +64,26 @@ if (os.getenv('ANDROID_BUILD_TOP')):
     print flags
 
 else:
-  flags = [
-    '-Wall',
-    '-Wextra',
-    '-Werror',
-    '-Wc++98-compat',
-    '-Wno-long-long',
-    '-Wno-variadic-macros',
-    '-fexceptions',
-    '-DNDEBUG',
-    '-std=c++11',
-    '-x', 'c++',
-    '-I', '.',
-  ]
+  kernel_root_dir = os.path.dirname( os.path.abspath( __file__ ) )
+  if (len(kernel_root_dir) > 0):
+    print kernel_root_dir
+    flags = [
+      '-Wall',
+      '-Wextra',
+      '-Werror',
+      '-D__KERNEL__',
+      '-nostdinc',
+      '-DUSE_CLANG_COMPLETER',
+      '-std=c99',
+      '-x', 'c',
+      '-I', '.',
+      '-isystem', os.path.join(kernel_root_dir, 'include'),
+      '-isystem', os.path.join(kernel_root_dir, 'include/linux'),
+      '-isystem', os.path.join(kernel_root_dir, 'include/asm-generic'),
+      '-isystem', os.path.join(kernel_root_dir, 'arch/arm/include'),
+      '-isystem', os.path.join(kernel_root_dir, 'arch/arm64/include'),
+    ]
+    print flags
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
 # compile_commands.json file to use that instead of 'flags'. See here for

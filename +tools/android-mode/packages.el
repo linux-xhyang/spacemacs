@@ -14,7 +14,8 @@
     :init
     (progn
       (setq android-mode-sdk-dir "")
-      (setq android-mode-sdk-tool-subdirs (mapcar #'append (split-string (concat (getenv "ANDROID_BUILD_PATHS") ":" (getenv "ANDROID_DEV_SCRIPTS") )":" t)))
+      (setq android-mode-sdk-tool-subdirs (mapcar #'append (split-string (concat (getenv "ANDROID_BUILD_PATHS") ":" (getenv "ANDROID_DEV_SCRIPTS")
+                                                                                 ":" (getenv "PATH"))":" t)))
       (require 'android-mode)
       )))
 

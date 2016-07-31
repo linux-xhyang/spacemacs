@@ -20,5 +20,5 @@ git submodule update --init --recursiv
   ;;whitelist them by adding entries to ycmd-extra-conf-whitelist. For example, this will allow automatic
   ;;loading of all .ycm_extra_conf.py files anywhere under ~/my_projects
   (set-variable 'ycmd-global-config (concat ome-dir "modules/global_conf.py"))
-  (set-variable 'ycmd-extra-conf-whitelist '("~/src/pulpfiction/common/*"))
+  (set-variable 'ycmd-extra-conf-whitelist '("~/src/pulpfiction/common/*" "~/work/linux-src/linux/*"))
 #+END_SRC
