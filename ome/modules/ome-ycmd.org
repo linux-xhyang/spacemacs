@@ -10,6 +10,7 @@ git submodule update --init --recursiv
 ./build.py --all
 #+END_SRC
 
+
 * 配置 ycmd
 #+BEGIN_SRC emacs-lisp
   (set-variable 'ycmd-server-command (list "python" (concat user-home-directory "src/ycmd/ycmd")))
@@ -21,4 +22,22 @@ git submodule update --init --recursiv
   ;;loading of all .ycm_extra_conf.py files anywhere under ~/my_projects
   (set-variable 'ycmd-global-config (concat ome-dir "modules/global_conf.py"))
   (set-variable 'ycmd-extra-conf-whitelist '("~/src/pulpfiction/common/*" "~/work/linux-src/linux/*"))
+#+END_SRC
+
+* company setting
+#+BEGIN_SRC emacs-lisp
+
+  ;;company-gtags
+  (setq company-backends-c-mode-common '(company-ycmd company-c-headers company-dabbrev-code company-files company-yasnippet))
+  (with-eval-after-load 'company
+    (define-key company-mode-map (kbd "C-<tab>") 'company-other-backend)
+    )
+    (add-hook 'c-mode-hook (function ycmd-mode))
+  ;;company-gtags
+  (setq company-backends-python-mode '(company-ycmd company-anaconda company-dabbrev-code company-files company-yasnippet))
+  (with-eval-after-load 'company
+    (define-key company-mode-map (kbd "C-<tab>") 'company-other-backend)
+    )
+    (add-hook 'python-mode-hook (function ycmd-mode))
+  (global-company-mode)
 #+END_SRC

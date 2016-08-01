@@ -53,7 +53,7 @@ values."
      common-lisp
      python
      (auto-completion :variables
-                      auto-completion-enable-snippets-in-popup t
+                      auto-completion-enable-snippets-in-popup nil
                       auto-completion-enable-sort-by-usage t
                       auto-completion-enable-help-tooltip t
                       auto-completion-complete-with-key-sequence "ja"
@@ -321,15 +321,6 @@ in `dotspacemacs/user-config'."
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (load-file (concat user-emacs-directory "private/init.el"))
-  ;;company-gtags
-  (setq company-backends-c-mode-common '( company-ycmd
-                                          company-c-headers
-                                          company-dabbrev-code
-                                          company-files ))
-  (with-eval-after-load 'company
-    (define-key company-mode-map (kbd "C-<tab>") 'company-other-backend)
-    )
-  (global-company-mode)
   (add-hook 'org-mode-hook 'spacemacs/toggle-spelling-checking-on)
   (add-hook 'nroff-mode-hook 'spacemacs/toggle-spelling-checking-on)
   (add-hook 'js2-mode-hook 'spacemacs/toggle-spelling-checking-off)
