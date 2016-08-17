@@ -3,17 +3,20 @@
 
 * 下载、编译
 #+BEGIN_SRC sh
-sudo apt-get install build-essential cmake python-dev
-git clone https://github.com/Valloric/ycmd.git
-cd ycmd
-git submodule update --init --recursiv
-./build.py --all
+  sudo apt-get install build-essential cmake python-dev
+  git clone https://github.com/Valloric/ycmd.git
+  cd ycmd
+  git submodule update --init --recursive
+  #need gcc version > 4.7 (due to c++11)
+  ./build.py --all
+  echo "export YCMD_PATH=`pwd`/ycmd" >> ~/.bashrc
 #+END_SRC
 
 
 * 配置 ycmd
 #+BEGIN_SRC emacs-lisp
-  (set-variable 'ycmd-server-command (list "python" (concat user-home-directory "src/ycmd/ycmd")))
+  ;;(set-variable 'ycmd-server-command (list "python" (concat user-home-directory "src/ycmd/ycmd")))
+  (set-variable 'ycmd-server-command (list "python" (getenv "YCMD_PATH")))
   ;;(set-variable 'ycmd-global-config "/path/to/global_config.py")
 
   ;;If you've got project-specific ycmd configurations (almost certainly called .ycm_extra_conf.py),
