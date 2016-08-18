@@ -35,7 +35,7 @@ This is part of [[https://github.com/xiaohanyu/oh-my-emacs][oh-my-emacs]].
   (set-face-background 'hl-line "#3e4446")
   (set-face-foreground 'highlight nil)
 
-  (add-hook 'org-mode-hook (lambda () (spacemacs/toggle-line-numbers-off)) 'append)
+  ;;(add-hook 'org-mode-hook (lambda () (spacemacs/toggle-line-numbers-off)) 'append)
   (defun spacemacs/check-large-file ()
     (when (> (buffer-size) 100000)
       (progn (fundamental-mode)
