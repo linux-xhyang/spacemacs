@@ -15,6 +15,7 @@
 (ome-load "modules/ome-taskjuggler.org")
 (ome-load "modules/ome-define.org")
 (ome-load "modules/ome-ycmd.org")
+(ome-load "modules/ome-python.org")
 
 (setq helm-gtags-use-input-at-cursor nil)
 (evil-mode)
