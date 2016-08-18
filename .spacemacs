@@ -52,6 +52,7 @@ values."
      git
      common-lisp
      python
+     ipython-notebook
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup nil
                       auto-completion-enable-sort-by-usage t
