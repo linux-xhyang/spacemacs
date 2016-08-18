@@ -259,3 +259,14 @@ Suitable for inclusion in `c-offsets-alist'."
       (setq lst (cdr lst)))))
 
 #+END_SRC
+
+* utils function
+#+BEGIN_SRC emacs-lisp
+  (defun run-su-shell (command)
+    (shell-command (concat "echo " (shell-quote-argument (read-passwd "Password? "))
+                           " | sudo -S " command))
+    )
+  (defun run-shell (command)
+    (shell-command (concat command " " (shell-quote-argument (read-string "argument:"))))
+    )
+#+END_SRC

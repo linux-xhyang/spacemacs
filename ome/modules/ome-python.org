@@ -1,0 +1,13 @@
+#+TITLE: Python 配置
+
+* install ipython
+#+BEGIN_SRC emacs-lisp
+  (when (not (executable-find "ipython"))
+    (run-su-shell "sudo apt-get install ipython"))
+#+END_SRC
+
+* setting ipython
+#+BEGIN_SRC emacs-lisp
+  (when (executable-find "ipython")
+    (setq python-shell-interpreter "ipython"))
+#+END_SRC
