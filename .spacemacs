@@ -80,7 +80,7 @@ values."
      ome-ecb
      ome-ccl
      music
-     symon
+     ;;symon
      android-mode
      )
    ;; List of additional packages that will be installed without being
@@ -370,7 +370,7 @@ layers configuration. You are free to put any user code."
  '(jit-lock-chunk-size 6000)
  '(jit-lock-stealth-load 100)
  '(jit-lock-stealth-nice 0.5)
- '(jit-lock-stealth-time 10)
+ '(jit-lock-stealth-time nil)
  '(jit-lock-defer-time 0.2)
  '(jit-lock-context-time 0.1)
  ;;'(jit-lock-stealth-verbose t)
