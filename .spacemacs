@@ -79,6 +79,7 @@ values."
      ome-speedbar
      ome-ecb
      ome-ccl
+     ome-realgud
      music
      ;;symon
      android-mode
@@ -353,9 +354,8 @@ layers configuration. You are free to put any user code."
  '(company-auto-complete-chars (quote (32 95 41 46 34 39 60 62)))
  '(company-idle-delay 0.3)
  '(company-minimum-prefix-length 3)
- '(company-show-numbers t)
  '(company-selection-wrap-around t)
- ;;'(global-font-lock-mode nil)
+ '(company-show-numbers t)
  '(gdb-many-windows t t)
  '(gdb-show-main t t)
  '(git-gutter:added-sign "++")
@@ -364,17 +364,16 @@ layers configuration. You are free to put any user code."
  '(git-gutter:hide-gutter t)
  '(git-gutter:modified-sign "  ")
  '(global-linum-mode t)
- ;;'(global-nlinum-mode t)
  '(helm-grep-default-command "grep --color=always -a -d recurse %e -n%cH -e %p %f")
  '(helm-gtags-path-style (quote relative))
+ '(isend-send-region-function (quote isend--ipython-cpaste))
  '(jit-lock-chunk-size 6000)
+ '(jit-lock-context-time 0.1)
+ '(jit-lock-contextually t)
+ '(jit-lock-defer-time 0.2)
  '(jit-lock-stealth-load 100)
  '(jit-lock-stealth-nice 0.5)
  '(jit-lock-stealth-time nil)
- '(jit-lock-defer-time 0.2)
- '(jit-lock-context-time 0.1)
- ;;'(jit-lock-stealth-verbose t)
- '(jit-lock-contextually t)
  '(large-file-warning-threshold 10000)
  '(magit-diff-arguments
    (quote
@@ -393,6 +392,9 @@ layers configuration. You are free to put any user code."
      ("~" org-code verbatim)
      ("+"
       (:strike-through t)))))
+ '(package-selected-packages
+   (quote
+    (isend-mode realgud test-simple loc-changes load-relative eclim youdao-dictionary xterm-color xgtags ws-butler window-numbering which-key web-mode volatile-highlights vlf vi-tilde-fringe use-package toc-org tagedit stickyfunc-enhance srefactor sr-speedbar spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-yapf popwin pip-requirements persp-mode pcre2el paradox pangu-spacing page-break-lines orgit org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets open-junk-file nlinum neotree multi-term move-text magit-gitflow lorem-ipsum linum-relative leuven-theme less-css-mode jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flyspell helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gmail-message-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-gutter-fringe git-emacs ggtags flycheck-ycmd flycheck-pos-tip flx-ido fish-mode find-by-pinyin-dired fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-smartparens evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu eshell-prompt-extras esh-help emms emmet-mode emacs-eclim elogcat elisp-slime-nav ein edit-server ecb dts-mode disaster define-word cython-mode company-ycmd company-web company-statistics company-quickhelp company-c-headers company-anaconda cmake-mode clean-aindent-mode clang-format chinese-pyim buffer-move bracketed-paste auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile android-mode aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-slime ac-ispell)))
  '(projectile-enable-caching t)
  '(vlf-application (quote dont-ask))
  '(vlf-batch-size 10485760)
