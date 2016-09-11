@@ -15,8 +15,8 @@
 
 * 配置 ycmd
 #+BEGIN_SRC emacs-lisp
-  ;;(set-variable 'ycmd-server-command (list "python" (concat user-home-directory "src/ycmd/ycmd")))
-  (set-variable 'ycmd-server-command (list "python" (getenv "YCMD_PATH")))
+  (set-variable 'ycmd-server-command (list "python" (concat user-home-directory "src/ycmd/ycmd")))
+  ;;(set-variable 'ycmd-server-command (list "python" (getenv "YCMD_PATH")))
   ;;(set-variable 'ycmd-global-config "/path/to/global_config.py")
 
   ;;If you've got project-specific ycmd configurations (almost certainly called .ycm_extra_conf.py),
@@ -30,6 +30,7 @@
 * company setting
 #+BEGIN_SRC emacs-lisp
 
+
   ;;company-gtags
   (setq company-backends-c-mode-common '(company-ycmd company-c-headers company-dabbrev-code company-files company-yasnippet))
   (with-eval-after-load 'company
@@ -37,14 +38,16 @@
     )
     (add-hook 'c-mode-hook (function ycmd-mode))
   ;;company-gtags
-  (setq company-backends-python-mode '(company-ycmd company-anaconda company-dabbrev-code company-files company-yasnippet))
+  (setq company-backends-python-mode '(company-anaconda company-ycmd company-dabbrev-code company-files company-yasnippet))
+  (setq company-backends-inferior-python-mode '(company-ycmd company-anaconda company-dabbrev-code company-files company-yasnippet))
+  (add-hook 'python-mode-hook (function ycmd-mode))
+
+  (spacemacs|defvar-company-backends comint-mode)
+  (setq company-backends-comint-mode '(company-anaconda company-ycmd company-dabbrev-code company-files company-yasnippet))
+  (spacemacs|add-company-hook comint-mode)
+
   (with-eval-after-load 'company
     (define-key company-mode-map (kbd "C-<tab>") 'company-other-backend)
     )
-    (add-hook 'python-mode-hook (function ycmd-mode))
-
-  (spacemacs|add-company-hook comint-mode)
-  (spacemacs|defvar-company-backends comint-mode)
-  (setq company-backends-comint-mode '(company-ycmd company-anaconda company-dabbrev-code company-files company-yasnippet))
   (global-company-mode)
 #+END_SRC

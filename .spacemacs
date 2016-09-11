@@ -374,6 +374,7 @@ layers configuration. You are free to put any user code."
  '(jit-lock-stealth-load 100)
  '(jit-lock-stealth-nice 0.5)
  '(jit-lock-stealth-time nil)
+ '(ein:use-auto-complete-superpack t)
  '(large-file-warning-threshold 10000)
  '(magit-diff-arguments
    (quote
