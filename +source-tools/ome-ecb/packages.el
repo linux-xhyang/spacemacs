@@ -14,7 +14,7 @@
        (require 'ecb)
        (setq ecb-source-path '("~/src/Android-L"
                                "~/src/linux"))
-       (setq ecb-layout-name "left9")
+       ;;(setq ecb-layout-name "left9")
        (setq ecb-tip-of-the-day nil)
 
        (require 'ggtags)

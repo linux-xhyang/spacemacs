@@ -401,6 +401,9 @@ layers configuration. You are free to put any user code."
  '(vlf-batch-size 10485760)
  '(vlf-tune-enabled t)
  '(vlf-tune-max 402702600)
+ '(which-key-popup-type (quote minibuffer))
+ '(sr-speedbar-right-side nil)
+ '(sr-speedbar-skip-other-window-p t)
  '(which-function-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
