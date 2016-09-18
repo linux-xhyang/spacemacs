@@ -77,7 +77,7 @@ values."
      ome
      ome-git
      ome-speedbar
-     ome-ecb
+     ;;ome-ecb
      ome-ccl
      ome-realgud
      music
@@ -356,6 +356,9 @@ layers configuration. You are free to put any user code."
  '(company-minimum-prefix-length 3)
  '(company-selection-wrap-around t)
  '(company-show-numbers t)
+ '(semantic-idle-scheduler-idle-time 0.3)
+ '(semantic-idle-summary-function (quote semantic-format-tag-short-doc))
+ '(semantic-idle-truncate-long-summaries nil)
  '(gdb-many-windows t t)
  '(gdb-show-main t t)
  '(git-gutter:added-sign "++")
