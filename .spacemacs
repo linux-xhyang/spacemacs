@@ -358,7 +358,7 @@ layers configuration. You are free to put any user code."
  '(company-minimum-prefix-length 3)
  '(company-selection-wrap-around t)
  '(company-show-numbers t)
- '(semantic-idle-scheduler-idle-time 0.1)
+ '(semantic-idle-scheduler-idle-time 0.3)
  '(ggtags-highlight-tag 0.1)
  '(semantic-idle-summary-function (quote semantic-format-tag-short-doc))
  '(semantic-idle-truncate-long-summaries nil)
