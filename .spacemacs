@@ -80,6 +80,7 @@ values."
      ;;ome-ecb
      ome-ccl
      ome-realgud
+     ome-ggtags
      music
      ;;symon
      android-mode
@@ -88,7 +89,8 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+                                      (ggtags :location (recipe :fetcher github :repo "linux-xhyang/ggtags")))
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -356,9 +358,11 @@ layers configuration. You are free to put any user code."
  '(company-minimum-prefix-length 3)
  '(company-selection-wrap-around t)
  '(company-show-numbers t)
- '(semantic-idle-scheduler-idle-time 0.3)
+ '(semantic-idle-scheduler-idle-time 0.1)
+ '(ggtags-highlight-tag 0.1)
  '(semantic-idle-summary-function (quote semantic-format-tag-short-doc))
  '(semantic-idle-truncate-long-summaries nil)
+ '(ggtags-sort-by-nearness t)
  '(gdb-many-windows t t)
  '(gdb-show-main t t)
  '(git-gutter:added-sign "++")
@@ -405,6 +409,7 @@ layers configuration. You are free to put any user code."
  '(vlf-tune-enabled t)
  '(vlf-tune-max 402702600)
  '(which-key-popup-type (quote minibuffer))
+ '(which-key-idle-delay 0.6)
  '(sr-speedbar-right-side nil)
  '(sr-speedbar-skip-other-window-p t)
  '(which-function-mode t))
