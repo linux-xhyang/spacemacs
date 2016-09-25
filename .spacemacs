@@ -81,6 +81,8 @@ values."
      ome-ccl
      ome-realgud
      ome-ggtags
+     ome-systemtap
+     ome-gui
      music
      ;;symon
      android-mode
@@ -412,7 +414,9 @@ layers configuration. You are free to put any user code."
  '(which-key-idle-delay 0.6)
  '(sr-speedbar-right-side nil)
  '(sr-speedbar-skip-other-window-p t)
- '(which-function-mode t))
+ '(which-function-mode t)
+ '(yahoo-weather-location "北京")
+ '(yahoo-weather-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

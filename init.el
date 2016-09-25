@@ -16,6 +16,7 @@
 (ome-load "modules/ome-define.org")
 (ome-load "modules/ome-ycmd.org")
 (ome-load "modules/ome-python.org")
+;;(ome-load "modules/ome-powerline.org")
 
 (setq helm-gtags-use-input-at-cursor nil)
 (evil-mode)
