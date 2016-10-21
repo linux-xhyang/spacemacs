@@ -1,8 +1,8 @@
 
 (defconst ome-realgud-packages
   '(
-    realgud
     isend-mode
+    realgud
     ))
 
 (defun ome-realgud/init-realgud ()
@@ -16,7 +16,7 @@
   (use-package isend-mode
     :config
     (progn
-      (require 'isend)
+      (require 'isend-mode)
       (add-hook 'isend-mode-hook 'isend-default-ipython-setup)
       (add-hook 'ein:notebook-multilang-mode-hook 'isend-mode)
       (add-hook 'python-mode-hook 'isend-mode)

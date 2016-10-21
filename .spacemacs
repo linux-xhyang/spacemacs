@@ -6,11 +6,9 @@
 
 (require 'package)
 (setq package-archives '(
-                         ("melpa" . "http://melpa.org/packages/")
-                         ("org" . "http://orgmode.org/elpa/")
-                         ("gnu" . "http://elpa.gnu.org/packages/")
-			 ;("marmalade" . "http://marmalade-repo.org/packages/")
-			 ;("melpa" . "http://melpa.milkbox.net/packages/")
+("melpa-cn" . "http://elpa.zilongshanren.com/melpa/")
+      ("org-cn"   . "http://elpa.zilongshanren.com/org/")
+      ("gnu-cn"   . "http://elpa.zilongshanren.com/gnu/")
 			 ))
 
 ; Apparently needed for the package auto-complete (why?)
