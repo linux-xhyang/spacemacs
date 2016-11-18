@@ -288,6 +288,7 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
+  (setq gc-cons-threshold 1048576)
   (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
   ;; set environment coding system
   (set-language-environment "UTF-8")
@@ -337,6 +338,7 @@ layers configuration. You are free to put any user code."
   (define-key evil-insert-state-map [escape] 'evil-normal-state)
   ;; Do not write anything past this comment. This is where Emacs will
   ;; auto-generate custom variable definitions.
+  (setq spaceline-org-clock-p t)
   (defun org-clock-persist-save-file ()
     (if (equal 'windows-nt system-type)
         (if (file-exists-p "D:/note/my-org.el")
