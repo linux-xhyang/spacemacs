@@ -81,7 +81,7 @@ values."
      ome-ggtags
      ome-systemtap
      ome-gui
-     music
+     ;;music
      ;;symon
      android-mode
      )
@@ -132,7 +132,7 @@ values."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner nil
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'.
    ;; (default '(recents projects))
@@ -379,7 +379,7 @@ layers configuration. You are free to put any user code."
  '(jit-lock-chunk-size 6000)
  '(jit-lock-context-time 0.1)
  '(jit-lock-contextually t)
- '(jit-lock-defer-time 0.2)
+ '(jit-lock-defer-time 0.4)
  '(jit-lock-stealth-load 100)
  '(jit-lock-stealth-nice 0.5)
  '(jit-lock-stealth-time nil)
