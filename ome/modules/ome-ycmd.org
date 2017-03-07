@@ -15,7 +15,9 @@
 
 * 配置 ycmd
 #+BEGIN_SRC emacs-lisp
-  (set-variable 'ycmd-server-command (list "python" (concat user-home-directory "src/ycmd/ycmd")))
+
+  ;;(set-variable 'ycmd-server-command (list "python" (concat user-home-directory "src/ycmd/ycmd")))
+  (set-variable 'ycmd-server-command (list "python" (getenv "YCMD_PATH")))
   ;;(set-variable 'ycmd-server-command (list "python" (getenv "YCMD_PATH")))
   ;;(set-variable 'ycmd-global-config "/path/to/global_config.py")
 
@@ -24,7 +26,16 @@
   ;;whitelist them by adding entries to ycmd-extra-conf-whitelist. For example, this will allow automatic
   ;;loading of all .ycm_extra_conf.py files anywhere under ~/my_projects
   (set-variable 'ycmd-global-config (concat ome-dir "modules/global_conf.py"))
-  (set-variable 'ycmd-extra-conf-whitelist '("~/src/pulpfiction/common/*" "~/work/linux-src/linux/*"))
+  ;;(set-variable 'ycmd-extra-conf-whitelist '("~/src/pulpfiction/common/*" "~/work/linux-src/linux/*"))
+  (defun auto-update-ycmd-extral-conf-whitelist ()
+    (if (projectile-project-root)
+        (let* ((rootdir (projectile-project-root))
+               (var (mapcar (lambda (dir)
+                        (concat rootdir dir)) '("common/*" "linux/*"))))
+              (set-variable 'ycmd-extra-conf-whitelist var))
+              (set-variable 'ycmd-extra-conf-whitelist '("~/src/pulpfiction/common/*" "~/work/linux-src/linux/*"))
+              ))
+  (add-hook 'ycmd-mode-hook (function auto-update-ycmd-extral-conf-whitelist))
 #+END_SRC
 
 * company setting
