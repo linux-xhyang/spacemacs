@@ -112,12 +112,11 @@
       (require 'nlinum))))
 
 (defun ome/init-ome ()
-  (use-package org-mode
+  (use-package org-plus-contrib
     :config
     (progn
       (org-babel-load-file (expand-file-name "ome.org" ome-dir))
-      ))
-  )
+      )))
 
 
 ;;; packages.el ends here
