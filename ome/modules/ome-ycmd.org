@@ -31,14 +31,24 @@
   ;;loading of all .ycm_extra_conf.py files anywhere under ~/my_projects
   (set-variable 'ycmd-global-config (concat ome-dir "modules/global_conf.py"))
   ;;(set-variable 'ycmd-extra-conf-whitelist '("~/src/pulpfiction/common/*" "~/work/linux-src/linux/*"))
+  (defun string-remove-wildchar (str)
+    (if (string-match "*$" str)
+        (replace-match "" t t str)
+      str))
   (defun auto-update-ycmd-extral-conf-whitelist ()
     (if (projectile-project-root)
         (let* ((rootdir (projectile-project-root))
                (var (mapcar (lambda (dir)
-                        (concat rootdir dir)) '("common/*" "linux/*"))))
-              (set-variable 'ycmd-extra-conf-whitelist var))
-              (set-variable 'ycmd-extra-conf-whitelist '("~/src/pulpfiction/common/*" "~/work/linux-src/linux/*"))
-              ))
+                              (concat rootdir dir)) '("common/*" "linux/*"))))
+          (set-variable 'ycmd-extra-conf-whitelist var))
+      (set-variable 'ycmd-extra-conf-whitelist '("~/src/pulpfiction/common/*" "~/work/linux-src/linux/*")))
+    (mapcar (lambda (directory)
+              (let ((dir (string-remove-wildchar directory)))
+                (when (file-exists-p dir)
+                    (if (file-exists-p (concat dir "/.ycm_extra_conf.py"))
+                        nil
+                      (copy-file (concat ome-dir "modules/.ycm_extra_conf.py") (concat dir "/.ycm_extra_conf.py"))))))
+            ycmd-extra-conf-whitelist))
   (add-hook 'ycmd-mode-hook (function auto-update-ycmd-extral-conf-whitelist))
 #+END_SRC
 
