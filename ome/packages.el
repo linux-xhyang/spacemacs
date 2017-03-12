@@ -31,7 +31,6 @@
 
 (defconst ome-packages
   '(
-    (ome :location built-in)
     (xgtags :location (recipe :fetcher wiki :url "http://www.emacswiki.org/emacs/download/xgtags.el"))
     nlinum
     ))
