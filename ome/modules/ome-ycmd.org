@@ -54,18 +54,18 @@
 
 * company setting
 #+BEGIN_SRC emacs-lisp
-
-
   ;;company-gtags
   (setq company-backends-c-mode-common '(company-ycmd company-c-headers company-dabbrev-code company-files company-yasnippet))
   (with-eval-after-load 'company
-    (define-key company-mode-map (kbd "C-<tab>") 'company-other-backend)
-    )
-    (add-hook 'c-mode-hook (function ycmd-mode))
+  (define-key company-mode-map (kbd "C-<tab>") 'company-other-backend)
+  )
+  (when (executable-find "ycmd")
+    (add-hook 'c-mode-hook (function ycmd-mode)))
   ;;company-gtags
   (setq company-backends-python-mode '(company-anaconda company-ycmd company-dabbrev-code company-files company-yasnippet))
   (setq company-backends-inferior-python-mode '(company-ycmd company-anaconda company-dabbrev-code company-files company-yasnippet))
-  (add-hook 'python-mode-hook (function ycmd-mode))
+  (when (executable-find "ycmd")
+    (add-hook 'python-mode-hook (function ycmd-mode)))
 
   (spacemacs|defvar-company-backends comint-mode)
   (setq company-backends-comint-mode '(company-anaconda company-ycmd company-dabbrev-code company-files company-yasnippet))
