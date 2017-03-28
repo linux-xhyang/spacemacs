@@ -269,4 +269,10 @@ Suitable for inclusion in `c-offsets-alist'."
   (defun run-shell (command)
     (shell-command (concat command " " (shell-quote-argument (read-string "argument:"))))
     )
+  (defun which-utils(file)
+    (let ((path (split-string (getenv "PATH") ":")))
+      (cl-loop for dir in path
+               when (and (string-or-null-p dir) (file-exists-p dir) (file-exists-p (concat dir  "/" file)))
+               return (concat dir "/" file)
+               )))
 #+END_SRC

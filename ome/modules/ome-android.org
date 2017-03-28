@@ -140,7 +140,7 @@ Specify the package name --- and not the name of the application e.g., com.andro
   (when (getenv "ANDROID_BUILD_TOP")
     (progn (unless (file-exists-p (concat (getenv "ANDROID_BUILD_TOP") "/.projectile"))
                (write-region "" nil (concat (getenv "ANDROID_BUILD_TOP") "/.projectile")))
-           (setq android-build-top (getenv "ANDROID_BUILD_TOP")))
+           (setq android-build-top (getenv "ANDROID_BUILD_TOP"))))
 
   ;; (if android-build-top
   ;;  (setq android-mode-sdk-dir (concat android-build-top "/prebuilts/sdk"))

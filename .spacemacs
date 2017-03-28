@@ -71,7 +71,9 @@ values."
      syntax-checking
      html
      chrome
+     plantuml
      ;; version-control ;;not user for git gutter
+     ome-prepare
      ome
      android-mode
      ome-java
