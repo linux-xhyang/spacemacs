@@ -44,7 +44,6 @@ if (os.getenv('ANDROID_BUILD_TOP')):
     kernel_root_dir = os.path.join(android_root_dir, 'vendor/mstar/kernel')
 
   if (len(kernel_root_dir) > 0):
-    print kernel_root_dir
     flags = [
       '-Wall',
       '-Wextra',
@@ -61,12 +60,10 @@ if (os.getenv('ANDROID_BUILD_TOP')):
       '-isystem', os.path.join(kernel_root_dir, 'arch/arm/include'),
       '-isystem', os.path.join(kernel_root_dir, 'arch/arm64/include'),
     ]
-    print flags
 
 else:
   kernel_root_dir = os.path.dirname( os.path.abspath( __file__ ) )
   if (len(kernel_root_dir) > 0):
-    print kernel_root_dir
     flags = [
       '-Wall',
       '-Wextra',
@@ -83,7 +80,6 @@ else:
       '-isystem', os.path.join(kernel_root_dir, 'arch/arm/include'),
       '-isystem', os.path.join(kernel_root_dir, 'arch/arm64/include'),
     ]
-    print flags
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
 # compile_commands.json file to use that instead of 'flags'. See here for

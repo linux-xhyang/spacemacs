@@ -97,7 +97,6 @@ if (os.getenv('ANDROID_BUILD_TOP')):
     kernel_root_dir = os.path.join(android_root_dir, 'vendor/mstar/kernel')
 
   if (len(kernel_root_dir) > 0):
-    print kernel_root_dir
     kernelflags = [
       '-Wall',
       '-Wextra',
