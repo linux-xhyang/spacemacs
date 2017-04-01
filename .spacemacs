@@ -49,7 +49,10 @@ values."
      java
      git
      common-lisp
-     python
+     (python :variables
+             python-enable-yapf-format-on-save t
+             python-fill-column 99
+             python-sort-imports-on-save t)
      ipython-notebook
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup nil
@@ -363,13 +366,11 @@ layers configuration. You are free to put any user code."
  '(company-minimum-prefix-length 3)
  '(company-selection-wrap-around t)
  '(company-show-numbers t)
- '(semantic-idle-scheduler-idle-time 0.3)
- '(ggtags-highlight-tag 0.1)
- '(semantic-idle-summary-function (quote semantic-format-tag-short-doc))
- '(semantic-idle-truncate-long-summaries nil)
- '(ggtags-sort-by-nearness t)
+ '(ein:use-auto-complete-superpack t)
  '(gdb-many-windows t t)
  '(gdb-show-main t t)
+ '(ggtags-highlight-tag 0.1)
+ '(ggtags-sort-by-nearness t)
  '(git-gutter:added-sign "++")
  '(git-gutter:deleted-sign "--")
  '(git-gutter:diff-option "-w")
@@ -386,7 +387,6 @@ layers configuration. You are free to put any user code."
  '(jit-lock-stealth-load 100)
  '(jit-lock-stealth-nice 0.5)
  '(jit-lock-stealth-time nil)
- '(ein:use-auto-complete-superpack t)
  '(large-file-warning-threshold 10000)
  '(magit-diff-arguments
    (quote
@@ -409,15 +409,19 @@ layers configuration. You are free to put any user code."
    (quote
     (isend-mode realgud test-simple loc-changes load-relative eclim youdao-dictionary xterm-color xgtags ws-butler window-numbering which-key web-mode volatile-highlights vlf vi-tilde-fringe use-package toc-org tagedit stickyfunc-enhance srefactor sr-speedbar spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-yapf popwin pip-requirements persp-mode pcre2el paradox pangu-spacing page-break-lines orgit org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets open-junk-file nlinum neotree multi-term move-text magit-gitflow lorem-ipsum linum-relative leuven-theme less-css-mode jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flyspell helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gmail-message-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-gutter-fringe git-emacs flycheck-ycmd flycheck-pos-tip flx-ido fish-mode find-by-pinyin-dired fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-smartparens evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu eshell-prompt-extras esh-help emms emmet-mode emacs-eclim elogcat elisp-slime-nav ein edit-server ecb dts-mode disaster define-word cython-mode company-ycmd company-web company-statistics company-quickhelp company-c-headers company-anaconda cmake-mode clean-aindent-mode clang-format chinese-pyim buffer-move bracketed-paste auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile android-mode aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-slime ac-ispell)))
  '(projectile-enable-caching t)
+ '(python-shell-completion-native-enable nil)
+ '(semantic-idle-scheduler-idle-time 0.3)
+ '(semantic-idle-summary-function (quote semantic-format-tag-short-doc))
+ '(semantic-idle-truncate-long-summaries nil)
+ '(sr-speedbar-right-side nil)
+ '(sr-speedbar-skip-other-window-p t)
  '(vlf-application (quote dont-ask))
  '(vlf-batch-size 10485760)
  '(vlf-tune-enabled t)
  '(vlf-tune-max 402702600)
- '(which-key-popup-type (quote minibuffer))
- '(which-key-idle-delay 0.6)
- '(sr-speedbar-right-side nil)
- '(sr-speedbar-skip-other-window-p t)
  '(which-function-mode t)
+ '(which-key-idle-delay 0.6)
+ '(which-key-popup-type (quote minibuffer))
  '(yahoo-weather-location "北京")
  '(yahoo-weather-mode t))
 (custom-set-faces
@@ -427,18 +431,3 @@ layers configuration. You are free to put any user code."
  ;; If there is more than one, they won't work right.
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
-  )
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (android-emacs-ide youdao-dictionary yapfify yahoo-weather xterm-color xgtags ws-butler window-numbering which-key web-mode volatile-highlights vlf vi-tilde-fringe uuidgen use-package toc-org tagedit systemtap-mode stickyfunc-enhance srefactor sr-speedbar spacemacs-theme spaceline solarized-theme smeargle slime-company slim-mode shell-pop scss-mode sass-mode restart-emacs realgud rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-isort pug-mode popwin plantuml-mode pip-requirements persp-mode pcre2el paradox pangu-spacing orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file nlinum neotree mwim multi-term move-text meghanada magit-gitflow lorem-ipsum live-py-mode linum-relative link-hint less-css-mode isend-mode insert-shebang info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gmail-message-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-emacs ggtags flyspell-correct-helm flycheck-ycmd flycheck-pos-tip flx-ido fish-mode find-by-pinyin-dired fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-smartparens evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emms emmet-mode elogcat elisp-slime-nav ein edit-server dumb-jump dts-mode disaster define-word cython-mode company-ycmd company-web company-statistics company-shell company-quickhelp company-emacs-eclim company-c-headers company-anaconda common-lisp-snippets column-enforce-mode cmake-mode clean-aindent-mode clang-format chinese-pyim auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile android-mode all-the-icons aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-slime ac-ispell))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
