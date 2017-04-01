@@ -12,6 +12,7 @@
       (setq projectile-switch-project-action 'projectile-vc)
       (setq projectile-use-git-grep t)
       (setq projectile-completion-system 'ivy
+            projectile-mode-line nil
             projectile-globally-ignored-buffers '("*eshell*"
                                                   "*magit-process*"
                                                   "TAGS"
