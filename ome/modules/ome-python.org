@@ -32,4 +32,6 @@
       (insert "!import code; code.interact(local=vars())")
       (move-end-of-line 1)
       (comint-send-input)))
+  ;;set pyenv
+  (setenv "WORKON_HOME" "~/.pyenv/versions/")
 #+END_SRC
