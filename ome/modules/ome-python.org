@@ -7,11 +7,12 @@
 #+END_SRC
 * setting ipython
 #+BEGIN_SRC emacs-lisp
-  (add-hook 'inferior-python-mode-hook 'python-shell-complete-native-turn-on)
+  (require 'python)
+  (add-hook 'inferior-python-mode-hook 'python-shell-completion-native-turn-on)
   (when (executable-find "ipython")
     (setq
      python-shell-interpreter "ipython"
-     python-shell-interpreter-args "-i --simple-prompt --pprint" ;;-i --simple-prompt --pprint
+     python-shell-interpreter-args " -i --simple-prompt --pprint";;-i --simple-prompt --pprint
      ;;python-shell-prompt-regexp "In \\[[0-9]+\\]: "
      ;;python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
      ))
