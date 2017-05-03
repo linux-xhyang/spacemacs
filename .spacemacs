@@ -85,6 +85,7 @@ values."
      ome-speedbar
      ;;ome-ecb
      ome-ccl
+     ome-python
      ome-realgud
      ome-ggtags
      ome-systemtap
