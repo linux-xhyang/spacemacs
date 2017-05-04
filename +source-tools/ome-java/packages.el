@@ -19,12 +19,14 @@
 (defun ome-java/init-eclim ()
   (use-package eclim
     :config
-    (require 'eclim)
-    (setq eclimd-autostart t)
-    (global-eclim-mode)
-    (require 'eclimd)
-    (ome/eclim-eclipse-directory)
-    (setq company-backends-java-mode '(company-emacs-eclim
-     (company-dabbrev-code company-keywords)
-     company-files company-dabbrev))
+    (when (executable-find "eclipse")
+      (require 'eclim)
+      (setq eclimd-autostart t)
+      (global-eclim-mode)
+      (require 'eclimd)
+      (ome/eclim-eclipse-directory)
+      (setq company-backends-java-mode '(company-emacs-eclim
+                                         (company-dabbrev-code company-keywords)
+                                         company-files company-dabbrev))
+      )
     ))
