@@ -1,7 +1,7 @@
 (defconst ome-java-packages
   '(
     meghanada
-    eclim
+    ;;eclim
     ))
 
 (defun ome-java/init-meghanada ()
