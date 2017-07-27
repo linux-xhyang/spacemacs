@@ -20,13 +20,20 @@
     (goto-char (point-min))
     (let ((line  (split-string (buffer-string) "\n" t)))
       (dolist (version line)
-        (when (string-match-p "^java version" version)
+        (if (string-match-p "^java version" version)
           (let ((ver (substring version 12)))
             (when (string-match "^ \\\"\\([0-9]+\\.[0-9]+\\.[0-9]+\\)" ver)
                 (progn
                   (cl-return (match-string 1 ver))
-                  ))
-            ))))))
+                  )))
+          (if (string-match-p "^openjdk version" version)
+              (let ((ver (substring version 15)))
+                (when (string-match "^ \\\"\\([0-9]+\\.[0-9]+\\.[0-9]+\\)" ver)
+                  (progn
+                    (cl-return (match-string 1 ver))
+                    )))
+              )
+          )))))
 
 (defun custom-meghanada--start-server-process (orig-fun &rest args)
   "TODO: FIX DOC ."
