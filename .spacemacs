@@ -39,6 +39,7 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     nlinum
      better-defaults
      emacs-lisp
      gtags
@@ -46,7 +47,7 @@ values."
      semantic
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode)
-     java
+     ;;java
      git
      common-lisp
      (python :variables
@@ -81,6 +82,7 @@ values."
      ome
      ome-projectile
      ome-java
+     ome-groovy
      ome-git
      ome-speedbar
      ;;ome-ecb
@@ -319,6 +321,10 @@ in `dotspacemacs/user-config'."
   (global-subword-mode t)
   (global-set-key "\M-'" 'set-mark-command)
   (global-set-key "\M-r" 'replace-string)
+  (setq-default dotspacemacs-large-file-size 10)
+  (setq-default header-line-format
+                '((which-function-mode ("" which-func-format " "))))
+  (which-function-mode 1)
   (setq spaceline-org-clock-p t)
   (defun org-clock-persist-save-file ()
     (if (equal 'windows-nt system-type)
@@ -363,7 +369,7 @@ layers configuration. You are free to put any user code."
  ;; If there is more than one, they won't work right.
  '(company-auto-complete t)
  '(company-auto-complete-chars (quote (32 95 41 46 34 39 60 62)))
- '(company-idle-delay 0.3)
+ '(company-idle-delay 10)
  '(company-minimum-prefix-length 3)
  '(company-selection-wrap-around t)
  '(company-show-numbers t)
@@ -372,14 +378,13 @@ layers configuration. You are free to put any user code."
  '(ein:use-auto-complete-superpack t)
  '(gdb-many-windows t t)
  '(gdb-show-main t t)
- '(ggtags-highlight-tag 0.1)
+ '(ggtags-highlight-tag 1)
  '(ggtags-sort-by-nearness t)
  '(git-gutter:added-sign "++")
  '(git-gutter:deleted-sign "--")
  '(git-gutter:diff-option "-w")
  '(git-gutter:hide-gutter t)
  '(git-gutter:modified-sign "  ")
- '(global-linum-mode t)
  '(helm-grep-default-command "grep --color=always -a -d recurse %e -n%cH -e %p %f")
  '(helm-gtags-path-style (quote relative))
  '(isend-send-region-function (quote isend--ipython-cpaste))
@@ -397,8 +402,9 @@ layers configuration. You are free to put any user code."
  '(magit-diff-section-arguments
    (quote
     ("--ignore-all-space" "--no-ext-diff" "--diff-algorithm=default")))
+ '(mouse-wheel-scroll-amount (quote (2)))
  '(org-babel-load-languages (quote ((emacs-lisp . t) (shell . t))))
- '(org-clock-persist-file (org-clock-persist-save-file) t)
+ '(org-clock-persist-file (org-clock-persist-save-file))
  '(org-emphasis-alist
    (quote
     (("*" bold)
@@ -410,14 +416,18 @@ layers configuration. You are free to put any user code."
       (:strike-through t)))))
  '(package-selected-packages
    (quote
-    (elpy find-file-in-project ivy unfill fuzzy flymd isend-mode realgud test-simple loc-changes load-relative eclim youdao-dictionary xterm-color xgtags ws-butler window-numbering which-key web-mode volatile-highlights vlf vi-tilde-fringe use-package toc-org tagedit stickyfunc-enhance srefactor sr-speedbar spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-yapf popwin pip-requirements persp-mode pcre2el paradox pangu-spacing page-break-lines orgit org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets open-junk-file nlinum neotree multi-term move-text magit-gitflow lorem-ipsum linum-relative leuven-theme less-css-mode jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flyspell helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gmail-message-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-gutter-fringe git-emacs flycheck-ycmd flycheck-pos-tip flx-ido fish-mode find-by-pinyin-dired fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-smartparens evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu eshell-prompt-extras esh-help emms emmet-mode emacs-eclim elogcat elisp-slime-nav ein edit-server ecb dts-mode disaster define-word cython-mode company-ycmd company-web company-statistics company-quickhelp company-c-headers company-anaconda cmake-mode clean-aindent-mode clang-format chinese-pyim buffer-move bracketed-paste auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile android-mode aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-slime ac-ispell)))
+    (nlinum-relative elpy find-file-in-project ivy unfill fuzzy flymd isend-mode realgud test-simple loc-changes load-relative youdao-dictionary xterm-color xgtags ws-butler window-numbering which-key web-mode volatile-highlights vlf vi-tilde-fringe use-package toc-org tagedit stickyfunc-enhance srefactor sr-speedbar spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-yapf popwin pip-requirements persp-mode pcre2el paradox pangu-spacing page-break-lines orgit org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets open-junk-file nlinum neotree multi-term move-text magit-gitflow lorem-ipsum linum-relative leuven-theme less-css-mode jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flyspell helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gmail-message-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-gutter-fringe git-emacs flycheck-ycmd flycheck-pos-tip flx-ido fish-mode find-by-pinyin-dired fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-smartparens evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu eshell-prompt-extras esh-help emms emmet-mode elogcat elisp-slime-nav ein edit-server ecb dts-mode disaster define-word cython-mode company-ycmd company-web company-statistics company-quickhelp company-c-headers company-anaconda cmake-mode clean-aindent-mode clang-format chinese-pyim buffer-move bracketed-paste auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile android-mode aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-slime ac-ispell)))
  '(projectile-enable-caching t)
  '(python-shell-completion-native-enable nil)
- '(semantic-idle-scheduler-idle-time 0.3)
+ '(scroll-conservatively 100)
+ '(semantic-idle-scheduler-idle-time 1)
+ '(semantic-idle-scheduler-max-buffer-size 100000)
+ '(semantic-idle-scheduler-work-idle-time 60)
  '(semantic-idle-summary-function (quote semantic-format-tag-short-doc))
  '(semantic-idle-truncate-long-summaries nil)
  '(sr-speedbar-right-side nil)
  '(sr-speedbar-skip-other-window-p t)
+ '(vc-handled-backends (quote (git RCS CVS SVN SCCS SRC Bzr Hg Mtn)))
  '(vlf-application (quote dont-ask))
  '(vlf-batch-size 10485760)
  '(vlf-tune-enabled t)

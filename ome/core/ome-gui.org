@@ -4,71 +4,67 @@
 This is part of [[https://github.com/xiaohanyu/oh-my-emacs][oh-my-emacs]].
 
 * Basic GUI Settings
-#+NAME: gui-basics
-#+BEGIN_SRC emacs-lisp
-  ;; show column number and line number
-  (dolist (mode '(column-number-mode line-number-mode))
-    (when (fboundp mode) (funcall mode t)))
+  #+NAME: gui-basics
+  #+BEGIN_SRC emacs-lisp
+    ;; show column number and line number
+    (dolist (mode '(column-number-mode line-number-mode))
+      (when (fboundp mode) (funcall mode t)))
 
-  (dolist (mode-hook '(text-mode-hook prog-mode-hook conf-mode-hook))
-    (add-hook mode-hook
-              (lambda ()
-                (linum-mode 1))))
+    ;; (dolist (mode-hook '(text-mode-hook prog-mode-hook conf-mode-hook))
+    ;;   (add-hook mode-hook
+    ;;             (lambda ()
+    ;;               (linum-mode 1))))
 
-  ;; make the fringe thinner (default is 8 in pixels)
-  (fringe-mode 4)
+    ;; make the fringe thinner (default is 8 in pixels)
+    (fringe-mode 4)
 
-  ;; show parenthesis match
-  (show-paren-mode 1)
-  (setq show-paren-style 'expression)
-  (defadvice show-paren-function
-      (around show-paren-closing-before
-              activate compile)
-    (if (eq (syntax-class (syntax-after (point))) 5)
-        (save-excursion
-          (forward-char)
-          ad-do-it)
-      ad-do-it))
+    ;; show parenthesis match
+    (show-paren-mode 1)
+    (setq show-paren-style 'expression)
+    (defadvice show-paren-function
+        (around show-paren-closing-before
+                activate compile)
+      (if (eq (syntax-class (syntax-after (point))) 5)
+          (save-excursion
+            (forward-char)
+            ad-do-it)
+        ad-do-it))
 
-  ;; Toggle line highlighting in all buffers
-  (global-hl-line-mode t)
-  (set-face-background 'hl-line "#3e4446")
-  (set-face-foreground 'highlight nil)
+    ;; Toggle line highlighting in all buffers
+    (global-hl-line-mode t)
+    (set-face-background 'hl-line "#3e4446")
+    (set-face-foreground 'highlight nil)
 
-  ;;(add-hook 'org-mode-hook (lambda () (spacemacs/toggle-line-numbers-off)) 'append)
-  (defun spacemacs/check-large-file ()
-    (when (> (buffer-size) 100000)
-      (progn (fundamental-mode)
-             (hl-line-mode -1))))
-  ;;(add-hook 'find-file-hook 'spacemacs/check-large-file)
-  (global-visual-line-mode t)
-#+END_SRC
+    ;;(add-hook 'org-mode-hook (lambda () (spacemacs/toggle-line-numbers-off)) 'append)
+    ;;(add-hook 'find-file-hook 'spacemacs/check-large-file)
+    (global-visual-line-mode t)
+  #+END_SRC
 
 * buffer read only default
-#+BEGIN_SRC emacs-lisp
-(defun check-file-name ( filename )
-  (cond ((or (string= filename ".ido.last")
-         (string= filename "COMMIT_EDITMSG")
-         (string= filename "org-clock-save.el")
-         (string= filename ".loaddefs.el")
-         (string= filename "bookmark"))
-	 t)
-	((string-match "\\.\\(org\\|html\\|org_archive\\)$" filename )
-	 t)
-	((string-match "bookmarks" filename )
-	 t)
-	(nil)))
+  #+BEGIN_SRC emacs-lisp
+    (defun check-file-name ( filename )
+      (cond ((or (string= filename ".ido.last")
+             (string= filename "COMMIT_EDITMSG")
+             (string= filename "org-clock-save.el")
+             (string= filename ".loaddefs.el")
+             (string= filename "bookmark"))
+       t)
+      ((string-match "\\.\\(org\\|html\\|org_archive\\)$" filename )
+       t)
+      ((string-match "bookmarks" filename )
+       t)
+      (nil)))
 
-(add-hook 'find-file-hook
-	  (lambda ()
-	    (when (file-exists-p (file-name-nondirectory buffer-file-name))
-	      (if (check-file-name (file-name-nondirectory buffer-file-name))
-		  nil
-		(toggle-read-only t)))))
-#+END_SRC
+    (add-hook 'find-file-hook
+        (lambda ()
+          (when (file-exists-p (file-name-nondirectory buffer-file-name))
+            (if (check-file-name (file-name-nondirectory buffer-file-name))
+          nil
+        (toggle-read-only t)))))
+  #+END_SRC
 
 * Double-Mouse-1 selects text and symbol in Emacs
-#+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC emacs-lisp
 (defun get-word-boundary ()
  "Return the boundary of the current word.
  The return value is of the form: (cons pos1 pos2).
@@ -95,15 +91,15 @@ This is part of [[https://github.com/xiaohanyu/oh-my-emacs][oh-my-emacs]].
   )
 )
 (global-set-key [double-mouse-1] 'select-word)
-#+END_SRC
+  #+END_SRC
 
 * company key
-#+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-<return>") 'company-complete-common)
-#+END_SRC
+  #+END_SRC
 
 * diminish mode
-#+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC emacs-lisp
 (diminish 'git-gutter-mode "")
 (diminish 'helm-gtags-mode "")
-#+END_SRC
+  #+END_SRC

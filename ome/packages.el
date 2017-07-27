@@ -32,7 +32,7 @@
 (defconst ome-packages
   '(
     (xgtags :location (recipe :fetcher wiki :url "http://www.emacswiki.org/emacs/download/xgtags.el"))
-    nlinum
+    ;;nlinum
     ))
 
 (defvar ome-dir (file-name-directory (or load-file-name (buffer-file-name)))
@@ -104,10 +104,11 @@
 
       )))
 
-(defun ome/init-nlinum()
-  (use-package nlinum
-    :config
-    (progn
-      (require 'nlinum))))
+;; (defun ome/init-nlinum()
+;;   (use-package nlinum
+;;     :config
+;;     (progn
+;;       (require 'nlinum)
+;;       (global-nlinum-mode t))))
 
 ;;; packages.el ends here
