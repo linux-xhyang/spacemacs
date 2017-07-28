@@ -355,6 +355,7 @@ layers configuration. You are free to put any user code."
   (add-hook 'js2-mode-hook 'spacemacs/toggle-spelling-checking-off)
   (add-hook 'clojure-mode-hook 'spacemacs/toggle-spelling-checking-off)
   (add-hook 'emacs-lisp-mode-hook 'spacemacs/toggle-spelling-checking-off)
+  (add-hook 'semantic-mode-hook 'spacemacs/toggle-semantic-stickyfunc-globally-off)
   ;;remove all keybinds from insert-state keymap,use emacs-state when editing
   (setcdr evil-insert-state-map nil)
   ;;ESC to switch back normal-state
@@ -373,8 +374,6 @@ layers configuration. You are free to put any user code."
  '(company-minimum-prefix-length 3)
  '(company-selection-wrap-around t)
  '(company-show-numbers t)
- ;;'(eclim-eclipse-dirs (list eclipse-dir))
- ;;'(eclim-executable (concat eclipse-dir "/eclim"))
  '(ein:use-auto-complete-superpack t)
  '(gdb-many-windows t t)
  '(gdb-show-main t t)
@@ -385,6 +384,10 @@ layers configuration. You are free to put any user code."
  '(git-gutter:diff-option "-w")
  '(git-gutter:hide-gutter t)
  '(git-gutter:modified-sign "  ")
+ '(global-semantic-highlight-edits-mode t)
+ '(global-semantic-highlight-func-mode t)
+ '(global-semantic-idle-local-symbol-highlight-mode t nil (semantic/idle))
+ '(global-semantic-stickyfunc-mode nil)
  '(helm-grep-default-command "grep --color=always -a -d recurse %e -n%cH -e %p %f")
  '(helm-gtags-path-style (quote relative))
  '(isend-send-region-function (quote isend--ipython-cpaste))
@@ -443,4 +446,5 @@ layers configuration. You are free to put any user code."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
+ '(which-func ((t (:foreground "white smoke")))))
