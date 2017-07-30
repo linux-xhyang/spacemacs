@@ -69,3 +69,12 @@
     (message "%s"
              (substitute-command-keys
               "Missing server module. Type `\\[meghanada-install-server]' to install meghanada-server")))))
+(defun auto-update-meghanda-android-conf ()
+  (when (getenv "ANDROID_BUILD_TOP")
+    (let ((android-top (getenv "ANDROID_BUILD_TOP")))
+      (unless (file-exists-p (concat (getenv "ANDROID_BUILD_TOP") "/.meghanada.conf"))
+                    (copy-file (concat  user-emacs-directory "/private/+source-tools/ome-java/.meghanada.conf")
+                            (concat (getenv "ANDROID_BUILD_TOP") "/.meghanada.conf")))
+      )
+    )
+  )

@@ -20,8 +20,25 @@
 * 配置 ycmd
 #+BEGIN_SRC emacs-lisp
 
+  (defun ome/ome-python-version ()
+    (with-temp-buffer
+      (apply #'process-file "python" nil t nil '("--version"))
+      (goto-char (point-min))
+      (let ((line  (split-string (buffer-string) "\n" t)))
+        (dolist (version line)
+          (if (string-match-p "^Python" version)
+              (let ((ver (substring version 7)))
+                (when (string-match "^\\([0-9]+\\.[0-9]+\\.[0-9]+\\)" ver)
+                  (progn
+                    (cl-return (match-string 1 ver))
+                    )))
+            )))))
+
   ;;(set-variable 'ycmd-server-command (list "python" (concat user-home-directory "src/ycmd/ycmd")))
-  (set-variable 'ycmd-server-command (list "python" (getenv "YCMD_PATH")))
+  (if (version< (ome/ome-python-version) "3.6.0")
+      (set-variable 'ycmd-server-command (list "python" (getenv "YCMD_PATH")))
+    (set-variable 'ycmd-server-command (list "/usr/bin/python" (getenv "YCMD_PATH"))))
+
   ;;(set-variable 'ycmd-server-command (list "python" (getenv "YCMD_PATH")))
   ;;(set-variable 'ycmd-global-config "/path/to/global_config.py")
 

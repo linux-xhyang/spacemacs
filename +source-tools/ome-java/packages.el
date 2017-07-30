@@ -23,6 +23,7 @@
     (progn
       (require 'meghanada)
       (diminish 'meghanada-mode "M")
+      (auto-update-meghanda-android-conf)
       (add-hook 'java-mode-hook
                 (lambda ()
                   ;; meghanada-mode on
