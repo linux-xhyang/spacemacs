@@ -27,6 +27,7 @@
       (add-hook 'java-mode-hook
                 (lambda ()
                   ;; meghanada-mode on
+                  (semantic-mode)
                   (advice-add 'meghanada--start-server-process :around #'custom-meghanada--start-server-process)
                   (meghanada-mode t)
                   ;;(advice-remove 'meghanada--start-server-process #'custom-meghanada--start-server-process)
