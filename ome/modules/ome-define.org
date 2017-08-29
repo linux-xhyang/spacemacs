@@ -33,7 +33,7 @@ This file contains some settings for =cc-mode=.
       )
     ))
 
-(defun find-function( src buffer )
+(defun ome-find-function( src buffer )
   "thisandthat."
   (interactive)
   (let (var1)
@@ -161,7 +161,7 @@ The argument list is a list of strings."
          t))
   (let* ((function (add-c-function))
          (buffer (find-file-noselect filename nil nil wildcards)))
-    (if (find-function function buffer)
+    (if (ome-find-function function buffer)
         (progn (message "function has defined!")
                (switch-to-buffer buffer))
       (save-excursion
@@ -181,7 +181,7 @@ The argument list is a list of strings."
          t))
   (let* ((function (xdefine-find-curr-func))
          (buffer (find-file-noselect filename nil nil wildcards)))
-    (if (find-function function buffer)
+    (if (ome-find-function function buffer)
         (progn (message "function has defined!")
                (switch-to-buffer buffer))
       (save-excursion
