@@ -3,10 +3,10 @@
 
 * 下载、编译
 #+BEGIN_SRC sh
-  sudo apt-get install build-essential cmake python-dev
-  sudo apt-get install mono-xbuild
-  sudo apt-get install libmono-microsoft-build-tasks-v4.0-4.0-cil
-  sudo apt-get install mono-dmcs
+  sudo apt-get install build-essential cmake python-dev -y
+  sudo apt-get install mono-xbuild -y
+  sudo apt-get install libmono-microsoft-build-tasks-v4.0-4.0-cil -y
+  sudo apt-get install mono-dmcs -y
   git clone https://github.com/Valloric/ycmd.git
   cd ycmd
   git submodule update --init --recursive

@@ -29,6 +29,6 @@
         (url-copy-file "https://jaist.dl.sourceforge.net/project/plantuml/plantuml.jar" plantuml))
       (setq-default org-plantuml-jar-path plantuml)
       (when (not (executable-find "dot"))
-        (run-su-shell "sudo apt-get install graphviz"))
+        (run-su-shell "sudo apt-get install graphviz -y"))
       )
     ))

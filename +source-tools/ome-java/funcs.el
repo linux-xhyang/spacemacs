@@ -43,7 +43,9 @@
             (process-adaptive-read-buffering nil)
             (cmd (format "%s %s %s -Dfile.encoding=UTF-8 -jar %s -p %d %s"
                          (if (version< (ome/ome-java-version) "1.8.0" )
-                             "/usr/local/jdk8/bin/java"
+                             (if (file-exists-p "/usr/local/jdk8/bin/java")
+                                 "/usr/local/jdk8/bin/java"
+                               "/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java")
                              "java"
                              )
                          (meghanada--server-options)

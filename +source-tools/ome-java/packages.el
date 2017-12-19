@@ -35,10 +35,10 @@
                   (meghanada-mode t)
                   ;;(advice-remove 'meghanada--start-server-process #'custom-meghanada--start-server-process)
                   (if (functionp 'spacemacs|add-company-backends)
-                      (spacemacs|add-company-backends :backends '(company-meghanada company-emacs-eclim
+                      (spacemacs|add-company-backends :backends '(company-meghanada ;;company-emacs-eclim
                                                                                     (company-dabbrev-code company-keywords)
                                                                                     company-files company-dabbrev) :mode java-mode)
-                    (setq company-backends-java-mode '(company-meghanada company-emacs-eclim
+                    (setq company-backends-java-mode '(company-meghanada ;;company-emacs-eclim
                                                                          (company-dabbrev-code company-keywords)
                                                                          company-files company-dabbrev))
                       )
