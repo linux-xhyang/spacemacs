@@ -302,7 +302,7 @@ any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
   (setq gc-cons-threshold (* 511 1024 1024))
   (setq gc-cons-percentage 0.5)
-  (run-with-idle-timer 5 t #'garbage-collect)
+  (run-with-idle-timer 10 t #'garbage-collect)
   (setq garbage-collection-messages t)
   (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
   ;; set environment coding system
@@ -399,7 +399,7 @@ layers configuration. You are free to put any user code."
  '(global-semantic-stickyfunc-mode nil)
  '(helm-grep-default-command "grep --color=always -a -d recurse %e -n%cH -e %p %f")
  '(helm-gtags-path-style (quote relative))
- '(helm-input-idle-delay 1.0)
+ '(helm-input-idle-delay 0.1)
  '(isend-send-region-function (quote isend--ipython-cpaste))
  '(jit-lock-chunk-size 6000)
  '(jit-lock-context-time 0.1)
