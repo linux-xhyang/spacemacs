@@ -31,7 +31,7 @@
 
 (defconst ome-packages
   '(
-    (xgtags :location (recipe :fetcher wiki :url "http://www.emacswiki.org/emacs/download/xgtags.el"))
+    (xgtags :location (recipe :fetcher github :repo "linux-xhyang/xgtags"))
     ;;nlinum
     ))
 
@@ -78,7 +78,9 @@
 
 (defun ome/init-xgtags ()
   (use-package xgtags
+    :defer t
     :config
+    :init
     (progn
       (require 'xgtags)
       (diminish 'xgtags-mode " ")
