@@ -1,6 +1,8 @@
 (defconst ome-python-packages
   '(
     elpy
+    ob-ipython
+;;    company-jedi
     ))
 
 (defun python-add-breakpoint ()
@@ -49,3 +51,13 @@
         )
       (elpy-enable)
       )))
+
+(defun ome-python/init-ob-ipython ()
+  (use-package ob-ipython
+    )
+  )
+
+;; (defun ome-python/init-company-jedi ()
+;;   (use-package company-jedi
+;;     )
+;;   )

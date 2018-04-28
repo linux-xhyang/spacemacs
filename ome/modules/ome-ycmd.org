@@ -97,5 +97,6 @@
   (with-eval-after-load 'company
     (define-key company-mode-map (kbd "C-<tab>") 'company-other-backend)
     )
+  (add-hook 'python-mode-hook 'anaconda-mode)
   (global-company-mode)
 #+END_SRC

@@ -379,7 +379,9 @@ layers configuration. You are free to put any user code."
  '(company-minimum-prefix-length 3)
  '(company-selection-wrap-around t)
  '(company-show-numbers t)
+ '(ein:complete-on-dot t)
  '(ein:use-auto-complete-superpack t)
+ '(ein:completion-backend 'ein:use-company-backend)
  '(eopengrok-ignore-file-or-directory
    ".opengrok:out:*.so:*.a:*.o:*.gz:*.bz2:*.jar:*.zip:*.class:*.elc:GPATH:GRTAGS:GTAGS:.repo")
  '(gdb-many-windows t t)
