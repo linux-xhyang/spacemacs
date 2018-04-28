@@ -320,8 +320,6 @@ in `dotspacemacs/user-config'."
   (setq next-line-add-newlines nil)
   ;; prevent the annoying beep on errors
   (setq ring-bell-function 'ignore)
-  ;; remove trailing whitespaces before save
-  (add-hook 'before-save-hook 'delete-trailing-whitespace)
   ;; enable to support navigate in camelCase words
   (global-subword-mode t)
   (global-set-key "\M-'" 'set-mark-command)
