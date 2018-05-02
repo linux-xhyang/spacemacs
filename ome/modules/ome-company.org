@@ -1,0 +1,96 @@
+
+#+TITLE: Company 配置
+
+* 下载、编译 ycmd
+  #+BEGIN_SRC sh
+    sudo apt-get install build-essential cmake python-dev -y
+    sudo apt-get install mono-xbuild -y
+    sudo apt-get install libmono-microsoft-build-tasks-v4.0-4.0-cil -y
+    sudo apt-get install mono-dmcs -y
+    git clone https://github.com/Valloric/ycmd.git
+    cd ycmd
+    git submodule update --init --recursive
+    #need gcc version > 4.7 (due to c++11)
+    #./build.py --all
+    ./build.py --clang-completer  --enable-coverage
+    echo "export YCMD_PATH=`pwd`/ycmd" >> ~/.bashrc
+  #+END_SRC
+
+* 配置 company
+  #+BEGIN_SRC emacs-lisp
+    (defun ome/ome-python-version ()
+      (with-temp-buffer
+        (apply #'process-file "python" nil t nil '("--version"))
+        (goto-char (point-min))
+        (let ((line  (split-string (buffer-string) "\n" t)))
+          (dolist (version line)
+            (if (string-match-p "^Python" version)
+                (let ((ver (substring version 7)))
+                  (when (string-match "^\\([0-9]+\\.[0-9]+\\.[0-9]+\\)" ver)
+                    (progn
+                      (cl-return (match-string 1 ver))
+                      )))
+              )))))
+
+    (defun string-remove-wildchar (str)
+      (if (string-match "*$" str)
+          (replace-match "" t t str)
+        str))
+    (defun auto-update-ycmd-extral-conf-whitelist ()
+      (if (projectile-project-root)
+          (let* ((rootdir (projectile-project-root))
+                 (var (mapcar (lambda (dir)
+                                (concat rootdir dir)) '("common/*" "linux/*"))))
+            (set-variable 'ycmd-extra-conf-whitelist var))
+        (set-variable 'ycmd-extra-conf-whitelist '("~/src/pulpfiction/common/*" "~/work/linux-src/linux/*")))
+      (mapcar (lambda (directory)
+                (let ((dir (string-remove-wildchar directory)))
+                  (when (file-exists-p dir)
+                    (if (file-exists-p (concat dir "/.ycm_extra_conf.py"))
+                        nil
+                      (copy-file (concat ome-dir "modules/.ycm_extra_conf.py") (concat dir "/.ycm_extra_conf.py"))))))
+              ycmd-extra-conf-whitelist))
+
+
+    (defun ome-company/init-company ()
+      (with-eval-after-load 'company
+        (define-key company-mode-map (kbd "C-<tab>") 'company-other-backend)
+        )
+      (add-hook 'python-mode-hook 'anaconda-mode)
+      (global-company-mode)
+      )
+
+    (defun ome-company/init-ycmd ()
+      (if (version< (ome/ome-python-version) "3.6.0")
+          (set-variable 'ycmd-server-command (list "python" (getenv "YCMD_PATH")))
+        (set-variable 'ycmd-server-command (list "/usr/bin/python" (getenv "YCMD_PATH"))))
+
+      ;;(set-variable 'ycmd-server-command (list "python" (getenv "YCMD_PATH")))
+      ;;(set-variable 'ycmd-global-config "/path/to/global_config.py")
+
+      ;;If you've got project-specific ycmd configurations (almost certainly called .ycm_extra_conf.py),
+      ;;and if you want them automatically loaded by ycmd as needed (which you probably do), then you can
+      ;;whitelist them by adding entries to ycmd-extra-conf-whitelist. For example, this will allow automatic
+      ;;loading of all .ycm_extra_conf.py files anywhere under ~/my_projects
+      (set-variable 'ycmd-global-config (concat ome-dir "modules/global_conf.py"))
+      ;;(set-variable 'ycmd-extra-conf-whitelist '("~/src/pulpfiction/common/*" "~/work/linux-src/linux/*"))
+      (add-hook 'ycmd-mode-hook (function auto-update-ycmd-extral-conf-whitelist))
+
+      (with-eval-after-load 'company
+        (spacemacs|add-company-backends :backends '(company-capf company-ycmd company-anaconda
+                                                                 company-dabbrev-code company-files company-yasnippet)
+                                        :mode c-mode-common)
+
+        (spacemacs|add-company-backends :backends '(company-ycmd company-anaconda company-capf
+                                                                 company-dabbrev-code company-files company-yasnippet)
+                                        :mode python-mode)
+
+        (spacemacs|add-company-backends :backends '(company-ycmd company-anaconda company-capf
+                                                                 company-dabbrev-code company-files company-yasnippet)
+                                        :mode comint-mode)
+        )
+      )
+
+    (ome-company/init-company)
+    (ome-company/init-ycmd)
+  #+END_SRC

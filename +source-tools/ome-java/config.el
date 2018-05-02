@@ -1,4 +1,4 @@
-(unless (functionp 'spacemacs|add-company-backends)
+(unless (macrop 'spacemacs|add-company-backends)
   (spacemacs|defvar-company-backends java-mode)
   )
 

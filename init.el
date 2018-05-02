@@ -14,7 +14,7 @@
 (ome-load "modules/ome-common-lisp.org")
 (ome-load "modules/ome-taskjuggler.org")
 (ome-load "modules/ome-define.org")
-(ome-load "modules/ome-ycmd.org")
+(ome-load "modules/ome-company.org")
 ;;(ome-load "modules/ome-python.org")
 ;;(ome-load "modules/ome-powerline.org")
 

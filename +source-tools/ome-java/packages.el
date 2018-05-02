@@ -9,7 +9,7 @@
     ))
 
 (defun ome-java/post-init-company ()
-  (unless (functionp 'spacemacs|add-company-backends)
+  (unless (macrop 'spacemacs|add-company-backends)
     (spacemacs|add-company-hook java-mode)
     )
   )
@@ -35,7 +35,7 @@
                   (advice-add 'meghanada--start-server-process :around #'custom-meghanada--start-server-process)
                   (meghanada-mode t)
                   ;;(advice-remove 'meghanada--start-server-process #'custom-meghanada--start-server-process)
-                  (if (functionp 'spacemacs|add-company-backends)
+                  (if (macrop 'spacemacs|add-company-backends)
                       (spacemacs|add-company-backends :backends '(company-meghanada ;;company-emacs-eclim
                                                                                     (company-dabbrev-code company-keywords)
                                                                                     company-files company-dabbrev) :mode java-mode)

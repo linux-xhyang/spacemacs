@@ -57,6 +57,7 @@ values."
              python-sort-imports-on-save t)
      ipython-notebook
      (auto-completion :variables
+                      spacemacs-default-company-backends '(company-files company-capf)
                       auto-completion-enable-snippets-in-popup nil
                       auto-completion-enable-sort-by-usage t
                       auto-completion-enable-help-tooltip t
@@ -94,6 +95,7 @@ values."
      ome-systemtap
      ome-gui
      ome-opengrok
+     ome-lsp
      music
      ;;symon
      )
@@ -371,17 +373,17 @@ layers configuration. You are free to put any user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ahs-default-range (quote ahs-range-display))
+ '(ahs-default-range 'ahs-range-display t)
  '(calculator-number-digits 6)
  '(company-auto-complete t)
- '(company-auto-complete-chars (quote (32 95 41 46 34 39 60 62)))
+ '(company-auto-complete-chars '(32 95 41 46 34 39 60 62))
  '(company-idle-delay 10)
  '(company-minimum-prefix-length 3)
  '(company-selection-wrap-around t)
  '(company-show-numbers t)
  '(ein:complete-on-dot t)
- '(ein:use-auto-complete-superpack t)
  '(ein:completion-backend 'ein:use-company-backend)
+ '(ein:use-auto-complete-superpack t)
  '(eopengrok-ignore-file-or-directory
    ".opengrok:out:*.so:*.a:*.o:*.gz:*.bz2:*.jar:*.zip:*.class:*.elc:GPATH:GRTAGS:GTAGS:.repo")
  '(gdb-many-windows t t)
@@ -398,9 +400,9 @@ layers configuration. You are free to put any user code."
  '(global-semantic-idle-local-symbol-highlight-mode t nil (semantic/idle))
  '(global-semantic-stickyfunc-mode nil)
  '(helm-grep-default-command "grep --color=always -a -d recurse %e -n%cH -e %p %f")
- '(helm-gtags-path-style (quote relative))
+ '(helm-gtags-path-style 'relative)
  '(helm-input-idle-delay 0.1)
- '(isend-send-region-function (quote isend--ipython-cpaste))
+ '(isend-send-region-function 'isend--ipython-cpaste)
  '(jit-lock-chunk-size 6000)
  '(jit-lock-context-time 0.1)
  '(jit-lock-contextually t)
@@ -410,47 +412,43 @@ layers configuration. You are free to put any user code."
  '(jit-lock-stealth-time nil)
  '(large-file-warning-threshold 10000)
  '(magit-diff-arguments
-   (quote
-    ("--ignore-all-space" "--no-ext-diff" "--stat" "-- " "--diff-algorithm=default")))
+   '("--ignore-all-space" "--no-ext-diff" "--stat" "-- " "--diff-algorithm=default"))
  '(magit-diff-section-arguments
-   (quote
-    ("--ignore-all-space" "--no-ext-diff" "--diff-algorithm=default")))
+   '("--ignore-all-space" "--no-ext-diff" "--diff-algorithm=default"))
  '(meghanada-debug t)
  '(meghanada-server-remote-debug t)
- '(mouse-wheel-scroll-amount (quote (2)))
- '(org-babel-load-languages (quote ((emacs-lisp . t) (shell . t))))
- '(org-clock-persist-file (org-clock-persist-save-file))
+ '(mouse-wheel-scroll-amount '(2))
+ '(org-babel-load-languages '((emacs-lisp . t) (shell . t)))
+ '(org-clock-persist-file (org-clock-persist-save-file) t)
  '(org-emphasis-alist
-   (quote
-    (("*" bold)
+   '(("*" bold)
      ("/" italic)
      ("_" underline)
      ("=" org-verbatim verbatim)
      ("~" org-code verbatim)
      ("+"
-      (:strike-through t)))))
+      (:strike-through t))))
  '(package-selected-packages
-   (quote
-    (org-mime eopengrok memory-usage web-beautify livid-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js-doc company-tern tern coffee-mode meghanada names chinese-word-at-point yapfify winum uuidgen systemtap-mode powerline slime-company py-isort pug-mode plantuml-mode spinner org-projectile org-category-capture alert log4e gntp org-download mwim live-py-mode link-hint insert-shebang hydra parent-mode hide-comnt projectile haml-mode groovy-mode ham-mode markdown-mode html-to-markdown gitignore-mode git-link fringe-helper git-gutter ggtags flyspell-correct-helm flyspell-correct flycheck flx eyebrowse evil-visual-mark-mode evil-unimpaired magit magit-popup git-commit with-editor smartparens iedit evil-ediff anzu evil goto-chg undo-tree highlight eshell-z skewer-mode websocket js2-mode simple-httpd dumb-jump diminish ycmd pkg-info request-deferred request deferred epl web-completion-data company-shell company common-lisp-snippets column-enforce-mode pyim pyim-basedict pos-tip bind-map bind-key yasnippet packed android-emacs-ide anaconda-mode pythonic f s all-the-icons memoize font-lock+ pinyinlib helm avy helm-core async slime macrostep auto-complete popup nlinum-relative elpy find-file-in-project ivy unfill fuzzy flymd isend-mode realgud test-simple loc-changes load-relative youdao-dictionary xterm-color xgtags ws-butler window-numbering which-key web-mode volatile-highlights vlf vi-tilde-fringe use-package toc-org tagedit stickyfunc-enhance srefactor sr-speedbar spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-yapf popwin pip-requirements persp-mode pcre2el paradox pangu-spacing page-break-lines orgit org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets open-junk-file nlinum neotree multi-term move-text magit-gitflow lorem-ipsum linum-relative leuven-theme less-css-mode jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flyspell helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gmail-message-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-gutter-fringe git-emacs flycheck-ycmd flycheck-pos-tip flx-ido fish-mode find-by-pinyin-dired fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-smartparens evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu eshell-prompt-extras esh-help emms emmet-mode elogcat elisp-slime-nav ein edit-server ecb dts-mode disaster define-word cython-mode company-ycmd company-web company-statistics company-quickhelp company-c-headers company-anaconda cmake-mode clean-aindent-mode clang-format buffer-move bracketed-paste auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile android-mode aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-slime ac-ispell)))
+   '(cquery lsp-mode company-jedi jedi-core python-environment epc ctable concurrent org-mime eopengrok memory-usage web-beautify livid-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js-doc company-tern tern coffee-mode meghanada names chinese-word-at-point yapfify winum uuidgen systemtap-mode powerline slime-company py-isort pug-mode plantuml-mode spinner org-projectile org-category-capture alert log4e gntp org-download mwim live-py-mode link-hint insert-shebang hydra parent-mode hide-comnt projectile haml-mode groovy-mode ham-mode markdown-mode html-to-markdown gitignore-mode git-link fringe-helper git-gutter ggtags flyspell-correct-helm flyspell-correct flycheck flx eyebrowse evil-visual-mark-mode evil-unimpaired magit magit-popup git-commit with-editor smartparens iedit evil-ediff anzu evil goto-chg undo-tree highlight eshell-z skewer-mode websocket js2-mode simple-httpd dumb-jump diminish ycmd pkg-info request-deferred request deferred epl web-completion-data company-shell company common-lisp-snippets column-enforce-mode pyim pyim-basedict pos-tip bind-map bind-key yasnippet packed android-emacs-ide anaconda-mode pythonic f s all-the-icons memoize font-lock+ pinyinlib helm avy helm-core async slime macrostep auto-complete popup nlinum-relative elpy find-file-in-project ivy unfill fuzzy flymd isend-mode realgud test-simple loc-changes load-relative youdao-dictionary xterm-color xgtags ws-butler window-numbering which-key web-mode volatile-highlights vlf vi-tilde-fringe use-package toc-org tagedit stickyfunc-enhance srefactor sr-speedbar spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-yapf popwin pip-requirements persp-mode pcre2el paradox pangu-spacing page-break-lines orgit org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets open-junk-file nlinum neotree multi-term move-text magit-gitflow lorem-ipsum linum-relative leuven-theme less-css-mode jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flyspell helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gmail-message-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-gutter-fringe git-emacs flycheck-ycmd flycheck-pos-tip flx-ido fish-mode find-by-pinyin-dired fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-smartparens evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu eshell-prompt-extras esh-help emms emmet-mode elogcat elisp-slime-nav ein edit-server ecb dts-mode disaster define-word cython-mode company-ycmd company-web company-statistics company-quickhelp company-c-headers company-anaconda cmake-mode clean-aindent-mode clang-format buffer-move bracketed-paste auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile android-mode aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-slime ac-ispell))
  '(projectile-enable-caching t)
  '(python-shell-completion-native-enable nil)
  '(scroll-conservatively 100)
  '(semantic-idle-scheduler-idle-time 1)
  '(semantic-idle-scheduler-max-buffer-size 100000)
  '(semantic-idle-scheduler-work-idle-time 60)
- '(semantic-idle-summary-function (quote semantic-format-tag-short-doc))
+ '(semantic-idle-summary-function 'semantic-format-tag-short-doc)
  '(semantic-idle-truncate-long-summaries nil)
  '(sr-speedbar-right-side nil)
  '(sr-speedbar-skip-other-window-p t)
- '(tramp-syntax (quote default) nil (tramp))
- '(vc-handled-backends (quote (git RCS CVS SVN SCCS SRC Bzr Hg Mtn)))
- '(vlf-application (quote dont-ask))
+ '(tramp-syntax 'default nil (tramp))
+ '(vc-handled-backends '(git RCS CVS SVN SCCS SRC Bzr Hg Mtn))
+ '(vlf-application 'dont-ask)
  '(vlf-batch-size 10485760)
  '(vlf-tune-enabled t)
  '(vlf-tune-max 402702600)
  '(which-function-mode t)
  '(which-key-idle-delay 0.6)
- '(which-key-popup-type (quote minibuffer)))
+ '(which-key-popup-type 'minibuffer))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
