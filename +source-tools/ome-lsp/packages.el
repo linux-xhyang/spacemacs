@@ -40,30 +40,28 @@
 
 
 (defun cquery-enable ()
-  (condition-case nil
-      (when (projectile-project-root)
-        (setq cquery-project-roots (projectile-project-root))
-        (lsp-cquery-enable)
-        (dolist (mode '(c-mode c++-mode))
-          (spacemacs/set-leader-keys-for-major-mode mode
-            "dd" 'lsp-ui-peek-find-definitions
-            "dr" 'lsp-ui-peek-find-references
-            "d[" 'lsp-ui-peek-jump-backward
-            "d]" 'lsp-ui-peek-jump-forward
-            ;; "qb" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/base"))
-            ;; "qc" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/callers"))
-            ;; "qd" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/derived"))
-            ;; "qv" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/vars"))
-            ;; "R"  #'cquery-freshen-index
-            ;; "hm" #'cquery-member-hierarchy
-            ;; "hi" #'cquery-inheritance-hierarchy
-            ;; "hI" (lambda () (interactive) (cquery-inheritance-hierarchy t))
-            ;; "hc" #'cquery-call-hierarchy
-            ;; "hC" (lambda () (interactive) (cquery-call-hierarchy t))
-            "ll" 'lsp-ui-imenu
-	          "lr" 'lsp-rename))
-        )
-    (user-error nil)))
+  (setq cquery-project-roots (projectile-project-root))
+  (lsp-cquery-enable)
+  (dolist (mode '(c-mode c++-mode))
+    (spacemacs/set-leader-keys-for-major-mode mode
+      "dd" 'lsp-ui-peek-find-definitions
+      "dr" 'lsp-ui-peek-find-references
+      "d[" 'lsp-ui-peek-jump-backward
+      "d]" 'lsp-ui-peek-jump-forward
+      ;; "qb" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/base"))
+      ;; "qc" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/callers"))
+      ;; "qd" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/derived"))
+      ;; "qv" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/vars"))
+      ;; "R"  #'cquery-freshen-index
+      ;; "hm" #'cquery-member-hierarchy
+      ;; "hi" #'cquery-inheritance-hierarchy
+      ;; "hI" (lambda () (interactive) (cquery-inheritance-hierarchy t))
+      ;; "hc" #'cquery-call-hierarchy
+      ;; "hC" (lambda () (interactive) (cquery-call-hierarchy t))
+      "ll" 'lsp-ui-imenu
+	    "lr" 'lsp-rename)
+    )
+  )
 
 (defun ome-lsp/init-cquery ()
   (use-package cquery
@@ -81,7 +79,4 @@
     :init
     (progn
       (setq cquery-executable "~/src/cquery/build/release/bin/cquery")
-      (when (file-executable-p cquery-executable)
-        (with-eval-after-load 'company
-          (spacemacs|add-company-backends :backends company-lsp :modes c-mode-common))
-        ))))
+      )))

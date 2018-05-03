@@ -76,19 +76,26 @@
       ;;(set-variable 'ycmd-extra-conf-whitelist '("~/src/pulpfiction/common/*" "~/work/linux-src/linux/*"))
       (add-hook 'ycmd-mode-hook (function auto-update-ycmd-extral-conf-whitelist))
 
-      (with-eval-after-load 'company
-        (spacemacs|add-company-backends :backends '(company-capf company-ycmd company-anaconda
-                                                                 company-dabbrev-code company-files company-yasnippet)
-                                        :mode c-mode-common)
+      (add-hook 'c-mode-common-hook  (lambda ()
+                                       (setq cquery-executable "~/src/cquery/build/release/bin/cquery")
+                                       (set (make-variable-buffer-local 'company-backends)
+                                            '(company-capf company-ycmd company-semantic company-dabbrev-code
+                                                           company-files company-yasnippet))
+                                       (when (file-executable-p cquery-executable)
+                                         (setq company-backends (append (list 'company-lsp) company-backends)))
+                                       ) t)
 
-        (spacemacs|add-company-backends :backends '(company-ycmd company-anaconda company-capf
-                                                                 company-dabbrev-code company-files company-yasnippet)
-                                        :mode python-mode)
+      (add-hook 'python-mode-hook (lambda ()
+                                    (set (make-variable-buffer-local 'company-backends)
+                                         '(company-anaconda company-ycmd company-capf
+                                                            company-dabbrev-code company-files company-yasnippet))
+                                    ) t)
 
-        (spacemacs|add-company-backends :backends '(company-ycmd company-anaconda company-capf
-                                                                 company-dabbrev-code company-files company-yasnippet)
-                                        :mode comint-mode)
-        )
+      (add-hook 'comint-mode-hook (lambda ()
+                                    (set (make-variable-buffer-local 'company-backends)
+                                         '(company-anaconda company-ycmd company-capf
+                                                            company-dabbrev-code company-files company-yasnippet))
+                                    ) t)
       )
 
     (ome-company/init-company)

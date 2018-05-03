@@ -368,15 +368,24 @@ layers configuration. You are free to put any user code."
   ;; Do not write anything past this comment. This is where Emacs will
   ;; auto-generate custom variable definitions.
   )
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ahs-default-range 'ahs-range-display t)
+ '(ahs-default-range 'ahs-range-display)
  '(calculator-number-digits 6)
  '(company-auto-complete t)
  '(company-auto-complete-chars '(32 95 41 46 34 39 60 62))
+ '(company-backends
+   '(company-capf company-files company-semantic
+                  (company-dabbrev-code company-gtags company-etags company-keywords)
+                  company-dabbrev))
  '(company-idle-delay 10)
  '(company-minimum-prefix-length 3)
  '(company-selection-wrap-around t)
@@ -419,7 +428,7 @@ layers configuration. You are free to put any user code."
  '(meghanada-server-remote-debug t)
  '(mouse-wheel-scroll-amount '(2))
  '(org-babel-load-languages '((emacs-lisp . t) (shell . t)))
- '(org-clock-persist-file (org-clock-persist-save-file) t)
+ '(org-clock-persist-file (org-clock-persist-save-file))
  '(org-emphasis-alist
    '(("*" bold)
      ("/" italic)
@@ -431,6 +440,10 @@ layers configuration. You are free to put any user code."
  '(package-selected-packages
    '(cquery lsp-mode company-jedi jedi-core python-environment epc ctable concurrent org-mime eopengrok memory-usage web-beautify livid-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js-doc company-tern tern coffee-mode meghanada names chinese-word-at-point yapfify winum uuidgen systemtap-mode powerline slime-company py-isort pug-mode plantuml-mode spinner org-projectile org-category-capture alert log4e gntp org-download mwim live-py-mode link-hint insert-shebang hydra parent-mode hide-comnt projectile haml-mode groovy-mode ham-mode markdown-mode html-to-markdown gitignore-mode git-link fringe-helper git-gutter ggtags flyspell-correct-helm flyspell-correct flycheck flx eyebrowse evil-visual-mark-mode evil-unimpaired magit magit-popup git-commit with-editor smartparens iedit evil-ediff anzu evil goto-chg undo-tree highlight eshell-z skewer-mode websocket js2-mode simple-httpd dumb-jump diminish ycmd pkg-info request-deferred request deferred epl web-completion-data company-shell company common-lisp-snippets column-enforce-mode pyim pyim-basedict pos-tip bind-map bind-key yasnippet packed android-emacs-ide anaconda-mode pythonic f s all-the-icons memoize font-lock+ pinyinlib helm avy helm-core async slime macrostep auto-complete popup nlinum-relative elpy find-file-in-project ivy unfill fuzzy flymd isend-mode realgud test-simple loc-changes load-relative youdao-dictionary xterm-color xgtags ws-butler window-numbering which-key web-mode volatile-highlights vlf vi-tilde-fringe use-package toc-org tagedit stickyfunc-enhance srefactor sr-speedbar spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-yapf popwin pip-requirements persp-mode pcre2el paradox pangu-spacing page-break-lines orgit org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets open-junk-file nlinum neotree multi-term move-text magit-gitflow lorem-ipsum linum-relative leuven-theme less-css-mode jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flyspell helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gmail-message-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-gutter-fringe git-emacs flycheck-ycmd flycheck-pos-tip flx-ido fish-mode find-by-pinyin-dired fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-smartparens evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu eshell-prompt-extras esh-help emms emmet-mode elogcat elisp-slime-nav ein edit-server ecb dts-mode disaster define-word cython-mode company-ycmd company-web company-statistics company-quickhelp company-c-headers company-anaconda cmake-mode clean-aindent-mode clang-format buffer-move bracketed-paste auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile android-mode aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-slime ac-ispell))
  '(projectile-enable-caching t)
+ '(projectile-project-root-files-bottom-up
+   '(".cquery" "compile_commands.json" ".projectile" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs"))
+ '(projectile-project-root-files-top-down-recurring
+   '(".svn" "CVS" "Makefile" ".git" ".cquery" "compile_commands.json"))
  '(python-shell-completion-native-enable nil)
  '(scroll-conservatively 100)
  '(semantic-idle-scheduler-idle-time 1)
@@ -457,3 +470,4 @@ layers configuration. You are free to put any user code."
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
  '(which-func ((t (:foreground "white smoke")))))
+)
