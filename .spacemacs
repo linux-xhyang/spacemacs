@@ -373,6 +373,7 @@ layers configuration. You are free to put any user code."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -420,6 +421,7 @@ This function is called at the very end of Spacemacs initialization."
  '(jit-lock-stealth-nice 0.5)
  '(jit-lock-stealth-time nil)
  '(large-file-warning-threshold 10000)
+ '(lsp-enable-indentation nil)
  '(magit-diff-arguments
    '("--ignore-all-space" "--no-ext-diff" "--stat" "-- " "--diff-algorithm=default"))
  '(magit-diff-section-arguments

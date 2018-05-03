@@ -96,6 +96,12 @@
                                          '(company-anaconda company-ycmd company-capf
                                                             company-dabbrev-code company-files company-yasnippet))
                                     ) t)
+
+      (add-hook 'java-mode-hook (lambda ()
+                                    (set (make-variable-buffer-local 'company-backends)
+                                         '(company-capf company-meghanada company-ycmd
+                                                            company-dabbrev-code company-files company-yasnippet))
+                                    ) t)
       )
 
     (ome-company/init-company)
