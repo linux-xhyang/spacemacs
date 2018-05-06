@@ -2,7 +2,7 @@
   '(
     elpy
     ob-ipython
-;;    company-jedi
+    ;;    company-jedi
     ))
 
 (defun python-add-breakpoint ()
@@ -34,7 +34,7 @@
          ))
 
       (add-hook 'python-mode-hook
-          (lambda () (define-key python-mode-map (kbd "C-c C-b") 'python-add-breakpoint)))
+                (lambda () (define-key python-mode-map (kbd "C-c C-b") 'python-add-breakpoint)))
 
       (require 'pyvenv)
       (setenv "WORKON_HOME" "~/.pyenv/versions/")
@@ -46,10 +46,17 @@
           (let ((venv (pyvenv-virtualenv-list)))
             (if venv
                 (write-region (car venv) nil (concat (getenv "ANDROID_BUILD_TOP") "/.venv"))
-              (write-region "3.6.1" nil (concat (getenv "ANDROID_BUILD_TOP") "/.venv")))
+              (write-region "3.6.5" nil (concat (getenv "ANDROID_BUILD_TOP") "/.venv")))
             ))
         )
+
       (elpy-enable)
+
+      (let ((venv (pyvenv-virtualenv-list)))
+        (when (member  "venv36" venv)
+          (message "pyvenv workon venv36")
+          (pyvenv-workon "venv36"))
+        )
       )))
 
 (defun ome-python/init-ob-ipython ()

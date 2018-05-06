@@ -69,7 +69,7 @@
       )
 
     (defun ome-company/init-ycmd ()
-      (if (version< (ome/ome-python-version) "3.6.0")
+      (if (version< (ome/ome-python-version) "3.8.0")
           (set-variable 'ycmd-server-command (list "python" (getenv "YCMD_PATH")))
         (set-variable 'ycmd-server-command (list "/usr/bin/python" (getenv "YCMD_PATH"))))
 
