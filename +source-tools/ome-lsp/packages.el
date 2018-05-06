@@ -35,9 +35,9 @@
       (when (file-executable-p cquery-executable)
         ;; ;; Log file
         (setq cquery-extra-args '("--log-file=/tmp/cq.log"))
+        (setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack" :completion (:detailedLabel t)))
         )
       )))
-
 
 (defun cquery-enable ()
   (setq cquery-project-roots (projectile-project-root))

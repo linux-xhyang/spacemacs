@@ -56,6 +56,14 @@
       (with-eval-after-load 'company
         (define-key company-mode-map (kbd "C-<tab>") 'company-other-backend)
         )
+      (with-eval-after-load 'yasnippet
+        (global-set-key (kbd "C-c y") 'company-yasnippet)
+        (global-set-key (kbd "C-c i") 'yas-insert-snippet)
+        )
+      (with-eval-after-load 'yasnippet-snippets
+        (push yasnippet-snippets-dir yas-snippet-dirs)
+        (yas-reload-all)
+        )
       (add-hook 'python-mode-hook 'anaconda-mode)
       (global-company-mode)
       )
@@ -80,7 +88,7 @@
                                        (setq cquery-executable "~/src/cquery/build/release/bin/cquery")
                                        (set (make-variable-buffer-local 'company-backends)
                                             '(company-capf company-ycmd company-semantic company-dabbrev-code
-                                                           company-files company-yasnippet))
+                                                           company-files))
                                        (when (file-executable-p cquery-executable)
                                          (setq company-backends (append (list 'company-lsp) company-backends)))
                                        ) t)
@@ -88,19 +96,19 @@
       (add-hook 'python-mode-hook (lambda ()
                                     (set (make-variable-buffer-local 'company-backends)
                                          '(company-anaconda company-ycmd company-capf
-                                                            company-dabbrev-code company-files company-yasnippet))
+                                                            company-dabbrev-code company-files))
                                     ) t)
 
       (add-hook 'comint-mode-hook (lambda ()
                                     (set (make-variable-buffer-local 'company-backends)
                                          '(company-anaconda company-ycmd company-capf
-                                                            company-dabbrev-code company-files company-yasnippet))
+                                                            company-dabbrev-code company-files))
                                     ) t)
 
       (add-hook 'java-mode-hook (lambda ()
                                     (set (make-variable-buffer-local 'company-backends)
                                          '(company-capf company-meghanada company-ycmd
-                                                            company-dabbrev-code company-files company-yasnippet))
+                                                            company-dabbrev-code company-files))
                                     ) t)
       )
 
