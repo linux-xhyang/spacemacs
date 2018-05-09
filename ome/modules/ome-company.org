@@ -87,7 +87,7 @@
       (add-hook 'c-mode-common-hook  (lambda ()
                                        (setq cquery-executable "~/src/cquery/build/release/bin/cquery")
                                        (set (make-variable-buffer-local 'company-backends)
-                                            '(company-capf company-ycmd company-semantic company-dabbrev-code
+                                            '(company-semantic company-capf company-ycmd company-dabbrev-code
                                                            company-files))
                                        (when (file-executable-p cquery-executable)
                                          (setq company-backends (append (list 'company-lsp) company-backends)))
