@@ -40,6 +40,7 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      nlinum
+     debug
      better-defaults
      emacs-lisp
      gtags
