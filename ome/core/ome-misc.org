@@ -184,9 +184,9 @@ shell but not in Emacs. Thus you cannot install some el-get packages such as
                                  (member-init-intro before)
                                  (inher-intro)))
       (c-hanging-semi&comma-criteria
-       . (c-semi&comma-no-newlines-for-oneline-inliners
+       . (c-semi&comma-no-newlines-before-nonblanks
           c-semi&comma-inside-parenlist
-          c-semi&comma-no-newlines-before-nonblanks))
+          c-semi&comma-no-newlines-for-oneline-inliners))
       (c-indent-comments-syntactically-p . t)
       (comment-column . 40)
       (c-indent-comment-alist . ((other . (space . 2))))

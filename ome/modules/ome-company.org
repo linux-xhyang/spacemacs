@@ -107,8 +107,8 @@
 
       (add-hook 'java-mode-hook (lambda ()
                                     (set (make-variable-buffer-local 'company-backends)
-                                         '(company-capf company-meghanada company-ycmd
-                                                            company-dabbrev-code company-files))
+                                         '(comany-gtags company-meghanada company-ycmd company-dabbrev-code
+                                                            company-files company-capf))
                                     ) t)
       )
 

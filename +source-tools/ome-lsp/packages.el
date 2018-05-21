@@ -50,16 +50,16 @@
       "dr" 'lsp-ui-peek-find-references
       "d[" 'lsp-ui-peek-jump-backward
       "d]" 'lsp-ui-peek-jump-forward
-      ;; "qb" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/base"))
-      ;; "qc" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/callers"))
-      ;; "qd" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/derived"))
-      ;; "qv" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/vars"))
+      "qb" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/base"))
+      "qc" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/callers"))
+      "qd" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/derived"))
+      "qv" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/vars"))
       ;; "R"  #'cquery-freshen-index
-      ;; "hm" #'cquery-member-hierarchy
-      ;; "hi" #'cquery-inheritance-hierarchy
-      ;; "hI" (lambda () (interactive) (cquery-inheritance-hierarchy t))
-      ;; "hc" #'cquery-call-hierarchy
-      ;; "hC" (lambda () (interactive) (cquery-call-hierarchy t))
+      "hm" #'cquery-member-hierarchy
+      "hi" #'cquery-inheritance-hierarchy
+      "hI" (lambda () (interactive) (cquery-inheritance-hierarchy t))
+      "hc" #'cquery-call-hierarchy
+      "hC" (lambda () (interactive) (cquery-call-hierarchy t))
       "ll" 'lsp-ui-imenu
 	    "lr" 'lsp-rename)
     )
