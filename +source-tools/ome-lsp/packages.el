@@ -13,8 +13,32 @@
     (company-lsp :location (recipe
                             :fetcher github
                             :repo "tigersoldier/company-lsp"))
+    (lsp-java :location (recipe
+                         :fetcher github
+                         :repo "emacs-lsp/lsp-java"))
     ))
 
+(defun java-enable ()
+  (lsp-java-enable)
+  (dolist (mode '(java-mode))
+    (spacemacs/set-leader-keys-for-major-mode mode
+      "dd" 'lsp-ui-peek-find-definitions
+      "dr" 'lsp-ui-peek-find-references
+      "d[" 'lsp-ui-peek-jump-backward
+      "d]" 'lsp-ui-peek-jump-forward
+      "ll" 'lsp-ui-imenu
+	    "lr" 'lsp-rename)
+    )
+  )
+
+(defun ome-lsp/init-lsp-java ()
+  (use-package lsp-java
+    :init
+    (progn
+      (require 'lsp-java)
+      (add-hook 'java-mode-hook #'java-enable)
+      ))
+  )
 
 (defun ome-lsp/init-lsp-ui ()
   (use-package lsp-ui
@@ -73,7 +97,8 @@
       (when (file-executable-p cquery-executable)
         (setq cquery-extra-init-params '(:index (:comments 2)
                                                 :cacheFormat "msgpack" :completion (:detailedLabel t)))
-        (add-hook 'c-mode-common-hook 'cquery-enable)
+        (add-hook 'c++-mode-hook 'cquery-enable)
+        (add-hook 'c-mode-hook 'cquery-enable)
         ))))
 
 (defun ome-lsp/init-company-lsp ()

@@ -45,6 +45,7 @@ values."
      emacs-lisp
      gtags
      ycmd
+     dash
      semantic
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode)
