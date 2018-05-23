@@ -33,7 +33,7 @@
 
 (defun ome-lsp/init-lsp-java ()
   (use-package lsp-java
-    :config
+    :init
     (progn
       (add-hook 'java-mode-hook 'java-enable)
       ))
@@ -54,9 +54,9 @@
       (when (file-executable-p cquery-executable)
         ;; ;; Log file
         (setq cquery-extra-args '("--log-file=/tmp/cq.log"))
-        ;;(setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack" :completion (:detailedLabel t)))
+        (setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack" :completion (:detailedLabel t)))
         ;;(setq cquery-extra-init-params '(:cacheFormat "msgpack" :completion (:detailedLabel t)))
-        (setq cquery-extra-init-params '(:cacheFormat "json" :completion (:detailedLabel t)))
+        ;;(setq cquery-extra-init-params '(:cacheFormat "json" :completion (:detailedLabel t)))
         )
       )))
 
