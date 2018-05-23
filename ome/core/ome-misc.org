@@ -241,8 +241,10 @@ shell but not in Emacs. Thus you cannot install some el-get packages such as
 
   (provide 'google-c-style)
 
-  (add-hook 'c-mode-common-hook 'google-set-c-style)
-  (add-hook 'c-mode-common-hook 'google-make-newline-indent)
+  (add-hook 'c++-mode-hook 'google-set-c-style)
+  (add-hook 'c-mode-hook 'google-set-c-style)
+  (add-hook 'c++-mode-hook 'google-make-newline-indent)
+  (add-hook 'c-mode-hook 'google-make-newline-indent)
 #+END_SRC
 
 * reload env

@@ -33,10 +33,9 @@
 
 (defun ome-lsp/init-lsp-java ()
   (use-package lsp-java
-    :init
+    :config
     (progn
-      (require 'lsp-java)
-      (add-hook 'java-mode-hook #'java-enable)
+      (add-hook 'java-mode-hook 'java-enable)
       ))
   )
 
@@ -44,11 +43,7 @@
   (use-package lsp-ui
     :init
     (progn
-      (setq cquery-executable "~/src/cquery/build/release/bin/cquery")
-      (when (file-executable-p cquery-executable)
-        ;; ;; Log file
         (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-        )
       )))
 
 (defun ome-lsp/init-lsp-mode ()
