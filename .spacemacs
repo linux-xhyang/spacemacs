@@ -449,6 +449,7 @@ This function is called at the very end of Spacemacs initialization."
    '(".svn" "CVS" "Makefile" ".git" ".cquery" "compile_commands.json"))
  '(python-shell-completion-native-enable nil)
  '(scroll-conservatively 100)
+ '(lsp-before-save-edits nil)
  '(semantic-idle-scheduler-idle-time 1)
  '(semantic-idle-scheduler-max-buffer-size 100000)
  '(semantic-idle-scheduler-work-idle-time 60)
