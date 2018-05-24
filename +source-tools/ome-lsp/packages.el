@@ -5,7 +5,7 @@
                        :repo "cquery-project/emacs-cquery"))
     (lsp-java :location (recipe
                          :fetcher github
-                         :repo "linux-xhyang/lsp-java"))
+                         :repo "emacs-lsp/lsp-java"))
     ))
 
 (defun java-enable ()
@@ -25,6 +25,7 @@
   (use-package lsp-java
     :init
     (progn
+      (require 'company-lsp)
       (add-hook 'java-mode-hook 'java-enable)
       ))
   )
@@ -57,6 +58,7 @@
   (use-package cquery
     :init
     (progn
+      (require 'company-lsp)
       (setq cquery-executable "~/src/cquery/build/release/bin/cquery")
       (when (file-executable-p cquery-executable)
         (setq cquery-extra-args '("--log-file=/tmp/cq.log"))
