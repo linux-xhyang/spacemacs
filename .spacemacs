@@ -81,6 +81,7 @@ values."
      chrome
      plantuml
      ;; version-control ;;not user for git gutter
+     lsp
      android-mode
      ome-prepare
      ome
@@ -423,6 +424,9 @@ This function is called at the very end of Spacemacs initialization."
  '(jit-lock-stealth-time 16)
  '(large-file-warning-threshold 10000)
  '(lsp-enable-indentation nil)
+ '(lsp-ui-sideline-show-flycheck nil)
+ '(lsp-ui-flycheck-enable nil)
+ '(lsp-ui-imenu-enable nil)
  '(magit-diff-arguments
    '("--ignore-all-space" "--no-ext-diff" "--stat" "-- " "--diff-algorithm=default"))
  '(magit-diff-section-arguments

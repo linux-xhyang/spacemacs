@@ -1,18 +1,8 @@
 (defconst ome-lsp-packages
   '(
-    (lsp-mode :location (recipe
-                         :fetcher github
-                         :repo "emacs-lsp/lsp-mode"))
     (cquery :location (recipe
                        :fetcher github
                        :repo "cquery-project/emacs-cquery"))
-
-    (lsp-ui :location (recipe
-                       :fetcher github
-                       :repo "emacs-lsp/lsp-ui"))
-    (company-lsp :location (recipe
-                            :fetcher github
-                            :repo "tigersoldier/company-lsp"))
     (lsp-java :location (recipe
                          :fetcher github
                          :repo "emacs-lsp/lsp-java"))
@@ -39,27 +29,6 @@
       ))
   )
 
-(defun ome-lsp/init-lsp-ui ()
-  (use-package lsp-ui
-    :init
-    (progn
-        (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-      )))
-
-(defun ome-lsp/init-lsp-mode ()
-  (use-package lsp-mode
-    :init
-    (progn
-      (setq cquery-executable "~/src/cquery/build/release/bin/cquery")
-      (when (file-executable-p cquery-executable)
-        ;; ;; Log file
-        (setq cquery-extra-args '("--log-file=/tmp/cq.log"))
-        (setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack" :completion (:detailedLabel t)))
-        ;;(setq cquery-extra-init-params '(:cacheFormat "msgpack" :completion (:detailedLabel t)))
-        ;;(setq cquery-extra-init-params '(:cacheFormat "json" :completion (:detailedLabel t)))
-        )
-      )))
-
 (defun cquery-enable ()
   (setq cquery-project-roots (projectile-project-root))
   (lsp-cquery-enable)
@@ -80,7 +49,7 @@
       "hc" #'cquery-call-hierarchy
       "hC" (lambda () (interactive) (cquery-call-hierarchy t))
       "ll" 'lsp-ui-imenu
-	    "lr" 'lsp-rename)
+      "lr" 'lsp-rename)
     )
   )
 
@@ -90,15 +59,11 @@
     (progn
       (setq cquery-executable "~/src/cquery/build/release/bin/cquery")
       (when (file-executable-p cquery-executable)
-        (setq cquery-extra-init-params '(:index (:comments 2)
-                                                :cacheFormat "msgpack" :completion (:detailedLabel t)))
+        (setq cquery-extra-args '("--log-file=/tmp/cq.log"))
+        (setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack" :completion (:detailedLabel t)))
+        ;;(setq cquery-extra-init-params '(:cacheFormat "msgpack" :completion (:detailedLabel t)))
+        ;;(setq cquery-extra-init-params '(:cacheFormat "json" :completion (:detailedLabel t)))
+
         (add-hook 'c++-mode-hook 'cquery-enable)
         (add-hook 'c-mode-hook 'cquery-enable)
         ))))
-
-(defun ome-lsp/init-company-lsp ()
-  (use-package company-lsp
-    :init
-    (progn
-      (setq cquery-executable "~/src/cquery/build/release/bin/cquery")
-      )))
