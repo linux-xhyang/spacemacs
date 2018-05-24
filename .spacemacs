@@ -423,7 +423,6 @@ This function is called at the very end of Spacemacs initialization."
  '(jit-lock-stealth-nice 0.5)
  '(jit-lock-stealth-time 16)
  '(large-file-warning-threshold 10000)
- '(lsp-enable-indentation nil)
  '(lsp-ui-sideline-show-flycheck nil)
  '(lsp-ui-flycheck-enable nil)
  '(lsp-ui-imenu-enable nil)

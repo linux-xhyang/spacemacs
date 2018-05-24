@@ -5,7 +5,7 @@
                        :repo "cquery-project/emacs-cquery"))
     (lsp-java :location (recipe
                          :fetcher github
-                         :repo "emacs-lsp/lsp-java"))
+                         :repo "linux-xhyang/lsp-java"))
     ))
 
 (defun java-enable ()
