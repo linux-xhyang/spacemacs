@@ -56,7 +56,8 @@ values."
      (python :variables
              python-enable-yapf-format-on-save t
              python-fill-column 99
-             python-sort-imports-on-save t)
+             python-sort-imports-on-save t
+             python-backend nil)
      ipython-notebook
      (auto-completion :variables
                       spacemacs-default-company-backends '(company-files company-capf)
@@ -454,6 +455,9 @@ This function is called at the very end of Spacemacs initialization."
  '(python-shell-completion-native-enable nil)
  '(scroll-conservatively 100)
  '(lsp-before-save-edits nil)
+ '(lsp-response-timeout 20)
+ '(cquery-project-root-matchers
+   '("compile_commands.json" ".cquery" "build/compile_commands.json" cquery-project-roots-matcher projectile-project-root))
  '(semantic-idle-scheduler-idle-time 1)
  '(semantic-idle-scheduler-max-buffer-size 100000)
  '(semantic-idle-scheduler-work-idle-time 60)

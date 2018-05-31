@@ -103,14 +103,17 @@
                                        ) t)
 
       (add-hook 'python-mode-hook (lambda ()
-                                    (set (make-variable-buffer-local 'company-backends)
-                                         '(company-anaconda company-ycmd company-capf
-                                                            company-dabbrev-code company-files))
-                                    ) t)
+                                     (set (make-variable-buffer-local 'company-backends)
+                                          '(company-lsp company-anaconda company-ycmd company-capf
+                                                             company-dabbrev-code company-files))
+                                     ) t)
+      (add-hook 'python-mode-hook (lambda ()
+                                    (require 'company-lsp)
+                                    (lsp-python-enable)))
 
       (add-hook 'comint-mode-hook (lambda ()
                                     (set (make-variable-buffer-local 'company-backends)
-                                         '(company-anaconda company-ycmd company-capf
+                                         '(company-lsp company-anaconda company-ycmd company-capf
                                                             company-dabbrev-code company-files))
                                     ) t)
 
