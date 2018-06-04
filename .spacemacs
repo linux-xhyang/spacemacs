@@ -5,11 +5,16 @@
 
 
 (require 'package)
-(setq package-archives '(
-("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-      ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-      ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-			 ))
+;;(setq package-archives '(
+;; ("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+;;       ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+;;       ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+;; 			 ))
+
+(setq package-archives
+      '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
+        ("org-cn"   . "http://elpa.emacs-china.org/org/")
+        ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
 
 ; Apparently needed for the package auto-complete (why?)
 ;(add-to-list 'package-archives
@@ -455,7 +460,8 @@ This function is called at the very end of Spacemacs initialization."
  '(python-shell-completion-native-enable nil)
  '(scroll-conservatively 100)
  '(lsp-before-save-edits nil)
- '(lsp-response-timeout 20)
+ '(lsp-response-timeout 30)
+;; '(lsp-print-io t)
  '(cquery-project-root-matchers
    '("compile_commands.json" ".cquery" "build/compile_commands.json" cquery-project-roots-matcher projectile-project-root))
  '(semantic-idle-scheduler-idle-time 1)
