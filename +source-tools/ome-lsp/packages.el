@@ -32,26 +32,27 @@
 
 (defun cquery-enable ()
   (setq cquery-project-roots (projectile-project-root))
-  (lsp-cquery-enable)
-  (dolist (mode '(c-mode c++-mode))
-    (spacemacs/set-leader-keys-for-major-mode mode
-      "dd" 'lsp-ui-peek-find-definitions
-      "dr" 'lsp-ui-peek-find-references
-      "d[" 'lsp-ui-peek-jump-backward
-      "d]" 'lsp-ui-peek-jump-forward
-      "qb" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/base"))
-      "qc" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/callers"))
-      "qd" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/derived"))
-      "qv" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/vars"))
-      ;; "R"  #'cquery-freshen-index
-      "hm" #'cquery-member-hierarchy
-      "hi" #'cquery-inheritance-hierarchy
-      "hI" (lambda () (interactive) (cquery-inheritance-hierarchy t))
-      "hc" #'cquery-call-hierarchy
-      "hC" (lambda () (interactive) (cquery-call-hierarchy t))
-      "ll" 'lsp-ui-imenu
-      "lr" 'lsp-rename)
-    )
+  (when (and cquery-project-roots (file-exists-p (concat cquery-project-roots "/compile_commands.json")))
+    (lsp-cquery-enable)
+    (dolist (mode '(c-mode c++-mode))
+      (spacemacs/set-leader-keys-for-major-mode mode
+        "dd" 'lsp-ui-peek-find-definitions
+        "dr" 'lsp-ui-peek-find-references
+        "d[" 'lsp-ui-peek-jump-backward
+        "d]" 'lsp-ui-peek-jump-forward
+        "qb" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/base"))
+        "qc" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/callers"))
+        "qd" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/derived"))
+        "qv" (lambda () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/vars"))
+        ;; "R"  #'cquery-freshen-index
+        "hm" #'cquery-member-hierarchy
+        "hi" #'cquery-inheritance-hierarchy
+        "hI" (lambda () (interactive) (cquery-inheritance-hierarchy t))
+        "hc" #'cquery-call-hierarchy
+        "hC" (lambda () (interactive) (cquery-call-hierarchy t))
+        "ll" 'lsp-ui-imenu
+        "lr" 'lsp-rename)
+      ))
   )
 
 (defun ome-lsp/init-cquery ()
