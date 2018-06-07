@@ -403,7 +403,7 @@ This function is called at the very end of Spacemacs initialization."
  '(ein:completion-backend 'ein:use-company-backend)
  '(ein:use-auto-complete-superpack t)
  '(eopengrok-ignore-file-or-directory
-   ".opengrok:out:*.so:*.a:*.o:*.gz:*.bz2:*.jar:*.zip:*.class:*.elc:GPATH:GRTAGS:GTAGS:.repo")
+   ".opengrok:out:*.so:*.a:*.o:*.gz:*.bz2:*.jar:*.zip:*.class:*.elc:GPATH:GRTAGS:GTAGS:.repo:.cquery_cached_index")
  '(gdb-many-windows t t)
  '(gdb-show-main t t)
  '(ggtags-highlight-tag 1)
