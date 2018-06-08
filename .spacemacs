@@ -95,17 +95,17 @@ values."
      ome-java
      ome-groovy
      ome-git
-     ome-speedbar
+     ;;ome-speedbar
      ;;ome-ecb
-     ome-ccl
+     ;;ome-ccl
      ome-python
      ome-realgud
      ome-ggtags
      ome-systemtap
      ome-gui
-     ome-opengrok
+     ;;ome-opengrok
      ome-lsp
-     music
+     ;;music
      ;;symon
      )
    ;; List of additional packages that will be installed without being
