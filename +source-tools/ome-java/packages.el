@@ -21,6 +21,14 @@
 (defun ome-java/post-init-helm-gtags ()
   (spacemacs/helm-gtags-define-keys-for-mode 'java-mode))
 
+(defun is-android-projectjava-file ()
+  (with-current-buffer (current-buffer)
+    (save-excursion
+      (goto-char (point-min))
+      (search-forward "The Android Open Source Project" nil t))
+    )
+  )
+
 (defun ome-java/init-meghanada ()
   (use-package meghanada
     :config
@@ -35,7 +43,10 @@
                   (advice-add 'meghanada--start-server-process :around #'custom-meghanada--start-server-process)
                   (meghanada-mode t)
                   ;;(advice-remove 'meghanada--start-server-process #'custom-meghanada--start-server-process)
-                  (add-hook 'before-save-hook 'meghanada-code-beautify-before-save)))
+                  (add-hook 'before-save-hook (lambda ()
+                                                (unless (is-android-projectjava-file)
+                                                  (meghanada-code-beautify-before-save))))
+                  ))
       )))
 
 ;; (defun ome-java/init-eclim ()

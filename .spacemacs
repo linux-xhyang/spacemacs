@@ -460,7 +460,7 @@ This function is called at the very end of Spacemacs initialization."
  '(python-shell-completion-native-enable nil)
  '(scroll-conservatively 100)
  '(lsp-before-save-edits nil)
- '(lsp-response-timeout 30)
+ '(lsp-response-timeout 60)
 ;; '(lsp-print-io t)
  '(cquery-project-root-matchers
    '("compile_commands.json" ".cquery" "build/compile_commands.json" cquery-project-roots-matcher projectile-project-root))
