@@ -41,11 +41,12 @@
                   ;; meghanada-mode on
                   (semantic-mode)
                   (advice-add 'meghanada--start-server-process :around #'custom-meghanada--start-server-process)
-                  (meghanada-mode t)
+                  (when buffer-file-name
+                    (meghanada-mode t)
                   ;;(advice-remove 'meghanada--start-server-process #'custom-meghanada--start-server-process)
-                  (add-hook 'before-save-hook (lambda ()
-                                                (unless (is-android-projectjava-file)
-                                                  (meghanada-code-beautify-before-save))))
+                    (add-hook 'before-save-hook (lambda ()
+                                                  (unless (is-android-projectjava-file)
+                                                    (meghanada-code-beautify-before-save)))))
                   ))
       )))
 

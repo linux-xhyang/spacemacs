@@ -9,17 +9,18 @@
     ))
 
 (defun java-enable ()
-  (lsp-java-enable)
-  (dolist (mode '(java-mode))
-    (spacemacs/set-leader-keys-for-major-mode mode
-      "dd" 'lsp-ui-peek-find-definitions
-      "dr" 'lsp-ui-peek-find-references
-      "d[" 'lsp-ui-peek-jump-backward
-      "d]" 'lsp-ui-peek-jump-forward
-      "ll" 'lsp-ui-imenu
-	    "lr" 'lsp-rename)
-    )
-  )
+  (when (and (projectile-project-root) buffer-file-name)
+    (lsp-java-enable)
+    (dolist (mode '(java-mode))
+      (spacemacs/set-leader-keys-for-major-mode mode
+        "dd" 'lsp-ui-peek-find-definitions
+        "dr" 'lsp-ui-peek-find-references
+        "d[" 'lsp-ui-peek-jump-backward
+        "d]" 'lsp-ui-peek-jump-forward
+        "ll" 'lsp-ui-imenu
+	      "lr" 'lsp-rename)
+      )
+    ))
 
 (defun ome-lsp/init-lsp-java ()
   (use-package lsp-java

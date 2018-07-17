@@ -5,16 +5,15 @@
 
 
 (require 'package)
-;;(setq package-archives '(
-;; ("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-;;       ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-;;       ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-;; 			 ))
+(setq package-archives '(
+       ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+       ("org"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+       ("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
 
-(setq package-archives
-      '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
-        ("org-cn"   . "http://elpa.emacs-china.org/org/")
-        ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
+;;(setq package-archives
+;;      '(("melpa-cn" . "https://elpa.emacs-china.org/melpa/")
+;;        ("org-cn"   . "https://elpa.emacs-china.org/org/")
+;;        ("gnu-cn"   . "https://elpa.emacs-china.org/gnu/")))
 
 ; Apparently needed for the package auto-complete (why?)
 ;(add-to-list 'package-archives
@@ -429,6 +428,8 @@ This function is called at the very end of Spacemacs initialization."
  '(jit-lock-stealth-nice 0.5)
  '(jit-lock-stealth-time 16)
  '(large-file-warning-threshold 10000)
+ '(lsp-before-save-edits nil)
+ '(lsp-response-timeout 60)
  '(lsp-enable-indentation nil)
  '(lsp-ui-sideline-show-flycheck nil)
  '(lsp-ui-flycheck-enable nil)
@@ -450,8 +451,6 @@ This function is called at the very end of Spacemacs initialization."
      ("~" org-code verbatim)
      ("+"
       (:strike-through t))))
- '(package-selected-packages
-   '(cquery lsp-mode company-jedi jedi-core python-environment epc ctable concurrent org-mime eopengrok memory-usage web-beautify livid-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js-doc company-tern tern coffee-mode meghanada names chinese-word-at-point yapfify winum uuidgen systemtap-mode powerline slime-company py-isort pug-mode plantuml-mode spinner org-projectile org-category-capture alert log4e gntp org-download mwim live-py-mode link-hint insert-shebang hydra parent-mode hide-comnt projectile haml-mode groovy-mode ham-mode markdown-mode html-to-markdown gitignore-mode git-link fringe-helper git-gutter ggtags flyspell-correct-helm flyspell-correct flycheck flx eyebrowse evil-visual-mark-mode evil-unimpaired magit magit-popup git-commit with-editor smartparens iedit evil-ediff anzu evil goto-chg undo-tree highlight eshell-z skewer-mode websocket js2-mode simple-httpd dumb-jump diminish ycmd pkg-info request-deferred request deferred epl web-completion-data company-shell company common-lisp-snippets column-enforce-mode pyim pyim-basedict pos-tip bind-map bind-key yasnippet packed android-emacs-ide anaconda-mode pythonic f s all-the-icons memoize font-lock+ pinyinlib helm avy helm-core async slime macrostep auto-complete popup nlinum-relative elpy find-file-in-project ivy unfill fuzzy flymd isend-mode realgud test-simple loc-changes load-relative youdao-dictionary xterm-color xgtags ws-butler window-numbering which-key web-mode volatile-highlights vlf vi-tilde-fringe use-package toc-org tagedit stickyfunc-enhance srefactor sr-speedbar spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-yapf popwin pip-requirements persp-mode pcre2el paradox pangu-spacing page-break-lines orgit org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets open-junk-file nlinum neotree multi-term move-text magit-gitflow lorem-ipsum linum-relative leuven-theme less-css-mode jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flyspell helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gmail-message-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-gutter-fringe git-emacs flycheck-ycmd flycheck-pos-tip flx-ido fish-mode find-by-pinyin-dired fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-smartparens evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu eshell-prompt-extras esh-help emms emmet-mode elogcat elisp-slime-nav ein edit-server ecb dts-mode disaster define-word cython-mode company-ycmd company-web company-statistics company-quickhelp company-c-headers company-anaconda cmake-mode clean-aindent-mode clang-format buffer-move bracketed-paste auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile android-mode aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-slime ac-ispell))
  '(projectile-enable-caching t)
  '(projectile-project-root-files-bottom-up
    '(".cquery" "compile_commands.json" ".projectile" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs"))
@@ -459,9 +458,6 @@ This function is called at the very end of Spacemacs initialization."
    '(".svn" "CVS" "Makefile" ".git" ".cquery" "compile_commands.json"))
  '(python-shell-completion-native-enable nil)
  '(scroll-conservatively 100)
- '(lsp-before-save-edits nil)
- '(lsp-response-timeout 60)
-;; '(lsp-print-io t)
  '(cquery-project-root-matchers
    '("compile_commands.json" ".cquery" "build/compile_commands.json" cquery-project-roots-matcher projectile-project-root))
  '(semantic-idle-scheduler-idle-time 1)
