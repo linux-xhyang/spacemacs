@@ -54,14 +54,16 @@ values."
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode)
      ;;java
-     javascript
      git
+     ome-projectile
      common-lisp
-     (python :variables
-             python-enable-yapf-format-on-save t
-             python-fill-column 99
-             python-sort-imports-on-save t
-             python-backend nil)
+     javascript
+     ome-lsp
+     ;; (python :variables
+     ;;         python-enable-yapf-format-on-save t
+     ;;         python-fill-column 99
+     ;;         python-sort-imports-on-save t
+     ;;         python-backend 'lsp)
      ipython-notebook
      (auto-completion :variables
                       spacemacs-default-company-backends '(company-files company-capf)
@@ -86,11 +88,9 @@ values."
      chrome
      plantuml
      ;; version-control ;;not user for git gutter
-     lsp
      android-mode
      ome-prepare
      ome
-     ome-projectile
      ome-java
      ome-groovy
      ome-git

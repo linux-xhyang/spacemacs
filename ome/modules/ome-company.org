@@ -85,7 +85,7 @@
       (add-hook 'ycmd-mode-hook (function auto-update-ycmd-extral-conf-whitelist))
 
       (add-hook 'c++-mode-hook  (lambda ()
-                                       (setq cquery-executable "~/src/cquery/build/release/bin/cquery")
+                                       (setq cquery-executable "~/src/cquery/build/cquery")
                                        (set (make-variable-buffer-local 'company-backends)
                                             '(company-semantic company-ycmd company-dabbrev-code
                                                            company-files))
@@ -94,7 +94,7 @@
                                        ) t)
 
       (add-hook 'c-mode-hook  (lambda ()
-                                       (setq cquery-executable "~/src/cquery/build/release/bin/cquery")
+                                       (setq cquery-executable "~/src/cquery/build/cquery")
                                        (set (make-variable-buffer-local 'company-backends)
                                             '(company-semantic company-ycmd company-dabbrev-code
                                                                company-files))
