@@ -438,8 +438,8 @@ This function is called at the very end of Spacemacs initialization."
    '("--ignore-all-space" "--no-ext-diff" "--stat" "-- " "--diff-algorithm=default"))
  '(magit-diff-section-arguments
    '("--ignore-all-space" "--no-ext-diff" "--diff-algorithm=default"))
- '(meghanada-debug t)
- '(meghanada-server-remote-debug t)
+ ;; '(meghanada-debug t)
+ ;; '(meghanada-server-remote-debug t)
  '(mouse-wheel-scroll-amount '(2))
  '(org-babel-load-languages '((emacs-lisp . t) (shell . t)))
  '(org-clock-persist-file (org-clock-persist-save-file))

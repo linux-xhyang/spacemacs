@@ -117,9 +117,10 @@
                                                             company-dabbrev-code company-files))
                                     ) t)
 
+      ;; company-meghanada 
       (add-hook 'java-mode-hook (lambda ()
                                     (set (make-variable-buffer-local 'company-backends)
-                                         '(comany-gtags company-meghanada company-lsp company-ycmd
+                                         '(comany-gtags company-lsp company-ycmd
                                                         company-dabbrev-code company-files company-capf))
                                     ) t)
       )

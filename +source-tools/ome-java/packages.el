@@ -1,6 +1,6 @@
 (defconst ome-java-packages
   '(
-    meghanada
+    ;; meghanada
     company
     ggtags
     helm-gtags
