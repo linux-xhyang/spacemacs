@@ -120,13 +120,14 @@
       (setq cquery-executable "~/src/cquery/build/cquery")
       (when (file-executable-p cquery-executable)
         (setq cquery-extra-args '("--log-file=/tmp/cq.log"))
-        (setq cquery-extra-init-params '(:index (:comments 2) :discoverSystemIncludes :json-false :cacheFormat "msgpack" :completion (:detailedLabel t)))
+        (setq cquery-extra-init-params '(:index (:comments 2) :discoverSystemIncludes :json-false :cacheFormat "json" :completion (:detailedLabel t)))
         ;;(setq cquery-extra-init-params '(:cacheFormat "msgpack" :completion (:detailedLabel t)))
         ;;(setq cquery-extra-init-params '(:cacheFormat "json" :completion (:detailedLabel t)))
 
         (add-hook 'c++-mode-hook 'cquery-enable)
         (add-hook 'c-mode-hook 'cquery-enable)
         ))))
+
 (defun java-enable ()
   (when (and (projectile-project-root) buffer-file-name)
     (lsp-java-enable)
@@ -174,19 +175,3 @@
         "lr" 'lsp-rename)
       ))
   )
-
-(defun ome-lsp/init-cquery ()
-  (use-package cquery
-    :init
-    (progn
-      (require 'company-lsp)
-      (setq cquery-executable "~/src/cquery/build/cquery")
-      (when (file-executable-p cquery-executable)
-        (setq cquery-extra-args '("--log-file=/tmp/cq.log"))
-        (setq cquery-extra-init-params '(:index (:comments 2) :discoverSystemIncludes :json-false :cacheFormat "msgpack" :completion (:detailedLabel t)))
-        ;;(setq cquery-extra-init-params '(:cacheFormat "msgpack" :completion (:detailedLabel t)))
-        ;;(setq cquery-extra-init-params '(:cacheFormat "json" :completion (:detailedLabel t)))
-
-        (add-hook 'c++-mode-hook 'cquery-enable)
-        (add-hook 'c-mode-hook 'cquery-enable)
-        ))))
