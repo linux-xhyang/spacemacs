@@ -434,6 +434,7 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-ui-sideline-show-flycheck nil)
  '(lsp-ui-flycheck-enable nil)
  '(lsp-ui-imenu-enable nil)
+ '(lsp-ui-sideline-show-symbol nil)
  '(magit-diff-arguments
    '("--ignore-all-space" "--no-ext-diff" "--stat" "-- " "--diff-algorithm=default"))
  '(magit-diff-section-arguments
