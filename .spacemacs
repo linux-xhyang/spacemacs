@@ -47,6 +47,8 @@ values."
      debug
      better-defaults
      emacs-lisp
+     (latex :variables
+            latex-build-command "LatexMk")
      gtags
      ycmd
      dash
@@ -452,6 +454,8 @@ This function is called at the very end of Spacemacs initialization."
      ("~" org-code verbatim)
      ("+"
       (:strike-through t))))
+ '(TeX-engine 'xetex)
+ ;;'(org-latex-packages-alist '(("slantfont,boldfont" "xeCJK" t) ("" "fancyhdr" nil)))
  '(projectile-enable-caching t)
  '(projectile-project-root-files-bottom-up
    '(".cquery" "compile_commands.json" ".projectile" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs"))

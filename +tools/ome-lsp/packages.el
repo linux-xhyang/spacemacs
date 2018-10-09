@@ -119,8 +119,8 @@
       (require 'company-lsp)
       (setq cquery-executable "~/src/cquery/build/cquery")
       (when (file-executable-p cquery-executable)
-        (setq cquery-extra-args '("--log-file=/tmp/cq.log"))
-        (setq cquery-extra-init-params '(:index (:comments 2) :discoverSystemIncludes :json-false :cacheFormat "json" :completion (:detailedLabel t)))
+        (setq cquery-extra-args '("--log-file=/tmp/cq.log --log-all-to-stderr"))
+        (setq cquery-extra-init-params '(:index (:comments 2 :threads 1) :discoverSystemIncludes :json-false :cacheFormat "msgpack" :completion (:detailedLabel t)))
         ;;(setq cquery-extra-init-params '(:cacheFormat "msgpack" :completion (:detailedLabel t)))
         ;;(setq cquery-extra-init-params '(:cacheFormat "json" :completion (:detailedLabel t)))
 

@@ -32,6 +32,7 @@
 (defconst ome-packages
   '(
     (xgtags :location (recipe :fetcher github :repo "linux-xhyang/xgtags"))
+    exec-path-from-shell
     ;;nlinum
     ))
 
@@ -105,6 +106,17 @@
                   (xgtags-mode 1)))
 
       )))
+
+(defun ome/init-exec-path-from-shell ()
+  (use-package exec-path-from-shell
+    :config
+    :init
+    (progn
+      (require 'exec-path-from-shell)
+      (exec-path-from-shell-initialize)
+      )
+    )
+  )
 
 ;; (defun ome/init-nlinum()
 ;;   (use-package nlinum
