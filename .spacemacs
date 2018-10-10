@@ -43,8 +43,13 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     nlinum
+     ;;nlinum
      debug
+     (spell-checking :variables
+                     spell-checking-enable-by-default t)
+     (syntax-checking :variables
+                      syntax-checking-enable-by-default t
+                      syntax-checking-enable-tooltips t)
      better-defaults
      emacs-lisp
      (latex :variables
@@ -68,15 +73,27 @@ values."
      ;;         python-backend 'lsp)
      ipython-notebook
      (auto-completion :variables
-                      spacemacs-default-company-backends '(company-files company-capf)
-                      auto-completion-enable-snippets-in-popup nil
-                      auto-completion-enable-sort-by-usage t
-                      auto-completion-enable-help-tooltip t
-                      auto-completion-complete-with-key-sequence "ja"
+                      auto-completion-return-key-behavior 'complete
+                      auto-completion-tab-key-behavior 'cycle
+                      auto-completion-complete-with-key-sequence nil
                       auto-completion-complete-with-key-sequence-delay 0.1
-      )
+                      auto-completion-private-snippets-directory nil
+                      auto-completion-enable-snippets-in-popup t
+                      auto-completion-enable-help-tooltip t
+                      auto-completion-enable-sort-by-usage t
+                      :disabled-for org markdown)
+     (ibuffer :variables ibuffer-group-buffers-by 'projects)
+     (treemacs :variables treemacs-use-follow-mode t
+               treemacs-use-filewatch-mode t
+               treemacs-use-collapsed-directories 3)
      ;; markdown
-     org
+     (org :variables
+          org-enable-github-support t
+          org-enable-bootstrap-support t
+          org-enable-reveal-js t
+          ;; org-enable-org-journal-support t
+          ;; org-projectile-file "TODOs.org"
+          org-want-todo-bindings t)
      (chinese :variables
               chinese-enable-youdao-dict t)
      (shell :variables
@@ -480,7 +497,7 @@ This function is called at the very end of Spacemacs initialization."
  '(vlf-tune-max 402702600)
  '(which-function-mode t)
  '(which-key-idle-delay 0.6)
- '(which-key-popup-type 'minibuffer))
+ '(which-key-popup-type 'side-window))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
