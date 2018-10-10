@@ -117,12 +117,18 @@
                                                             company-dabbrev-code company-files))
                                     ) t)
 
-      ;; company-meghanada 
+      ;; company-meghanada
       (add-hook 'java-mode-hook (lambda ()
                                     (set (make-variable-buffer-local 'company-backends)
                                          '(comany-gtags company-lsp company-ycmd
                                                         company-dabbrev-code company-files company-capf))
                                     ) t)
+
+      (add-hook 'org-mode-hook (lambda ()
+                                 (add-hook 'completion-at-point-functions 'pcomplete-completions-at-point nil t)
+                                 (set (make-variable-buffer-local 'company-backends)
+                                      '(company-files company-capf company-dabbrev))
+                                 ) t)
       )
 
     (ome-company/init-company)
