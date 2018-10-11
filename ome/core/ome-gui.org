@@ -45,6 +45,7 @@ This is part of [[https://github.com/xiaohanyu/oh-my-emacs][oh-my-emacs]].
     (defun check-file-name ( filename )
       (cond ((or (string= filename ".ido.last")
              (string= filename "COMMIT_EDITMSG")
+             (string= filename ".spacemacs")
              (string= filename "bookmark"))
        t)
       ((string-match "\\.\\(org\\|html\\|org_archive\\)$" filename )
