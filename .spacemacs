@@ -473,6 +473,7 @@ This function is called at the very end of Spacemacs initialization."
       (:strike-through t))))
  '(TeX-engine 'xetex)
  ;;'(org-latex-packages-alist '(("slantfont,boldfont" "xeCJK" t) ("" "fancyhdr" nil)))
+ '(org-latex-hyperref-template nil)
  '(projectile-enable-caching t)
  '(projectile-project-root-files-bottom-up
    '(".cquery" "compile_commands.json" ".projectile" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs"))
