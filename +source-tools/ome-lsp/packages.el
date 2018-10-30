@@ -12,6 +12,7 @@
 (defconst ome-lsp-packages
   '(
     (company-lsp :requires company)
+    (company-go :requires company)
     ;; `flycheck-lsp' does not exist so we defined it as built-in to avoid
     ;; fetching it from ELPA repositories.
     ;; this logical package serves to hook all flycheck related configuration
@@ -25,7 +26,16 @@
     (lsp-java :location (recipe
                          :fetcher github
                          :repo "emacs-lsp/lsp-java"))
+    (lsp-go
+     :requires lsp-mode
+     :location (recipe :fetcher github
+                       :repo "emacs-lsp/lsp-go"))
     ))
+
+
+(defun ome-lsp/init-lsp-go ()
+  (use-package lsp-go
+    :commands lsp-go-enable))
 
 (defun ome-lsp/init-company-lsp ()
   (use-package company-lsp

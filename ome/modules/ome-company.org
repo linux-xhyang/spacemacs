@@ -129,6 +129,12 @@
                                  (set (make-variable-buffer-local 'company-backends)
                                       '(company-files company-capf company-dabbrev))
                                  ) t)
+
+      (add-hook 'go-mode-hook  (lambda ()
+                                  (set (make-variable-buffer-local 'company-backends)
+                                       '(company-lsp company-semantic company-ycmd company-dabbrev-code
+                                                          company-files))
+                                  ) t)
       )
 
     (ome-company/init-company)

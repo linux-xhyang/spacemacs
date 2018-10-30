@@ -58,14 +58,17 @@ values."
      ycmd
      dash
      semantic
-     (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode)
      ;;java
      git
      ome-projectile
      common-lisp
      javascript
-     ome-lsp
+     (ome-go :variables
+             gofmt-command "goimports"
+             go-backend 'lsp
+             godoc-at-point-function 'godoc-gogetdoc)
+     (c-c++ :variables
+            c-c++-default-mode-for-headers 'c++-mode)
      ;; (python :variables
      ;;         python-enable-yapf-format-on-save t
      ;;         python-fill-column 99
@@ -323,6 +326,7 @@ values."
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
    dotspacemacs-whitespace-cleanup t
+   dotspacemacs-enable-lazy-installation nil
    ))
 
 (defun dotspacemacs/user-init ()
