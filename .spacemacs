@@ -64,6 +64,7 @@ values."
      common-lisp
      javascript
      (ome-go :variables
+             go-use-gometalinter t
              gofmt-command "goimports"
              go-backend 'lsp
              godoc-at-point-function 'godoc-gogetdoc)
