@@ -60,6 +60,7 @@ values."
      semantic
      ;;java
      git
+     cmake
      ome-projectile
      common-lisp
      javascript
