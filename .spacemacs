@@ -63,6 +63,9 @@ values."
      cmake
      ome-projectile
      common-lisp
+     (chinese :variables
+              chinese-default-input-method 'pinyin
+              )
      javascript
      (ome-go :variables
              go-use-gometalinter t
@@ -388,6 +391,8 @@ in `dotspacemacs/user-config'."
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+  (require 'pyim-basedict)
+  (pyim-basedict-enable)
   (load-file (concat user-emacs-directory "private/init.el"))
   (add-hook 'org-mode-hook 'spacemacs/toggle-spelling-checking-on)
   (add-hook 'nroff-mode-hook 'spacemacs/toggle-spelling-checking-on)
@@ -413,6 +418,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ahs-default-range 'ahs-range-display)
+ '(default-input-method "pyim")
  '(calculator-number-digits 6)
  '(company-auto-complete t)
  '(company-auto-complete-chars '(32 95 41 46 34 39 60 62))
