@@ -54,7 +54,10 @@ values."
      emacs-lisp
      slack
      (latex :variables
-            latex-build-command "LatexMk")
+            latex-build-command "LatexMk"
+            latex-enable-auto-fill t
+            latex-enable-folding t
+            latex-enable-magic t)
      gtags
      ycmd
      dash
@@ -397,6 +400,7 @@ layers configuration. You are free to put any user code."
   (pyim-basedict-enable)
   (setq-default pyim-english-input-switch-functions
                 '(pyim-probe-dynamic-english pyim-probe-org-speed-commands pyim-probe-program-mode))
+  (global-set-key (kbd "M-i") 'pyim-convert-code-at-point)
   (load-file (concat user-emacs-directory "private/init.el"))
   (add-hook 'org-mode-hook 'spacemacs/toggle-spelling-checking-on)
   (add-hook 'nroff-mode-hook 'spacemacs/toggle-spelling-checking-on)
@@ -410,6 +414,7 @@ layers configuration. You are free to put any user code."
   (define-key evil-insert-state-map [escape] 'evil-normal-state)
   ;; Do not write anything past this comment. This is where Emacs will
   ;; auto-generate custom variable definitions.
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   )
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
