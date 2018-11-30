@@ -52,6 +52,7 @@ values."
                       syntax-checking-enable-tooltips t)
      better-defaults
      emacs-lisp
+     slack
      (latex :variables
             latex-build-command "LatexMk")
      gtags
