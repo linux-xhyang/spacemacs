@@ -71,7 +71,9 @@
                 (null (do-yas-expand)))
             (if (check-expansion)
                 (company-complete-common)
-              (indent-for-tab-command)))))
+              (if (eq major-mode 'org-mode)
+                  (org-cycle)
+                (indent-for-tab-command))))))
 
     (global-set-key [tab] 'tab-indent-or-complete)
       (defun ome-company/init-company ()

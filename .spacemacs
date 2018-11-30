@@ -115,6 +115,7 @@ values."
      html
      chrome
      plantuml
+     confluence
      ;; version-control ;;not user for git gutter
      android-mode
      ome-prepare
@@ -394,6 +395,8 @@ This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (require 'pyim-basedict)
   (pyim-basedict-enable)
+  (setq-default pyim-english-input-switch-functions
+                '(pyim-probe-dynamic-english pyim-probe-org-speed-commands pyim-probe-program-mode))
   (load-file (concat user-emacs-directory "private/init.el"))
   (add-hook 'org-mode-hook 'spacemacs/toggle-spelling-checking-on)
   (add-hook 'nroff-mode-hook 'spacemacs/toggle-spelling-checking-on)
