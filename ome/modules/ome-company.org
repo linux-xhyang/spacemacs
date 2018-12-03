@@ -18,38 +18,38 @@
 
 * 配置 company
   #+BEGIN_SRC emacs-lisp
-      (defun ome/ome-python-version ()
-        (with-temp-buffer
-          (apply #'process-file "python" nil t nil '("--version"))
-          (goto-char (point-min))
-          (let ((line  (split-string (buffer-string) "\n" t)))
-            (dolist (version line)
-              (if (string-match-p "^Python" version)
-                  (let ((ver (substring version 7)))
-                    (when (string-match "^\\([0-9]+\\.[0-9]+\\.[0-9]+\\)" ver)
-                      (progn
-                        (cl-return (match-string 1 ver))
-                        )))
-                )))))
+    (defun ome/ome-python-version ()
+      (with-temp-buffer
+        (apply #'process-file "python" nil t nil '("--version"))
+        (goto-char (point-min))
+        (let ((line  (split-string (buffer-string) "\n" t)))
+          (dolist (version line)
+            (if (string-match-p "^Python" version)
+                (let ((ver (substring version 7)))
+                  (when (string-match "^\\([0-9]+\\.[0-9]+\\.[0-9]+\\)" ver)
+                    (progn
+                      (cl-return (match-string 1 ver))
+                      )))
+              )))))
 
-      (defun string-remove-wildchar (str)
-        (if (string-match "*$" str)
-            (replace-match "" t t str)
-          str))
-      (defun auto-update-ycmd-extral-conf-whitelist ()
-        (if (projectile-project-root)
-            (let* ((rootdir (projectile-project-root))
-                   (var (mapcar (lambda (dir)
-                                  (concat rootdir dir)) '("common/*" "linux/*"))))
-              (set-variable 'ycmd-extra-conf-whitelist var))
-          (set-variable 'ycmd-extra-conf-whitelist '("~/src/pulpfiction/common/*" "~/work/linux-src/linux/*")))
-        (mapcar (lambda (directory)
-                  (let ((dir (string-remove-wildchar directory)))
-                    (when (file-exists-p dir)
-                      (if (file-exists-p (concat dir "/.ycm_extra_conf.py"))
-                          nil
-                        (copy-file (concat ome-dir "modules/.ycm_extra_conf.py") (concat dir "/.ycm_extra_conf.py"))))))
-                ycmd-extra-conf-whitelist))
+    (defun string-remove-wildchar (str)
+      (if (string-match "*$" str)
+          (replace-match "" t t str)
+        str))
+    (defun auto-update-ycmd-extral-conf-whitelist ()
+      (if (projectile-project-root)
+          (let* ((rootdir (projectile-project-root))
+                 (var (mapcar (lambda (dir)
+                                (concat rootdir dir)) '("common/*" "linux/*"))))
+            (set-variable 'ycmd-extra-conf-whitelist var))
+        (set-variable 'ycmd-extra-conf-whitelist '("~/src/pulpfiction/common/*" "~/work/linux-src/linux/*")))
+      (mapcar (lambda (directory)
+                (let ((dir (string-remove-wildchar directory)))
+                  (when (file-exists-p dir)
+                    (if (file-exists-p (concat dir "/.ycm_extra_conf.py"))
+                        nil
+                      (copy-file (concat ome-dir "modules/.ycm_extra_conf.py") (concat dir "/.ycm_extra_conf.py"))))))
+              ycmd-extra-conf-whitelist))
 
     (defun check-expansion ()
       (save-excursion
@@ -76,91 +76,90 @@
                 (indent-for-tab-command))))))
 
     (global-set-key [tab] 'tab-indent-or-complete)
-      (defun ome-company/init-company ()
-        (with-eval-after-load 'company
-          (define-key company-mode-map (kbd "<tab>") 'tab-indent-or-complete)
-          )
-        (with-eval-after-load 'yasnippet
-          (global-set-key (kbd "C-c y") 'company-yasnippet)
-          (global-set-key (kbd "C-c i") 'yas-insert-snippet)
-          )
-        (with-eval-after-load 'yasnippet-snippets
-          (push yasnippet-snippets-dir yas-snippet-dirs)
-          (yas-reload-all)
-          )
-        (add-hook 'python-mode-hook 'anaconda-mode)
-        (global-company-mode)
+    (defun ome-company/init-company ()
+      (with-eval-after-load 'company
+        (define-key company-mode-map (kbd "<tab>") 'tab-indent-or-complete)
         )
+      (with-eval-after-load 'yasnippet
+        (global-set-key (kbd "C-c y") 'company-yasnippet)
+        (global-set-key (kbd "C-c i") 'yas-insert-snippet)
+        )
+      (with-eval-after-load 'yasnippet-snippets
+        (push yasnippet-snippets-dir yas-snippet-dirs)
+        (yas-reload-all)
+        )
+      (add-hook 'python-mode-hook 'anaconda-mode)
+      (global-company-mode)
+      )
 
-      (defun ome-company/init-ycmd ()
-        (if (version< (ome/ome-python-version) "3.8.0")
-            (set-variable 'ycmd-server-command (list "python" (getenv "YCMD_PATH")))
-          (set-variable 'ycmd-server-command (list "/usr/bin/python" (getenv "YCMD_PATH"))))
+    (defun ome-company/init-company-post ()
+      ;; (if (version< (ome/ome-python-version) "3.8.0")
+      ;;     (set-variable 'ycmd-server-command (list "python" (getenv "YCMD_PATH")))
+      ;;   (set-variable 'ycmd-server-command (list "/usr/bin/python" (getenv "YCMD_PATH"))))
 
-        ;;(set-variable 'ycmd-server-command (list "python" (getenv "YCMD_PATH")))
-        ;;(set-variable 'ycmd-global-config "/path/to/global_config.py")
+      ;;(set-variable 'ycmd-server-command (list "python" (getenv "YCMD_PATH")))
+      ;;(set-variable 'ycmd-global-config "/path/to/global_config.py")
 
-        ;;If you've got project-specific ycmd configurations (almost certainly called .ycm_extra_conf.py),
-        ;;and if you want them automatically loaded by ycmd as needed (which you probably do), then you can
-        ;;whitelist them by adding entries to ycmd-extra-conf-whitelist. For example, this will allow automatic
-        ;;loading of all .ycm_extra_conf.py files anywhere under ~/my_projects
-        (set-variable 'ycmd-global-config (concat ome-dir "modules/global_conf.py"))
-        ;;(set-variable 'ycmd-extra-conf-whitelist '("~/src/pulpfiction/common/*" "~/work/linux-src/linux/*"))
-        (add-hook 'ycmd-mode-hook (function auto-update-ycmd-extral-conf-whitelist))
+      ;;If you've got project-specific ycmd configurations (almost certainly called .ycm_extra_conf.py),
+      ;;and if you want them automatically loaded by ycmd as needed (which you probably do), then you can
+      ;;whitelist them by adding entries to ycmd-extra-conf-whitelist. For example, this will allow automatic
+      ;;loading of all .ycm_extra_conf.py files anywhere under ~/my_projects
+      ;;(set-variable 'ycmd-global-config (concat ome-dir "modules/global_conf.py"))
+      ;;(set-variable 'ycmd-extra-conf-whitelist '("~/src/pulpfiction/common/*" "~/work/linux-src/linux/*"))
+      ;;(add-hook 'ycmd-mode-hook (function auto-update-ycmd-extral-conf-whitelist))
 
-        (add-hook 'c++-mode-hook  (lambda ()
-                                         (setq cquery-executable "~/src/cquery/build/cquery")
-                                         (set (make-variable-buffer-local 'company-backends)
-                                              '(company-semantic company-ycmd company-dabbrev-code
-                                                             company-files))
-                                         (when (file-executable-p cquery-executable)
-                                           (setq company-backends (append (list 'company-lsp) company-backends)))
-                                         ) t)
+      (add-hook 'c++-mode-hook  (lambda ()
+                                  (setq cquery-executable "~/src/cquery/build/cquery")
+                                  (set (make-variable-buffer-local 'company-backends)
+                                       '(company-semantic company-dabbrev-code
+                                                          company-files))
+                                  (when (file-executable-p cquery-executable)
+                                    (setq company-backends (append (list 'company-lsp) company-backends)))
+                                  ) t)
 
-        (add-hook 'c-mode-hook  (lambda ()
-                                         (setq cquery-executable "~/src/cquery/build/cquery")
-                                         (set (make-variable-buffer-local 'company-backends)
-                                              '(company-semantic company-ycmd company-dabbrev-code
-                                                                 company-files))
-                                         (when (file-executable-p cquery-executable)
-                                           (setq company-backends (append (list 'company-lsp) company-backends)))
-                                         ) t)
+      (add-hook 'c-mode-hook  (lambda ()
+                                (setq cquery-executable "~/src/cquery/build/cquery")
+                                (set (make-variable-buffer-local 'company-backends)
+                                     '(company-semantic company-dabbrev-code
+                                                        company-files))
+                                (when (file-executable-p cquery-executable)
+                                  (setq company-backends (append (list 'company-lsp) company-backends)))
+                                ) t)
 
-        (add-hook 'python-mode-hook (lambda ()
-                                       (set (make-variable-buffer-local 'company-backends)
-                                            '(company-lsp company-anaconda company-ycmd company-capf
-                                                               company-dabbrev-code company-files))
-                                       ) t)
-        (add-hook 'python-mode-hook (lambda ()
-                                      (require 'company-lsp)
-                                      (lsp-python-enable)))
-
-        (add-hook 'comint-mode-hook (lambda ()
-                                      (set (make-variable-buffer-local 'company-backends)
-                                           '(company-lsp company-anaconda company-ycmd company-capf
-                                                              company-dabbrev-code company-files))
-                                      ) t)
-
-        ;; company-meghanada
-        (add-hook 'java-mode-hook (lambda ()
-                                      (set (make-variable-buffer-local 'company-backends)
-                                           '(comany-gtags company-lsp company-ycmd
-                                                          company-dabbrev-code company-files company-capf))
-                                      ) t)
-
-        (add-hook 'org-mode-hook (lambda ()
-                                   (add-hook 'completion-at-point-functions 'pcomplete-completions-at-point nil t)
-                                   (set (make-variable-buffer-local 'company-backends)
-                                        '(company-files company-capf company-dabbrev))
-                                   ) t)
-
-        (add-hook 'go-mode-hook  (lambda ()
+      (add-hook 'python-mode-hook (lambda ()
+                                    (require 'company-lsp)
+                                    (lsp-python-enable)
                                     (set (make-variable-buffer-local 'company-backends)
-                                         '(company-lsp company-semantic company-ycmd company-dabbrev-code
-                                                            company-files))
-                                    ) t)
-        )
+                                         '(company-lsp company-anaconda company-capf
+                                                       company-dabbrev-code company-files))
+                                    ) nil)
 
-      (ome-company/init-company)
-      (ome-company/init-ycmd)
+      (add-hook 'comint-mode-hook (lambda ()
+                                    (set (make-variable-buffer-local 'company-backends)
+                                         '(company-lsp company-anaconda company-capf
+                                                       company-dabbrev-code company-files))
+                                    ) t)
+
+      ;; company-meghanada
+      (add-hook 'java-mode-hook (lambda ()
+                                  (set (make-variable-buffer-local 'company-backends)
+                                       '(comany-gtags company-lsp
+                                                      company-dabbrev-code company-files company-capf))
+                                  ) t)
+
+      (add-hook 'org-mode-hook (lambda ()
+                                 (add-hook 'completion-at-point-functions 'pcomplete-completions-at-point nil t)
+                                 (set (make-variable-buffer-local 'company-backends)
+                                      '(company-files company-capf company-dabbrev))
+                                 ) t)
+
+      (add-hook 'go-mode-hook  (lambda ()
+                                 (set (make-variable-buffer-local 'company-backends)
+                                      '(company-lsp company-semantic company-dabbrev-code
+                                                    company-files))
+                                 ) t)
+      )
+
+    (ome-company/init-company)
+    (ome-company/init-company-post)
   #+END_SRC

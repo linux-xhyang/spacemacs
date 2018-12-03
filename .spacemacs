@@ -59,7 +59,6 @@ values."
             latex-enable-folding t
             latex-enable-magic t)
      gtags
-     ycmd
      dash
      semantic
      ;;java
