@@ -415,7 +415,9 @@ layers configuration. You are free to put any user code."
   ;; Do not write anything past this comment. This is where Emacs will
   ;; auto-generate custom variable definitions.
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+  (dotspacemacs/emacs-custom-settings)
   )
+
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
 This is an auto-generated function, do not modify its content directly, use
@@ -426,6 +428,13 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(lsp-before-save-edits nil)
+ '(lsp-response-timeout 60)
+ '(lsp-enable-indentation nil)
+ '(lsp-ui-sideline-show-flycheck nil)
+ '(lsp-ui-flycheck-enable nil)
+ '(lsp-ui-imenu-enable nil)
+ '(lsp-ui-sideline-show-symbol nil)
  '(ahs-default-range 'ahs-range-display)
  '(default-input-method "pyim")
  '(calculator-number-digits 6)
@@ -469,13 +478,6 @@ This function is called at the very end of Spacemacs initialization."
  '(jit-lock-stealth-nice 0.5)
  '(jit-lock-stealth-time 16)
  '(large-file-warning-threshold 10000)
- '(lsp-before-save-edits nil)
- '(lsp-response-timeout 60)
- '(lsp-enable-indentation nil)
- '(lsp-ui-sideline-show-flycheck nil)
- '(lsp-ui-flycheck-enable nil)
- '(lsp-ui-imenu-enable nil)
- '(lsp-ui-sideline-show-symbol nil)
  '(magit-diff-arguments
    '("--ignore-all-space" "--no-ext-diff" "--stat" "-- " "--diff-algorithm=default"))
  '(magit-diff-section-arguments
@@ -483,7 +485,6 @@ This function is called at the very end of Spacemacs initialization."
  ;; '(meghanada-debug t)
  ;; '(meghanada-server-remote-debug t)
  '(mouse-wheel-scroll-amount '(2))
- '(org-babel-load-languages '((emacs-lisp . t) (shell . t)))
  '(org-clock-persist-file (org-clock-persist-save-file))
  '(org-emphasis-alist
    '(("*" bold)
@@ -493,8 +494,6 @@ This function is called at the very end of Spacemacs initialization."
      ("~" org-code verbatim)
      ("+"
       (:strike-through t))))
- '(TeX-engine 'xetex)
- ;;'(org-latex-packages-alist '(("slantfont,boldfont" "xeCJK" t) ("" "fancyhdr" nil)))
  '(org-latex-hyperref-template nil)
  '(projectile-enable-caching t)
  '(projectile-project-root-files-bottom-up

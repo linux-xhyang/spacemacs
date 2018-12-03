@@ -47,6 +47,14 @@
           company-lsp-async t
           company-lsp-cache-candidates nil)))
 
+(defun ome-lsp/init-company-go ()
+  (use-package company-go
+    :defer t
+    :init
+    ()
+    )
+  )
+
 (defun ome-lsp/init-flycheck-lsp ()
   ;; Disable lsp-flycheck.el in favor of lsp-ui-flycheck.el
   (setq lsp-enable-flycheck nil))
@@ -85,6 +93,7 @@
         "d]" 'lsp-ui-peek-jump-forward
         "ll" 'lsp-ui-imenu
 	      "lr" 'lsp-rename)
+      (message "lsp-java enable")
       )
     ))
 
@@ -137,29 +146,6 @@
         (add-hook 'c++-mode-hook 'cquery-enable)
         (add-hook 'c-mode-hook 'cquery-enable)
         ))))
-
-(defun java-enable ()
-  (when (and (projectile-project-root) buffer-file-name)
-    (lsp-java-enable)
-    (dolist (mode '(java-mode))
-      (spacemacs/set-leader-keys-for-major-mode mode
-        "dd" 'lsp-ui-peek-find-definitions
-        "dr" 'lsp-ui-peek-find-references
-        "d[" 'lsp-ui-peek-jump-backward
-        "d]" 'lsp-ui-peek-jump-forward
-        "ll" 'lsp-ui-imenu
-	      "lr" 'lsp-rename)
-      )
-    ))
-
-(defun ome-lsp/init-lsp-java ()
-  (use-package lsp-java
-    :init
-    (progn
-      (require 'company-lsp)
-      (add-hook 'java-mode-hook 'java-enable)
-      ))
-  )
 
 (defun cquery-enable ()
   (setq cquery-project-roots (projectile-project-root))
