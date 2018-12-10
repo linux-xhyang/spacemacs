@@ -414,6 +414,7 @@ layers configuration. You are free to put any user code."
   ;; Do not write anything past this comment. This is where Emacs will
   ;; auto-generate custom variable definitions.
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+  (setq alert-default-style 'notifications)
   (dotspacemacs/emacs-custom-settings)
   )
 
