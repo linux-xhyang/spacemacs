@@ -30,6 +30,7 @@
      :requires lsp-mode
      :location (recipe :fetcher github
                        :repo "emacs-lsp/lsp-go"))
+    lsp-python
     ))
 
 
@@ -171,3 +172,8 @@
         "lr" 'lsp-rename)
       ))
   )
+
+(defun ome-lsp/init-lsp-python ()
+  (use-package lsp-python
+    :commands lsp-python-enable
+    :config (spacemacs//setup-lsp-jump-handler 'python-mode)))

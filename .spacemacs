@@ -77,11 +77,6 @@ values."
              godoc-at-point-function 'godoc-gogetdoc)
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode)
-     ;; (python :variables
-     ;;         python-enable-yapf-format-on-save t
-     ;;         python-fill-column 99
-     ;;         python-sort-imports-on-save t
-     ;;         python-backend 'lsp)
      ipython-notebook
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete
@@ -110,7 +105,6 @@ values."
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
-     (python :variables python-enable-yapf-format-on-save t)
      shell-scripts
      spell-checking
      syntax-checking
@@ -118,6 +112,11 @@ values."
      chrome
      plantuml
      confluence
+     (ome-python :variables
+             python-enable-yapf-format-on-save t
+             python-fill-column 99
+             python-sort-imports-on-save t
+             python-backend 'lsp)
      ;; version-control ;;not user for git gutter
      android-mode
      ome-prepare
@@ -415,8 +414,6 @@ layers configuration. You are free to put any user code."
   ;; auto-generate custom variable definitions.
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   (setq alert-default-style 'notifications)
-  (with-eval-after-load 'alert
-    (alert--log-enable-logging))
   (server-start)
   (dotspacemacs/emacs-custom-settings)
   )
@@ -503,6 +500,7 @@ This function is called at the very end of Spacemacs initialization."
    '(".cquery" "compile_commands.json" ".projectile" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs"))
  '(projectile-project-root-files-top-down-recurring
    '(".svn" "CVS" "Makefile" ".git" ".cquery" "compile_commands.json"))
+ '(projectile-require-project-root nil)
  '(python-shell-completion-native-enable nil)
  '(scroll-conservatively 100)
  '(cquery-project-root-matchers
