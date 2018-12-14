@@ -415,7 +415,9 @@ layers configuration. You are free to put any user code."
   ;; auto-generate custom variable definitions.
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   (setq alert-default-style 'notifications)
-  (alert--log-enable-logging)
+  (with-eval-after-load 'alert
+    (alert--log-enable-logging))
+  (server-start)
   (dotspacemacs/emacs-custom-settings)
   )
 
