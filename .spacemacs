@@ -5,15 +5,15 @@
 
 
 (require 'package)
-(setq package-archives '(
-       ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-       ("org"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-       ("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
+;(setq package-archives '(
+;       ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+;       ("org"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+;       ("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
 
-;;(setq package-archives
-;;      '(("melpa-cn" . "https://elpa.emacs-china.org/melpa/")
-;;        ("org-cn"   . "https://elpa.emacs-china.org/org/")
-;;        ("gnu-cn"   . "https://elpa.emacs-china.org/gnu/")))
+(setq package-archives
+      '(("melpa-cn" . "https://elpa.emacs-china.org/melpa/")
+        ("org-cn"   . "https://elpa.emacs-china.org/org/")
+        ("gnu-cn"   . "https://elpa.emacs-china.org/gnu/")))
 
 ; Apparently needed for the package auto-complete (why?)
 ;(add-to-list 'package-archives
@@ -51,43 +51,15 @@ values."
                       syntax-checking-enable-by-default t
                       syntax-checking-enable-tooltips t)
      better-defaults
-     emacs-lisp
-     slack
-     (latex :variables
-            latex-build-command "LatexMk"
-            latex-enable-auto-fill t
-            latex-enable-folding t
-            latex-enable-magic t)
      gtags
      dash
-     semantic
-     ;;java
+     slack
      git
      cmake
-     ome-projectile
-     common-lisp
-     (chinese :variables
-              chinese-default-input-method 'pinyin
-              )
-     javascript
-     (ome-go :variables
-             go-use-gometalinter t
-             gofmt-command "goimports"
-             go-backend 'lsp
-             godoc-at-point-function 'godoc-gogetdoc)
-     (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode)
-     ipython-notebook
-     (auto-completion :variables
-                      auto-completion-return-key-behavior 'complete
-                      auto-completion-tab-key-behavior 'cycle
-                      auto-completion-complete-with-key-sequence nil
-                      auto-completion-complete-with-key-sequence-delay 0.1
-                      auto-completion-private-snippets-directory nil
-                      auto-completion-enable-snippets-in-popup t
-                      auto-completion-enable-help-tooltip t
-                      auto-completion-enable-sort-by-usage t
-                      :disabled-for org markdown)
+     chrome
+     confluence
+     plantuml
+     ansible
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (treemacs :variables treemacs-use-follow-mode t
                treemacs-use-filewatch-mode t
@@ -101,42 +73,81 @@ values."
           ;; org-projectile-file "TODOs.org"
           org-want-todo-bindings t)
      (chinese :variables
-              chinese-enable-youdao-dict t)
+              chinese-enable-youdao-dict t
+              chinese-default-input-method 'pinyin)
+     ;;semantic
+     dap
+     (lsp :variables
+          lsp-ui-sideline-enable t)
+     shell-scripts
+     emacs-lisp
+     common-lisp
+     groovy
+     html
+     javascript
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
-     shell-scripts
-     spell-checking
-     syntax-checking
-     html
-     chrome
-     plantuml
-     confluence
-     (ome-python :variables
+     (latex :variables
+            latex-build-command "LatexMk"
+            latex-enable-auto-fill t
+            latex-enable-folding t
+            latex-enable-magic t)
+     (java :variables
+           java-backend 'lsp
+           java--ensime-modes nil)
+     (python :variables
+             spacemacs--python-pyenv-modes '(python-mode)
+             python-auto-set-local-pyenv-version 'on-visit ;;'on-project-switch
+             python-auto-set-local-pyvenv-virtualenv 'on-visit ;;'on-project-switch
              python-enable-yapf-format-on-save t
              python-fill-column 99
              python-sort-imports-on-save t
-             python-backend 'lsp)
+             python-backend 'anaconda)
+     ipython-notebook
+     (go :variables
+             go-use-gometalinter t
+             gofmt-command "goimports"
+             go-backend 'lsp
+             godoc-at-point-function 'godoc-gogetdoc)
+     (c-c++ :variables
+            c-c++-default-mode-for-headers 'c++-mode
+            c-c++-enable-rtags-completion nil
+            c-c++-backend 'lsp-cquery
+            c-c++-adopt-subprojects t
+            c-c++-lsp-executable (file-truename "~/src/cquery/build/cquery")
+            c-c++-lsp-cache-dir ".cquery_cached_index"
+            c-c++-enable-google-style t
+            c-c++-lsp-extra-init-params '(:index (:comments 2 :threads 1) :discoverSystemIncludes :json-false :cacheFormat "msgpack" :completion (:detailedLabel t)))
+     (auto-completion :variables
+                      auto-completion-return-key-behavior 'complete
+                      auto-completion-tab-key-behavior 'cycle
+                      auto-completion-complete-with-key-sequence nil
+                      auto-completion-complete-with-key-sequence-delay 0.1
+                      auto-completion-private-snippets-directory nil
+                      auto-completion-enable-snippets-in-popup t
+                      auto-completion-enable-help-tooltip t
+                      auto-completion-enable-sort-by-usage t
+                      :disabled-for org markdown)
      ;; version-control ;;not user for git gutter
      android-mode
-     ome-prepare
+     ;; ome-projectile
+     ;; ome-prepare
      ome
-     ome-java
-     ome-groovy
+     ;; ome-java
+     ;; ome-groovy
      ome-git
-     ;;ome-speedbar
-     ;;ome-ecb
-     ;;ome-ccl
-     ome-python
-     ome-realgud
-     ome-ggtags
+     ome-speedbar
+     ;; ome-ecb
+     ;; ome-ccl
+     ;; ome-realgud
+     ;; ome-ggtags
      ome-systemtap
      ome-gui
-     ;;ome-opengrok
-     ome-lsp
-     ;;music
-     ;;symon
-     ansible
+     ;; ome-opengrok
+     ;; ome-lsp
+     ;; music
+     ;; symon
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -428,15 +439,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(lsp-before-save-edits nil)
- '(lsp-response-timeout 60)
- '(lsp-enable-indentation nil)
- '(lsp-ui-sideline-show-flycheck nil)
- '(lsp-ui-flycheck-enable nil)
- '(lsp-ui-imenu-enable nil)
- '(lsp-ui-sideline-show-symbol nil)
  '(ahs-default-range 'ahs-range-display)
- '(default-input-method "pyim")
  '(calculator-number-digits 6)
  '(company-auto-complete t)
  '(company-auto-complete-chars '(32 95 41 46 34 39 60 62))
@@ -448,6 +451,15 @@ This function is called at the very end of Spacemacs initialization."
  '(company-minimum-prefix-length 3)
  '(company-selection-wrap-around t)
  '(company-show-numbers t)
+ '(cquery-extra-args '("--log-file=~/cq.log")) ;;"--log-all-to-stderr"
+ '(cquery-cache-dir-function #'(lambda (dir) (expand-file-name cquery-cache-dir
+                                                               (if (cquery--suggest-project-root)
+                                                                   (cquery--suggest-project-root)
+                                                                 (projectile-project-root dir))
+                                                              )))
+ '(cquery-project-root-matchers
+   '("compile_commands.json" ".cquery" "build/compile_commands.json" projectile-project-root))
+ '(default-input-method "pyim")
  '(ein:complete-on-dot t)
  '(ein:completion-backend 'ein:use-company-backend)
  '(ein:use-auto-complete-superpack t)
@@ -478,12 +490,19 @@ This function is called at the very end of Spacemacs initialization."
  '(jit-lock-stealth-nice 0.5)
  '(jit-lock-stealth-time 16)
  '(large-file-warning-threshold 10000)
+ '(lsp-before-save-edits nil)
+ '(lsp-enable-indentation nil)
+ ;;'(lsp-print-io t)
+ '(lsp-response-timeout 60)
+ '(lsp-auto-guess-root t)
+ '(lsp-ui-flycheck-enable t)
+ '(lsp-ui-imenu-enable t)
+ '(lsp-ui-sideline-show-flycheck t)
+ '(lsp-ui-sideline-show-symbol nil)
  '(magit-diff-arguments
    '("--ignore-all-space" "--no-ext-diff" "--stat" "-- " "--diff-algorithm=default"))
  '(magit-diff-section-arguments
    '("--ignore-all-space" "--no-ext-diff" "--diff-algorithm=default"))
- ;; '(meghanada-debug t)
- ;; '(meghanada-server-remote-debug t)
  '(mouse-wheel-scroll-amount '(2))
  '(org-clock-persist-file (org-clock-persist-save-file))
  '(org-emphasis-alist
@@ -503,8 +522,6 @@ This function is called at the very end of Spacemacs initialization."
  '(projectile-require-project-root nil)
  '(python-shell-completion-native-enable nil)
  '(scroll-conservatively 100)
- '(cquery-project-root-matchers
-   '("compile_commands.json" ".cquery" "build/compile_commands.json" cquery-project-roots-matcher projectile-project-root))
  '(semantic-idle-scheduler-idle-time 1)
  '(semantic-idle-scheduler-max-buffer-size 100000)
  '(semantic-idle-scheduler-work-idle-time 60)

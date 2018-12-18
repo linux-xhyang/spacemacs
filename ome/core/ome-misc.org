@@ -84,7 +84,7 @@ shell but not in Emacs. Thus you cannot install some el-get packages such as
   (setq ido-enable-prefix nil)
   (setq ido-enable-case nil)
   (setq ido-enable-flex-matching t)
-  (setq ido-everywhere t)
+  ;;(setq ido-everywhere t)
 
   ;; use icomplete in minibuffer
   (icomplete-mode t)
