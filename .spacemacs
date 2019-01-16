@@ -118,7 +118,7 @@ values."
             c-c++-lsp-executable (file-truename "~/src/cquery/build/cquery")
             c-c++-lsp-cache-dir ".cquery_cached_index"
             c-c++-enable-google-style t
-            c-c++-lsp-extra-init-params '(:index (:comments 2 :threads 1) :discoverSystemIncludes :json-false :cacheFormat "msgpack" :completion (:detailedLabel t)))
+            c-c++-lsp-initialization-options '(:index (:comments 2 :threads 1) :discoverSystemIncludes :json-false :cacheFormat "msgpack" :completion (:detailedLabel t)))
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior 'cycle
