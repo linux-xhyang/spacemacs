@@ -273,3 +273,35 @@ shell but not in Emacs. Thus you cannot install some el-get packages such as
         (untabify (point-min) (point-max)))
       )
   #+END_SRC
+
+* astyle
+  #+BEGIN_SRC emacs-lisp
+    (defvar astyle-google-command "astyle --style=google -s4 -f -p -H -U -e")
+    (defvar astyle-linux-command "astyle --style=linux --indent=force-tab=8 --align-pointer=name --max-code-length=80 --break-after-logical -p -H -U -xj")
+
+    (defun astyle-google (start end)
+      "Run astyle on region or buffer"
+      (interactive (if mark-active
+                       (list (region-beginning) (region-end))
+                     (list (point-min) (point-max))
+                     ))
+      (save-excursion
+        (save-restriction
+          (shell-command-on-region start end
+                                   astyle-google-command
+                                   (current-buffer) t
+                                   (get-buffer-create "*Astyle Errors*") t))))
+
+    (defun astyle-linux (start end)
+      "Run astyle on region or buffer"
+      (interactive (if mark-active
+                       (list (region-beginning) (region-end))
+                     (list (point-min) (point-max))
+                     ))
+      (save-excursion
+        (save-restriction
+          (shell-command-on-region start end
+                                   astyle-linux-command
+                                   (current-buffer) t
+                                   (get-buffer-create "*Astyle Errors*") t))))
+  #+END_SRC

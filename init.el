@@ -15,7 +15,6 @@
 (ome-load "modules/ome-taskjuggler.org")
 (ome-load "modules/ome-define.org")
 (ome-load "modules/ome-company.org")
-(ome-load "modules/ome-leetcode.org")
 ;;(ome-load "modules/ome-python.org")
 ;;(ome-load "modules/ome-powerline.org")
 
