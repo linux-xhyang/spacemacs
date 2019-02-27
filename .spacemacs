@@ -103,7 +103,7 @@ values."
              python-enable-yapf-format-on-save t
              python-fill-column 99
              python-sort-imports-on-save t
-             python-backend 'anaconda)
+             python-backend 'lsp) ;;anaconda
      ipython-notebook
      (go :variables
              go-use-gometalinter t

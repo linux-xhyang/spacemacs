@@ -276,7 +276,7 @@ shell but not in Emacs. Thus you cannot install some el-get packages such as
 
 * astyle
   #+BEGIN_SRC emacs-lisp
-    (defvar astyle-google-command "astyle --style=google -s4 -f -p -H -U -e")
+    (defvar astyle-google-command "astyle --style=google -s4 -f -p -H -U -y --break-after-logical")
     (defvar astyle-linux-command "astyle --style=linux --indent=force-tab=8 --align-pointer=name --max-code-length=80 --break-after-logical -p -H -U -xj")
 
     (defun astyle-google (start end)
