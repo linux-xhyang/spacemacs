@@ -285,12 +285,14 @@ shell but not in Emacs. Thus you cannot install some el-get packages such as
                        (list (region-beginning) (region-end))
                      (list (point-min) (point-max))
                      ))
-      (save-excursion
+      (let ((anchor (point)))
         (save-restriction
           (shell-command-on-region start end
                                    astyle-google-command
                                    (current-buffer) t
-                                   (get-buffer-create "*Astyle Errors*") t))))
+                                   (get-buffer-create "*Astyle Errors*") t))
+        (goto-char anchor)
+        ))
 
     (defun astyle-linux (start end)
       "Run astyle on region or buffer"
@@ -298,10 +300,12 @@ shell but not in Emacs. Thus you cannot install some el-get packages such as
                        (list (region-beginning) (region-end))
                      (list (point-min) (point-max))
                      ))
-      (save-excursion
+      (let ((anchor (point)))
         (save-restriction
           (shell-command-on-region start end
                                    astyle-linux-command
                                    (current-buffer) t
-                                   (get-buffer-create "*Astyle Errors*") t))))
+                                   (get-buffer-create "*Astyle Errors*") t))
+        (goto-char anchor)
+        ))
   #+END_SRC
