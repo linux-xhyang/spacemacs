@@ -5,15 +5,15 @@
 
 
 (require 'package)
-;(setq package-archives '(
-;       ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-;       ("org"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-;       ("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
+(setq package-archives '(
+       ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+       ("org"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+       ("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
 
-(setq package-archives
-      '(("melpa-cn" . "https://elpa.emacs-china.org/melpa/")
-        ("org-cn"   . "https://elpa.emacs-china.org/org/")
-        ("gnu-cn"   . "https://elpa.emacs-china.org/gnu/")))
+;(setq package-archives
+;      '(("melpa-cn" . "https://elpa.emacs-china.org/melpa/")
+;        ("org-cn"   . "https://elpa.emacs-china.org/org/")
+;        ("gnu-cn"   . "https://elpa.emacs-china.org/gnu/")))
 
 ; Apparently needed for the package auto-complete (why?)
 ;(add-to-list 'package-archives
@@ -416,7 +416,7 @@ layers configuration. You are free to put any user code."
   (add-hook 'js2-mode-hook 'spacemacs/toggle-spelling-checking-off)
   (add-hook 'clojure-mode-hook 'spacemacs/toggle-spelling-checking-off)
   (add-hook 'emacs-lisp-mode-hook 'spacemacs/toggle-spelling-checking-off)
-  (add-hook 'semantic-mode-hook 'spacemacs/toggle-semantic-stickyfunc-globally-off)
+  ;;(add-hook 'semantic-mode-hook 'spacemacs/toggle-semantic-stickyfunc-globally-off)
   ;;remove all keybinds from insert-state keymap,use emacs-state when editing
   (setcdr evil-insert-state-map nil)
   ;;ESC to switch back normal-state
@@ -477,7 +477,7 @@ This function is called at the very end of Spacemacs initialization."
  '(global-semantic-highlight-edits-mode t)
  '(global-semantic-highlight-func-mode t)
  '(global-semantic-idle-local-symbol-highlight-mode t nil (semantic/idle))
- '(global-semantic-stickyfunc-mode nil)
+ '(global-semantic-stickyfunc-mode t)
  '(helm-grep-default-command "grep --color=always -a -d recurse %e -n%cH -e %p %f")
  '(helm-gtags-path-style 'relative)
  '(helm-input-idle-delay 0.1)

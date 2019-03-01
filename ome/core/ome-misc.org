@@ -309,3 +309,9 @@ shell but not in Emacs. Thus you cannot install some el-get packages such as
         (goto-char anchor)
         ))
   #+END_SRC
+
+* java semantic-mode
+
+  #+BEGIN_SRC emacs-lisp
+    (add-hook 'java-mode-hook 'semantic-mode)
+  #+END_SRC
