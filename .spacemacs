@@ -144,6 +144,7 @@ values."
      ;; ome-ggtags
      ome-systemtap
      ome-gui
+     autopair
      ;; ome-opengrok
      ;; ome-lsp
      ;; music
