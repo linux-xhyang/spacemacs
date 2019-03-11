@@ -11,4 +11,17 @@
     :init
     (progn
       (require 'autopair)
-      (autopair-global-mode))))
+      (add-hook 'c-mode-common-hook
+                #'(lambda ()
+                    (push ?'
+                          (cl-getf autopair-dont-pair :never))
+                    (push ?\"
+                          (cl-getf autopair-dont-pair :never))
+                    (autopair-mode)))
+
+      (add-hook 'org-mode-hook
+                #'(lambda ()
+                    (push ?<
+                          (cl-getf autopair-dont-pair :never))
+                    (autopair-mode)))
+      )))
