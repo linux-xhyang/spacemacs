@@ -17,6 +17,8 @@
                           (cl-getf autopair-dont-pair :never))
                     (push ?\"
                           (cl-getf autopair-dont-pair :never))
+                    (push ?[
+                          (cl-getf autopair-dont-pair :never))
                     (autopair-mode)))
 
       (add-hook 'org-mode-hook
