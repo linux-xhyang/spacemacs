@@ -111,7 +111,7 @@
       (add-hook 'c++-mode-hook  (lambda ()
                                   (setq cquery-executable "~/src/cquery/build/cquery")
                                   (set (make-variable-buffer-local 'company-backends)
-                                       '(company-semantic company-dabbrev-code
+                                       '(company-semantic company-dabbrev-code company-dabbrev
                                                           company-files))
                                   (when (file-executable-p cquery-executable)
                                     (setq company-backends (append (list 'company-lsp) company-backends)))
@@ -120,19 +120,17 @@
       (add-hook 'c-mode-hook  (lambda ()
                                 (setq cquery-executable "~/src/cquery/build/cquery")
                                 (set (make-variable-buffer-local 'company-backends)
-                                     '(company-semantic company-dabbrev-code
+                                     '(company-semantic company-dabbrev-code company-dabbrev
                                                         company-files))
                                 (when (file-executable-p cquery-executable)
                                   (setq company-backends (append (list 'company-lsp) company-backends)))
                                 ) t)
 
-      ;; (add-hook 'python-mode-hook (lambda ()
-      ;;                               (require 'company-lsp)
-      ;;                               (lsp-python-enable)
-      ;;                               (set (make-variable-buffer-local 'company-backends)
-      ;;                                    '(company-lsp company-anaconda company-capf
-      ;;                                                  company-dabbrev-code company-files))
-      ;;                               ) nil)
+      (add-hook 'python-mode-hook (lambda ()
+                                    (set (make-variable-buffer-local 'company-backends)
+                                         '(company-lsp company-anaconda company-capf company-dabbrev
+                                                       company-dabbrev-code company-files))
+                                    ) nil)
 
       (add-hook 'comint-mode-hook (lambda ()
                                     (set (make-variable-buffer-local 'company-backends)
@@ -144,7 +142,7 @@
       ;; company-meghanada
       (add-hook 'java-mode-hook (lambda ()
                                   (set (make-variable-buffer-local 'company-backends)
-                                       '(comany-gtags company-lsp
+                                       '(comany-gtags company-lsp company-dabbrev
                                                       company-dabbrev-code company-files company-capf))
                                   ) t)
 
