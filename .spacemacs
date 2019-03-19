@@ -145,6 +145,7 @@ values."
      ome-systemtap
      ome-gui
      autopair
+     doxymacs
      ;; ome-opengrok
      ;; ome-lsp
      ;; music
