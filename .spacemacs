@@ -90,7 +90,7 @@ values."
             shell-default-height 30
             shell-default-position 'bottom)
      (latex :variables
-            latex-build-command "LatexMk"
+            latex-build-command "Latex"
             latex-enable-auto-fill t
             latex-enable-folding t
             latex-enable-magic t)
@@ -443,7 +443,6 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ahs-default-range 'ahs-range-display)
- '(LaTeX-command "xelatex --synctex=1")
  '(LaTeX-mode-hook
    (quote
     (spacemacs/load-yasnippet smartparens-mode flyspell-mode evil-matchit-mode turn-on-reftex TeX-PDF-mode
@@ -495,8 +494,8 @@ This function is called at the very end of Spacemacs initialization."
      ("Clean" "TeX-clean" TeX-run-function nil t :help "Delete generated intermediate files")
      ("Clean All" "(TeX-clean t)" TeX-run-function nil t :help "Delete generated intermediate and output files")
      ("Other" "" TeX-run-command t t :help "Run an arbitrary command"))))
- '(TeX-source-correlate-method (quote synctex))
  '(TeX-source-correlate-start-server t)
+ '(TeX-engine (quote xetex))
  '(TeX-view-program-list (quote (("pdf-tools" (TeX-pdf-tools-sync-view) ""))))
  '(TeX-view-program-selection
    (quote
