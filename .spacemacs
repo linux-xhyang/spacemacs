@@ -442,12 +442,9 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ahs-default-range 'ahs-range-display)
  '(LaTeX-mode-hook
    (quote
-    (spacemacs/load-yasnippet smartparens-mode flyspell-mode evil-matchit-mode turn-on-reftex TeX-PDF-mode
-     TeX-source-correlate-mode LaTeX-math-mode TeX-fold-mode latex/auto-fill-mode
-     spacemacs//init-company-LaTeX-mode company-mode pdf-tools-install)))
+    (spacemacs/load-yasnippet smartparens-mode flyspell-mode evil-matchit-mode turn-on-reftex TeX-PDF-mode TeX-source-correlate-mode LaTeX-math-mode TeX-fold-mode latex/auto-fill-mode spacemacs//init-company-LaTeX-mode company-mode pdf-tools-install)) t)
  '(TeX-command-list
    (quote
     (("TeX" "%(PDF)%(tex) %(file-line-error) %`%(extraopts) %S%(PDFout)%(mode)%' %t" TeX-run-TeX nil
@@ -494,8 +491,8 @@ This function is called at the very end of Spacemacs initialization."
      ("Clean" "TeX-clean" TeX-run-function nil t :help "Delete generated intermediate files")
      ("Clean All" "(TeX-clean t)" TeX-run-function nil t :help "Delete generated intermediate and output files")
      ("Other" "" TeX-run-command t t :help "Run an arbitrary command"))))
- '(TeX-source-correlate-start-server t)
  '(TeX-engine (quote xetex))
+ '(TeX-source-correlate-start-server t t)
  '(TeX-view-program-list (quote (("pdf-tools" (TeX-pdf-tools-sync-view) ""))))
  '(TeX-view-program-selection
    (quote
@@ -506,33 +503,40 @@ This function is called at the very end of Spacemacs initialization."
      (output-dvi "xdvi")
      (output-pdf "PDF Tools")
      (output-html "xdg-open"))))
+ '(ahs-default-range (quote ahs-range-display))
  '(calculator-number-digits 6)
  '(company-auto-complete t)
- '(company-auto-complete-chars '(32 95 41 46 34 39 60 62))
+ '(company-auto-complete-chars (quote (32 95 41 46 34 39 60 62)))
  '(company-backends
-   '(company-capf company-files company-semantic
+   (quote
+    (company-capf company-files company-semantic
                   (company-dabbrev-code company-gtags company-etags company-keywords)
-                  company-dabbrev))
+                  company-dabbrev)))
  '(company-idle-delay 10)
  '(company-minimum-prefix-length 3)
  '(company-selection-wrap-around t)
  '(company-show-numbers t)
- '(cquery-extra-args '("--log-file=~/cq.log")) ;;"--log-all-to-stderr"
- '(cquery-cache-dir-function #'(lambda (dir) (expand-file-name cquery-cache-dir
-                                                               (if (cquery--suggest-project-root)
-                                                                   (cquery--suggest-project-root)
-                                                                 (projectile-project-root dir))
-                                                              )))
+ '(cquery-cache-dir-function
+   (function
+    (lambda
+      (dir)
+      (expand-file-name cquery-cache-dir
+                        (if
+                            (cquery--suggest-project-root)
+                            (cquery--suggest-project-root)
+                          (projectile-project-root dir))))))
+ '(cquery-extra-args (quote ("--log-file=~/cq.log")))
  '(cquery-project-root-matchers
-   '("compile_commands.json" ".cquery" "build/compile_commands.json" projectile-project-root))
+   (quote
+    ("compile_commands.json" ".cquery" "build/compile_commands.json" projectile-project-root)))
  '(default-input-method "pyim")
  '(ein:complete-on-dot t)
- '(ein:completion-backend 'ein:use-company-backend)
+ '(ein:completion-backend (quote ein:use-company-backend))
  '(ein:use-auto-complete-superpack t)
  '(eopengrok-ignore-file-or-directory
    ".opengrok:out:*.so:*.a:*.o:*.gz:*.bz2:*.jar:*.zip:*.class:*.elc:GPATH:GRTAGS:GTAGS:.repo:.cquery_cached_index")
- '(gdb-many-windows t t)
- '(gdb-show-main t t)
+ '(gdb-many-windows t)
+ '(gdb-show-main t)
  '(ggtags-highlight-tag 1)
  '(ggtags-sort-by-nearness t)
  '(git-gutter:added-sign "++")
@@ -545,9 +549,9 @@ This function is called at the very end of Spacemacs initialization."
  '(global-semantic-idle-local-symbol-highlight-mode t nil (semantic/idle))
  '(global-semantic-stickyfunc-mode t)
  '(helm-grep-default-command "grep --color=always -a -d recurse %e -n%cH -e %p %f")
- '(helm-gtags-path-style 'relative)
+ '(helm-gtags-path-style (quote relative))
  '(helm-input-idle-delay 0.1)
- '(isend-send-region-function 'isend--ipython-cpaste)
+ '(isend-send-region-function (quote isend--ipython-cpaste))
  '(jit-lock-chunk-size 6000)
  '(jit-lock-context-time 0.1)
  '(jit-lock-contextually t)
@@ -556,33 +560,37 @@ This function is called at the very end of Spacemacs initialization."
  '(jit-lock-stealth-nice 0.5)
  '(jit-lock-stealth-time 16)
  '(large-file-warning-threshold 10000)
+ '(lsp-auto-guess-root t)
  '(lsp-before-save-edits nil)
  '(lsp-enable-indentation nil)
- ;;'(lsp-print-io t)
  '(lsp-response-timeout 60)
- '(lsp-auto-guess-root t)
  '(lsp-ui-flycheck-enable t)
  '(lsp-ui-imenu-enable t)
  '(lsp-ui-sideline-show-flycheck t)
- '(lsp-ui-sideline-show-symbol nil)
+ '(lsp-ui-sideline-show-symbol nil t)
  '(magit-diff-arguments
-   '("--ignore-all-space" "--no-ext-diff" "--stat" "-- " "--diff-algorithm=default"))
+   (quote
+    ("--ignore-all-space" "--no-ext-diff" "--stat" "-- " "--diff-algorithm=default")))
  '(magit-diff-section-arguments
-   '("--ignore-all-space" "--no-ext-diff" "--diff-algorithm=default"))
- '(mouse-wheel-scroll-amount '(2))
+   (quote
+    ("--ignore-all-space" "--no-ext-diff" "--diff-algorithm=default")))
+ '(mouse-wheel-scroll-amount (quote (2)))
  '(org-clock-persist-file (org-clock-persist-save-file))
  '(org-emphasis-alist
-   '(("*" bold)
+   (quote
+    (("*" bold)
      ("/" italic)
      ("_" underline)
      ("=" org-verbatim verbatim)
      ("~" org-code verbatim)
      ("+"
-      (:strike-through t))))
+      (:strike-through t)))))
  '(org-latex-hyperref-template nil)
  '(org-latex-pdf-process
    (quote
     ("xelatex -synctex=1 -interaction nonstopmode -output-directory %o %f" "bibtex %b" "xelatex -synctex=1 -interaction nonstopmode -output-directory %o %f")))
+ '(org-preview-latex-default-process (quote dvisvgm))
+ '(org-latex-inputenc-alist '(("utf8" . "utf8x")))
  '(org-preview-latex-process-alist
    (quote
     ((dvipng :programs
@@ -590,15 +598,15 @@ This function is called at the very end of Spacemacs initialization."
              :description "dvi > png" :message "you need to install the programs: latex and dvipng." :image-input-type "dvi" :image-output-type "png" :image-size-adjust
              (1.0 . 1.0)
              :latex-compiler
-             ("xelatex -interaction nonstopmode -output-directory %o %f")
+             ("latex -output-format=dvi  -interaction nonstopmode -output-directory %o %f")
              :image-converter
              ("dvipng -fg %F -bg %B -D %D -T tight -o %O %f"))
      (dvisvgm :programs
               ("latex" "dvisvgm")
-              :description "dvi > svg" :message "you need to install the programs: latex and dvisvgm." :use-xcolor t :image-input-type "dvi" :image-output-type "svg" :image-size-adjust
+              :description "xdv > svg" :message "you need to install the programs: latex and dvisvgm." :use-xcolor t :image-input-type "xdv" :image-output-type "svg" :image-size-adjust
               (1.7 . 1.5)
               :latex-compiler
-              ("xelatex -interaction nonstopmode -output-directory %o %f")
+              ("xelatex -no-pdf -interaction nonstopmode -output-directory %o %f")
               :image-converter
               ("dvisvgm %f -n -b min -c %S -o %O"))
      (imagemagick :programs
@@ -606,33 +614,35 @@ This function is called at the very end of Spacemacs initialization."
                   :description "pdf > png" :message "you need to install the programs: latex and imagemagick." :use-xcolor t :image-input-type "pdf" :image-output-type "png" :image-size-adjust
                   (1.0 . 1.0)
                   :latex-compiler
-                  ("pdflatex -interaction nonstopmode -output-directory %o %f")
+                  ("xelatex -interaction nonstopmode -output-directory %o %f")
                   :image-converter
                   ("convert -density %D -trim -antialias %f -quality 100 %O")))))
  '(projectile-enable-caching t)
  '(projectile-project-root-files-bottom-up
-   '(".cquery" "compile_commands.json" ".projectile" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs"))
+   (quote
+    (".cquery" "compile_commands.json" ".projectile" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs")))
  '(projectile-project-root-files-top-down-recurring
-   '(".svn" "CVS" "Makefile" ".git" ".cquery" "compile_commands.json"))
+   (quote
+    (".svn" "CVS" "Makefile" ".git" ".cquery" "compile_commands.json")))
  '(projectile-require-project-root nil)
  '(python-shell-completion-native-enable nil)
  '(scroll-conservatively 100)
  '(semantic-idle-scheduler-idle-time 1)
  '(semantic-idle-scheduler-max-buffer-size 100000)
  '(semantic-idle-scheduler-work-idle-time 60)
- '(semantic-idle-summary-function 'semantic-format-tag-short-doc)
+ '(semantic-idle-summary-function (quote semantic-format-tag-short-doc))
  '(semantic-idle-truncate-long-summaries nil)
  '(sr-speedbar-right-side nil)
  '(sr-speedbar-skip-other-window-p t)
- '(tramp-syntax 'default nil (tramp))
- '(vc-handled-backends '(git RCS CVS SVN SCCS SRC Bzr Hg Mtn))
- '(vlf-application 'dont-ask)
+ '(tramp-syntax (quote default) nil (tramp))
+ '(vc-handled-backends (quote (git RCS CVS SVN SCCS SRC Bzr Hg Mtn)))
+ '(vlf-application (quote dont-ask))
  '(vlf-batch-size 10485760)
  '(vlf-tune-enabled t)
  '(vlf-tune-max 402702600)
  '(which-function-mode t)
  '(which-key-idle-delay 0.6)
- '(which-key-popup-type 'side-window))
+ '(which-key-popup-type (quote side-window)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
