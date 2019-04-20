@@ -636,7 +636,7 @@ This function is called at the very end of Spacemacs initialization."
  '(sr-speedbar-skip-other-window-p t)
  '(tramp-syntax (quote default) nil (tramp))
  '(vc-handled-backends (quote (git RCS CVS SVN SCCS SRC Bzr Hg Mtn)))
- '(vlf-application (quote dont-ask))
+ '(vlf-application (quote ask))
  '(vlf-batch-size 10485760)
  '(vlf-tune-enabled t)
  '(vlf-tune-max 402702600)
