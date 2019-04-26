@@ -408,11 +408,20 @@ in `dotspacemacs/user-config'."
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+  (require 'url)
+  (unless (file-exists-p "~/.emacs.d/.cache/pyim-bigdict.pyim.gz")
+    (url-copy-file "http://tumashu.github.io/pyim-bigdict/pyim-bigdict.pyim.gz" "~/.emacs.d/.cache/pyim-bigdict.pyim.gz" t)
+    )
   (require 'pyim-basedict)
+  (setq-default pyim-dicts
+                (quote
+                 ((:name "词库" :file "~/.emacs.d/.cache/pyim-bigdict.pyim.gz"))))
   (pyim-basedict-enable)
+
   (setq-default pyim-english-input-switch-functions
                 '(pyim-probe-dynamic-english pyim-probe-org-speed-commands pyim-probe-program-mode))
-  (global-set-key (kbd "M-i") 'pyim-convert-code-at-point)
+  (global-set-key (kbd "M-i") 'pyim-convert-string-at-point)
+
   (load-file (concat user-emacs-directory "private/init.el"))
   (add-hook 'org-mode-hook 'spacemacs/toggle-spelling-checking-on)
   (add-hook 'nroff-mode-hook 'spacemacs/toggle-spelling-checking-on)
