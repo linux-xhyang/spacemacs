@@ -415,7 +415,8 @@ layers configuration. You are free to put any user code."
   (require 'pyim-basedict)
   (setq-default pyim-dicts
                 (quote
-                 ((:name "词库" :file "~/.emacs.d/.cache/pyim-bigdict.pyim.gz"))))
+                 ((:name "词库1" :file "/home/xhyang/.emacs.d/private/local/pyim-greatdict.pyim.gz")
+                  (:name "词库2" :file "~/.emacs.d/.cache/pyim-bigdict.pyim.gz"))))
   (pyim-basedict-enable)
 
   (setq-default pyim-english-input-switch-functions
