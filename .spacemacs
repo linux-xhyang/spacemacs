@@ -572,6 +572,7 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-auto-guess-root t)
  '(lsp-before-save-edits nil)
  '(lsp-enable-indentation nil)
+ '(lsp-log-max 1024)
  '(lsp-response-timeout 60)
  '(lsp-ui-flycheck-enable t)
  '(lsp-ui-imenu-enable t)
