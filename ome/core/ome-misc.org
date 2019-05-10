@@ -315,3 +315,10 @@ shell but not in Emacs. Thus you cannot install some el-get packages such as
   #+BEGIN_SRC emacs-lisp
     (add-hook 'java-mode-hook 'semantic-mode)
   #+END_SRC
+
+* init env
+  #+begin_src emacs-lisp
+    (when (getenv "ANDROID_JAVA_TOOLCHAIN")
+      (setq exec-path (append exec-path (cons (getenv "ANDROID_JAVA_TOOLCHAIN") nil)))
+      (setenv "PATH" (concat (getenv "PATH") ":" (getenv "ANDROID_JAVA_TOOLCHAIN") )))
+  #+end_src
