@@ -168,4 +168,22 @@
 
     (ome-company/init-company)
     (ome-company/init-company-post)
+
+    (defun gradle-or-maven-hook ()
+      (when (eq major-mode 'java-mode)
+        (let* ((root (lsp--suggest-project-root))
+               (file (concat root "/.projectile")))
+          (if (file-exists-p file)
+              (lsp-register-custom-settings
+               (("java.import.maven.enabled" nil)
+                ("java.import.gradle.enabled" nil)))
+            (lsp-register-custom-settings
+             (("java.import.maven.enabled" t)
+              ("java.import.gradle.enabled" t t)))
+            )
+          )
+        )
+      )
+
+    (add-hook 'lsp-before-initialize-hook 'gradle-or-maven-hook)
   #+END_SRC
