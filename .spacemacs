@@ -573,6 +573,8 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-auto-guess-root t)
  '(lsp-before-save-edits nil)
  '(lsp-enable-indentation nil)
+ '(lsp-java-import-gradle-enabled nil)
+ '(lsp-java-import-maven-enabled nil)
  '(lsp-log-max nil)
  '(lsp-response-timeout 6)
  '(lsp-ui-flycheck-enable t)
