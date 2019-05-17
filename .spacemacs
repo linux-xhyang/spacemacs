@@ -58,7 +58,9 @@ values."
      cmake
      chrome
      confluence
-     plantuml
+     (plantuml :variables
+               plantuml-jar-path "~/.emacs.d/plantuml.jar"
+               org-plantuml-jar-path "~/.emacs.d/plantuml.jar")
      ansible
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (treemacs :variables treemacs-use-follow-mode t
@@ -571,6 +573,7 @@ This function is called at the very end of Spacemacs initialization."
  '(jit-lock-stealth-time 16)
  '(large-file-warning-threshold 10000)
  '(lsp-auto-guess-root t)
+ '(lsp-keep-workspace-alive nil)
  '(lsp-before-save-edits nil)
  '(lsp-enable-indentation nil)
  '(lsp-java-import-gradle-enabled nil)
