@@ -562,7 +562,7 @@ This function is called at the very end of Spacemacs initialization."
  '(global-semantic-stickyfunc-mode t)
  '(helm-grep-default-command "grep --color=always -a -d recurse %e -n%cH -e %p %f")
  '(helm-gtags-path-style (quote relative))
- '(helm-input-idle-delay 0.6)
+ '(helm-input-idle-delay 0.1)
  '(isend-send-region-function (quote isend--ipython-cpaste))
  '(jit-lock-chunk-size 6000)
  '(jit-lock-context-time 0.1)
