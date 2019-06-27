@@ -46,14 +46,14 @@ values."
      ;;nlinum
      debug
      (spell-checking :variables
-                     spell-checking-enable-by-default t)
+                     spell-checking-enable-by-default nil)
      (syntax-checking :variables
                       syntax-checking-enable-by-default t
                       syntax-checking-enable-tooltips t)
      better-defaults
      gtags
      dash
-     slack
+     ;;slack
      git
      cmake
      chrome
@@ -116,9 +116,9 @@ values."
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-rtags-completion nil
-            c-c++-backend 'lsp-cquery
+            c-c++-backend 'lsp-ccls
             c-c++-adopt-subprojects t
-            c-c++-lsp-executable (file-truename "~/src/cquery/build/cquery")
+            c-c++-lsp-executable (file-truename "~/src/ccls/Release/ccls")
             c-c++-lsp-cache-dir ".cquery_cached_index"
             c-c++-enable-google-style t
             c-c++-lsp-initialization-options '(:index (:comments 2 :threads 1) :discoverSystemIncludes :json-false :cacheFormat "msgpack" :completion (:detailedLabel t)))
@@ -439,7 +439,8 @@ layers configuration. You are free to put any user code."
   ;; Do not write anything past this comment. This is where Emacs will
   ;; auto-generate custom variable definitions.
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
-  (setq alert-default-style 'notifications)
+  ;;(setq alert-default-style 'notifications)
+  (setq alert-default-style 'libnotify)
   (server-start)
   (dotspacemacs/emacs-custom-settings)
   )
@@ -558,7 +559,7 @@ This function is called at the very end of Spacemacs initialization."
  '(git-gutter:modified-sign "  ")
  '(global-semantic-highlight-edits-mode t)
  '(global-semantic-highlight-func-mode t)
- '(global-semantic-idle-local-symbol-highlight-mode t nil (semantic/idle))
+ '(global-semantic-idle-local-symbol-highlight-mode nil nil (semantic/idle))
  '(global-semantic-stickyfunc-mode t)
  '(helm-grep-default-command "grep --color=always -a -d recurse %e -n%cH -e %p %f")
  '(helm-gtags-path-style (quote relative))
