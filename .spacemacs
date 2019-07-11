@@ -574,11 +574,14 @@ This function is called at the very end of Spacemacs initialization."
  '(jit-lock-stealth-time 16)
  '(large-file-warning-threshold 10000)
  '(lsp-auto-guess-root t)
- '(lsp-keep-workspace-alive nil)
  '(lsp-before-save-edits nil)
  '(lsp-enable-indentation nil)
  '(lsp-java-import-gradle-enabled nil)
  '(lsp-java-import-maven-enabled nil)
+ '(lsp-java-jdt-download-url
+   "https://ftp.yzu.edu.tw/eclipse/che/che-ls-jdt/snapshots/che-jdt-language-server-latest.tar.gz")
+ ;;"https://ftp.yzu.edu.tw/eclipse/jdtls/snapshots/jdt-language-server-latest.tar.gz"
+ '(lsp-keep-workspace-alive nil)
  '(lsp-log-max nil)
  '(lsp-response-timeout 6)
  '(lsp-ui-flycheck-enable t)
@@ -592,7 +595,7 @@ This function is called at the very end of Spacemacs initialization."
    (quote
     ("--ignore-all-space" "--no-ext-diff" "--diff-algorithm=default")))
  '(mouse-wheel-scroll-amount (quote (2)))
- '(org-clock-persist-file (org-clock-persist-save-file))
+ '(org-clock-persist-file (org-clock-persist-save-file) t)
  '(org-emphasis-alist
    (quote
     (("*" bold)
