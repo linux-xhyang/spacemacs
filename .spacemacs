@@ -121,7 +121,10 @@ values."
             c-c++-lsp-executable (file-truename "~/src/ccls/Release/ccls")
             c-c++-lsp-cache-dir ".cquery_cached_index"
             c-c++-enable-google-style t
-            c-c++-lsp-initialization-options '(:index (:comments 2 :threads 1) :discoverSystemIncludes :json-false :cacheFormat "msgpack" :completion (:detailedLabel t)))
+            c-c++-lsp-initialization-options '(:completion (:detailedLabel t)
+                                               :index (:initialReparseForDependency :json-false :comments 2 :threads 1)
+                                               :cache (:retainInMemory 2 :format "binary")
+                                               :diagnostics (:onChange 1000 :onOpen 0 :onSave 0)))
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior 'cycle
@@ -131,7 +134,12 @@ values."
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-sort-by-usage t
-                      :disabled-for org markdown)
+                      spacemacs-default-company-backends '(company-tabnine
+                                                           (company-dabbrev-code company-keywords)
+                                                           company-capf
+                                                           company-files
+                                                           company-dabbrev)
+                      )
      ;; version-control ;;not user for git gutter
      android-mode
      ;; ome-projectile
@@ -518,14 +526,11 @@ This function is called at the very end of Spacemacs initialization."
      (output-html "xdg-open"))))
  '(ahs-default-range (quote ahs-range-display))
  '(calculator-number-digits 6)
+ '(ccls-member-hierarchy-qualified t)
+ '(ccls-sem-highlight-method (quote font-lock))
  '(company-auto-complete t)
  '(company-auto-complete-chars (quote (32 95 41 46 34 39 60 62)))
- '(company-backends
-   (quote
-    (company-capf company-files company-semantic
-                  (company-dabbrev-code company-gtags company-etags company-keywords)
-                  company-dabbrev)))
- '(company-idle-delay 10)
+ '(company-idle-delay 5)
  '(company-minimum-prefix-length 3)
  '(company-selection-wrap-around t)
  '(company-show-numbers t)
@@ -538,7 +543,7 @@ This function is called at the very end of Spacemacs initialization."
                             (cquery--suggest-project-root)
                             (cquery--suggest-project-root)
                           (projectile-project-root dir))))))
- '(cquery-extra-args (quote ("--log-file=~/cq.log")))
+ '(ccls-args (list (concat "--log-file=" (expand-file-name "~/ccls.log"))))
  '(cquery-project-root-matchers
    (quote
     ("compile_commands.json" ".cquery" "build/compile_commands.json" projectile-project-root)))

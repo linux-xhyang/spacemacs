@@ -33,6 +33,7 @@
   '(
     (xgtags :location (recipe :fetcher github :repo "linux-xhyang/xgtags"))
     exec-path-from-shell
+    company-tabnine
     ;;nlinum
     ))
 
@@ -118,6 +119,11 @@
     )
   )
 
+(defun ome/init-company-tabnine ()
+  "docstring"
+  (use-package company-tabnine :ensure t)
+  (require 'company-tabnine)
+  )
 ;; (defun ome/init-nlinum()
 ;;   (use-package nlinum
 ;;     :config
