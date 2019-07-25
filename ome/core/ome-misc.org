@@ -322,3 +322,32 @@ shell but not in Emacs. Thus you cannot install some el-get packages such as
       (setq exec-path (append exec-path (cons (getenv "ANDROID_JAVA_TOOLCHAIN") nil)))
       (setenv "PATH" (concat (getenv "PATH") ":" (getenv "ANDROID_JAVA_TOOLCHAIN") )))
   #+end_src
+
+* init company
+  #+begin_src emacs-lisp
+
+    (spacemacs|add-company-backends :backends company-elisp
+                                    :modes emacs-lisp-mode)
+
+    (defun org-keyword-backend (command &optional arg &rest ignored)
+      (interactive (list 'interactive))
+      (cl-case command
+        (interactive (company-begin-backend 'org-keyword-backend))
+        (prefix (and (eq major-mode 'org-mode)
+                     (cons (company-grab-line "^#\\+\\(\\w*\\)" 1)
+                           t)))
+        (candidates (mapcar #'upcase
+                            (cl-remove-if-not
+                             (lambda (c) (string-prefix-p arg c))
+                             (pcomplete-completions))))
+        (ignore-case t)
+        (duplicates t)))
+
+    (spacemacs|add-company-backends :backends company-capf :modes org-mode)
+    (spacemacs|add-company-backends :backends org-keyword-backend :modes org-mode)
+
+
+    (add-hook 'org-mode-hook #'(lambda ()
+      (define-key org-mode-map (kbd "M-n") 'pcomplete)))
+
+  #+end_src
