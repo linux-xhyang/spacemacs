@@ -642,6 +642,7 @@ This function is called at the very end of Spacemacs initialization."
                   ("xelatex -interaction nonstopmode -output-directory %o %f")
                   :image-converter
                   ("convert -density %D -trim -antialias %f -quality 100 %O")))))
+ '(org-startup-with-latex-preview t)
  '(projectile-enable-caching t)
  '(projectile-project-root-files-bottom-up
    (quote
