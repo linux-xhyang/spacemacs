@@ -51,35 +51,8 @@
                       (copy-file (concat ome-dir "modules/.ycm_extra_conf.py") (concat dir "/.ycm_extra_conf.py"))))))
               ycmd-extra-conf-whitelist))
 
-    (defun check-expansion ()
-      (save-excursion
-        (if (looking-at "\\_>") t
-          (backward-char 1)
-          (if (looking-at "\\.") t
-            (backward-char 1)
-            (if (looking-at "->") t nil)))))
-
-    (defun do-yas-expand ()
-      (let ((yas/fallback-behavior 'return-nil))
-        (yas/expand)))
-
-    (defun tab-indent-or-complete ()
-      (interactive)
-      (if (minibufferp)
-          (minibuffer-complete)
-        (if (or (not yas/minor-mode)
-                (null (do-yas-expand)))
-            (if (check-expansion)
-                (company-complete-common)
-              (if (eq major-mode 'org-mode)
-                  (org-cycle)
-                (indent-for-tab-command))))))
-
-    ;;(global-set-key [tab] 'tab-indent-or-complete)
+    (defvar completion-at-point-functions-saved nil)
     (defun ome-company/init-company ()
-      (with-eval-after-load 'company
-        (define-key company-mode-map (kbd "<tab>") 'tab-indent-or-complete)
-        )
       (with-eval-after-load 'yasnippet
         (global-set-key (kbd "C-c y") 'company-yasnippet)
         (global-set-key (kbd "C-c i") 'yas-insert-snippet)
@@ -88,9 +61,20 @@
         (push yasnippet-snippets-dir yas-snippet-dirs)
         (yas-reload-all)
         )
-      ;;(add-hook 'python-mode-hook 'anaconda-mode)
       (global-company-mode)
+      (define-key company-mode-map [remap indent-for-tab-command]
+        'company-indent-for-tab-command)
       )
+
+    (defun company-indent-for-tab-command (&optional arg)
+      (interactive "P")
+      (let ((completion-at-point-functions-saved completion-at-point-functions)
+            (completion-at-point-functions '(company-complete-common-wrapper)))
+        (indent-for-tab-command arg)))
+
+    (defun company-complete-common-wrapper ()
+      (let ((completion-at-point-functions completion-at-point-functions-saved))
+        (company-complete-common)))
 
     (ome-company/init-company)
 
