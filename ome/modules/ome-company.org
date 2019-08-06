@@ -64,6 +64,12 @@
       (global-company-mode)
       (define-key company-mode-map [remap indent-for-tab-command]
         'company-indent-for-tab-command)
+      (define-key c++-mode-map [remap c-indent-line-or-region]
+        'company-indent-for-tab-command)
+      (define-key c-mode-map [remap c-indent-line-or-region]
+        'company-indent-for-tab-command)
+      (define-key java-mode-map [remap c-indent-line-or-region]
+        'company-indent-for-tab-command)
       )
 
     (defun company-indent-for-tab-command (&optional arg)
