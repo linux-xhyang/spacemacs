@@ -155,7 +155,7 @@ values."
      ;; ome-ggtags
      ome-systemtap
      ome-gui
-     autopair
+     ;;autopair
      doxymacs
      ;; ome-opengrok
      ;; ome-lsp
