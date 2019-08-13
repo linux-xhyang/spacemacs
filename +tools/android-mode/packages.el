@@ -3,7 +3,7 @@
       '(
         (android-mode :location (recipe
                               :fetcher github
-                              :repo "linux-xhyang/android-mode"))
+                              :repo "remvee/android-mode"))
         (android-emacs-ide :location (recipe
                                  :fetcher github
                                  :repo "linux-xhyang/android-emacs-ide"))
@@ -37,10 +37,8 @@
               (write-region (car venv) nil (concat (getenv "ANDROID_BUILD_TOP") "/.venv"))
             (write-region "3.6.1" nil (concat (getenv "ANDROID_BUILD_TOP") "/.venv")))
           ))
-      (setq android-build-top (getenv "ANDROID_BUILD_TOP"))
-      (setq android-mode-sdk-dir (concat (getenv "ANDROID_BUILD_TOP") "/prebuilts/devtools/"))
-      (setq android-mode-sdk-tool-subdirs (mapcar #'append (split-string (concat (getenv "ANDROID_BUILD_PATHS") ":" (getenv "ANDROID_DEV_SCRIPTS")
-                                                                                 ":" (getenv "PATH"))":" t)))
+      (setq android-mode-sdk-dir "~/Android")
+      (setq android-mode-gradle-plugin "2.3.0") ;;gradle 3.3+
       )))
 
 (defun android-mode/init-android-mode ()
