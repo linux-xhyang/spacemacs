@@ -585,7 +585,8 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-java-import-gradle-enabled nil)
  '(lsp-java-import-maven-enabled nil)
  '(lsp-java-jdt-download-url
-   "https://ftp.yzu.edu.tw/eclipse/che/che-ls-jdt/snapshots/che-jdt-language-server-latest.tar.gz")
+   "https://mirrors.tuna.tsinghua.edu.cn/eclipse/jdtls/snapshots/jdt-language-server-latest.tar.gz")
+ ;;"https://ftp.yzu.edu.tw/eclipse/che/che-ls-jdt/snapshots/che-jdt-language-server-latest.tar.gz"
  ;;"https://ftp.yzu.edu.tw/eclipse/jdtls/snapshots/jdt-language-server-latest.tar.gz"
  '(lsp-keep-workspace-alive nil)
  '(lsp-log-max nil)
