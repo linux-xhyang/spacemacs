@@ -84,11 +84,44 @@
 
     (ome-company/init-company)
 
-    (add-hook 'java-mode-hook #'(lambda()
-                                  (let ((root (projectile-locate-dominating-file default-directory ".project")))
-                                    (when root
-                                      (set (make-local-variable 'projectile-project-root) root)
-                                      )
-                                    )
-                                  ))
+    (defun get-java-project-root ()
+      "docstring"
+      (interactive "P")
+      (let ((root (projectile-locate-dominating-file default-directory ".projectile"))
+            (gradle (if (projectile-locate-dominating-file default-directory ".project")
+                        (projectile-locate-dominating-file default-directory ".project")
+                      (projectile-locate-dominating-file default-directory "build.gradle"))))
+            (if root
+                (set (make-local-variable 'projectile-project-root) root)
+              (set (make-local-variable 'projectile-project-root) gradle)
+              )))
+
+    (with-eval-after-load 'lsp-java
+      (lsp--client-multi-root (gethash 'jdtls lsp-clients))
+      (setf (lsp--client-multi-root (gethash 'jdtls lsp-clients)) '(:multi-root nil))
+
+      (defun gradle-or-maven-hook ()
+        (when (eq major-mode 'java-mode)
+          (let* ((root (get-java-project-root))
+                 (file (concat root "/.projectile")))
+            (if (file-exists-p file)
+                (progn
+                  (message "not import gradle")
+                  (lsp-register-custom-settings
+                   '(("java.import.maven.enabled" nil t)
+                     ("java.import.gradle.enabled" nil t))))
+              (progn
+                (message "import gradle")
+                (lsp-register-custom-settings
+                 '(("java.import.maven.enabled" t t)
+                   ("java.import.gradle.enabled" t t))))
+              )
+            )
+          )
+        )
+
+      (add-hook 'lsp-before-initialize-hook 'gradle-or-maven-hook)
+      )
+
+    (add-hook 'java-mode-hook 'get-java-project-root)
   #+END_SRC

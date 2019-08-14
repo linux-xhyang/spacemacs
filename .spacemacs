@@ -582,6 +582,9 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-before-save-edits nil)
  '(lsp-enable-completion-at-point nil)
  '(lsp-enable-indentation nil)
+ '(lsp-file-watch-ignored
+   (quote
+    ("[/\\\\]\\.git$" "[/\\\\]\\.hg$" "[/\\\\]\\.bzr$" "[/\\\\]_darcs$" "[/\\\\]\\.svn$" "[/\\\\]_FOSSIL_$" "[/\\\\]\\.idea$" "[/\\\\]\\.ensime_cache$" "[/\\\\]\\.eunit$" "[/\\\\]node_modules$" "[/\\\\]\\.fslckout$" "[/\\\\]\\.tox$" "[/\\\\]\\.stack-work$" "[/\\\\]\\.bloop$" "[/\\\\]\\.metals$" "[/\\\\]target$" "[/\\\\]\\.deps$" "[/\\\\]build-aux$" "[/\\\\]autom4te.cache$" "[/\\\\]\\.reference$" "[/\\\\]\\.repo$")))
  '(lsp-java-import-gradle-enabled nil)
  '(lsp-java-import-maven-enabled nil)
  '(lsp-java-jdt-download-url
