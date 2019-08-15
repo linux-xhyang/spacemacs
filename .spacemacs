@@ -122,7 +122,7 @@ values."
             c-c++-lsp-cache-dir ".cquery_cached_index"
             c-c++-enable-google-style t
             c-c++-lsp-initialization-options '(:completion (:detailedLabel t)
-                                               :index (:initialReparseForDependency :json-false :comments 2 :threads 1)
+                                               :index (:initialReparseForDependency :json-false :comments 2 :threads 2)
                                                :cache (:retainInMemory 2 :format "binary")
                                                :diagnostics (:onChange 1000 :onOpen 0 :onSave 0)))
      (auto-completion :variables
@@ -587,6 +587,9 @@ This function is called at the very end of Spacemacs initialization."
     ("[/\\\\]\\.git$" "[/\\\\]\\.hg$" "[/\\\\]\\.bzr$" "[/\\\\]_darcs$" "[/\\\\]\\.svn$" "[/\\\\]_FOSSIL_$" "[/\\\\]\\.idea$" "[/\\\\]\\.ensime_cache$" "[/\\\\]\\.eunit$" "[/\\\\]node_modules$" "[/\\\\]\\.fslckout$" "[/\\\\]\\.tox$" "[/\\\\]\\.stack-work$" "[/\\\\]\\.bloop$" "[/\\\\]\\.metals$" "[/\\\\]target$" "[/\\\\]\\.deps$" "[/\\\\]build-aux$" "[/\\\\]autom4te.cache$" "[/\\\\]\\.meghanada$" "[/\\\\]\\.reference$" "[/\\\\]\\.cquery_cached_index$" "[/\\\\]\\.ccls-cache$" "[/\\\\]\\.repo$")))
  '(lsp-java-import-gradle-enabled nil)
  '(lsp-java-import-maven-enabled nil)
+ '(lsp-java-vmargs
+   (quote
+    ("-noverify" "-Xmx4G" "-XX:+UseG1GC" "-XX:+UseStringDeduplication")))
  '(lsp-java-jdt-download-url
    "https://mirrors.tuna.tsinghua.edu.cn/eclipse/jdtls/snapshots/jdt-language-server-latest.tar.gz")
  ;;"https://ftp.yzu.edu.tw/eclipse/che/che-ls-jdt/snapshots/che-jdt-language-server-latest.tar.gz"
