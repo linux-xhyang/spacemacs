@@ -99,6 +99,7 @@ values."
      (java :variables
            java-backend 'lsp
            java--ensime-modes nil)
+     kotlin
      (python :variables
              spacemacs--python-pyenv-modes '(python-mode)
              python-auto-set-local-pyenv-version 'on-visit ;;'on-project-switch
@@ -599,7 +600,7 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-java-import-maven-enabled nil)
  '(lsp-java-vmargs
    (quote
-    ("-noverify" "-Xmx4G" "-XX:+UseG1GC" "-XX:+UseStringDeduplication")))
+    ("-noverify" "-Xmx2G" "-XX:+UseG1GC" "-XX:+UseStringDeduplication")))
  '(lsp-java-jdt-download-url
    "https://mirrors.tuna.tsinghua.edu.cn/eclipse/jdtls/snapshots/jdt-language-server-latest.tar.gz")
  ;;"https://ftp.yzu.edu.tw/eclipse/che/che-ls-jdt/snapshots/che-jdt-language-server-latest.tar.gz"
