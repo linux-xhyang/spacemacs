@@ -99,7 +99,6 @@ values."
      (java :variables
            java-backend 'lsp
            java--ensime-modes nil)
-     kotlin
      (python :variables
              spacemacs--python-pyenv-modes '(python-mode)
              python-auto-set-local-pyenv-version 'on-visit ;;'on-project-switch
@@ -159,6 +158,7 @@ values."
      ;; ome-java
      ;; ome-groovy
      ome-git
+     ome-kotlin
      ome-speedbar
      ;; ome-ecb
      ;; ome-ccl
@@ -588,6 +588,7 @@ This function is called at the very end of Spacemacs initialization."
  '(jit-lock-stealth-load 100)
  '(jit-lock-stealth-nice 0.5)
  '(jit-lock-stealth-time 16)
+ '(kotlin-tab-width 4)
  '(large-file-warning-threshold 10000)
  '(lsp-auto-guess-root t)
  '(lsp-before-save-edits nil)
