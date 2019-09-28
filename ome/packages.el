@@ -33,8 +33,10 @@
   '(
     (xgtags :location (recipe :fetcher github :repo "linux-xhyang/xgtags"))
     exec-path-from-shell
-    company-tabnine
-    ;;nlinum
+    lsp-mode
+    company-box
+    company
+    (company-tabnine :requires company)
     ))
 
 (defvar ome-dir (file-name-directory (or load-file-name (buffer-file-name)))
@@ -119,11 +121,46 @@
     )
   )
 
+(defun ome/post-init-lsp-mode ()
+  (with-eval-after-load 'lsp-mode
+    (advice-add 'lsp :after #'tabnine//merge-company-tabnine-to-company-lsp))
+  )
+
+(defun ome/post-init-company-box ()
+  (spacemacs|use-package-add-hook company-box
+    :post-config
+    (progn
+      (push #'tabnine//company-box-icons--tabnine
+            company-box-icons-functions)
+      (map-put company-box-backends-colors
+               'company-tabnine  '(:all
+                                   tabnine-company-box-backend-tabnine-face
+                                   :selected
+                                   tabnine-company-box-backend-tabnine-selected-face))
+      )
+    )
+  )
+
 (defun ome/init-company-tabnine ()
   "docstring"
-  (use-package company-tabnine :ensure t)
-  (require 'company-tabnine)
-  )
+  (use-package company-tabnine
+    :defer t
+    :config
+    (progn
+      (setq company-tabnine-max-num-results 3)
+
+      (add-to-list 'company-transformers 'tabnine//sort-by-tabnine t)
+      ;; The free version of TabNine is good enough,
+      ;; and below code is recommended that TabNine not always
+      ;; prompt me to purchase a paid version in a large project.
+      (defadvice company-echo-show (around disable-tabnine-upgrade-message activate)
+        (let ((company-message-func (ad-get-arg 0)))
+          (when (and company-message-func
+                     (stringp (funcall company-message-func)))
+            (unless (string-match "The free version of TabNine only indexes up to" (funcall company-message-func))
+              ad-do-it))))
+      )
+  ))
 ;; (defun ome/init-nlinum()
 ;;   (use-package nlinum
 ;;     :config
