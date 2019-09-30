@@ -430,15 +430,21 @@ in `dotspacemacs/user-config'."
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (require 'url)
-  (unless (file-exists-p "~/.emacs.d/.cache/pyim-bigdict.pyim.gz")
-    (url-copy-file "http://tumashu.github.io/pyim-bigdict/pyim-bigdict.pyim.gz" "~/.emacs.d/.cache/pyim-bigdict.pyim.gz" t)
-    )
-  (require 'pyim-basedict)
+  ;; (unless (file-exists-p "~/.emacs.d/.cache/pyim-bigdict.pyim.gz")
+  ;;   (url-copy-file "http://tumashu.github.io/pyim-bigdict/pyim-bigdict.pyim.gz" "~/.emacs.d/.cache/pyim-bigdict.pyim.gz" t)
+  ;;   )
+  ;; (require 'pyim-basedict)
   (setq-default pyim-dicts
                 (quote
-                 ((:name "词库1" :file "/home/xhyang/.emacs.d/private/local/pyim-greatdict.pyim.gz")
-                  (:name "词库2" :file "~/.emacs.d/.cache/pyim-bigdict.pyim.gz"))))
-  (pyim-basedict-enable)
+                 ((:name "中国高等院校" :file "/home/xhyang/.emacs.d/private/local/中国高等院校.pyim")
+                  (:name "动物词汇大全" :file "/home/xhyang/.emacs.d/private/local/动物词汇大全.pyim")
+                  (:name "基础词库" :file "/home/xhyang/.emacs.d/private/local/基础词库.pyim")
+                  (:name "网络流行新词" :file "/home/xhyang/.emacs.d/private/local/网络流行新词.pyim")
+                  (:name "药品名称大全" :file "/home/xhyang/.emacs.d/private/local/药品名称大全.pyim")
+                  (:name "计算机词汇大全" :file "/home/xhyang/.emacs.d/private/local/计算机词汇大全.pyim")
+                  (:name "饮食大全" :file "/home/xhyang/.emacs.d/private/local/饮食大全.pyim"))))
+
+  ;; (pyim-basedict-enable)
 
   (setq-default pyim-english-input-switch-functions
                 '(pyim-probe-dynamic-english pyim-probe-org-speed-commands pyim-probe-program-mode))
