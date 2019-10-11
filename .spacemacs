@@ -116,7 +116,8 @@ values."
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-rtags-completion nil
-            c-c++-backend 'lsp-ccls
+            c-c++-backend 'lsp
+            c-c++-lsp-server 'ccls
             c-c++-adopt-subprojects t
             c-c++-lsp-executable (file-truename "~/src/ccls/Release/ccls")
             c-c++-lsp-cache-dir ".cquery_cached_index"
