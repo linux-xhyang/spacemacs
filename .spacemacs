@@ -56,8 +56,8 @@ values."
      ;;slack
      git
      cmake
-     chrome
-     confluence
+     ;;chrome
+     ;;confluence
      (plantuml :variables
                plantuml-jar-path "~/.emacs.d/plantuml.jar"
                org-plantuml-jar-path "~/.emacs.d/plantuml.jar")
@@ -84,7 +84,7 @@ values."
           lsp-ui-sideline-enable t)
      shell-scripts
      emacs-lisp
-     common-lisp
+     ;;common-lisp
      groovy
      html
      javascript
@@ -116,7 +116,7 @@ values."
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-rtags-completion nil
-            c-c++-backend 'lsp
+            c-c++-backend 'lsp-ccls
             c-c++-lsp-server 'ccls
             c-c++-adopt-subprojects t
             c-c++-lsp-executable (file-truename "~/src/ccls/Release/ccls")
@@ -165,7 +165,7 @@ values."
      ;; ome-ccl
      ;; ome-realgud
      ;; ome-ggtags
-     ome-systemtap
+     ;; ome-systemtap
      ome-gui
      ;;autopair
      doxymacs

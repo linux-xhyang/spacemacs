@@ -69,12 +69,15 @@
         'company-indent-for-tab-command)
       (define-key c-mode-map [remap c-indent-line-or-region]
         'company-indent-for-tab-command)
+
       (define-key java-mode-map [remap c-indent-line-or-region]
         'company-indent-for-tab-command)
+
       (require 'kotlin-mode)
       (define-key kotlin-mode-map [remap c-indent-line-or-region]
         'company-indent-for-tab-command)
       )
+
 
     (defun company-indent-for-tab-command (&optional arg)
       (interactive "P")
@@ -95,10 +98,10 @@
             (gradle (if (projectile-locate-dominating-file default-directory ".project")
                         (projectile-locate-dominating-file default-directory ".project")
                       (projectile-locate-dominating-file default-directory "build.gradle"))))
-            (if root
-                (set (make-local-variable 'projectile-project-root) root)
-              (set (make-local-variable 'projectile-project-root) gradle)
-              )))
+        (if root
+            (set (make-local-variable 'projectile-project-root) root)
+          (set (make-local-variable 'projectile-project-root) gradle)
+          )))
 
     ;; (with-eval-after-load 'lsp-java
     ;;   (lsp--client-multi-root (gethash 'jdtls lsp-clients))
