@@ -42,28 +42,28 @@ This is part of [[https://github.com/xiaohanyu/oh-my-emacs][oh-my-emacs]].
 
 * buffer read only default
   #+BEGIN_SRC emacs-lisp
-    (defun check-file-name ( filename )
-      (cond ((or (string= filename ".ido.last")
-             (string= filename "COMMIT_EDITMSG")
-             (string= filename ".spacemacs")
-             (string= filename "bookmark"))
-       t)
-      ((string-match "\\.\\(org\\|html\\|org_archive\\)$" filename )
-       t)
-      ((string-match "\\.\\(el\\)$" filename )
-       t)
-      ((string-match "\\.\\(json\\)$" filename )
-       t)
-      ((string-match "bookmarks" filename )
-       t)
-      (nil)))
+    ;; (defun check-file-name ( filename )
+    ;;   (cond ((or (string= filename ".ido.last")
+    ;;          (string= filename "COMMIT_EDITMSG")
+    ;;          (string= filename ".spacemacs")
+    ;;          (string= filename "bookmark"))
+    ;;    t)
+    ;;   ((string-match "\\.\\(org\\|html\\|org_archive\\)$" filename )
+    ;;    t)
+    ;;   ((string-match "\\.\\(el\\)$" filename )
+    ;;    t)
+    ;;   ((string-match "\\.\\(json\\)$" filename )
+    ;;    t)
+    ;;   ((string-match "bookmarks" filename )
+    ;;    t)
+    ;;   (nil)))
 
-    (add-hook 'find-file-hook
-        (lambda ()
-          (when (file-exists-p (file-name-nondirectory buffer-file-name))
-            (if (check-file-name (file-name-nondirectory buffer-file-name))
-          nil
-        (toggle-read-only t)))))
+    ;; (add-hook 'find-file-hook
+    ;;     (lambda ()
+    ;;       (when (file-exists-p (file-name-nondirectory buffer-file-name))
+    ;;         (if (check-file-name (file-name-nondirectory buffer-file-name))
+    ;;       nil
+    ;;     (toggle-read-only t)))))
   #+END_SRC
 
 * Double-Mouse-1 selects text and symbol in Emacs

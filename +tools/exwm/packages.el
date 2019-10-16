@@ -38,6 +38,7 @@
     (setq use-dialog-box nil)
     ;; 10 Worskpaces please
     (setq exwm-workspace-number 1)
+    (setq exwm-workspace-show-all-buffers t)
     ;; You may want Emacs to show you the time
     (display-time-mode t)
     (when exwm--hide-tiling-modeline

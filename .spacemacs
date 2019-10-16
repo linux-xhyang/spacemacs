@@ -53,7 +53,9 @@ values."
      better-defaults
      gtags
      dash
-     ivy
+     ;;ivy
+     helm
+     ;;exwm
      ;;slack
      git
      cmake
@@ -168,7 +170,6 @@ values."
      ;; ome-ggtags
      ;; ome-systemtap
      ome-gui
-     exwm
      ;;autopair
      doxymacs
      ;; ome-opengrok
