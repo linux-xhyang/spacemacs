@@ -80,7 +80,7 @@ values."
      (chinese :variables
               chinese-enable-youdao-dict t
               chinese-default-input-method 'pinyin)
-     ;;semantic
+     semantic
      dap
      pdf
      (lsp :variables
@@ -117,6 +117,8 @@ values."
              go-backend 'lsp
              godoc-at-point-function 'godoc-gogetdoc)
      (c-c++ :variables
+            c-c++-lsp-sem-highlight-method 'font-lock
+            c-c++-lsp-sem-highlight-rainbow t
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-rtags-completion nil
             c-c++-backend 'lsp-ccls
