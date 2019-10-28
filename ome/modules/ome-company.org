@@ -74,6 +74,10 @@
         'company-indent-for-tab-command)
 
       (require 'kotlin-mode)
+      (require 'js)
+      (add-hook 'kotlin-mode-hook (lambda ()
+                                   (setq indent-line-function 'js-indent-line)
+                                   ))
       (define-key kotlin-mode-map [remap c-indent-line-or-region]
         'company-indent-for-tab-command)
       )
