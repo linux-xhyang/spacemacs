@@ -127,6 +127,7 @@ values."
             c-c++-enable-google-style t)
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete
+                      auto-completion-use-company-box 't
                       auto-completion-tab-key-behavior 'cycle
                       auto-completion-complete-with-key-sequence nil
                       auto-completion-complete-with-key-sequence-delay 0.1
