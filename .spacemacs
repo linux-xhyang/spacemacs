@@ -146,6 +146,7 @@ values."
      ;; ome-projectile
      ;; ome-prepare
      ome
+     ome-org
      ;; ome-java
      ;; ome-groovy
      ome-git
