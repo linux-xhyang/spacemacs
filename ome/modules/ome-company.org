@@ -135,5 +135,5 @@
     ;;   (add-hook 'lsp-before-initialize-hook 'gradle-or-maven-hook)
     ;;   )
 
-    (add-hook 'java-mode-hook 'get-java-project-root)
+    ;;(add-hook 'java-mode-hook 'get-java-project-root)
   #+END_SRC

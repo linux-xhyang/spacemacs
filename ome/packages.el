@@ -35,7 +35,6 @@
     exec-path-from-shell
     lsp-mode
     company-box
-    company
     (company-tabnine :requires company)
     ))
 

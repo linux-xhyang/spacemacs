@@ -1,19 +1,8 @@
 
 (setq ome-gui-packages
       '(
-        all-the-icons
         ov
         ))
-
-(defun ome-gui/init-all-the-icons ()
-  "Initialize my package"
-  (use-package all-the-icons
-    :defer t
-    :init
-    (progn
-      (require 'all-the-icons)
-      (require 'powerline)
-      )))
 
 (defun org-latex-fragment-tooltip (beg end image imagetype)
   "Add the fragment tooltip to the overlay and set click function to toggle it."

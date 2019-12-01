@@ -607,6 +607,7 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-enable-completion-at-point nil)
  '(lsp-enable-indentation nil)
  '(lsp-enable-file-watchers nil)
+ '(lsp-kotlin-external-sources-use-kls-scheme nil)
  '(lsp-file-watch-ignored
    (quote
     ("[/\\\\]\\.git$" "[/\\\\]\\.hg$" "[/\\\\]\\.bzr$" "[/\\\\]_darcs$" "[/\\\\]\\.svn$" "[/\\\\]_FOSSIL_$" "[/\\\\]\\.idea$" "[/\\\\]\\.ensime_cache$" "[/\\\\]\\.eunit$" "[/\\\\]node_modules$" "[/\\\\]\\.fslckout$" "[/\\\\]\\.tox$" "[/\\\\]\\.stack-work$" "[/\\\\]\\.bloop$" "[/\\\\]\\.metals$" "[/\\\\]target$" "[/\\\\]\\.deps$" "[/\\\\]build-aux$" "[/\\\\]autom4te.cache$" "[/\\\\]\\.meghanada$" "[/\\\\]\\.reference$" "[/\\\\]\\.cquery_cached_index$" "[/\\\\]\\.ccls-cache$" "[/\\\\]\\.repo$")))
