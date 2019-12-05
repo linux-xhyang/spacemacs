@@ -6,9 +6,9 @@
 
 (require 'package)
 (setq package-archives '(
-       ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-       ("org"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-       ("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
+       ("melpa-cn" . "http://mirrors.cloud.tencent.com/elpa/melpa/")
+       ("org-cn"   . "http://mirrors.cloud.tencent.com/elpa/org/")
+       ("gnu-cn"   . "http://mirrors.cloud.tencent.com/elpa/gnu/")))
 
 ;(setq package-archives
 ;      '(("melpa-cn" . "https://elpa.emacs-china.org/melpa/")
