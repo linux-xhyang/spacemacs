@@ -2,7 +2,24 @@
 (setq ome-gui-packages
       '(
         ov
+        (liberime-config :location(recipe
+                                   :fetcher github
+                                   :repo "xhcoding/liberime"
+                                   :files ("CMakeLists.txt" "Makefile" "src" "liberime-config.el")))
         ))
+
+(defun ome-gui/init-liberime-config ()
+   "docstring"
+   (use-package liberime-config
+     :init
+     (add-hook 'after-liberime-load-hook
+               (lambda ()
+                 (require 'liberime-config)
+                 (liberime-select-schema "luna_pinyin_simp")
+                 ;;(liberime-get-schema-list)
+                 (setq default-input-method "pyim")
+                 (setq pyim-default-scheme 'rime)
+                 ))))
 
 (defun org-latex-fragment-tooltip (beg end image imagetype)
   "Add the fragment tooltip to the overlay and set click function to toggle it."
