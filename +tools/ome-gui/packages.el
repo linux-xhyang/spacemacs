@@ -2,10 +2,8 @@
 (setq ome-gui-packages
       '(
         ov
-        (liberime-config :location(recipe
-                                   :fetcher github
-                                   :repo "xhcoding/liberime"
-                                   :files ("CMakeLists.txt" "Makefile" "src" "liberime-config.el")))
+        (liberime-config :location (recipe :fetcher github :repo "merrickluo/liberime"
+                                           :files ("CMakeLists.txt" "Makefile" "src" "liberime-config.el")))
         ))
 
 (defun ome-gui/init-liberime-config ()
@@ -14,7 +12,7 @@
      :init
      (add-hook 'after-liberime-load-hook
                (lambda ()
-                 (require 'liberime-config)
+                 (liberime-start "/usr/share/rime-data/" (file-truename "~/.emacs.d/pyim/rime/"))
                  (liberime-select-schema "luna_pinyin_simp")
                  ;;(liberime-get-schema-list)
                  (setq default-input-method "pyim")
