@@ -572,6 +572,7 @@ This function is called at the very end of Spacemacs initialization."
    (quote
     ("compile_commands.json" ".cquery" "build/compile_commands.json" projectile-project-root)))
  ;;'(default-input-method "pyim")
+ '(pyim-page-tooltip 'posframe)
  '(ein:complete-on-dot t)
  '(ein:completion-backend (quote ein:use-company-backend))
  '(ein:use-auto-complete-superpack t)

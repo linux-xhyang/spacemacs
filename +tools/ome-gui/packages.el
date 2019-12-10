@@ -2,22 +2,33 @@
 (setq ome-gui-packages
       '(
         ov
+        posframe
         (liberime-config :location (recipe :fetcher github :repo "merrickluo/liberime"
                                            :files ("CMakeLists.txt" "Makefile" "src" "liberime-config.el")))
         ))
+
+(defun ome-gui/init-posframe ()
+   (use-package liberime-config
+     :init
+     (require 'posframe)
+    ))
 
 (defun ome-gui/init-liberime-config ()
    "docstring"
    (use-package liberime-config
      :init
-     (add-hook 'after-liberime-load-hook
-               (lambda ()
-                 (liberime-start "/usr/share/rime-data/" (file-truename "~/.emacs.d/pyim/rime/"))
-                 (liberime-select-schema "luna_pinyin_simp")
-                 ;;(liberime-get-schema-list)
-                 (setq default-input-method "pyim")
-                 (setq pyim-default-scheme 'rime)
-                 ))))
+     (progn
+       (setq liberime-user-data-dir (file-truename "~/.emacs.d/private/pyim/rime/"))
+       (add-hook 'after-liberime-load-hook
+                 (lambda ()
+                   (liberime-start "/usr/share/rime-data/" liberime-user-data-dir)
+                   (liberime-select-schema "luna_pinyin_fluency")
+                   ;;(liberime-get-schema-list)
+                   (setq pyim-page-length 9)
+                   (setq default-input-method "pyim")
+                   (setq pyim-default-scheme 'rime)
+                   ))))
+       )
 
 (defun org-latex-fragment-tooltip (beg end image imagetype)
   "Add the fragment tooltip to the overlay and set click function to toggle it."
