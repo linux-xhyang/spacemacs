@@ -55,6 +55,7 @@ values."
      dash
      ;;ivy
      helm
+     xclipboard
      ;;exwm
      ;;slack
      git
