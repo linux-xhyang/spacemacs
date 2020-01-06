@@ -313,7 +313,7 @@ shell but not in Emacs. Thus you cannot install some el-get packages such as
 * java semantic-mode
 
   #+BEGIN_SRC emacs-lisp
-    (add-hook 'java-mode-hook 'semantic-mode)
+    ;;(add-hook 'java-mode-hook 'semantic-mode)
   #+END_SRC
 
 * init env
