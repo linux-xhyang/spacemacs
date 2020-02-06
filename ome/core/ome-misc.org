@@ -339,3 +339,17 @@ shell but not in Emacs. Thus you cannot install some el-get packages such as
     (add-hook 'org-mode-hook #'add-pcomplete-to-capf)
 
   #+end_src
+
+* org utils
+  #+begin_src emacs-lisp
+    (defun org-clock-persist-save-file ()
+      (if (equal 'windows-nt system-type)
+          (if (file-exists-p "D:/note/my-org.el")
+              "D:/note/org-clock-save.el"
+            "~/.emacs.d/org-clock-save.el"
+            )
+        (if (file-exists-p "~/note/my-org.el")
+            "~/note/org-clock-save.el"
+          "~/.emacs.d/org-clock-save.el"
+          )))
+  #+end_src

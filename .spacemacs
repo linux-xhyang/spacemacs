@@ -399,16 +399,6 @@ in `dotspacemacs/user-config'."
                 '((which-function-mode ("" which-func-format " "))))
   (which-function-mode 1)
   (setq spaceline-org-clock-p t)
-  (defun org-clock-persist-save-file ()
-    (if (equal 'windows-nt system-type)
-        (if (file-exists-p "D:/note/my-org.el")
-            "D:/note/org-clock-save.el"
-          "~/.emacs.d/org-clock-save.el"
-          )
-      (if (file-exists-p "~/note/my-org.el")
-          "~/note/org-clock-save.el"
-        "~/.emacs.d/org-clock-save.el"
-        )))
   ;;debug
   ;;(toggle-debug-on-quit)
   ;;https://github.com/dholm/benchmark-init-el.git
