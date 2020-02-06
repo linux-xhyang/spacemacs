@@ -19,15 +19,17 @@
      :init
      (progn
        (setq liberime-user-data-dir (file-truename "~/.emacs.d/private/pyim/rime/"))
+       (setq pyim-page-length 9)
+       (setq default-input-method "pyim")
+       (setq pyim-default-scheme 'rime)
        (add-hook 'after-liberime-load-hook
                  (lambda ()
                    (liberime-start "/usr/share/rime-data/" liberime-user-data-dir)
                    (liberime-select-schema "luna_pinyin_fluency")
                    ;;(liberime-get-schema-list)
-                   (setq pyim-page-length 9)
-                   (setq default-input-method "pyim")
-                   (setq pyim-default-scheme 'rime)
-                   ))))
+                   ))
+       (require 'liberime-config)
+       ))
        )
 
 (defun org-latex-fragment-tooltip (beg end image imagetype)
