@@ -548,20 +548,7 @@ This function is called at the very end of Spacemacs initialization."
  '(company-minimum-prefix-length 3)
  '(company-selection-wrap-around t)
  '(company-show-numbers t)
- '(cquery-cache-dir-function
-   (function
-    (lambda
-      (dir)
-      (expand-file-name cquery-cache-dir
-                        (if
-                            (cquery--suggest-project-root)
-                            (cquery--suggest-project-root)
-                          (projectile-project-root dir))))))
  '(ccls-args (list (concat "--log-file=" (expand-file-name "~/ccls.log"))))
- '(cquery-project-root-matchers
-   (quote
-    ("compile_commands.json" ".cquery" "build/compile_commands.json" projectile-project-root)))
- ;;'(default-input-method "pyim")
  '(pyim-page-tooltip 'posframe)
  '(ein:complete-on-dot t)
  '(ein:completion-backend (quote ein:use-company-backend))
@@ -581,6 +568,7 @@ This function is called at the very end of Spacemacs initialization."
  '(global-semantic-highlight-func-mode t)
  '(global-semantic-idle-local-symbol-highlight-mode nil nil (semantic/idle))
  '(global-semantic-stickyfunc-mode t)
+ '(android-compilation-no-buildenv-warning nil)
  '(helm-grep-default-command "grep --color=always -a -d recurse %e -n%cH -e %p %f")
  '(helm-gtags-path-style (quote relative))
  '(helm-input-idle-delay 0.1)
@@ -672,7 +660,7 @@ This function is called at the very end of Spacemacs initialization."
  '(projectile-enable-caching t)
  '(projectile-project-root-files-bottom-up
    (quote
-    (".cquery" "compile_commands.json" ".projectile" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs")))
+    ("compile_commands.json" ".git" ".projectile" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs")))
  '(projectile-project-root-files-top-down-recurring
    (quote
     (".svn" "CVS" "Makefile" ".git" ".cquery" "compile_commands.json")))
