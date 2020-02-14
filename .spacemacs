@@ -541,8 +541,7 @@ This function is called at the very end of Spacemacs initialization."
                                                  "-mrecord-mcount" "-mindirect-branch=thunk-extern" "-mno-fp-ret-in-387" "-mskip-rax-setup" "-fno-strict-aliasing" "-fno-common" "-fno-PIE" "-fno-PIE" "-fno-dwarf2-cfi-asm"
                                                  "-fno-omit-frame-pointer" "-fno-ipa-sra" "-funwind-tables" "-march=armv8-a" "-march=armv7-a"
                                                  "--param=allow-store-data-races=0" "-Wa arch/x86/kernel/macros.s" "-Wa -"]
-                                                :extraArgs ["--gcc-toolchain=/usr"]
-                                                :pathMappings ,+ccls-path-mappings)))
+                                                :extraArgs ["--gcc-toolchain=/usr"])))
  '(company-auto-complete t)
  '(company-auto-complete-chars (quote (32 95 41 46 34 39 60 62)))
  '(company-idle-delay 5)
@@ -608,7 +607,7 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-java-import-maven-enabled nil)
  '(lsp-java-vmargs
    (quote
-    ("-noverify" "-Xmx2G" "-XX:+UseG1GC" "-XX:+UseStringDeduplication")))
+    ("-noverify" "-Xmx1G" "-XX:+UseG1GC" "-XX:+UseStringDeduplication")))
  '(lsp-java-jdt-download-url
    "https://mirrors.tuna.tsinghua.edu.cn/eclipse/jdtls/snapshots/jdt-language-server-latest.tar.gz")
  ;;"https://ftp.yzu.edu.tw/eclipse/che/che-ls-jdt/snapshots/che-jdt-language-server-latest.tar.gz"

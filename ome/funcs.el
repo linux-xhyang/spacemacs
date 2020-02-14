@@ -42,5 +42,18 @@ candidates will be from company-tabnine, others keeping their own origin order."
              (seq-take candidates-2 2)
              (seq-drop candidates-1 2)
              (seq-drop candidates-2 2)))))
+(defun my-update-env (fn)
+  (let ((str
+         (with-temp-buffer
+           (insert-file-contents fn)
+           (buffer-string))) lst)
+    (setq lst (split-string str "\000"))
+    (while lst
+      (setq cur (car lst))
+      (when (string-match "^\\(.*?\\)=\\(.*\\)" cur)
+        (setq var (match-string 1 cur))
+        (setq value (match-string 2 cur))
+        (setenv var value))
+      (setq lst (cdr lst)))))
 
 ;;; funcs.el ends here
