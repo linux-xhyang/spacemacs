@@ -83,6 +83,11 @@ values."
               chinese-default-input-method 'pinyin)
      semantic
      dap
+     (clojure :variables
+              clojure-enable-linters 'clj-kondo
+              clojure-enable-sayid t
+              clojure-enable-clj-refactor t
+              )
      pdf
      (lsp :variables
           lsp-ui-sideline-enable t)
@@ -582,6 +587,7 @@ This function is called at the very end of Spacemacs initialization."
  '(jit-lock-stealth-time 16)
  '(kotlin-tab-width 4)
  '(large-file-warning-threshold 10000)
+ '(lsp-clojure-server-command '("bash" "-c" "~/src/clojure-lsp/target/clojure-lsp"))
  '(lsp-auto-guess-root t)
  '(lsp-before-save-edits nil)
  '(lsp-enable-completion-at-point nil)
@@ -614,7 +620,6 @@ This function is called at the very end of Spacemacs initialization."
    (quote
     ("--ignore-all-space" "--no-ext-diff" "--diff-algorithm=default")))
  '(mouse-wheel-scroll-amount (quote (2)))
- '(org-clock-persist-file (org-clock-persist-save-file) t)
  '(org-emphasis-alist
    (quote
     (("*" bold)
