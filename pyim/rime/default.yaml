@@ -1,7 +1,7 @@
 __build_info:
   rime_version: 1.5.3
   timestamps:
-    default: 1582025542
+    default: 1406395279
     default.custom: 0
 ascii_composer:
   good_old_caps_lock: true
@@ -124,8 +124,10 @@ recognizer:
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]+[.].+$"
 schema_list:
   - schema: luna_pinyin
+  # - schema: cangjie5
   - schema: luna_pinyin_fluency
   - schema: luna_pinyin_simp
+  # - schema: luna_pinyin_tw
 switcher:
   abbreviate_options: true
   caption: "〔切换输入方案〕〕"
