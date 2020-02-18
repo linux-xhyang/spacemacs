@@ -1,7 +1,7 @@
 __build_info:
   rime_version: 1.5.3
   timestamps:
-    default: 1406395279
+    default: 1582025542
     default.custom: 0
     luna_pinyin_fluency.custom: 0
     luna_pinyin_fluency.schema: 1406395265
@@ -74,7 +74,7 @@ key_binder:
     - {accept: "Control+period", toggle: ascii_punct, when: always}
   import_preset: default
 menu:
-  page_size: 9
+  page_size: 100
 punctuator:
   full_shape:
     " ": {commit: "　"}
@@ -324,8 +324,8 @@ switches:
   - name: full_shape
     states: ["半角", "全角"]
   - name: simplification
-    reset: 1
     states: ["漢字", "汉字"]
+    reset: 1
   - name: ascii_punct
     states: ["。，", "．，"]
 translator:
