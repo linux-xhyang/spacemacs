@@ -146,6 +146,8 @@ values."
                                                            company-files
                                                            company-dabbrev)
                       )
+
+     (deft :variables deft-zetteldeft t)
      ;; version-control ;;not user for git gutter
      android-mode
      ;; ome-projectile
@@ -177,7 +179,37 @@ values."
    ;; dotspacemacs-additional-packages '(
    ;;                                    (ggtags :location (recipe :fetcher github :repo "linux-xhyang/ggtags")))
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(
+                                    magit-gh-pulls
+                                    magit-gitflow
+                                    evil-mc
+                                    skewer-mode
+                                    vi-tilde-fringe
+                                    coffee-mode
+                                    ace-jump-helm-line
+                                    evil-tutor
+                                    eyebrowse
+                                    stickyfunc-enhance
+                                    smooth-scrolling
+                                    org-repo-todo
+                                    chinese-wbim
+                                    spaceline
+                                    ;; i prefer iedit
+                                    multiple-cursors
+                                    ;; disable it for lispy-mode
+                                    ;;https://github.com/abo-abo/lispy/issues/137
+                                    evil-escape
+                                    ;;At first, I should disable hydra in zilongshanren layer and install clj-refactor, after it is installed.
+                                    ;; I could re-enable it again in zilongshanren layer.
+                                    ;; clj-refactor
+                                    ;;remove from spacemacs distribution
+                                    ;; neotree
+                                    leuven-theme
+                                    gh-md
+                                    evil-lisp-state
+                                    spray
+                                    doc-view
+                                    lorem-ipsum)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -423,6 +455,9 @@ layers configuration. You are free to put any user code."
   (global-set-key (kbd "M-i") 'pyim-convert-string-at-point)
 
   (load-file (concat user-emacs-directory "private/init.el"))
+  (setq deft-directory "~/note")
+  (setq deft-recursive t)
+  (setq deft-extensions '("org" "md" "txt"))
   (add-hook 'org-mode-hook 'spacemacs/toggle-spelling-checking-on)
   (add-hook 'nroff-mode-hook 'spacemacs/toggle-spelling-checking-on)
   (add-hook 'js2-mode-hook 'spacemacs/toggle-spelling-checking-off)
