@@ -5,6 +5,7 @@
         posframe
         (liberime-config :location (recipe :fetcher github :repo "merrickluo/liberime"
                                            :files ("CMakeLists.txt" "Makefile" "src" "liberime-config.el")))
+        (clipetty :location (recipe :fetcher github :repo "spudlyo/clipetty"))
         ))
 
 (defun ome-gui/init-posframe ()
@@ -31,6 +32,12 @@
        (require 'liberime-config)
        ))
        )
+(defun ome-gui/init-clipetty ()
+  "docstring"
+  (use-package clipetty
+    :ensure t
+    :hook (after-init . global-clipetty-mode))
+  )
 
 (defun org-latex-fragment-tooltip (beg end image imagetype)
   "Add the fragment tooltip to the overlay and set click function to toggle it."
