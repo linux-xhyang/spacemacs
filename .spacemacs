@@ -717,5 +717,6 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
- '(which-func ((t (:foreground "white smoke")))))
+ '(which-func ((t (:foreground "white smoke"))))
+ '(region ((t (:background "green" :foreground "black")))))
 )
