@@ -701,6 +701,7 @@ This function is called at the very end of Spacemacs initialization."
  '(sr-speedbar-skip-other-window-p t)
  '(tab-always-indent (quote complete))
  '(tab-width 4)
+ '(clipetty-assume-nested-mux t)
  '(tramp-syntax (quote default) nil (tramp))
  '(vc-handled-backends (quote (git RCS CVS SVN SCCS SRC Bzr Hg Mtn)))
  '(vlf-application (quote ask))
