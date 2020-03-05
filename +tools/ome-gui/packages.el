@@ -6,6 +6,7 @@
         (liberime-config :location (recipe :fetcher github :repo "merrickluo/liberime"
                                            :files ("CMakeLists.txt" "Makefile" "src" "liberime-config.el")))
         (clipetty :location (recipe :fetcher github :repo "spudlyo/clipetty"))
+        magit
         ))
 
 (defun ome-gui/init-posframe ()
@@ -102,3 +103,15 @@ JUSTIFICATION is a symbol for 'left, 'center or 'right."
         (advice-add 'org--format-latex-make-overlay :after 'org-latex-fragment-justify-advice))
       ))
   )
+
+(defun ome-gui/init-magit ()
+  (use-package magit
+    :defer t
+    :init
+    (progn
+      (with-eval-after-load 'magit-mode
+        (message "hahahahaha")
+        (require 'magit-mode)
+        (require 'ivy)
+        (pretty-magit-setup)
+        ))))
