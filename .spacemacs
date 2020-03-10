@@ -485,7 +485,7 @@ layers configuration. You are free to put any user code."
   (setq mu4e-maildir "~/Maildir"
         mu4e-trash-folder "/Trash"
         mu4e-refile-folder "/Archive"
-        mu4e-get-mail-command "offlineimap"
+        mu4e-get-mail-command "offlineimap -u quiet"
         mu4e-update-interval 60
         mu4e-compose-signature-auto-include nil
         mu4e-view-show-images t
