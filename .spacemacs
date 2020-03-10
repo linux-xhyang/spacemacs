@@ -88,6 +88,14 @@ values."
               clojure-enable-clj-refactor t
               )
      pdf
+     (mu4e :variables
+           mu4e-installation-path "/usr/local/share/emacs/site-lisp/"
+           ;;mu4e-use-maildirs-extension t
+           mu4e-enable-async-operations t
+           mu4e-enable-notifications t
+           mu4e-spacemacs-layout-name "@Mu4e"
+           mu4e-spacemacs-layout-binding "m"
+           mu4e-spacemacs-kill-layout-on-exit t)
      (lsp :variables
           lsp-ui-sideline-enable t)
      shell-scripts
@@ -473,6 +481,34 @@ layers configuration. You are free to put any user code."
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   ;;(setq alert-default-style 'notifications)
   (setq alert-default-style 'libnotify)
+
+  (setq mu4e-maildir "~/Maildir"
+        mu4e-trash-folder "/Trash"
+        mu4e-refile-folder "/Archive"
+        mu4e-get-mail-command "offlineimap"
+        mu4e-update-interval 60
+        mu4e-compose-signature-auto-include nil
+        mu4e-view-show-images t
+        mu4e-view-show-addresses t)
+
+  ;;; Mail directory shortcuts
+  (setq mu4e-maildir-shortcuts
+        '(("/INBOX" . ?g)
+          ))
+
+  ;;; Bookmarks
+  (setq mu4e-bookmarks
+        `(("flag:unread AND NOT flag:trashed" "Unread messages" ?u)
+          ("date:today..now" "Today's messages" ?t)
+          ("date:7d..now" "Last 7 days" ?w)
+          ("mime:image/*" "Messages with images" ?p)
+          (,(mapconcat 'identity
+                       (mapcar
+                        (lambda (maildir)
+                          (concat "maildir:" (car maildir)))
+                        mu4e-maildir-shortcuts) " OR ")
+           "All inboxes" ?i)))
+
   (server-start)
   (dotspacemacs/emacs-custom-settings)
   )
