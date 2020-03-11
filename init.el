@@ -1,8 +1,3 @@
-
-
-(setq user-full-name "xhyang"
-      user-mail-address "linux.xhyang@gmail.com")
-
 (setq frame-title-format "%f@xhyang")
 
 (ome-load "core/ome-gui.org")
