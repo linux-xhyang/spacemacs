@@ -35,6 +35,7 @@
     exec-path-from-shell
     lsp-mode
     company-box
+    ob-ipython
     (company-tabnine :requires company)
     ))
 
@@ -159,7 +160,16 @@
             (unless (string-match "The free version of TabNine only indexes up to" (funcall company-message-func))
               ad-do-it))))
       )
-  ))
+    ))
+
+(defun ome/init-ob-ipython ()
+  "docstring"
+  (use-package ob-ipython
+    :defer t
+    :config
+    (require 'ob-ipython)
+    ))
+
 ;; (defun ome/init-nlinum()
 ;;   (use-package nlinum
 ;;     :config

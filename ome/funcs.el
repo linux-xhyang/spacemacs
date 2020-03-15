@@ -9,10 +9,11 @@
 ;;
 ;;; License: GPLv3
 
-(defun tabnine//merge-company-tabnine-to-company-lsp ()
+(defun tabnine//merge-company-tabnine-to-company-lsp (&optional arg)
   (when (memq 'company-lsp company-backends)
-    (setq-local company-backends (remove 'company-lsp company-backends))
-    (add-to-list 'company-backends '(company-lsp :with company-tabnine :separate)))
+    (progn
+      (setq-local company-backends (remove 'company-lsp company-backends))
+      (add-to-list 'company-backends '(company-lsp :with company-tabnine :separate))))
   )
 
 (defun tabnine//company-box-icons--tabnine (candidate)

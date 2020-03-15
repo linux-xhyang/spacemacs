@@ -45,6 +45,9 @@ values."
      ;; ----------------------------------------------------------------
      ;;nlinum
      debug
+     (lsp :variables
+          lsp-ui-sideline-enable t
+          lsp-remap-xref-keybindings t)
      (spell-checking :variables
                      spell-checking-enable-by-default nil)
      (syntax-checking :variables
@@ -96,8 +99,6 @@ values."
            mu4e-spacemacs-layout-name "@Mu4e"
            mu4e-spacemacs-layout-binding "m"
            mu4e-spacemacs-kill-layout-on-exit t)
-     (lsp :variables
-          lsp-ui-sideline-enable t)
      shell-scripts
      emacs-lisp
      ;;common-lisp
@@ -121,8 +122,13 @@ values."
              python-auto-set-local-pyvenv-virtualenv 'on-visit ;;'on-project-switch
              python-enable-yapf-format-on-save t
              python-fill-column 99
+             python-formatter 'yapf
+             python-format-on-save t
              python-sort-imports-on-save t
-             python-backend 'lsp) ;;anaconda
+             python-pipenv-activate t
+             python-backend 'lsp
+             python-lsp-server 'mspyls
+             python-lsp-git-root "~/src/python-language-server")
      ipython-notebook
      (go :variables
              go-use-gometalinter t
@@ -156,7 +162,11 @@ values."
                       )
 
      (deft :variables deft-zetteldeft t)
-     ;; version-control ;;not user for git gutter
+     (version-control :variables
+                      version-control-diff-tool 'diff-hl
+                      version-control-diff-side 'left
+                      version-control-global-margin t
+      )
      android-mode
      ;; ome-projectile
      ;; ome-prepare
@@ -164,7 +174,7 @@ values."
      ome-org
      ;; ome-java
      ;; ome-groovy
-     ome-git
+     ome-misc
      ome-kotlin
      ome-speedbar
      ;; ome-ecb
@@ -213,7 +223,9 @@ values."
                                     ;;remove from spacemacs distribution
                                     ;; neotree
                                     leuven-theme
+                                    anaconda-mode
                                     gh-md
+                                    git-gutter
                                     evil-lisp-state
                                     spray
                                     doc-view
@@ -699,7 +711,6 @@ This function is called at the very end of Spacemacs initialization."
    (quote
     (".svn" "CVS" "Makefile" ".git" ".cquery" "compile_commands.json")))
  '(projectile-require-project-root nil)
- '(python-shell-completion-native-enable nil)
  '(scroll-conservatively 100)
  '(semantic-idle-scheduler-idle-time 1)
  '(semantic-idle-scheduler-max-buffer-size 100000)

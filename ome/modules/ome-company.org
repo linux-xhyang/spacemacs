@@ -1,21 +1,6 @@
 
 #+TITLE: Company 配置
 
-* 下载、编译 ycmd
-  #+BEGIN_SRC sh
-    sudo apt-get install build-essential cmake python-dev -y
-    sudo apt-get install mono-xbuild -y
-    sudo apt-get install libmono-microsoft-build-tasks-v4.0-4.0-cil -y
-    sudo apt-get install mono-dmcs -y
-    git clone https://github.com/Valloric/ycmd.git
-    cd ycmd
-    git submodule update --init --recursive
-    #need gcc version > 4.7 (due to c++11)
-    #./build.py --all
-    ./build.py --clang-completer  --enable-coverage
-    echo "export YCMD_PATH=`pwd`/ycmd" >> ~/.bashrc
-  #+END_SRC
-
 * 配置 company
   #+BEGIN_SRC emacs-lisp
     (defun ome/ome-python-version ()
@@ -79,6 +64,18 @@
     (defun company-complete-common-wrapper ()
       (let ((completion-at-point-functions completion-at-point-functions-saved))
         (company-complete-common)))
+
+    (defun company-yasnippet/disable-after-dot (fun command &optional arg &rest _ignore)
+      (if (eq command 'prefix)
+          (let ((prefix (funcall fun 'prefix)))
+            (when (and prefix (not
+                               (eq
+                                (char-before (- (point) (length prefix)))
+                                ?.)))
+              prefix))
+        (funcall fun command arg)))
+
+    (advice-add #'company-yasnippet :around #'company-yasnippet/disable-after-dot)
 
     (ome-company/init-company)
   #+END_SRC
