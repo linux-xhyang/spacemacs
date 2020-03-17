@@ -1,0 +1,28 @@
+
+# default.custom.yaml, 全局生效
+patch:
+    "menu/page_size": 9      #这是之前增加的候选词数量。
+    schema_list:           #“输入选单”中激活的输入方案定义。
+     #  - schema: terra_pinyin
+        - schema: luna_pinyin
+        - schema: emoji
+        - schema: luna_pinyin_fluency
+     #  - schema: double_pinyin_mspy
+        - schema: luna_pinyin_simp
+     #  - schema: bopomofo
+     #  - schema: double_pinyin_flypy
+#下面定义“输入选单”的切换控
+    switcher:
+        abbreviate_options: true
+        caption: "〔切换输入方案〕"          #把默认的“方案選單”修改为了“切换”。
+        fold_options: true
+        hotkeys:
+            - "Control+grave"       #默认方案
+            - "Control+Shift+grave"   #默认方案
+            - F4
+        option_list_separator: "／"   #以下都为默认custom.yaml文件的默认配置，copy过来就可以。
+        save_options:
+            - full_shape
+            - ascii_punct
+            - simplification
+            - extended_charset

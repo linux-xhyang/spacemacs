@@ -3,36 +3,55 @@
       '(
         ov
         posframe
-        (liberime-config :location (recipe :fetcher github :repo "merrickluo/liberime"
-                                           :files ("CMakeLists.txt" "Makefile" "src" "liberime-config.el")))
+        (liberime :location (recipe :fetcher github :repo "merrickluo/liberime"
+                                    :files ("CMakeLists.txt" "Makefile" "src" "liberime*.el")))
+        (rime :location (recipe :fetcher github :repo "DogLooksGood/emacs-rime"))
         (clipetty :location (recipe :fetcher github :repo "spudlyo/clipetty"))
         magit
         ))
 
 (defun ome-gui/init-posframe ()
-   (use-package liberime-config
+   (use-package posframe
      :init
      (require 'posframe)
     ))
 
-(defun ome-gui/init-liberime-config ()
+(defun ome-gui/init-liberime ()
    "docstring"
-   (use-package liberime-config
+   (use-package liberime
      :init
      (progn
-       (setq liberime-user-data-dir (file-truename "~/.emacs.d/private/pyim/rime/"))
+       (require 'liberime)
+       (unless (file-exists-p (concat (liberime-get-library-directory)
+                                      "build/liberime-core"
+                                      module-file-suffix))
+         (liberime-build)))
+     :config
+     (progn
+       (require 'liberime)
+       (setq liberime-user-data-dir (file-truename "~/.emacs.d/private/pyim/rime"))
        (setq pyim-page-length 9)
        (setq pyim-default-scheme 'rime-quanpin)
        (setq default-input-method "pyim")
        (add-hook 'after-liberime-load-hook
                  (lambda ()
-                   (liberime-start "/usr/share/rime-data/" liberime-user-data-dir)
-                   (liberime-select-schema "luna_pinyin_fluency")
+                   (run-with-timer
+                    5 1
+                    (liberime-start)
+                    (liberime-select-schema "luna_pinyin_simp"))
                    ;;(liberime-get-schema-list)
                    ))
-       (require 'liberime-config)
-       ))
        )
+   ))
+
+(defun ome-gui/init-rime ()
+  "rime"
+  (use-package rime
+    :bind
+    (("C-\\" . 'rime-toggle))
+    :init
+    (setq rime-show-candidate 'posframe)))
+
 (defun ome-gui/init-clipetty ()
   "docstring"
   (use-package clipetty
