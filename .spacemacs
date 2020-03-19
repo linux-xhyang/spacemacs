@@ -91,6 +91,7 @@ values."
               clojure-enable-clj-refactor t
               )
      pdf
+     gnus
      (mu4e :variables
            mu4e-installation-path "/usr/local/share/emacs/site-lisp/"
            ;;mu4e-use-maildirs-extension t
@@ -670,6 +671,8 @@ This function is called at the very end of Spacemacs initialization."
      ("~" org-code verbatim)
      ("+"
       (:strike-through t)))))
+ '(org-html-table-default-attributes
+   '(:border "2" :cellspacing "0" :cellpadding "6" :rules "all" :frame "border"))
  '(org-latex-hyperref-template nil)
  '(org-latex-pdf-process
    (quote
