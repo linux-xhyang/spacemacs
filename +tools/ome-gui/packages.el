@@ -3,9 +3,8 @@
       '(
         ov
         posframe
-        (liberime :location (recipe :fetcher github :repo "merrickluo/liberime"
-                                    :files ("CMakeLists.txt" "Makefile" "src" "liberime*.el")))
-        (rime :location (recipe :fetcher github :repo "DogLooksGood/emacs-rime"))
+        (rime :location (recipe :fetcher github :repo "DogLooksGood/emacs-rime"
+                                :files ("Makefile" "lib.c" "rime*.el")))
         (clipetty :location (recipe :fetcher github :repo "spudlyo/clipetty"))
         magit
         ))
@@ -16,39 +15,29 @@
     (require 'posframe)
     ))
 
-(defun ome-gui/init-liberime ()
-  "docstring"
-  (use-package liberime
-    :init
-    (progn
-      (setq liberime-user-data-dir (file-truename "~/.emacs.d/private/pyim/rime"))
-      (setq pyim-page-length 9)
-      (setq pyim-default-scheme 'rime-quanpin)
-      (setq default-input-method "pyim")
-      (require 'liberime)
-
-      (add-hook 'after-liberime-load-hook
-                (lambda ()
-                  (run-with-timer
-                   5 1
-                   (liberime-start)
-                   (liberime-select-schema "luna_pinyin_fluency"))
-                  ;;(liberime-get-schema-list)
-                  ))
-      (unless (file-exists-p (concat (liberime-get-library-directory)
-                                     "build/liberime-core"
-                                     module-file-suffix))
-        (liberime-build))
-      )
-    ))
-
 (defun ome-gui/init-rime ()
   "rime"
   (use-package rime
     :bind
-    (("C-\\" . 'rime-toggle))
-    :init
-    (setq rime-show-candidate 'posframe)))
+    (("C-\\" . 'toggle-input-method))
+    :custom
+    (default-input-method "rime")
+    (rime-show-candidate 'posframe)
+    (rime-user-data-dir (file-truename "~/.emacs.d/private/pyim/rime"))
+    :config
+    (progn
+      (defadvice! +rime--posframe-display-result-a (args)
+        "给 `rime--posframe-display-result' 传入的字符串加一个全角空
+格，以解决 `posframe' 偶尔吃字的问题。"
+        :filter-args #'rime--posframe-display-result
+        (cl-destructuring-bind (result) args
+          (let ((newresult (if (string-blank-p result)
+                               result
+                             (concat result "　"))))
+            (list newresult))))
+      (setq rime-disable-predicates '(+rime-english-prober))
+      )
+    ))
 
 (defun ome-gui/init-clipetty ()
   "docstring"

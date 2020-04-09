@@ -199,6 +199,7 @@ values."
    ;;                                    (ggtags :location (recipe :fetcher github :repo "linux-xhyang/ggtags")))
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(
+                                    pyim
                                     magit-gh-pulls
                                     magit-gitflow
                                     evil-mc
@@ -471,9 +472,7 @@ This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (require 'url)
 
-  (setq-default pyim-english-input-switch-functions
-                '(pyim-probe-dynamic-english pyim-probe-org-speed-commands pyim-probe-program-mode))
-  (global-set-key (kbd "M-i") 'pyim-convert-string-at-point)
+  (global-set-key (kbd "M-i") '+rime-convert-string-at-point)
 
   (load-file (concat user-emacs-directory "private/init.el"))
   (setq deft-directory "~/note")
@@ -595,8 +594,6 @@ This function is called at the very end of Spacemacs initialization."
  '(company-selection-wrap-around t)
  '(company-show-numbers t)
  '(ccls-args (list (concat "--log-file=" (expand-file-name "~/ccls.log"))))
- '(default-input-method "pyim")
- '(pyim-page-tooltip 'posframe)
  '(ein:complete-on-dot t)
  '(ein:completion-backend (quote ein:use-company-backend))
  '(ein:use-auto-complete-superpack t)
