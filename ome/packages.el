@@ -34,6 +34,7 @@
     (xgtags :location (recipe :fetcher github :repo "linux-xhyang/xgtags"))
     exec-path-from-shell
     lsp-mode
+    (company-lsp :requires company)
     company-box
     ob-ipython
     (company-tabnine :requires company)
@@ -169,6 +170,10 @@
     :config
     (require 'ob-ipython)
     ))
+
+
+(defun ome/init-company-lsp ()
+  (use-package company-lsp :defer t))
 
 ;; (defun ome/init-nlinum()
 ;;   (use-package nlinum
