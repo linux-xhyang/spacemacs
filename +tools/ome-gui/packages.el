@@ -116,7 +116,6 @@ JUSTIFICATION is a symbol for 'left, 'center or 'right."
     :init
     (progn
       (with-eval-after-load 'magit-mode
-        (message "hahahahaha")
         (require 'magit-mode)
         (require 'ivy)
         (pretty-magit-setup)

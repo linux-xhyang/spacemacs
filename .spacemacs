@@ -78,8 +78,7 @@ values."
           org-enable-github-support t
           org-enable-bootstrap-support t
           org-enable-reveal-js t
-          ;; org-enable-org-journal-support t
-          ;; org-projectile-file "TODOs.org"
+          org-enable-org-journal-support t
           org-want-todo-bindings t)
      (chinese :variables
               chinese-enable-youdao-dict t)
@@ -231,7 +230,10 @@ values."
                                     evil-lisp-state
                                     spray
                                     doc-view
-                                    lorem-ipsum)
+                                    lorem-ipsum
+                                    org-brain
+                                    org-pomodoro
+                                    org-trello)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)

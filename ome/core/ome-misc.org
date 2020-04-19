@@ -325,19 +325,8 @@ shell but not in Emacs. Thus you cannot install some el-get packages such as
 
 * init company
   #+begin_src emacs-lisp
-
     (spacemacs|add-company-backends :backends company-elisp
                                     :modes emacs-lisp-mode)
-
-    (add-hook 'org-mode-hook #'(lambda ()
-                                 (define-key org-mode-map (kbd "M-n") 'pcomplete)
-                                 (tooltip-mode)))
-
-    (defun add-pcomplete-to-capf ()
-      (add-hook 'completion-at-point-functions 'pcomplete-completions-at-point nil t))
-
-    (add-hook 'org-mode-hook #'add-pcomplete-to-capf)
-
   #+end_src
 
 * org utils

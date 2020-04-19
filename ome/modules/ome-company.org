@@ -54,7 +54,6 @@
         'company-indent-for-tab-command)
       )
 
-
     (defun company-indent-for-tab-command (&optional arg)
       (interactive "P")
       (let ((completion-at-point-functions-saved completion-at-point-functions)
