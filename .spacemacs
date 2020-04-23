@@ -596,6 +596,7 @@ This function is called at the very end of Spacemacs initialization."
  '(company-selection-wrap-around t)
  '(company-show-numbers t)
  '(ccls-args (list (concat "--log-file=" (expand-file-name "~/ccls.log"))))
+ '(default-input-method "rime" nil nil "Customized with use-package rime")
  '(ein:complete-on-dot t)
  '(ein:completion-backend (quote ein:use-company-backend))
  '(ein:use-auto-complete-superpack t)
