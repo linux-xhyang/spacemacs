@@ -321,12 +321,16 @@ shell but not in Emacs. Thus you cannot install some el-get packages such as
     (when (getenv "ANDROID_JAVA_TOOLCHAIN")
       (setq exec-path (append exec-path (cons (getenv "ANDROID_JAVA_TOOLCHAIN") nil)))
       (setenv "PATH" (concat (getenv "PATH") ":" (getenv "ANDROID_JAVA_TOOLCHAIN") )))
+    (setenv "WORKON_HOME" "~/.pyenv/versions/")
   #+end_src
 
 * init company
   #+begin_src emacs-lisp
     (spacemacs|add-company-backends :backends company-elisp
                                     :modes emacs-lisp-mode)
+
+    (spacemacs|add-company-backends :backends company-lsp
+                                    :modes python-mode)
   #+end_src
 
 * org utils
