@@ -3,10 +3,13 @@
       '(
         (org-roam :location (recipe
                                  :fetcher github
-                                 :repo "jethrokuan/org-roam"))
+                                 :repo "org-roam/org-roam"))
+        (org-roam-server :location (recipe
+                             :fetcher github
+                             :repo "org-roam/org-roam-server"))
         (company-org-roam :location (recipe
                              :fetcher github
-                             :repo "jethrokuan/company-org-roam"))
+                             :repo "org-roam/company-org-roam"))
         org-clock-convenience
         ))
 
@@ -54,6 +57,11 @@
 #+TITLE: ${title}
 - source :: ${ref}"
            :unnarrowed t)))))
+
+(defun ome-org/init-org-roam-server ()
+  (use-package org-roam-server
+    :ensure t)
+  )
 
 (defun ome-org//org-roam-company-setup()
   (spacemacs|add-company-backends
