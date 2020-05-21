@@ -31,6 +31,7 @@
 
 (defconst ome-packages
   '(
+    company
     (xgtags :location (recipe :fetcher github :repo "linux-xhyang/xgtags"))
     exec-path-from-shell
     lsp-mode
@@ -173,8 +174,20 @@
 
 
 (defun ome/init-company-lsp ()
-  (use-package company-lsp :defer t))
+  (use-package company-lsp
+    :defer t
+    ))
 
+(defun ome/post-init-company()
+  (message "hahahahahahaha")
+  (spacemacs|add-company-backends :backends company-elisp
+                                  :modes emacs-lisp-mode)
+
+  (spacemacs|add-company-backends :backends company-lsp
+                                  :modes
+                                  c-mode-common
+                                  python-mode)
+  )
 ;; (defun ome/init-nlinum()
 ;;   (use-package nlinum
 ;;     :config
