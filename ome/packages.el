@@ -35,10 +35,10 @@
     (xgtags :location (recipe :fetcher github :repo "linux-xhyang/xgtags"))
     exec-path-from-shell
     lsp-mode
-    (company-lsp :requires company)
     company-box
-    ob-ipython
     (company-tabnine :requires company)
+    (company-lsp :requires company)
+    ob-ipython
     ))
 
 (defvar ome-dir (file-name-directory (or load-file-name (buffer-file-name)))
@@ -179,7 +179,6 @@
     ))
 
 (defun ome/post-init-company()
-  (message "hahahahahahaha")
   (spacemacs|add-company-backends :backends company-elisp
                                   :modes emacs-lisp-mode)
 
@@ -188,11 +187,3 @@
                                   c-mode-common
                                   python-mode)
   )
-;; (defun ome/init-nlinum()
-;;   (use-package nlinum
-;;     :config
-;;     (progn
-;;       (require 'nlinum)
-;;       (global-nlinum-mode t))))
-
-;;; packages.el ends here

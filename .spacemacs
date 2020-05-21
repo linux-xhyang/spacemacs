@@ -632,7 +632,7 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-clojure-server-command '("bash" "-c" "~/src/clojure-lsp/target/clojure-lsp"))
  '(lsp-auto-guess-root t)
  '(lsp-before-save-edits nil)
- '(lsp-enable-completion-at-point nil)
+ '(lsp-enable-completion-at-point t)
  '(lsp-enable-indentation nil)
  '(lsp-enable-file-watchers nil)
  '(lsp-kotlin-external-sources-use-kls-scheme nil)
