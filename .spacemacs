@@ -79,7 +79,9 @@ values."
           org-enable-bootstrap-support t
           org-enable-reveal-js t
           org-enable-org-journal-support t
-          org-want-todo-bindings t)
+          org-want-todo-bindings t
+          org-enable-jira-support t
+          jiralib-url "http://jira.formovie.cn")
      (chinese :variables
               chinese-enable-youdao-dict t)
      semantic
@@ -677,6 +679,7 @@ This function is called at the very end of Spacemacs initialization."
  '(org-latex-pdf-process
    (quote
     ("xelatex -synctex=1 -interaction nonstopmode -output-directory %o %f" "bibtex %b" "xelatex -synctex=1 -interaction nonstopmode -output-directory %o %f")))
+ '(org-noter-notes-search-path '("~/note/org/books/"))
  '(org-preview-latex-default-process (quote dvisvgm))
  '(org-latex-inputenc-alist '(("utf8" . "utf8x")))
  '(org-preview-latex-process-alist

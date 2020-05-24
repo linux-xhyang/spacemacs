@@ -11,6 +11,7 @@
                              :fetcher github
                              :repo "org-roam/company-org-roam"))
         org-clock-convenience
+        org-noter
         ))
 
 (defun ome-org/init-org-roam ()
@@ -91,3 +92,9 @@
                 ("o" . org-clock-convenience-fill-gap)
                 ("e" . org-clock-convenience-fill-gap-both)))
   )
+
+(defun ome-org/init-org-noter ()
+  "docstring"
+  (use-package org-noter
+    :ensure t)
+   )
