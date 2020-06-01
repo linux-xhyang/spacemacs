@@ -6,7 +6,8 @@
                                  :repo "org-roam/org-roam"))
         (org-roam-server :location (recipe
                              :fetcher github
-                             :repo "org-roam/org-roam-server"))
+                             :repo "org-roam/org-roam-server"
+                             :files ("*.el" "assets")))
         (company-org-roam :location (recipe
                              :fetcher github
                              :repo "org-roam/company-org-roam"))
