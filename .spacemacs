@@ -57,6 +57,7 @@ values."
      gtags
      dash
      ivy
+     (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
      ;;helm
      ;;xclipboard
      ;;exwm
@@ -203,7 +204,6 @@ values."
                                     pyim
                                     magit-gh-pulls
                                     magit-gitflow
-                                    evil-mc
                                     skewer-mode
                                     vi-tilde-fringe
                                     coffee-mode
