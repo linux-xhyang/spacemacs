@@ -59,7 +59,7 @@ values."
      ivy
      (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
      ;;helm
-     ;;xclipboard
+     xclipboard
      ;;exwm
      ;;slack
      git
