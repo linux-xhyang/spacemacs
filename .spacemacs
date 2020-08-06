@@ -742,8 +742,17 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
+ '(company-preview ((t (:background "gold3" :foreground "black"))))
+ '(company-preview-common ((t (:background "gold3" :foreground "grey20"))))
+ '(company-preview-search ((t (:background "green4" :foreground "green"))))
+ '(company-scrollbar-bg ((t (:background "#303030"))))
+ '(company-scrollbar-fg ((t (:background "#404040"))))
+ '(company-tooltip ((t (:background "#202020" :foreground "grey"))))
+ '(company-tooltip-annotation ((t (:foreground "gold"))))
+ '(company-tooltip-annotation-selection ((t (:foreground "white"))))
+ '(company-tooltip-common ((t (:inherit company-tooltip :foreground "white"))))
+ '(company-tooltip-common-selection ((t (:foreground "white"))))
+ '(company-tooltip-selection ((t (:background "red3" :foreground "white"))))
  '(which-func ((t (:foreground "white smoke"))))
  '(region ((t (:background "green" :foreground "black")))))
 )
