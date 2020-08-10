@@ -4,6 +4,7 @@
     vlf
     dts-mode
     counsel-etags
+    company-ctags
     ))
 
 (defun ome-misc/init-vlf ()
@@ -33,14 +34,26 @@
     :defer t
     :init
     ;; Setup auto update now
-    (defun update-etags-hook ()
-      (add-hook 'after-save-hook
-                'counsel-etags-virtual-update-tags 'append 'local))
-    (add-hook 'prog-mode-hook #'update-etags-hook)
-    :config
-    ;; Don't ask before rereading the TAGS files if they have changed
-    (setq tags-revert-without-query t)
-    ;; Don't warn when TAGS files are large
-    (setq large-file-warning-threshold nil)
-    (global-set-key (kbd "C-c g d") 'counsel-etags-find-tag-at-point)
+    (progn
+      (defun update-etags-hook ()
+        (add-hook 'after-save-hook
+                  'counsel-etags-virtual-update-tags 'append 'local))
+      (add-hook 'prog-mode-hook #'update-etags-hook)
+      ;; Don't ask before rereading the TAGS files if they have changed
+      (setq tags-revert-without-query t)
+      ;; Don't warn when TAGS files are large
+      (setq large-file-warning-threshold nil)
+      (global-set-key (kbd "C-c g d") 'counsel-etags-find-tag-at-point)
+      )
     ))
+
+(defun ome-misc/init-company-ctags ()
+  "docstring"
+  (use-package company-ctags
+    :defer t
+    :init
+    (require 'company-ctags)
+    (with-eval-after-load 'company
+      (company-ctags-auto-setup))
+   )
+  )

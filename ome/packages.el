@@ -182,8 +182,11 @@
   (spacemacs|add-company-backends :backends company-elisp
                                   :modes emacs-lisp-mode)
 
+  (spacemacs|add-company-backends :backends (company-lsp company-ctags)
+                                  :modes
+                                  c-mode-common)
+
   (spacemacs|add-company-backends :backends company-lsp
                                   :modes
-                                  c-mode-common
                                   python-mode)
   )

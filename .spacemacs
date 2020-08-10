@@ -235,7 +235,26 @@ values."
                                     lorem-ipsum
                                     org-brain
                                     org-pomodoro
-                                    org-trello)
+                                    org-trello
+                                    company-rtags
+                                    company-etags
+                                    company-anaconda
+                                    company-ycmd
+                                    counsel-css
+                                    haml-mode
+                                    meghanada
+                                    rtags
+                                    ycmd
+                                    anaconda-mode
+                                    auto-compile
+                                    bui
+                                    elisp-slime-nav
+                                    emr
+                                    epc
+                                    epl
+                                    evil-anzu
+                                    )
+
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -432,6 +451,7 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
+  (setq read-process-output-max (* 1024 1024))
   (setq gc-cons-threshold (* 511 1024 1024))
   (setq gc-cons-percentage 0.5)
   (run-with-idle-timer 10 t #'garbage-collect)

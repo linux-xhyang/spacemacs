@@ -7,6 +7,7 @@
                                 :files ("Makefile" "lib.c" "rime*.el")))
         (clipetty :location (recipe :fetcher github :repo "spudlyo/clipetty"))
         magit
+        cal-china-x
         ))
 
 (defun ome-gui/init-posframe ()
@@ -120,3 +121,21 @@ JUSTIFICATION is a symbol for 'left, 'center or 'right."
         (require 'ivy)
         (pretty-magit-setup)
         ))))
+
+(defun ome-gui/init-cal-china-x ()
+  "docstring"
+  (use-package cal-china-x
+    :defer t
+    :init
+    (progn
+      (require 'cal-china-x)
+      (setq mark-holidays-in-calendar t)
+      (setq cal-china-x-important-holidays cal-china-x-chinese-holidays)
+      (setq cal-china-x-general-holidays '((holiday-lunar 1 15 "元宵节")))
+      (setq calendar-holidays
+            (append cal-china-x-important-holidays
+                    cal-china-x-general-holidays
+                    ))
+      )
+    )
+  )
