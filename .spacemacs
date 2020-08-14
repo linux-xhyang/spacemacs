@@ -1,27 +1,6 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
-
-
-
-(require 'package)
-(setq package-archives '(
-       ("melpa-cn" . "http://mirrors.cloud.tencent.com/elpa/melpa/")
-       ("org-cn"   . "http://mirrors.cloud.tencent.com/elpa/org/")
-       ("gnu-cn"   . "http://mirrors.cloud.tencent.com/elpa/gnu/")))
-
-;(setq package-archives
-;      '(("melpa-cn" . "https://elpa.emacs-china.org/melpa/")
-;        ("org-cn"   . "https://elpa.emacs-china.org/org/")
-;        ("gnu-cn"   . "https://elpa.emacs-china.org/gnu/")))
-
-; Apparently needed for the package auto-complete (why?)
-;(add-to-list 'package-archives
-;             '("melpa" . "https://melpa.org/packages/") t)
-
-(package-initialize)
-(setq url-http-attempt-keepalives nil)
-
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
 You should not put any user code in this function besides modifying the variable
@@ -201,58 +180,79 @@ values."
    ;;                                    (ggtags :location (recipe :fetcher github :repo "linux-xhyang/ggtags")))
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(
-                                    pyim
-                                    magit-gh-pulls
-                                    magit-gitflow
-                                    skewer-mode
-                                    vi-tilde-fringe
-                                    coffee-mode
+                                    ace-window
+                                    ac-ispell
+                                    aggressive-indent
+                                    anaphora
+                                    auto-dictionary
                                     ace-jump-helm-line
-                                    evil-tutor
-                                    eyebrowse
-                                    stickyfunc-enhance
-                                    smooth-scrolling
-                                    org-repo-todo
-                                    chinese-wbim
-                                    spaceline
-                                    ;; i prefer iedit
-                                    multiple-cursors
-                                    ;; disable it for lispy-mode
-                                    ;;https://github.com/abo-abo/lispy/issues/137
-                                    evil-escape
-                                    ;;At first, I should disable hydra in zilongshanren layer and install clj-refactor, after it is installed.
-                                    ;; I could re-enable it again in zilongshanren layer.
-                                    ;; clj-refactor
-                                    ;;remove from spacemacs distribution
-                                    ;; neotree
-                                    leuven-theme
                                     anaconda-mode
-                                    gh-md
-                                    git-gutter
-                                    evil-lisp-state
-                                    spray
-                                    doc-view
-                                    lorem-ipsum
-                                    org-brain
-                                    org-pomodoro
-                                    org-trello
+                                    auto-compile
+                                    bui
+                                    blacken
+                                    clean-aindent-mode
+                                    coffee-mode
+                                    chinese-wbim
                                     company-rtags
                                     company-etags
                                     company-anaconda
                                     company-ycmd
                                     counsel-css
-                                    haml-mode
-                                    meghanada
-                                    rtags
-                                    ycmd
-                                    anaconda-mode
-                                    auto-compile
-                                    bui
+                                    doc-view
+                                    evil-tutor
+                                    eyebrowse
+                                    evil-escape
+                                    evil-lisp-state
                                     elisp-slime-nav
                                     emr
                                     epc
                                     epl
                                     evil-anzu
+                                    find-by-pinyin-dired
+                                    fish-mode
+                                    flycheck-ycmd
+                                    gh-md
+                                    git-gutter
+                                    gntp
+                                    helm-make
+                                    haml-mode
+                                    insert-shebang
+                                    jinja2-mode
+                                    leuven-theme
+                                    lorem-ipsum
+                                    maven-test-mode
+                                    magit-gh-pulls
+                                    magit-gitflow
+                                    multiple-cursors
+                                    mvn
+                                    meghanada
+                                    nodejs-repl
+                                    overseer
+                                    org-repo-todo
+                                    org-brain
+                                    org-pomodoro
+                                    org-trello
+                                    pcache
+                                    pinyinlib
+                                    pug-mode
+                                    pyim
+                                    rtags
+                                    sass-mode
+                                    scss-mode
+                                    stickyfunc-enhance
+                                    smooth-scrolling
+                                    slim-mode
+                                    skewer-mode
+                                    smeargle
+                                    symon
+                                    spaceline
+                                    spray
+                                    test-simple
+                                    vterm
+                                    vi-tilde-fringe
+                                    writeroom-mode
+                                    with-editor
+                                    ycmd
                                     )
 
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -451,6 +451,13 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
+  (setq configuration-layer-elpa-archives
+    '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+      ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+      ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
+  (require 'package)
+  (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+
   (setq read-process-output-max (* 1024 1024))
   (setq gc-cons-threshold (* 511 1024 1024))
   (setq gc-cons-percentage 0.5)

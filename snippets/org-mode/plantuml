@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: puml
+# key: puml
+# --
+plantuml :file images/$0
