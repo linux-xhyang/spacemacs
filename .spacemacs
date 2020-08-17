@@ -109,7 +109,7 @@ values."
              python-sort-imports-on-save t
              python-pipenv-activate t
              python-backend 'lsp
-             python-lsp-server 'mspyls
+             python-lsp-server 'nil
              python-lsp-git-root "~/src/python-language-server")
      ipython-notebook
      (go :variables
@@ -219,6 +219,7 @@ values."
                                     insert-shebang
                                     jinja2-mode
                                     leuven-theme
+                                    lsp-python-ms
                                     lorem-ipsum
                                     maven-test-mode
                                     magit-gh-pulls
@@ -254,7 +255,9 @@ values."
                                     with-editor
                                     ycmd
                                     )
-
+   dotspacemacs-additional-packages '(
+                                      lsp-pyright
+                                      )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -684,6 +687,7 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-ui-imenu-enable t)
  '(lsp-ui-sideline-show-flycheck t)
  '(lsp-ui-sideline-show-symbol nil t)
+ '(org-habit-show-habits-only-for-today nil)
  '(magit-diff-arguments
    (quote
     ("--ignore-all-space" "--no-ext-diff" "--stat" "-- " "--diff-algorithm=default")))

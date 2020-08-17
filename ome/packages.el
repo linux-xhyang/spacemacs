@@ -39,6 +39,7 @@
     (company-tabnine :requires company)
     (company-lsp :requires company)
     ob-ipython
+    lsp-pyright
     ))
 
 (defvar ome-dir (file-name-directory (or load-file-name (buffer-file-name)))
@@ -189,4 +190,12 @@
   (spacemacs|add-company-backends :backends company-lsp
                                   :modes
                                   python-mode)
+  )
+
+(defun ome/init-lsp-pyright ()
+  (use-package lsp-pyright
+    :ensure t
+    :hook (python-mode . (lambda ()
+                           (require 'lsp-pyright)
+                           (lsp))))
   )
