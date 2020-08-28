@@ -41,7 +41,8 @@ values."
      xclipboard
      ;;exwm
      ;;slack
-     git
+     (git :variables
+          git-enable-magit-svn-plugin nil)
      cmake
      ;;chrome
      ;;confluence
@@ -242,6 +243,7 @@ values."
                                     scss-mode
                                     stickyfunc-enhance
                                     smooth-scrolling
+                                    spacemacs-purpose-popwin
                                     slim-mode
                                     skewer-mode
                                     smeargle
@@ -253,6 +255,7 @@ values."
                                     vi-tilde-fringe
                                     writeroom-mode
                                     with-editor
+                                    window-purpose
                                     ycmd
                                     )
    dotspacemacs-additional-packages '(
