@@ -1,10 +1,10 @@
 
 (setq ome-org-packages
       '(
-        (org-roam ;; :location (recipe
-                  ;;                :fetcher github
-                  ;;                :repo "org-roam/org-roam")
-                  )
+        ;; (org-roam :location (recipe
+        ;;                      :fetcher github
+        ;;                      :repo "org-roam/org-roam")
+        ;;           )
         (org-roam-server ;; :location (recipe
                          ;;     :fetcher github
                          ;;     :repo "org-roam/org-roam-server"
@@ -18,25 +18,7 @@
         org-noter
         ))
 
-(defun ome-org/init-org-roam ()
-  "Initialize my package"
-  (use-package org-roam
-  :commands (org-roam-insert org-roam-find-file org-roam-switch-to-buffer org-roam)
-  :hook
-  (after-init . org-roam-mode)
-  :custom-face
-  (org-roam-link ((t (:inherit org-link :foreground "#005200"))))
-  :custom
-  (org-roam-graph-viewer 'eww-open-file)
-  :init
-  :bind (:map org-roam-mode-map
-              (("C-c n l" . org-roam)
-               ("C-c n f" . org-roam-find-file)
-               ("C-c n c" . org-roam-capture)
-               ("C-c n g" . org-roam-graph))
-              :map org-mode-map
-              (("C-c n i" . org-roam-insert)))
-  :config
+(with-eval-after-load 'org-roam
   (require 'org-roam-protocol)
   (setq org-roam-capture-templates
         '(("d" "default" plain (function org-roam--capture-get-point)
@@ -61,7 +43,7 @@
 #+HUGO_SLUG: ${slug}
 #+TITLE: ${title}
 - source :: ${ref}"
-           :unnarrowed t)))))
+           :unnarrowed t))))
 
 (defun ome-org/init-org-roam-server ()
   (use-package org-roam-server

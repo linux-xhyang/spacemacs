@@ -61,8 +61,8 @@ values."
           org-enable-reveal-js t
           org-enable-org-journal-support t
           org-want-todo-bindings t
-          org-enable-jira-support t
-          jiralib-url "http://jira.formovie.cn")
+          org-enable-hugo-support t
+          org-enable-roam-support t)
      (chinese :variables
               chinese-enable-youdao-dict t)
      semantic
