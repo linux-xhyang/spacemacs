@@ -52,7 +52,7 @@
 
 (defun ome-org//org-roam-company-setup()
   (spacemacs|add-company-backends
-    :backends (company-org-roam company-tabnine company-dabbrev company-keywords)
+    :backends (company-org-roam company-dabbrev company-keywords)
     :modes org-mode
     :append-hooks nil
     :call-hooks nil

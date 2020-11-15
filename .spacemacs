@@ -137,8 +137,7 @@ values."
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-sort-by-usage t
-                      spacemacs-default-company-backends '(company-tabnine
-                                                           (company-dabbrev-code company-keywords)
+                      spacemacs-default-company-backends '((company-dabbrev-code company-keywords)
                                                            company-capf
                                                            company-files
                                                            company-dabbrev)
