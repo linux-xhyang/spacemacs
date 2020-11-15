@@ -5,6 +5,7 @@
     dts-mode
     counsel-etags
     company-ctags
+    realgud-jdb
     ))
 
 (defun ome-misc/init-vlf ()
@@ -56,4 +57,15 @@
     (with-eval-after-load 'company
       (company-ctags-auto-setup))
    )
+  )
+
+(defun ome-misc/init-realgud-jdb ()
+  "docstring"
+  (use-package realgud-jdb
+    :init
+    (require 'realgud-jdb)
+    :config
+    (progn
+      ())
+    )
   )
