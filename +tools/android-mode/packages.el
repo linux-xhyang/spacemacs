@@ -25,8 +25,6 @@
     '(defun compilation-find-file-projectile-find-compilation-buffer (orig-fun marker filename directory &rest formats)
        "Try to find a buffer for FILENAME, if we cannot find it,
 fallback to the original function."
-       (message "123")
-       (message filename)
        (let* ((topdir (concat (getenv "ANDROID_BUILD_TOP") "/"))
               (path (concat topdir  filename)))
          (when (file-exists-p path)
