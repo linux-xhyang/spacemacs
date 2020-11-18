@@ -649,6 +649,7 @@ This function is called at the very end of Spacemacs initialization."
  '(global-semantic-highlight-func-mode t)
  '(global-semantic-idle-local-symbol-highlight-mode nil nil (semantic/idle))
  '(global-semantic-stickyfunc-mode t)
+ '(gud-key-prefix "x")
  '(android-compilation-no-buildenv-warning nil)
  '(helm-grep-default-command "grep --color=always -a -d recurse %e -n%cH -e %p %f")
  '(helm-gtags-path-style (quote relative))
