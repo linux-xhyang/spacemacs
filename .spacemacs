@@ -744,6 +744,7 @@ This function is called at the very end of Spacemacs initialization."
                   ("convert -density %D -trim -antialias %f -quality 100 %O")))))
  '(org-startup-with-latex-preview t)
  '(projectile-enable-caching t)
+ '(projectile-git-command "git ls-files -zco --exclude-standard -x \".ccls-cache\"")
  '(projectile-project-root-files-bottom-up
    (quote
     ("compile_commands.json" ".git" ".projectile" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs")))
