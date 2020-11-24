@@ -1,268 +1,283 @@
 #+TITLE: Oh My Emacs Miscs
 #+OPTIONS: toc:nil num:nil ^:nil
 
-This is part of [[https://github.com/xiaohanyu/oh-my-emacs][oh-my-emacs]].
-
-This file contains things that still don't find a good place to put, :-).
-
 * Rainbow Delimiters
   :PROPERTIES:
   :CUSTOM_ID: rainbow-delimiters
   :END:
 
-"RainbowDelimiters is a "rainbow parentheses"-like mode which highlights
-parentheses, brackets, and braces according to their depth. Each successive
-level is highlighted in a different color. This makes it easy to spot matching
-delimiters, orient yourself in the code, and tell which statements are at a
-given depth."
+  "RainbowDelimiters is a "rainbow parentheses"-like mode which highlights
+  parentheses, brackets, and braces according to their depth. Each successive
+  level is highlighted in a different color. This makes it easy to spot matching
+  delimiters, orient yourself in the code, and tell which statements are at a
+  given depth."
 
-#+NAME: rainbow-delimiters
-#+BEGIN_SRC emacs-lisp
-(rainbow-delimiters-mode)
-#+END_SRC
+  #+NAME: rainbow-delimiters
+  #+BEGIN_SRC emacs-lisp
+    (rainbow-delimiters-mode)
+  #+END_SRC
 
 * Some Basic Settings
   :PROPERTIES:
   :CUSTOM_ID: basic
   :END:
 
-Sometimes you find weird thing in OS X's Emacs that a command works in your
-shell but not in Emacs. Thus you cannot install some el-get packages such as
-[[http://www.gnu.org/software/auctex/][auctex]].
+  Sometimes you find weird thing in OS X's Emacs that a command works in your
+  shell but not in Emacs. Thus you cannot install some el-get packages such as
+  [[http://www.gnu.org/software/auctex/][auctex]].
 
-#+NAME: basic
-#+BEGIN_SRC emacs-lisp
-  ;; set environment coding system
-  (set-language-environment "UTF-8")
-  ;; auto revert buffer globally
-  (global-auto-revert-mode t)
-  ;; set TAB and indention
-  ;(setq-default tab-width 4)
-  ;(setq c-default-style "linux"
-  ;c-basic-offset 4)
+  #+NAME: basic
+  #+BEGIN_SRC emacs-lisp
+    ;; set environment coding system
+    (set-language-environment "UTF-8")
+    ;; auto revert buffer globally
+    (global-auto-revert-mode t)
+    ;; set TAB and indention
+                                            ;(setq-default tab-width 4)
+                                            ;(setq c-default-style "linux"
+                                            ;c-basic-offset 4)
 
-  ;; y or n is suffice for a yes or no question
-  (fset 'yes-or-no-p 'y-or-n-p)
-  ;; always add new line to the end of a file
-  (setq require-final-newline t)
-  ;; add no new lines when "arrow-down key" at the end of a buffer
-  (setq next-line-add-newlines nil)
-  ;; prevent the annoying beep on errors
-  (setq ring-bell-function 'ignore)
-  ;; remove trailing whitespaces before save
-  (add-hook 'before-save-hook
-            (lambda ()
-              (when (not (derived-mode-p 'ein:notebook-multilang-mode))
-                (delete-trailing-whitespace))))
-  ;; enable to support navigate in camelCase words
-  (global-subword-mode t)
+    ;; y or n is suffice for a yes or no question
+    (fset 'yes-or-no-p 'y-or-n-p)
+    ;; always add new line to the end of a file
+    (setq require-final-newline t)
+    ;; add no new lines when "arrow-down key" at the end of a buffer
+    (setq next-line-add-newlines nil)
+    ;; prevent the annoying beep on errors
+    (setq ring-bell-function 'ignore)
+    ;; remove trailing whitespaces before save
+    (add-hook 'before-save-hook
+              (lambda ()
+                (when (not (derived-mode-p 'ein:notebook-multilang-mode))
+                  (delete-trailing-whitespace))))
+    ;; enable to support navigate in camelCase words
+    (global-subword-mode t)
 
-  ;; shell-mode settings
-  (unless (eq system-type 'windows-nt)
-    (setq explicit-shell-file-name "/bin/bash")
-    (setq shell-file-name "/bin/bash"))
-  ;; always insert at the bottom
-  (setq comint-scroll-to-bottom-on-input t)
-  ;; no duplicates in command history
-  (setq comint-input-ignoredups t)
-  ;; what to run when i press enter on a line above the current prompt
-  (setq comint-get-old-input (lambda () ""))
-  ;; max shell history size
-  (setq comint-input-ring-size 1000)
-  ;; show all in emacs interactive output
-  (setenv "PAGER" "cat")
-  ;; set lang to enable Chinese display in shell-mode
-  (setenv "LANG" "en_US.UTF-8")
+    ;; shell-mode settings
+    (unless (eq system-type 'windows-nt)
+      (setq explicit-shell-file-name "/bin/bash")
+      (setq shell-file-name "/bin/bash"))
+    ;; always insert at the bottom
+    (setq comint-scroll-to-bottom-on-input t)
+    ;; no duplicates in command history
+    (setq comint-input-ignoredups t)
+    ;; what to run when i press enter on a line above the current prompt
+    (setq comint-get-old-input (lambda () ""))
+    ;; max shell history size
+    (setq comint-input-ring-size 1000)
+    ;; show all in emacs interactive output
+    (setenv "PAGER" "cat")
+    ;; set lang to enable Chinese display in shell-mode
+    (setenv "LANG" "en_US.UTF-8")
 
-  ;; set text-mode as the default major mode, instead of fundamental-mode
-  ;; The first of the two lines in parentheses tells Emacs to turn on Text mode
-  ;; when you find a file, unless that file should go into some other mode, such
-  ;; as C mode.
-  (setq-default major-mode 'text-mode)
+    ;; set text-mode as the default major mode, instead of fundamental-mode
+    ;; The first of the two lines in parentheses tells Emacs to turn on Text mode
+    ;; when you find a file, unless that file should go into some other mode, such
+    ;; as C mode.
+    (setq-default major-mode 'text-mode)
 
-  ;;; ido-mode
-  (setq ido-enable-prefix nil)
-  (setq ido-enable-case nil)
-  (setq ido-enable-flex-matching t)
-  ;;(setq ido-everywhere t)
+    ;;; ido-mode
+    (setq ido-enable-prefix nil)
+    (setq ido-enable-case nil)
+    (setq ido-enable-flex-matching t)
+    ;;(setq ido-everywhere t)
 
-  ;; use icomplete in minibuffer
-  (icomplete-mode t)
+    ;; use icomplete in minibuffer
+    (icomplete-mode t)
 
-  ;; delete the selection with a keypress
-  (delete-selection-mode t)
+    ;; delete the selection with a keypress
+    (delete-selection-mode t)
 
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;;; google-c-style.el --- Google's C/C++ style for c-mode
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;;; google-c-style.el --- Google's C/C++ style for c-mode
 
-  ;; Keywords: c, tools
+    ;; Keywords: c, tools
 
-  ;; google-c-style.el is Copyright (C) 2008 Google Inc. All Rights Reserved.
-  ;;
-  ;; It is free software; you can redistribute it and/or modify it under the
-  ;; terms of either:
-  ;;
-  ;; a) the GNU General Public License as published by the Free Software
-  ;; Foundation; either version 1, or (at your option) any later version, or
-  ;;
-  ;; b) the "Artistic License".
+    ;; google-c-style.el is Copyright (C) 2008 Google Inc. All Rights Reserved.
+    ;;
+    ;; It is free software; you can redistribute it and/or modify it under the
+    ;; terms of either:
+    ;;
+    ;; a) the GNU General Public License as published by the Free Software
+    ;; Foundation; either version 1, or (at your option) any later version, or
+    ;;
+    ;; b) the "Artistic License".
 
-  ;;; Commentary:
+    ;;; Commentary:
 
-  ;; Provides the google C/C++ coding style. You may wish to add
-  ;; `google-set-c-style' to your `c-mode-common-hook' after requiring this
-  ;; file. For example:
-  ;;
-  ;;    (add-hook 'c-mode-common-hook 'google-set-c-style)
-  ;;
-  ;; If you want the RETURN key to go to the next line and space over
-  ;; to the right place, add this to your .emacs right after the load-file:
-  ;;
-  ;;    (add-hook 'c-mode-common-hook 'google-make-newline-indent)
+    ;; Provides the google C/C++ coding style. You may wish to add
+    ;; `google-set-c-style' to your `c-mode-common-hook' after requiring this
+    ;; file. For example:
+    ;;
+    ;;    (add-hook 'c-mode-common-hook 'google-set-c-style)
+    ;;
+    ;; If you want the RETURN key to go to the next line and space over
+    ;; to the right place, add this to your .emacs right after the load-file:
+    ;;
+    ;;    (add-hook 'c-mode-common-hook 'google-make-newline-indent)
 
-  ;;; Code:
+    ;;; Code:
 
-  ;; For some reason 1) c-backward-syntactic-ws is a macro and 2)  under Emacs 22
-  ;; bytecode cannot call (unexpanded) macros at run time:
-  (eval-when-compile (require 'cc-defs))
+    ;; For some reason 1) c-backward-syntactic-ws is a macro and 2)  under Emacs 22
+    ;; bytecode cannot call (unexpanded) macros at run time:
+    (eval-when-compile (require 'cc-defs))
 
-  ;; Wrapper function needed for Emacs 21 and XEmacs (Emacs 22 offers the more
-  ;; elegant solution of composing a list of lineup functions or quantities with
-  ;; operators such as "add")
-  (defun google-c-lineup-expression-plus-4 (langelem)
-    "Indents to the beginning of the current C expression plus 4 spaces.
-  This implements title \"Function Declarations and Definitions\"
-  of the Google C++ Style Guide for the case where the previous
-  line ends with an open parenthese.
-  \"Current C expression\", as per the Google Style Guide and as
-  clarified by subsequent discussions, means the whole expression
-  regardless of the number of nested parentheses, but excluding
-  non-expression material such as \"if(\" and \"for(\" control
-  structures.
-  Suitable for inclusion in `c-offsets-alist'."
-    (save-excursion
-      (back-to-indentation)
-      ;; Go to beginning of *previous* line:
-      (c-backward-syntactic-ws)
-      (back-to-indentation)
-      (cond
-       ;; We are making a reasonable assumption that if there is a control
-       ;; structure to indent past, it has to be at the beginning of the line.
-       ((looking-at "\\(\\(if\\|for\\|while\\)\\s *(\\)")
-        (goto-char (match-end 1)))
-       ;; For constructor initializer lists, the reference point for line-up is
-       ;; the token after the initial colon.
-       ((looking-at ":\\s *")
-        (goto-char (match-end 0))))
-      (vector (+ 4 (current-column)))))
+    ;; Wrapper function needed for Emacs 21 and XEmacs (Emacs 22 offers the more
+    ;; elegant solution of composing a list of lineup functions or quantities with
+    ;; operators such as "add")
+    (defun google-c-lineup-expression-plus-4 (langelem)
+      "Indents to the beginning of the current C expression plus 4 spaces.
+    This implements title \"Function Declarations and Definitions\"
+    of the Google C++ Style Guide for the case where the previous
+    line ends with an open parenthese.
+    \"Current C expression\", as per the Google Style Guide and as
+    clarified by subsequent discussions, means the whole expression
+    regardless of the number of nested parentheses, but excluding
+    non-expression material such as \"if(\" and \"for(\" control
+    structures.
+    Suitable for inclusion in `c-offsets-alist'."
+      (save-excursion
+        (back-to-indentation)
+        ;; Go to beginning of *previous* line:
+        (c-backward-syntactic-ws)
+        (back-to-indentation)
+        (cond
+         ;; We are making a reasonable assumption that if there is a control
+         ;; structure to indent past, it has to be at the beginning of the line.
+         ((looking-at "\\(\\(if\\|for\\|while\\)\\s *(\\)")
+          (goto-char (match-end 1)))
+         ;; For constructor initializer lists, the reference point for line-up is
+         ;; the token after the initial colon.
+         ((looking-at ":\\s *")
+          (goto-char (match-end 0))))
+        (vector (+ 4 (current-column)))))
 
-  ;;;###autoload
-  (defconst google-c-style
-    `((c-recognize-knr-p . nil)
-      (c-enable-xemacs-performance-kludge-p . t) ; speed up indentation in XEmacs
-      (c-basic-offset . 4)
-      (indent-tabs-mode . nil)
-      (c-comment-only-line-offset . 0)
-      (c-hanging-braces-alist . ((defun-open after)
-                                 (defun-close before after)
-                                 (class-open after)
-                                 (class-close before after)
-                                 (inexpr-class-open after)
-                                 (inexpr-class-close before)
-                                 (namespace-open after)
-                                 (inline-open after)
-                                 (inline-close before after)
-                                 (block-open after)
-                                 (block-close . c-snug-do-while)
-                                 (extern-lang-open after)
-                                 (extern-lang-close after)
-                                 (statement-case-open after)
-                                 (substatement-open after)))
-      (c-hanging-colons-alist . ((case-label)
-                                 (label after)
-                                 (access-label after)
-                                 (member-init-intro before)
-                                 (inher-intro)))
-      (c-hanging-semi&comma-criteria
-       . (c-semi&comma-no-newlines-for-oneline-inliners
-          c-semi&comma-inside-parenlist
-          c-semi&comma-no-newlines-before-nonblanks))
-      (c-indent-comments-syntactically-p . t)
-      (comment-column . 40)
-      (c-indent-comment-alist . ((other . (space . 2))))
-      (c-cleanup-list . (brace-else-brace
-                         brace-elseif-brace
-                         brace-catch-brace
-                         empty-defun-braces
-                         defun-close-semi
-                         list-close-comma
-                         scope-operator))
-      (c-offsets-alist . ((arglist-intro google-c-lineup-expression-plus-4)
-                          (func-decl-cont . ++)
-                          (member-init-intro . ++)
-                          (inher-intro . ++)
-                          (comment-intro . 0)
-                          (arglist-close . c-lineup-arglist)
-                          (topmost-intro . 0)
-                          (block-open . 0)
-                          (inline-open . 0)
-                          (substatement-open . 0)
-                          (statement-cont
-                           .
-                           (,(when (fboundp 'c-no-indent-after-java-annotations)
-                               'c-no-indent-after-java-annotations)
-                            ,(when (fboundp 'c-lineup-assignments)
-                               'c-lineup-assignments)
-                            ++))
-                          (label . /)
-                          (case-label . +)
-                          (statement-case-open . +)
-                          (statement-case-intro . +) ; case w/o {
-                          (access-label . /)
-                          (innamespace . 0))))
-    "Google C/C++ Programming Style.")
+    ;;;###autoload
+    (defconst google-c-style
+      `((c-recognize-knr-p . nil)
+        (c-enable-xemacs-performance-kludge-p . t) ; speed up indentation in XEmacs
+        (c-basic-offset . 4)
+        (indent-tabs-mode . nil)
+        (c-comment-only-line-offset . 0)
+        (c-hanging-braces-alist . ((defun-open after)
+                                   (defun-close before after)
+                                   (class-open after)
+                                   (class-close before after)
+                                   (inexpr-class-open after)
+                                   (inexpr-class-close before)
+                                   (namespace-open after)
+                                   (inline-open after)
+                                   (inline-close before after)
+                                   (block-open after)
+                                   (block-close . c-snug-do-while)
+                                   (extern-lang-open after)
+                                   (extern-lang-close after)
+                                   (statement-case-open after)
+                                   (substatement-open after)))
+        (c-hanging-colons-alist . ((case-label)
+                                   (label after)
+                                   (access-label after)
+                                   (member-init-intro before)
+                                   (inher-intro)))
+        (c-hanging-semi&comma-criteria
+         . (c-semi&comma-no-newlines-for-oneline-inliners
+            c-semi&comma-inside-parenlist
+            c-semi&comma-no-newlines-before-nonblanks))
+        (c-indent-comments-syntactically-p . t)
+        (comment-column . 40)
+        (c-indent-comment-alist . ((other . (space . 2))))
+        (c-cleanup-list . (brace-else-brace
+                           brace-elseif-brace
+                           brace-catch-brace
+                           empty-defun-braces
+                           defun-close-semi
+                           list-close-comma
+                           scope-operator))
+        (c-offsets-alist . ((arglist-intro google-c-lineup-expression-plus-4)
+                            (func-decl-cont . ++)
+                            (member-init-intro . ++)
+                            (inher-intro . ++)
+                            (comment-intro . 0)
+                            (arglist-close . c-lineup-arglist)
+                            (topmost-intro . 0)
+                            (block-open . 0)
+                            (inline-open . 0)
+                            (substatement-open . 0)
+                            (statement-cont
+                             .
+                             (,(when (fboundp 'c-no-indent-after-java-annotations)
+                                 'c-no-indent-after-java-annotations)
+                              ,(when (fboundp 'c-lineup-assignments)
+                                 'c-lineup-assignments)
+                              ++))
+                            (label . /)
+                            (case-label . +)
+                            (statement-case-open . +)
+                            (statement-case-intro . +) ; case w/o {
+                            (access-label . /)
+                            (innamespace . 0))))
+      "Google C/C++ Programming Style.")
 
-  ;;;###autoload
-  (defun google-set-c-style ()
-    "Set the current buffer's c-style to Google C/C++ Programming
-    Style. Meant to be added to `c-mode-common-hook'."
-    (interactive)
-    (make-local-variable 'c-tab-always-indent)
-    (setq c-tab-always-indent t)
-    (c-add-style "Google" google-c-style t))
+    ;;;###autoload
+    (defun google-set-c-style ()
+      "Set the current buffer's c-style to Google C/C++ Programming
+      Style. Meant to be added to `c-mode-common-hook'."
+      (interactive)
+      (make-local-variable 'c-tab-always-indent)
+      (setq c-tab-always-indent t)
+      (c-add-style "Google" google-c-style t))
 
-  ;;;###autoload
-  (defun google-make-newline-indent ()
-    "Sets up preferred newline behavior. Not set by default. Meant
-    to be added to `c-mode-common-hook'."
-    (interactive)
-    (define-key c-mode-base-map "\C-m" 'newline-and-indent)
-    (define-key c-mode-base-map [ret] 'newline-and-indent))
+    ;;;###autoload
+    (defun google-make-newline-indent ()
+      "Sets up preferred newline behavior. Not set by default. Meant
+      to be added to `c-mode-common-hook'."
+      (interactive)
+      (define-key c-mode-base-map "\C-m" 'newline-and-indent)
+      (define-key c-mode-base-map [ret] 'newline-and-indent))
 
-  (provide 'google-c-style)
-  (add-hook 'c++-mode-hook 'google-set-c-style)
-  (add-hook 'c-mode-hook 'google-set-c-style)
-  ;;(add-hook 'c++-mode-hook 'google-make-newline-indent)
-  ;;(add-hook 'c-mode-hook 'google-make-newline-indent)
-#+END_SRC
+    (provide 'google-c-style)
+    (add-hook 'c++-mode-hook 'google-set-c-style)
+    (add-hook 'c-mode-hook 'google-set-c-style)
+    ;;(add-hook 'c++-mode-hook 'google-make-newline-indent)
+    ;;(add-hook 'c-mode-hook 'google-make-newline-indent)
+    (add-to-list 'auto-mode-alist '("\\.mak" . makefile-gmake-mode))
+
+    (defun ascii-table ()
+      "Display basic ASCII table (0 thru 128)."
+      (interactive)
+      (switch-to-buffer "*ASCII*")
+      (erase-buffer)
+      (setq buffer-read-only nil)        ;; Not need to edit the content, just read mode (added)
+      (local-set-key "q" 'bury-buffer)   ;; Nice to have the option to bury the buffer (added)
+      (save-excursion (let ((i -1))
+                        (insert "ASCII characters 0 thru 127.\n\n")
+                        (insert " Hex  Dec  Char|  Hex  Dec  Char|  Hex  Dec  Char|  Hex  Dec  Char\n")
+                        (while (< i 31)
+                          (insert (format "%4x %4d %4s | %4x %4d %4s | %4x %4d %4s | %4x %4d %4s\n"
+                                          (setq i (+ 1  i)) i (single-key-description i)
+                                          (setq i (+ 32 i)) i (single-key-description i)
+                                          (setq i (+ 32 i)) i (single-key-description i)
+                                          (setq i (+ 32 i)) i (single-key-description i)))
+                          (setq i (- i 96))))))
+  #+END_SRC
 
 * reload env
-#+BEGIN_SRC emacs-lisp
-(defun my-update-env (fn)
-  (let ((str
-         (with-temp-buffer
-           (insert-file-contents fn)
-           (buffer-string))) lst)
-    (setq lst (split-string str "\000"))
-    (while lst
-      (setq cur (car lst))
-      (when (string-match "^\\(.*?\\)=\\(.*\\)" cur)
-        (setq var (match-string 1 cur))
-        (setq value (match-string 2 cur))
-        (setenv var value))
-      (setq lst (cdr lst)))))
+  #+BEGIN_SRC emacs-lisp
+    (defun my-update-env (fn)
+      (let ((str
+             (with-temp-buffer
+               (insert-file-contents fn)
+               (buffer-string))) lst)
+        (setq lst (split-string str "\000"))
+        (while lst
+          (setq cur (car lst))
+          (when (string-match "^\\(.*?\\)=\\(.*\\)" cur)
+            (setq var (match-string 1 cur))
+            (setq value (match-string 2 cur))
+            (setenv var value))
+          (setq lst (cdr lst)))))
 
-#+END_SRC
+  #+END_SRC
 
 * replace tab with space
   #+BEGIN_SRC emacs-lisp
@@ -326,34 +341,14 @@ shell but not in Emacs. Thus you cannot install some el-get packages such as
 
 * org utils
   #+begin_src emacs-lisp
-    (defun org-clock-persist-save-file ()
-      (if (equal 'windows-nt system-type)
-          (if (file-exists-p "D:/note/my-org.el")
-              "D:/note/org-clock-save.el"
-            "~/.emacs.d/org-clock-save.el"
-            )
-        (if (file-exists-p "~/note/my-org.el")
-            "~/note/org-clock-save.el"
-          "~/.emacs.d/org-clock-save.el"
-          )))
-
-* ascii table
-  #+begin_src emacs-lisp
-    (defun ascii-table ()
-      "Display basic ASCII table (0 thru 128)."
-      (interactive)
-      (switch-to-buffer "*ASCII*")
-      (erase-buffer)
-      (setq buffer-read-only nil)        ;; Not need to edit the content, just read mode (added)
-      (local-set-key "q" 'bury-buffer)   ;; Nice to have the option to bury the buffer (added)
-      (save-excursion (let ((i -1))
-                        (insert "ASCII characters 0 thru 127.\n\n")
-                        (insert " Hex  Dec  Char|  Hex  Dec  Char|  Hex  Dec  Char|  Hex  Dec  Char\n")
-                        (while (< i 31)
-                          (insert (format "%4x %4d %4s | %4x %4d %4s | %4x %4d %4s | %4x %4d %4s\n"
-                                          (setq i (+ 1  i)) i (single-key-description i)
-                                          (setq i (+ 32 i)) i (single-key-description i)
-                                          (setq i (+ 32 i)) i (single-key-description i)
-                                          (setq i (+ 32 i)) i (single-key-description i)))
-                          (setq i (- i 96))))))
+  (defun org-clock-persist-save-file ()
+  (if (equal 'windows-nt system-type)
+  (if (file-exists-p "D:/note/my-org.el")
+  "D:/note/org-clock-save.el"
+  "~/.emacs.d/org-clock-save.el"
+  )
+  (if (file-exists-p "~/note/my-org.el")
+  "~/note/org-clock-save.el"
+  "~/.emacs.d/org-clock-save.el"
+  )))
   #+end_src
