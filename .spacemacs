@@ -629,6 +629,8 @@ This function is called at the very end of Spacemacs initialization."
  '(company-minimum-prefix-length 3)
  '(company-selection-wrap-around t)
  '(company-show-numbers t)
+ '(counsel-rg-base-command
+   '("rg" "-M" "240" "--with-filename" "--no-heading" "--line-number" "--no-ignore" "--color" "never" "%s"))
  '(ccls-args (list (concat "--log-file=" (expand-file-name "~/ccls.log"))))
  '(default-input-method "rime" nil nil "Customized with use-package rime")
  '(ein:complete-on-dot t)
