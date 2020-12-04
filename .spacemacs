@@ -463,7 +463,7 @@ in `dotspacemacs/user-config'."
   (require 'package)
   (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 
-  (setq read-process-output-max (* 1024 1024))
+  (setq read-process-output-max (* 4 1024 1024))
   (setq gc-cons-threshold (* 511 1024 1024))
   (setq gc-cons-percentage 0.5)
   (run-with-idle-timer 10 t #'garbage-collect)

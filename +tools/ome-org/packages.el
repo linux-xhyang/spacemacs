@@ -13,7 +13,10 @@
         (company-org-roam ;; :location (recipe
                           ;;    :fetcher github
                           ;;    :repo "org-roam/company-org-roam")
-                          )
+         )
+        (valign :location (recipe
+                           :fetcher github
+                           :repo "casouri/valign"))
         org-clock-convenience
         org-noter
         ))
@@ -84,3 +87,10 @@
   (use-package org-noter
     :ensure t)
    )
+
+(defun ome-org/init-valign ()
+  (use-package valign
+    :ensure t
+    :config
+    (add-hook 'org-mode-hook #'valign-mode))
+  )
