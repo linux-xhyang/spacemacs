@@ -323,11 +323,19 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("DejaVu Sans Mono"
-                               :size 14
+   dotspacemacs-default-font '(;; $ sudo apt-get install fonts-inconsolata
+                               ;;"Inconsolata"
+                               ;; https://fonts.google.com/specimen/Source+Code+Pro#standard-styles
+                               ;; mkdir -p ~/.local/share/fonts
+                               ;; cp font ~/.local/share/fonts
+                               ;; fc-cache -f -v
+                               "Source Code Pro"
+                               :size 15
                                :weight normal
                                :width normal
-                               :powerline-scale 1.1)
+                               ;;:powerline-scale 1.3
+                               )
+
          ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
