@@ -543,10 +543,10 @@ layers configuration. You are free to put any user code."
   ;; cp font ~/.local/share/fonts
   ;; fc-cache -f -v
   ;; c-u c-x = ;;check current font
-  (dolist (charset '(kana han cjk-misc bopomofo))
-    (set-fontset-font (frame-parameter nil 'font)
-                      charset (font-spec :family "Microsoft YaHei" :size 16)))
-
+  (when (display-graphic-p)
+    (dolist (charset '(kana han cjk-misc bopomofo))
+      (set-fontset-font (frame-parameter nil 'font)
+                        charset (font-spec :family "Microsoft YaHei" :size 16))))
   (server-start)
   (dotspacemacs/emacs-custom-settings)
   )
