@@ -548,6 +548,7 @@ layers configuration. You are free to put any user code."
       (set-fontset-font (frame-parameter nil 'font)
                         charset (font-spec :family "Microsoft YaHei" :size 16))))
   (server-start)
+  (setenv "XAPIAN_CJK_NGRAM" "1")
   (dotspacemacs/emacs-custom-settings)
   )
 
