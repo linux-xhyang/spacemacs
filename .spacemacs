@@ -394,7 +394,7 @@ values."
    dotspacemacs-enable-paste-micro-state nil
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
-   dotspacemacs-which-key-delay 0.4
+   dotspacemacs-which-key-delay 0.2
    ;; Which-key frame position. Possible values are `right', `bottom' and
    ;; `right-then-bottom'. right-then-bottom tries to display the frame to the
    ;; right; if there is insufficient space it displays it at the bottom.
@@ -643,7 +643,7 @@ This function is called at the very end of Spacemacs initialization."
                                                 :extraArgs ["--gcc-toolchain=/usr"])))
  '(company-auto-complete t)
  '(company-auto-complete-chars (quote (32 95 41 46 34 39 60 62)))
- '(company-idle-delay 5)
+ '(company-idle-delay 0)
  '(company-minimum-prefix-length 3)
  '(company-selection-wrap-around t)
  '(company-show-numbers t)
@@ -671,9 +671,6 @@ This function is called at the very end of Spacemacs initialization."
  '(global-semantic-stickyfunc-mode t)
  '(gud-key-prefix "x")
  '(android-compilation-no-buildenv-warning nil)
- '(helm-grep-default-command "grep --color=always -a -d recurse %e -n%cH -e %p %f")
- '(helm-gtags-path-style (quote relative))
- '(helm-input-idle-delay 0.1)
  '(isend-send-region-function (quote isend--ipython-cpaste))
  '(jit-lock-chunk-size 6000)
  '(jit-lock-context-time 0.1)
@@ -790,7 +787,6 @@ This function is called at the very end of Spacemacs initialization."
  '(vlf-tune-enabled t)
  '(vlf-tune-max 402702600)
  '(which-function-mode t)
- '(which-key-idle-delay 0.6)
  '(which-key-popup-type (quote side-window)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

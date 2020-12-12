@@ -8,12 +8,10 @@
 (ome-load "modules/ome-android.org")
 ;;(ome-load "modules/ome-common-lisp.org")
 (ome-load "modules/ome-taskjuggler.org")
-(ome-load "modules/ome-define.org")
 (ome-load "modules/ome-company.org")
 (ome-load "modules/ome-pdf-tools.org")
 ;;(ome-load "modules/ome-python.org")
 
-(setq helm-gtags-use-input-at-cursor nil)
 (evil-mode)
 
 (if (equal 'windows-nt system-type)

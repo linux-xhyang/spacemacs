@@ -6,38 +6,75 @@ This is part of [[https://github.com/xiaohanyu/oh-my-emacs][oh-my-emacs]].
 * Basic GUI Settings
   #+NAME: gui-basics
   #+BEGIN_SRC emacs-lisp
-    ;; show column number and line number
-    (dolist (mode '(column-number-mode line-number-mode))
-      (when (fboundp mode) (funcall mode t)))
+            ;; show column number and line number
+            (dolist (mode '(column-number-mode line-number-mode))
+              (when (fboundp mode) (funcall mode t)))
+            ;; show unncessary whitespace that can mess up your diff
+            (add-hook 'prog-mode-hook (lambda () (interactive) (setq show-trailing-whitespace 1)))
+        (add-hook 'c-mode-common-hook   'hs-minor-mode)
+        (global-set-key (kbd "<f5>") (lambda ()
+                                       (interactive)
+                                       (setq-local compilation-read-command nil)
+                                       (call-interactively 'compile)))
 
-    ;; (dolist (mode-hook '(text-mode-hook prog-mode-hook conf-mode-hook))
-    ;;   (add-hook mode-hook
-    ;;             (lambda ()
-    ;;               (linum-mode 1))))
+    (defun list-to-string (list)
+      "thisandthat."
+      (interactive)
+      (when (consp list)
+        (let ((var1 (car list)))
+          (if (stringp (car list))
+              (cond ((consp (cdr list)) (concat (car list) " " (list-to-string (cdr list))))
+                    (t (car list)))
+            (list-to-string (cdr list)))
+          )))
 
-    ;; make the fringe thinner (default is 8 in pixels)
-    (fringe-mode 4)
+    ;; use space to indent by default
+    (setq-default indent-tabs-mode nil)
 
-    ;; show parenthesis match
-    (show-paren-mode 1)
-    (setq show-paren-style 'expression)
-    (defadvice show-paren-function
-        (around show-paren-closing-before
-                activate compile)
-      (if (eq (syntax-class (syntax-after (point))) 5)
-          (save-excursion
-            (forward-char)
-            ad-do-it)
-        ad-do-it))
+    (defun walk-directory (dirname fn &optional directories-p testfn)
+      (let ((directories (and directories-p t))
+            (test (or (if (functionp testfn) testfn nil) #'(lambda (name) t))))
+        (cl-labels
+            ((walk (name)
+                   (let ((fnd (file-name-nondirectory name)))
+                     (cond
+                      ((file-directory-p name)
+                       (if (not (string-match "^\\.+$" fnd))
+                           (progn
+                             (when (and directories (funcall test name))
+                               (funcall fn name))
+                             (dolist (x (directory-files name t)) (walk x)))))
+                      ((funcall test name) (funcall fn name))))))
+          (walk dirname))))
 
-    ;; Toggle line highlighting in all buffers
-    (global-hl-line-mode t)
-    (set-face-background 'hl-line "#3e4446")
-    (set-face-foreground 'highlight nil)
+            ;; (dolist (mode-hook '(text-mode-hook prog-mode-hook conf-mode-hook))
+            ;;   (add-hook mode-hook
+            ;;             (lambda ()
+            ;;               (linum-mode 1))))
 
-    ;;(add-hook 'org-mode-hook (lambda () (spacemacs/toggle-line-numbers-off)) 'append)
-    ;;(add-hook 'find-file-hook 'spacemacs/check-large-file)
-    (global-visual-line-mode t)
+            ;; make the fringe thinner (default is 8 in pixels)
+            (fringe-mode 4)
+
+            ;; show parenthesis match
+            (show-paren-mode 1)
+            (setq show-paren-style 'expression)
+            (defadvice show-paren-function
+                (around show-paren-closing-before
+                        activate compile)
+              (if (eq (syntax-class (syntax-after (point))) 5)
+                  (save-excursion
+                    (forward-char)
+                    ad-do-it)
+                ad-do-it))
+
+            ;; Toggle line highlighting in all buffers
+            (global-hl-line-mode t)
+            (set-face-background 'hl-line "#3e4446")
+            (set-face-foreground 'highlight nil)
+
+            ;;(add-hook 'org-mode-hook (lambda () (spacemacs/toggle-line-numbers-off)) 'append)
+            ;;(add-hook 'find-file-hook 'spacemacs/check-large-file)
+            (global-visual-line-mode t)
   #+END_SRC
 
 * buffer read only default
