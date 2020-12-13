@@ -48,6 +48,18 @@
 - source :: ${ref}"
            :unnarrowed t))))
 
+(with-eval-after-load 'org
+  (if (equal 'windows-nt system-type)
+      (progn
+        (if (file-exists-p "D:/note/my-org.el")
+            (progn
+              (load "D:/note/my-org.el"))))
+    (progn
+      (if (file-exists-p "~/note/my-org.el")
+          (progn
+            (load "~/note/my-org.el")))))
+  )
+
 (defun ome-org/init-org-roam-server ()
   (use-package org-roam-server
     :ensure t)
@@ -90,6 +102,7 @@
 
 (defun ome-org/init-valign ()
   (use-package valign
+    :after org-mode
     :ensure t
     :config
     (add-hook 'org-mode-hook #'valign-mode))

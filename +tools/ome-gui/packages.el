@@ -6,7 +6,6 @@
         (rime :location (recipe :fetcher github :repo "DogLooksGood/emacs-rime"
                                 :files ("Makefile" "lib.c" "rime*.el")))
         (clipetty :location (recipe :fetcher github :repo "spudlyo/clipetty"))
-        magit
         cal-china-x
         ))
 
@@ -110,17 +109,6 @@ JUSTIFICATION is a symbol for 'left, 'center or 'right."
         (advice-add 'org--format-latex-make-overlay :after 'org-latex-fragment-justify-advice))
       ))
   )
-
-(defun ome-gui/init-magit ()
-  (use-package magit
-    :defer t
-    :init
-    (progn
-      (with-eval-after-load 'magit-mode
-        (require 'magit-mode)
-        (require 'ivy)
-        (pretty-magit-setup)
-        ))))
 
 (defun ome-gui/init-cal-china-x ()
   "docstring"

@@ -180,7 +180,6 @@ values."
    ;;                                    (ggtags :location (recipe :fetcher github :repo "linux-xhyang/ggtags")))
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(
-                                    ace-window
                                     ac-ispell
                                     aggressive-indent
                                     anaphora
@@ -198,11 +197,8 @@ values."
                                     company-anaconda
                                     company-ycmd
                                     counsel-css
-                                    doc-view
                                     evil-tutor
                                     eyebrowse
-                                    evil-escape
-                                    evil-lisp-state
                                     elisp-slime-nav
                                     emr
                                     epc
@@ -211,8 +207,10 @@ values."
                                     find-by-pinyin-dired
                                     fish-mode
                                     flycheck-ycmd
+                                    flycheck-elsa
                                     gh-md
                                     git-gutter
+                                    ghub
                                     gntp
                                     helm-make
                                     haml-mode
@@ -221,6 +219,7 @@ values."
                                     leuven-theme
                                     lsp-python-ms
                                     lorem-ipsum
+                                    magit-svn
                                     maven-test-mode
                                     magit-gh-pulls
                                     magit-gitflow
@@ -240,7 +239,6 @@ values."
                                     rtags
                                     sass-mode
                                     scss-mode
-                                    stickyfunc-enhance
                                     smooth-scrolling
                                     spacemacs-purpose-popwin
                                     slim-mode
@@ -256,6 +254,7 @@ values."
                                     with-editor
                                     window-purpose
                                     ycmd
+                                    zenburn-theme
                                     )
    dotspacemacs-additional-packages '(
                                       lsp-pyright
@@ -501,6 +500,7 @@ in `dotspacemacs/user-config'."
                 '((which-function-mode ("" which-func-format " "))))
   (which-function-mode 1)
   (setq spaceline-org-clock-p t)
+
   ;;debug
   ;;(toggle-debug-on-quit)
   ;;https://github.com/dholm/benchmark-init-el.git

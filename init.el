@@ -11,15 +11,3 @@
 (ome-load "modules/ome-company.org")
 (ome-load "modules/ome-pdf-tools.org")
 ;;(ome-load "modules/ome-python.org")
-
-(evil-mode)
-
-(if (equal 'windows-nt system-type)
-    (progn
-      (if (file-exists-p "D:/note/my-org.el")
-          (progn
-            (load "D:/note/my-org.el"))))
-  (progn
-    (if (file-exists-p "~/note/my-org.el")
-        (progn
-          (load "~/note/my-org.el")))))
