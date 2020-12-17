@@ -644,7 +644,7 @@ This function is called at the very end of Spacemacs initialization."
  '(company-auto-complete t)
  '(company-auto-complete-chars (quote (32 95 41 46 34 39 60 62)))
  '(company-idle-delay 0)
- '(company-minimum-prefix-length 3)
+ '(company-minimum-prefix-length 1)
  '(company-selection-wrap-around t)
  '(company-show-numbers t)
  '(counsel-rg-base-command

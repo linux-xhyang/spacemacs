@@ -67,11 +67,12 @@
 
 (defun ome-org//org-roam-company-setup()
   (spacemacs|add-company-backends
-    :backends (company-org-roam company-dabbrev company-keywords)
+    :backends (company-org-block company-org-roam company-dabbrev company-keywords)
     :modes org-mode
     :append-hooks nil
     :call-hooks nil
     ))
+
 
 (defun ome-org/init-company-org-roam ()
   (use-package company-org-roam
@@ -79,9 +80,6 @@
     :config
     (progn
       (ome-org//org-roam-company-setup)
-      (add-hook 'org-mode-hook #'(lambda ()
-                                   (define-key org-mode-map (kbd "M-n") 'company-complete-common)
-                                   ))
       )
   ))
 
