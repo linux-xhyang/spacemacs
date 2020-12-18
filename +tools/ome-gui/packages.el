@@ -2,22 +2,16 @@
 (setq ome-gui-packages
       '(
         ov
-        posframe
         (rime :location (recipe :fetcher github :repo "DogLooksGood/emacs-rime"
                                 :files ("Makefile" "lib.c" "rime*.el")))
         (clipetty :location (recipe :fetcher github :repo "spudlyo/clipetty"))
         cal-china-x
         ))
 
-(defun ome-gui/init-posframe ()
-  (use-package posframe
-    :init
-    (require 'posframe)
-    ))
-
 (defun ome-gui/init-rime ()
   "rime"
   (use-package rime
+    :after posframe
     :bind
     (("C-\\" . 'toggle-input-method))
     :custom

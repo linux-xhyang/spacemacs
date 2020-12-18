@@ -109,7 +109,7 @@ values."
              python-format-on-save t
              python-sort-imports-on-save t
              python-pipenv-activate t
-             python-backend 'lsp
+             python-backend 'lsp python-lsp-server 'pyright
              python-lsp-server 'nil
              python-lsp-git-root "~/src/python-language-server")
      ipython-notebook
