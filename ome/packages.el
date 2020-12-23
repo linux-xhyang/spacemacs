@@ -158,13 +158,13 @@
   )
 
 (with-eval-after-load 'smartparens
-  (def-pairs ((paren . "(")
-            (bracket . "[")
-            (brace . "{")
-            (single-quote . "'")
-            (double-quote . "\"")
-            (back-quote . "`")))
-
+  (setq sp-ignore-modes-list (quote (minibuffer-inactive-mode
+                                     Info-mode
+                                     term-mode
+                                     org-mode
+                                     org-journal-mode
+                                     markdown-mode
+                                     ivy-occur-mode)))
   (bind-keys
    :map smartparens-mode-map
    ("C-M-a" . sp-beginning-of-sexp)
@@ -200,8 +200,8 @@
    ("C-<backspace>" . sp-backward-kill-word)
    ([remap sp-backward-kill-word] . backward-kill-word)
 
-   ("M-[" . sp-backward-unwrap-sexp)
-   ("M-]" . sp-unwrap-sexp)
+   ("C-M-u" . sp-backward-unwrap-sexp)
+   ("C-M-c" . sp-unwrap-sexp)
 
    ("C-x C-t" . sp-transpose-hybrid-sexp)
 
@@ -211,5 +211,6 @@
    ("C-c '"  . wrap-with-single-quotes)
    ("C-c \"" . wrap-with-double-quotes)
    ("C-c _"  . wrap-with-underscores)
-   ("C-c `"  . wrap-with-back-quotes))
+   ("C-c `"  . wrap-with-back-quotes)
+   )
 )

@@ -57,7 +57,7 @@ candidates will be from company-tabnine, others keeping their own origin order."
         (setenv var value))
       (setq lst (cdr lst)))))
 
-(defmacro def-pairs (pairs)
+(defmacro def-ome-pairs (pairs)
   "Define functions for pairing. PAIRS is an alist of (NAME . STRING)
 conses, where NAME is the function name that will be created and
 STRING is a single-character string that marks the opening character.
@@ -77,5 +77,12 @@ respectively."
                   (&optional arg)
                 (interactive "p")
                 (sp-wrap-with-pair ,val)))))
+
+(def-ome-pairs ((paren . "(")
+            (bracket . "[")
+            (brace . "{")
+            (single-quote . "'")
+            (double-quote . "\"")
+            (back-quote . "`")))
 
 ;;; funcs.el ends here
