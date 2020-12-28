@@ -258,6 +258,7 @@ values."
                                     )
    dotspacemacs-additional-packages '(
                                       lsp-pyright
+                                      org-caldav
                                       )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
