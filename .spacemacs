@@ -71,6 +71,7 @@ values."
               clojure-enable-linters 'clj-kondo
               clojure-enable-sayid t
               clojure-enable-clj-refactor t
+              clojure-backend 'cider
               )
      pdf
      gnus
