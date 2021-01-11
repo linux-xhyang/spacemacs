@@ -75,14 +75,6 @@ values."
               )
      pdf
      gnus
-     (mu4e :variables
-           mu4e-installation-path "/usr/local/share/emacs/site-lisp/"
-           ;;mu4e-use-maildirs-extension t
-           mu4e-enable-async-operations t
-           mu4e-enable-notifications t
-           mu4e-spacemacs-layout-name "@Mu4e"
-           mu4e-spacemacs-layout-binding "m"
-           mu4e-spacemacs-kill-layout-on-exit t)
      shell-scripts
      emacs-lisp
      ;;common-lisp
@@ -264,7 +256,20 @@ values."
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
-   dotspacemacs-delete-orphan-packages t))
+   dotspacemacs-delete-orphan-packages t)
+  (when (display-graphic-p)
+    (setq dotspacemacs-configuration-layers (seq-concatenate 'list
+                                                             dotspacemacs-configuration-layers
+                                                             (list '(mu4e :variables
+                                                                          mu4e-installation-path "/usr/local/share/emacs/site-lisp/"
+                                                                          ;;mu4e-use-maildirs-extension t
+                                                                          mu4e-enable-async-operations t
+                                                                          mu4e-enable-notifications t
+                                                                          mu4e-spacemacs-layout-name "@Mu4e"
+                                                                          mu4e-spacemacs-layout-binding "m"
+                                                                          mu4e-spacemacs-kill-layout-on-exit t)
+                                                                   ))))
+  )
 
 (defun dotspacemacs/init ()
   "Initialization function.
