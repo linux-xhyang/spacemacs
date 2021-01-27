@@ -135,13 +135,25 @@ This is part of [[https://github.com/xiaohanyu/oh-my-emacs][oh-my-emacs]].
 
 * company key
   #+BEGIN_SRC emacs-lisp
-    (defun company-abort-and-insert-space ()
-      (interactive)
-      (company-abort)
-      (insert " "))
+    (with-eval-after-load 'company
+      (progn
+        (require 'company)
+        (defun company-abort-and-insert-space ()
+          (interactive)
+          (company-abort)
+          (insert " "))
+        (defun company-complete-selection-insert-key (company-key)
+          (company-complete-selection)
+          (insert company-key))
+        (defun company-complete-selection-insert-key-and-complete (company-key)
+          (company-complete-selection-insert-key company-key)
+          (company-complete))
 
-    (eval-after-load 'company
-      (define-key company-active-map (kbd "SPC") #'company-abort-and-insert-space))
+        (define-key company-active-map (kbd "SPC") #'company-abort-and-insert-space)
+        (define-key company-active-map (kbd ".") (lambda() (interactive) (company-complete-selection-insert-key-and-complete '".")))
+        (define-key company-active-map (kbd ";") (lambda() (interactive) (company-complete-selection-insert-key '";")))
+        (define-key company-active-map (kbd "C-e") #'company-other-backend))
+      )
   #+END_SRC
 
 * diminish mode
