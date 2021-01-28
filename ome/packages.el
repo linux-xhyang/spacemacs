@@ -34,7 +34,6 @@
     (xgtags :location (recipe :fetcher github :repo "linux-xhyang/xgtags"))
     exec-path-from-shell
     ;;(company-tabnine :requires company)
-    (company-lsp :requires company)
     ob-ipython
     eacl
     ))
@@ -130,20 +129,15 @@
     ))
 
 
-(defun ome/init-company-lsp ()
-  (use-package company-lsp
-    :defer t
-    ))
-
 (defun ome/post-init-company()
   (spacemacs|add-company-backends :backends company-elisp
                                   :modes emacs-lisp-mode)
 
-  (spacemacs|add-company-backends :backends (company-lsp company-ctags)
+  (spacemacs|add-company-backends :backends (company-capf company-ctags)
                                   :modes
                                   c-mode-common)
 
-  (spacemacs|add-company-backends :backends company-lsp
+  (spacemacs|add-company-backends :backends company-capf
                                   :modes
                                   python-mode)
   )

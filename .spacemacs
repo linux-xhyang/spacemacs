@@ -117,7 +117,6 @@ values."
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-rtags-completion nil
             c-c++-backend 'lsp-ccls
-            c-c++-lsp-server 'ccls
             c-c++-adopt-subprojects t
             c-c++-enable-google-style t)
      (auto-completion :variables
@@ -130,8 +129,8 @@ values."
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-sort-by-usage t
-                      spacemacs-default-company-backends '((company-dabbrev-code company-keywords)
-                                                           company-capf
+                      spacemacs-default-company-backends '((company-capf company-keywords)
+                                                           company-dabbrev-code
                                                            company-files
                                                            company-dabbrev)
                       )

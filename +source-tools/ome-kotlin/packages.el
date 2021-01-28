@@ -52,7 +52,7 @@
   (if (configuration-layer/layer-used-p 'lsp)
       (progn
         (spacemacs|add-company-backends
-         :backends company-lsp
+         :backends company-capf
          :modes kotlin-mode
          :append-hooks nil
          :call-hooks t)
