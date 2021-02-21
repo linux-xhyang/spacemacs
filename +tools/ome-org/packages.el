@@ -1,19 +1,11 @@
 
 (setq ome-org-packages
       '(
-        ;; (org-roam :location (recipe
-        ;;                      :fetcher github
-        ;;                      :repo "org-roam/org-roam")
-        ;;           )
         (org-roam-server ;; :location (recipe
                          ;;     :fetcher github
                          ;;     :repo "org-roam/org-roam-server"
                          ;;     :files ("*.el" "assets"))
                          )
-        (company-org-roam ;; :location (recipe
-                          ;;    :fetcher github
-                          ;;    :repo "org-roam/company-org-roam")
-         )
         org-clock-convenience
         org-noter
         ))
@@ -61,24 +53,6 @@
   (use-package org-roam-server
     :ensure t)
   )
-
-(defun ome-org//org-roam-company-setup()
-  (spacemacs|add-company-backends
-    :backends (company-org-block company-org-roam company-dabbrev company-keywords)
-    :modes org-mode
-    :append-hooks nil
-    :call-hooks nil
-    ))
-
-
-(defun ome-org/init-company-org-roam ()
-  (use-package company-org-roam
-    :after org-roam
-    :config
-    (progn
-      (ome-org//org-roam-company-setup)
-      )
-  ))
 
 (defun ome-org/init-org-clock-convenience ()
   (use-package org-clock-convenience

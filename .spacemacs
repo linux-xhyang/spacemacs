@@ -25,6 +25,7 @@ values."
      ;;nlinum
      debug
      (lsp :variables
+          lsp-use-lsp-ui t
           lsp-ui-sideline-enable t
           lsp-remap-xref-keybindings t)
      (spell-checking :variables
@@ -75,7 +76,9 @@ values."
               )
      pdf
      gnus
-     shell-scripts
+     (shell-scripts :variables
+                    shell-scripts-backend 'lsp
+                    )
      emacs-lisp
      ;;common-lisp
      groovy
@@ -308,7 +311,9 @@ values."
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'.
    ;; (default '(recents projects))
-   dotspacemacs-startup-lists '(recents projects)
+   dotspacemacs-startup-lists '((recents  . 5)
+                                (projects . 7)
+                                (bookmarks . 5))
    ;; Number of recent files to show in the startup buffer. Ignored if
    ;; `dotspacemacs-startup-lists' doesn't include `recents'. (default 5)
    dotspacemacs-startup-recent-list-size 5
