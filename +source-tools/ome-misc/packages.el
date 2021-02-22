@@ -5,6 +5,10 @@
     dts-mode
     counsel-etags
     company-ctags
+    (code-compass :location (recipe
+                             :fetcher github
+                             :repo "ag91/code-compass"
+                             :files ("*.el" "scripts" "pages")))
     ))
 
 (defun ome-misc/init-vlf ()
@@ -57,3 +61,18 @@
       (company-ctags-auto-setup))
    )
   )
+
+(defun ome-misc/init-code-compass ()
+  (use-package code-compass
+    :defer t
+    :init
+    (progn
+      (require 'code-compass)))
+  )
+
+;; (defun c/produce-cloc-report (repository)
+;;   "Create cloc report for REPOSITORY."
+;;   (message "Producing cloc report...")
+;;   (shell-command
+;;    (format "(cd %s; cloc ./ --by-file --exclude-dir=.ccls-cache --csv --quiet) > cloc.csv" repository))
+;;   repository)

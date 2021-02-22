@@ -1,14 +1,22 @@
 
 (setq ome-org-packages
       '(
-        (org-roam-server ;; :location (recipe
-                         ;;     :fetcher github
-                         ;;     :repo "org-roam/org-roam-server"
-                         ;;     :files ("*.el" "assets"))
-                         )
+        (org-roam-server  :location (recipe
+                              :fetcher github
+                              :repo "org-roam/org-roam-server"
+                              :files ("*.el" "assets"))
+                          )
         org-clock-convenience
         org-noter
         ))
+
+(defun ome-org//org-roam-company-setup()
+  (spacemacs|add-company-backends
+    :backends (company-org-block company-dabbrev company-keywords)
+    :modes org-mode
+    :append-hooks nil
+    :call-hooks nil
+    ))
 
 (with-eval-after-load 'org-roam
   (require 'org-roam-protocol)
@@ -38,6 +46,7 @@
            :unnarrowed t))))
 
 (with-eval-after-load 'org
+  (ome-org//org-roam-company-setup)
   (if (equal 'windows-nt system-type)
       (progn
         (if (file-exists-p "D:/note/my-org.el")
