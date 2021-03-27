@@ -352,3 +352,11 @@
   "~/.emacs.d/org-clock-save.el"
   )))
   #+end_src
+
+* fix lsp-mode crash bug
+  #+begin_src emacs-lisp
+    (advice-add 'json-parse-string :around
+                (lambda (orig string &rest rest)
+                  (apply orig (s-replace "\\u0000" "" string)
+                         rest)))
+  #+end_src

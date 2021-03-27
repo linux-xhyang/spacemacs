@@ -45,6 +45,7 @@ values."
      (git :variables
           git-enable-magit-svn-plugin nil)
      cmake
+     csv
      ;;chrome
      ;;confluence
      (plantuml :variables
@@ -466,7 +467,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup t
+   dotspacemacs-whitespace-cleanup 'all
    dotspacemacs-enable-lazy-installation nil
    ))
 
