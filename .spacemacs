@@ -64,7 +64,9 @@ values."
           org-enable-org-journal-support t
           org-want-todo-bindings t
           org-enable-hugo-support t
-          org-enable-roam-support t)
+          org-enable-roam-support t
+          org-enable-roam-server t
+          org-enable-valign t)
      (chinese :variables
               chinese-enable-youdao-dict t)
      semantic
