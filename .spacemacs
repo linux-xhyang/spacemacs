@@ -248,7 +248,6 @@ values."
                                     vi-tilde-fringe
                                     writeroom-mode
                                     with-editor
-                                    window-purpose
                                     ycmd
                                     zenburn-theme
                                     )
@@ -775,6 +774,8 @@ This function is called at the very end of Spacemacs initialization."
  '(org-startup-with-latex-preview t)
  '(projectile-enable-caching t)
  '(projectile-git-command "git ls-files -zco --exclude-standard -x \".ccls-cache\"")
+ '(projectile-globally-ignored-directories
+   '(".idea" ".vscode" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" ".ccls-cache" ".cache" ".repo" ".clangd"))
  '(projectile-project-root-files-bottom-up
    (quote
     ("compile_commands.json" ".git" ".projectile" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs")))
