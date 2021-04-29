@@ -34,7 +34,6 @@ values."
                       syntax-checking-enable-by-default t
                       syntax-checking-enable-tooltips t)
      better-defaults
-     gtags
      dash
      ivy
      (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
@@ -485,9 +484,17 @@ in `dotspacemacs/user-config'."
   (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 
   (setq read-process-output-max (* 4 1024 1024))
-  (setq gc-cons-threshold (* 511 1024 1024))
-  (setq gc-cons-percentage 0.5)
-  (run-with-idle-timer 10 t #'garbage-collect)
+  (defun my-minibuffer-setup-hook ()
+    (setq gc-cons-threshold most-positive-fixnum))
+
+  (defun my-minibuffer-exit-hook ()
+    (setq gc-cons-threshold 800000))
+
+  (add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
+  (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
+
+  ;;(run-with-idle-timer 10 t #'garbage-collect)
+
   (setq garbage-collection-messages t)
   (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
   ;; set environment coding system
@@ -672,8 +679,6 @@ This function is called at the very end of Spacemacs initialization."
    ".opengrok:out:*.so:*.a:*.o:*.gz:*.bz2:*.jar:*.zip:*.class:*.elc:GPATH:GRTAGS:GTAGS:.repo:.cquery_cached_index")
  '(gdb-many-windows t)
  '(gdb-show-main t)
- '(ggtags-highlight-tag 1)
- '(ggtags-sort-by-nearness t)
  '(git-gutter:added-sign "++")
  '(git-gutter:deleted-sign "--")
  '(git-gutter:diff-option "-w")
@@ -699,6 +704,7 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-auto-guess-root t)
  '(lsp-before-save-edits nil)
  '(lsp-enable-completion-at-point t)
+ '(lsp-eldoc-enable-hover nil)
  '(lsp-enable-indentation nil)
  '(lsp-enable-file-watchers nil)
  '(lsp-kotlin-external-sources-use-kls-scheme nil)
@@ -712,15 +718,17 @@ This function is called at the very end of Spacemacs initialization."
     ("-noverify" "-Xmx1G" "-XX:+UseG1GC" "-XX:+UseStringDeduplication")))
  '(lsp-java-jdt-download-url
    "https://mirrors.tuna.tsinghua.edu.cn/eclipse/jdtls/snapshots/jdt-language-server-latest.tar.gz")
- ;;"https://ftp.yzu.edu.tw/eclipse/che/che-ls-jdt/snapshots/che-jdt-language-server-latest.tar.gz"
- ;;"https://ftp.yzu.edu.tw/eclipse/jdtls/snapshots/jdt-language-server-latest.tar.gz"
+ '(lsp-java-vmargs
+   '("-noverify" "-Xmx4G" "-XX:+UseG1GC" "-XX:+UseStringDeduplication"))
  '(lsp-keep-workspace-alive nil)
  '(lsp-log-max nil)
- '(lsp-response-timeout 6)
+ '(lsp-response-timeout 3)
+ '(lsp-ui-doc-position 'bottom)
  '(lsp-ui-flycheck-enable t)
  '(lsp-ui-imenu-enable t)
  '(lsp-ui-sideline-show-flycheck t)
- '(lsp-ui-sideline-show-symbol nil t)
+ '(lsp-ui-sideline-show-symbol nil)
+ '(lsp-ui-sideline-wait-for-all-symbols nil)
  '(org-habit-show-habits-only-for-today nil)
  '(magit-diff-arguments
    (quote

@@ -1,9 +1,8 @@
-
 (defconst ome-misc-packages
   '(
     vlf
     dts-mode
-    counsel-etags
+    ;;counsel-etags
     company-ctags
     (code-compass :location (recipe
                              :fetcher github
@@ -33,23 +32,23 @@
       )))
 
 
-(defun ome-misc/init-counsel-etags ()
-  (use-package counsel-etags
-    :defer t
-    :init
-    ;; Setup auto update now
-    (progn
-      (defun update-etags-hook ()
-        (add-hook 'after-save-hook
-                  'counsel-etags-virtual-update-tags 'append 'local))
-      (add-hook 'prog-mode-hook #'update-etags-hook)
-      ;; Don't ask before rereading the TAGS files if they have changed
-      (setq tags-revert-without-query t)
-      ;; Don't warn when TAGS files are large
-      (setq large-file-warning-threshold nil)
-      (global-set-key (kbd "C-c g d") 'counsel-etags-find-tag-at-point)
-      )
-    ))
+;; (defun ome-misc/init-counsel-etags ()
+;;   (use-package counsel-etags
+;;     :defer t
+;;     :init
+;;     ;; Setup auto update now
+;;     (progn
+;;       (defun update-etags-hook ()
+;;         (add-hook 'after-save-hook
+;;                   'counsel-etags-virtual-update-tags 'append 'local))
+;;       (add-hook 'prog-mode-hook #'update-etags-hook)
+;;       ;; Don't ask before rereading the TAGS files if they have changed
+;;       (setq tags-revert-without-query t)
+;;       ;; Don't warn when TAGS files are large
+;;       (setq large-file-warning-threshold nil)
+;;       (global-set-key (kbd "C-c g d") 'counsel-etags-find-tag-at-point)
+;;       )
+;;     ))
 
 (defun ome-misc/init-company-ctags ()
   "docstring"

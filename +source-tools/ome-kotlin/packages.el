@@ -13,8 +13,8 @@
   '(
     flycheck
     (flycheck-kotlin :requires flycheck)
-    ggtags
-    helm-gtags
+    ;; ggtags
+    ;; helm-gtags
     kotlin-mode
     ))
 
@@ -28,8 +28,8 @@
     :defer t
     :init (add-hook 'flycheck-mode-hook #'flycheck-kotlin-setup)))
 
-(defun ome-kotlin/post-init-ggtags ()
-  (add-hook 'kotlin-mode-local-vars-hook #'spacemacs/ggtags-mode-enable))
+;; (defun ome-kotlin/post-init-ggtags ()
+;;   (add-hook 'kotlin-mode-local-vars-hook #'spacemacs/ggtags-mode-enable))
 
 (defun ome-kotlin/post-init-helm-gtags ()
   (spacemacs/helm-gtags-define-keys-for-mode 'kotlin-mode))

@@ -325,10 +325,12 @@
         ))
   #+END_SRC
 
-* java semantic-mode
+* semantic-mode
 
   #+BEGIN_SRC emacs-lisp
-    ;;(add-hook 'java-mode-hook 'semantic-mode)
+    (require 'semantic)
+    (add-to-list 'semantic-inhibit-functions
+                 (lambda () (not (member major-mode '(java-mode)))))
   #+END_SRC
 
 * init env
