@@ -361,6 +361,8 @@
                 (lambda (orig string &rest rest)
                   (apply orig (s-replace "\\u0000" "" string)
                          rest)))
+    ;; fix lsp java company hang
+    (advice-add 'lsp :before (lambda (&rest _args) (eval '(setf (lsp-session-server-id->folders (lsp-session)) (ht)))))
   #+end_src
 
 * projectile
