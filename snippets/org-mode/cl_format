@@ -2,4 +2,4 @@
 # name: cl_format
 # key: cl_format
 # --
-:match "/TODO|DONE" :format "%ITEM(What) %TAGS(Who) %DEADLINE(When) %TODO(State)"
+:match "/TODO|DONE" :format "%ITEM(What) %TAGS(Who) %DEADLINE(When) %TODO(State)\"
