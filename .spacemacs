@@ -719,7 +719,7 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-java-jdt-download-url
    "https://mirrors.tuna.tsinghua.edu.cn/eclipse/jdtls/snapshots/jdt-language-server-latest.tar.gz")
  '(lsp-java-vmargs
-   '("-noverify" "-Xmx4G" "-XX:+UseG1GC" "-XX:+UseStringDeduplication"))
+   '("-noverify" "-Xmx2G" "-XX:+UseG1GC" "-XX:+UseStringDeduplication"))
  '(lsp-keep-workspace-alive nil)
  '(lsp-log-max nil)
  '(lsp-response-timeout 3)
