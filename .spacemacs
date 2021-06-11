@@ -478,10 +478,10 @@ any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
   (setq configuration-layer-elpa-archives
     '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-      ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+      ("nongnu" . "https://elpa.nongnu.org/nongnu/")
       ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
   (require 'package)
-  (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+
 
   (setq read-process-output-max (* 4 1024 1024))
   (defun my-minibuffer-setup-hook ()
