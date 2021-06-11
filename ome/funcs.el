@@ -85,19 +85,6 @@ respectively."
                 (double-quote . "\"")
                 (back-quote . "`")))
 
-(defun my-open-message-id-in-evolution (message-id)
-  "open an email with a given message-ID in Evolution"
-  (interactive)
-  (start-process
-   (concat "mid: " message-id)
-   nil
-   "/usr/bin/flatpak"
-   "run" "org.gnome.Evolution" (concat "mid:<" message-id ">")
-   )
-  )
-
-(org-link-set-parameters "messageid" :follow #'my-open-message-id-in-evolution)
-
 (defun my-convert-mail-header-to-org-link ()
   "Assumes an email header in the killring, parses it and returns an org mode link for it."
   (interactive)
