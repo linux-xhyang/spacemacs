@@ -1,4 +1,3 @@
-
 (evil-leader/set-key "oy" 'youdao-dictionary-search-at-point+)
 (evil-leader/set-key "oo" 'youdao-dictionary-search-from-input)
 ;; activate whitespace-mode to view all whitespace characters
@@ -12,3 +11,4 @@
 
 (evil-leader/set-key "ocl" 'eacl-complete-line)
 (evil-leader/set-key "ocm" 'eacl-complete-multiline)
+(evil-leader/set-key "oim" 'my-convert-mail-header-to-org-link)

@@ -25,7 +25,7 @@
   "The first two candidates will be from company-lsp, the following two
 candidates will be from company-tabnine, others keeping their own origin order."
   (if (or (functionp company-backend)
-         (not (and (listp company-backend) (memq 'company-tabnine company-backend))))
+          (not (and (listp company-backend) (memq 'company-tabnine company-backend))))
       candidates
     (let ((candidates-table (make-hash-table :test #'equal))
           candidates-1
@@ -69,20 +69,66 @@ defines the functions WRAP-WITH-PAREN and WRAP-WITH-BRACKET,
 respectively."
   `(progn
      ,@(cl-loop for (key . val) in pairs
-             collect
-             `(defun ,(read (concat
-                             "wrap-with-"
-                             (prin1-to-string key)
-                             "s"))
-                  (&optional arg)
-                (interactive "p")
-                (sp-wrap-with-pair ,val)))))
+                collect
+                `(defun ,(read (concat
+                                "wrap-with-"
+                                (prin1-to-string key)
+                                "s"))
+                     (&optional arg)
+                   (interactive "p")
+                   (sp-wrap-with-pair ,val)))))
 
 (def-ome-pairs ((paren . "(")
-            (bracket . "[")
-            (brace . "{")
-            (single-quote . "'")
-            (double-quote . "\"")
-            (back-quote . "`")))
+                (bracket . "[")
+                (brace . "{")
+                (single-quote . "'")
+                (double-quote . "\"")
+                (back-quote . "`")))
+
+(defun my-open-message-id-in-evolution (message-id)
+  "open an email with a given message-ID in Evolution"
+  (interactive)
+  (start-process
+   (concat "mid: " message-id)
+   nil
+   "/usr/bin/flatpak"
+   "run" "org.gnome.Evolution" (concat "mid:<" message-id ">")
+   )
+  )
+
+(org-link-set-parameters "messageid" :follow #'my-open-message-id-in-evolution)
+
+(defun my-convert-mail-header-to-org-link ()
+  "Assumes an email header in the killring, parses it and returns an org mode link for it."
+  (interactive)
+  (with-temp-buffer
+    (save-match-data
+
+      (yank) ;; yank from clipboard
+      (goto-char (point-min)) ;; start from top
+      (re-search-forward "^Message-Id:.+<\\(.+\\)>[ ]*$" nil nil 1)
+      (setq messageid (match-string 1))
+
+      (goto-char (point-min))
+      (re-search-forward "^From:[	 ]+\\(.+?\\)[ ]*$" nil nil 1)
+      (setq from (string-replace "\"" "" (match-string 1)))
+
+      (goto-char (point-min))
+      (re-search-forward "^Subject:[	 ]+\\(.+?\\)[ ]*$" nil nil 1)
+      (setq subject (match-string 1))
+
+      (goto-char (point-min))
+      (re-search-forward "^Date:[	 ]+\\(.+?\\)[ ]*$" nil nil 1)
+      (setq rawdate (match-string 1))
+      (setq date
+            (let ((time (date-to-time rawdate)))
+              (set-time-zone-rule t) ;; Use Universal time.
+              (prog1 (format-time-string "%Y-%m-%d %H:%M" time)
+                (set-time-zone-rule nil))))
+
+      ;;(message (concat "MID: " messageid " F:" from " S:" subject "RD:" rawdate " D:" date))
+      ))
+  (insert (concat "[[messageid:" messageid "][" date " " from ": " subject "]]"))
+  )
 
 ;;; funcs.el ends here
