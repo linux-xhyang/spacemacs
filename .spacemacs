@@ -42,6 +42,9 @@ values."
      ;;exwm
      ;;slack
      (git :variables
+          git-enable-magit-delta-plugin t
+          git-enable-magit-todos-plugin t
+          git-enable-magit-gitflow-plugin t
           git-enable-magit-svn-plugin nil)
      cmake
      csv
@@ -218,8 +221,6 @@ values."
                                     lorem-ipsum
                                     magit-svn
                                     maven-test-mode
-                                    magit-gh-pulls
-                                    magit-gitflow
                                     multiple-cursors
                                     mvn
                                     meghanada
@@ -263,15 +264,7 @@ values."
   (when (display-graphic-p)
     (setq dotspacemacs-configuration-layers (seq-concatenate 'list
                                                              dotspacemacs-configuration-layers
-                                                             (list '(mu4e :variables
-                                                                          mu4e-installation-path "/usr/local/share/emacs/site-lisp/"
-                                                                          ;;mu4e-use-maildirs-extension t
-                                                                          mu4e-enable-async-operations t
-                                                                          mu4e-enable-notifications t
-                                                                          mu4e-spacemacs-layout-name "@Mu4e"
-                                                                          mu4e-spacemacs-layout-binding "m"
-                                                                          mu4e-spacemacs-kill-layout-on-exit t)
-                                                                   ))))
+                                                                   )))
   )
 
 (defun dotspacemacs/init ()
@@ -477,8 +470,8 @@ It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
   (setq configuration-layer-elpa-archives
-    '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-      ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+    '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa-stable/")
+      ("nongnu" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")
       ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
   (require 'package)
 
@@ -730,12 +723,6 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-ui-sideline-show-symbol nil)
  '(lsp-ui-sideline-wait-for-all-symbols nil)
  '(org-habit-show-habits-only-for-today nil)
- '(magit-diff-arguments
-   (quote
-    ("--ignore-all-space" "--no-ext-diff" "--stat" "-- " "--diff-algorithm=default")))
- '(magit-diff-section-arguments
-   (quote
-    ("--ignore-all-space" "--no-ext-diff" "--diff-algorithm=default")))
  '(mouse-wheel-scroll-amount (quote (2)))
  '(org-emphasis-alist
    (quote
