@@ -42,9 +42,6 @@ values."
      ;;exwm
      ;;slack
      (git :variables
-          git-enable-magit-delta-plugin t
-          git-enable-magit-todos-plugin t
-          git-enable-magit-gitflow-plugin t
           git-enable-magit-svn-plugin nil)
      cmake
      csv
@@ -221,6 +218,8 @@ values."
                                     lorem-ipsum
                                     magit-svn
                                     maven-test-mode
+                                    magit-gh-pulls
+                                    magit-gitflow
                                     multiple-cursors
                                     mvn
                                     meghanada
@@ -578,11 +577,9 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(LaTeX-mode-hook
-   (quote
-    (spacemacs/load-yasnippet smartparens-mode flyspell-mode evil-matchit-mode turn-on-reftex TeX-PDF-mode TeX-source-correlate-mode LaTeX-math-mode TeX-fold-mode latex/auto-fill-mode spacemacs//init-company-LaTeX-mode company-mode pdf-tools-install)) t)
+   '(spacemacs/load-yasnippet smartparens-mode flyspell-mode evil-matchit-mode turn-on-reftex TeX-PDF-mode TeX-source-correlate-mode LaTeX-math-mode TeX-fold-mode latex/auto-fill-mode spacemacs//init-company-LaTeX-mode company-mode pdf-tools-install) t)
  '(TeX-command-list
-   (quote
-    (("TeX" "%(PDF)%(tex) %(file-line-error) %`%(extraopts) %S%(PDFout)%(mode)%' %t" TeX-run-TeX nil
+   '(("TeX" "%(PDF)%(tex) %(file-line-error) %`%(extraopts) %S%(PDFout)%(mode)%' %t" TeX-run-TeX nil
       (latex-mode doctex-mode texinfo-mode ams-tex-mode)
       :help "Run plain TeX")
      ("LaTeX" "%`%l%(mode)%' %T" TeX-run-TeX nil
@@ -625,49 +622,54 @@ This function is called at the very end of Spacemacs initialization."
      ("Spell" "(TeX-ispell-document \"\")" TeX-run-function nil t :help "Spell-check the document")
      ("Clean" "TeX-clean" TeX-run-function nil t :help "Delete generated intermediate files")
      ("Clean All" "(TeX-clean t)" TeX-run-function nil t :help "Delete generated intermediate and output files")
-     ("Other" "" TeX-run-command t t :help "Run an arbitrary command"))))
- '(TeX-engine (quote xetex))
+     ("Other" "" TeX-run-command t t :help "Run an arbitrary command")))
+ '(TeX-engine 'xetex t)
  '(TeX-source-correlate-start-server t t)
- '(TeX-view-program-list (quote (("pdf-tools" (TeX-pdf-tools-sync-view) ""))))
+ '(TeX-view-program-list '(("pdf-tools" (TeX-pdf-tools-sync-view) "")))
  '(TeX-view-program-selection
-   (quote
-    (((output-dvi has-no-display-manager)
+   '(((output-dvi has-no-display-manager)
       "dvi2tty")
      ((output-dvi style-pstricks)
       "dvips and gv")
      (output-dvi "xdvi")
      (output-pdf "PDF Tools")
-     (output-html "xdg-open"))))
- '(ahs-default-range (quote ahs-range-display))
+     (output-html "xdg-open")))
+ '(ahs-default-range 'ahs-range-display)
+ '(android-compilation-no-buildenv-warning nil)
+ '(android-jdb-command-name "/usr/bin/jdb")
  '(calculator-number-digits 6)
+ '(ccls-args '("--log-file=/home/yangxiaohe/.emacs.d/ccls.log"))
+ '(ccls-executable "/usr/local/bin/ccls")
+ '(ccls-initialization-options
+   '(:completion
+     (:detailedLabel t)
+     :index
+     (:initialReparseForDependency :json-false :comments 2 :threads 2)
+     :cache
+     (:retainInMemory 2 :format "binary")
+     :diagnostics
+     (:onChange 1000 :onOpen 0 :onSave 0)
+     :clang
+     (:excludeArgs
+      ["-falign-jumps=1" "-falign-loops=1" "-fconserve-stack" "-fmerge-constants" "-fno-code-hoisting" "-fno-schedule-insns" "-fno-var-tracking-assignments" "-fsched-pressure" "-mhard-float" "-mindirect-branch-register" "-mindirect-branch=thunk-inline" "-mpreferred-stack-boundary=2" "-mpreferred-stack-boundary=3" "-mpreferred-stack-boundary=4" "-mrecord-mcount" "-mindirect-branch=thunk-extern" "-mno-fp-ret-in-387" "-mskip-rax-setup" "-fno-strict-aliasing" "-fno-common" "-fno-PIE" "-fno-PIE" "-fno-dwarf2-cfi-asm" "-fno-omit-frame-pointer" "-fno-ipa-sra" "-funwind-tables" "-march=armv8-a" "-march=armv7-a" "--param=allow-store-data-races=0" "-Wa arch/x86/kernel/macros.s" "-Wa -"]
+      :extraArgs
+      ["--gcc-toolchain=/usr"])))
  '(ccls-member-hierarchy-qualified t)
- '(ccls-executable (file-truename "~/src/ccls/Release/ccls"))
- '(ccls-sem-highlight-method (quote font-lock))
- '(ccls-initialization-options '(:completion (:detailedLabel t)
-                                               :index (:initialReparseForDependency :json-false :comments 2 :threads 2)
-                                               :cache (:retainInMemory 2 :format "binary")
-                                               :diagnostics (:onChange 1000 :onOpen 0 :onSave 0)
-                                               :clang
-                                               (:excludeArgs
-                                                ;; Linux's gcc options. See ccls/wiki
-                                                ["-falign-jumps=1" "-falign-loops=1" "-fconserve-stack" "-fmerge-constants" "-fno-code-hoisting" "-fno-schedule-insns" "-fno-var-tracking-assignments" "-fsched-pressure"
-                                                 "-mhard-float" "-mindirect-branch-register" "-mindirect-branch=thunk-inline" "-mpreferred-stack-boundary=2" "-mpreferred-stack-boundary=3" "-mpreferred-stack-boundary=4"
-                                                 "-mrecord-mcount" "-mindirect-branch=thunk-extern" "-mno-fp-ret-in-387" "-mskip-rax-setup" "-fno-strict-aliasing" "-fno-common" "-fno-PIE" "-fno-PIE" "-fno-dwarf2-cfi-asm"
-                                                 "-fno-omit-frame-pointer" "-fno-ipa-sra" "-funwind-tables" "-march=armv8-a" "-march=armv7-a"
-                                                 "--param=allow-store-data-races=0" "-Wa arch/x86/kernel/macros.s" "-Wa -"]
-                                                :extraArgs ["--gcc-toolchain=/usr"])))
- '(company-auto-complete t)
- '(company-auto-complete-chars (quote (32 95 41 46 34 39 60 62)))
+ '(ccls-sem-highlight-method 'font-lock)
+ '(clipetty-assume-nested-mux t)
+ '(company-auto-commit t)
+ '(company-auto-commit-chars '(32 95 41 46 34 39 60 62))
  '(company-idle-delay 0)
  '(company-minimum-prefix-length 1)
  '(company-selection-wrap-around t)
  '(company-show-numbers t)
  '(counsel-rg-base-command
    '("rg" "-M" "240" "--with-filename" "--no-heading" "--line-number" "--no-ignore" "--color" "never" "--max-columns" "150" "--max-columns-preview" "%s"))
- '(ccls-args (list (concat "--log-file=" (expand-file-name "~/ccls.log"))))
+ '(custom-safe-themes
+   '("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" default))
  '(default-input-method "rime" nil nil "Customized with use-package rime")
  '(ein:complete-on-dot t)
- '(ein:completion-backend (quote ein:use-company-backend))
+ '(ein:completion-backend 'ein:use-company-backend)
  '(ein:use-auto-complete-superpack t)
  '(eopengrok-ignore-file-or-directory
    ".opengrok:out:*.so:*.a:*.o:*.gz:*.bz2:*.jar:*.zip:*.class:*.elc:GPATH:GRTAGS:GTAGS:.repo:.cquery_cached_index")
@@ -683,8 +685,7 @@ This function is called at the very end of Spacemacs initialization."
  '(global-semantic-idle-local-symbol-highlight-mode nil nil (semantic/idle))
  '(global-semantic-stickyfunc-mode t)
  '(gud-key-prefix "x")
- '(android-compilation-no-buildenv-warning nil)
- '(isend-send-region-function (quote isend--ipython-cpaste))
+ '(isend-send-region-function 'isend--ipython-cpaste)
  '(jit-lock-chunk-size 6000)
  '(jit-lock-context-time 0.1)
  '(jit-lock-contextually t)
@@ -694,27 +695,24 @@ This function is called at the very end of Spacemacs initialization."
  '(jit-lock-stealth-time 16)
  '(kotlin-tab-width 4)
  '(large-file-warning-threshold 10000)
- '(lsp-clojure-server-command '("bash" "-c" "~/src/clojure-lsp/target/clojure-lsp"))
  '(lsp-auto-guess-root t)
  '(lsp-before-save-edits nil)
- '(lsp-enable-completion-at-point t)
+ '(lsp-clojure-custom-server-command '("bash" "-c" "~/src/clojure-lsp/target/clojure-lsp"))
+ '(lsp-clojure-server-command '("bash" "-c" "~/src/clojure-lsp/target/clojure-lsp"))
+ '(lsp-completion-enable t)
  '(lsp-eldoc-enable-hover nil)
- '(lsp-enable-indentation nil)
  '(lsp-enable-file-watchers nil)
- '(lsp-kotlin-external-sources-use-kls-scheme nil)
- '(lsp-file-watch-ignored
-   (quote
-    ("[/\\\\]\\.git$" "[/\\\\]\\.hg$" "[/\\\\]\\.bzr$" "[/\\\\]_darcs$" "[/\\\\]\\.svn$" "[/\\\\]_FOSSIL_$" "[/\\\\]\\.idea$" "[/\\\\]\\.ensime_cache$" "[/\\\\]\\.eunit$" "[/\\\\]node_modules$" "[/\\\\]\\.fslckout$" "[/\\\\]\\.tox$" "[/\\\\]\\.stack-work$" "[/\\\\]\\.bloop$" "[/\\\\]\\.metals$" "[/\\\\]target$" "[/\\\\]\\.deps$" "[/\\\\]build-aux$" "[/\\\\]autom4te.cache$" "[/\\\\]\\.meghanada$" "[/\\\\]\\.reference$" "[/\\\\]\\.cquery_cached_index$" "[/\\\\]\\.ccls-cache$" "[/\\\\]\\.repo$")))
+ '(lsp-enable-indentation nil)
+ '(lsp-file-watch-ignored-directories
+   '("[/\\\\]\\.git$" "[/\\\\]\\.hg$" "[/\\\\]\\.bzr$" "[/\\\\]_darcs$" "[/\\\\]\\.svn$" "[/\\\\]_FOSSIL_$" "[/\\\\]\\.idea$" "[/\\\\]\\.ensime_cache$" "[/\\\\]\\.eunit$" "[/\\\\]node_modules$" "[/\\\\]\\.fslckout$" "[/\\\\]\\.tox$" "[/\\\\]\\.stack-work$" "[/\\\\]\\.bloop$" "[/\\\\]\\.metals$" "[/\\\\]target$" "[/\\\\]\\.deps$" "[/\\\\]build-aux$" "[/\\\\]autom4te.cache$" "[/\\\\]\\.meghanada$" "[/\\\\]\\.reference$" "[/\\\\]\\.cquery_cached_index$" "[/\\\\]\\.ccls-cache$" "[/\\\\]\\.repo$"))
  '(lsp-java-import-gradle-enabled nil)
  '(lsp-java-import-maven-enabled nil)
- '(lsp-java-vmargs
-   (quote
-    ("-noverify" "-Xmx1G" "-XX:+UseG1GC" "-XX:+UseStringDeduplication")))
  '(lsp-java-jdt-download-url
    "https://mirrors.tuna.tsinghua.edu.cn/eclipse/jdtls/snapshots/jdt-language-server-latest.tar.gz")
  '(lsp-java-vmargs
    '("-noverify" "-Xmx2G" "-XX:+UseG1GC" "-XX:+UseStringDeduplication"))
  '(lsp-keep-workspace-alive nil)
+ '(lsp-kotlin-external-sources-use-kls-scheme nil)
  '(lsp-log-max nil)
  '(lsp-response-timeout 3)
  '(lsp-ui-doc-position 'bottom)
@@ -723,29 +721,30 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-ui-sideline-show-flycheck t)
  '(lsp-ui-sideline-show-symbol nil)
  '(lsp-ui-sideline-wait-for-all-symbols nil)
- '(org-habit-show-habits-only-for-today nil)
- '(mouse-wheel-scroll-amount (quote (2)))
+ '(magit-diff-arguments
+   '("--ignore-all-space" "--no-ext-diff" "--stat" "-- " "--diff-algorithm=default"))
+ '(magit-diff-section-arguments
+   '("--ignore-all-space" "--no-ext-diff" "--diff-algorithm=default"))
+ '(mouse-wheel-scroll-amount '(2))
  '(org-emphasis-alist
-   (quote
-    (("*" bold)
+   '(("*" bold)
      ("/" italic)
      ("_" underline)
      ("=" org-verbatim verbatim)
      ("~" org-code verbatim)
      ("+"
-      (:strike-through t)))))
+      (:strike-through t))))
+ '(org-habit-show-habits-only-for-today nil)
  '(org-html-table-default-attributes
    '(:border "2" :cellspacing "0" :cellpadding "6" :rules "all" :frame "border"))
  '(org-latex-hyperref-template nil)
- '(org-latex-pdf-process
-   (quote
-    ("xelatex -synctex=1 -interaction nonstopmode -output-directory %o %f" "bibtex %b" "xelatex -synctex=1 -interaction nonstopmode -output-directory %o %f")))
- '(org-noter-notes-search-path '("~/note/org/books/"))
- '(org-preview-latex-default-process (quote dvisvgm))
  '(org-latex-inputenc-alist '(("utf8" . "utf8x")))
+ '(org-latex-pdf-process
+   '("xelatex -synctex=1 -interaction nonstopmode -output-directory %o %f" "bibtex %b" "xelatex -synctex=1 -interaction nonstopmode -output-directory %o %f"))
+ '(org-noter-notes-search-path '("~/note/org/books/"))
+ '(org-preview-latex-default-process 'dvisvgm)
  '(org-preview-latex-process-alist
-   (quote
-    ((dvipng :programs
+   '((dvipng :programs
              ("latex" "dvipng")
              :description "dvi > png" :message "you need to install the programs: latex and dvipng." :image-input-type "dvi" :image-output-type "png" :image-size-adjust
              (1.0 . 1.0)
@@ -768,38 +767,35 @@ This function is called at the very end of Spacemacs initialization."
                   :latex-compiler
                   ("xelatex -interaction nonstopmode -output-directory %o %f")
                   :image-converter
-                  ("convert -density %D -trim -antialias %f -quality 100 %O")))))
+                  ("convert -density %D -trim -antialias %f -quality 100 %O"))))
  '(org-startup-with-latex-preview t)
  '(projectile-enable-caching t)
  '(projectile-git-command "git ls-files -zco --exclude-standard -x \".ccls-cache\"")
  '(projectile-globally-ignored-directories
    '(".idea" ".vscode" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" ".ccls-cache" ".cache" ".repo" ".clangd"))
  '(projectile-project-root-files-bottom-up
-   (quote
-    ("compile_commands.json" ".git" ".projectile" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs")))
+   '("compile_commands.json" ".git" ".projectile" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs"))
  '(projectile-project-root-files-top-down-recurring
-   (quote
-    (".svn" "CVS" "Makefile" ".git" ".cquery" "compile_commands.json")))
+   '(".svn" "CVS" "Makefile" ".git" ".cquery" "compile_commands.json"))
  '(projectile-require-project-root nil)
  '(scroll-conservatively 100)
  '(semantic-idle-scheduler-idle-time 1)
  '(semantic-idle-scheduler-max-buffer-size 100000)
  '(semantic-idle-scheduler-work-idle-time 60)
- '(semantic-idle-summary-function (quote semantic-format-tag-short-doc))
+ '(semantic-idle-summary-function 'semantic-format-tag-short-doc)
  '(semantic-idle-truncate-long-summaries nil)
  '(sr-speedbar-right-side nil)
  '(sr-speedbar-skip-other-window-p t)
- '(tab-always-indent (quote complete))
+ '(tab-always-indent 'complete)
  '(tab-width 4)
- '(clipetty-assume-nested-mux t)
- '(tramp-syntax (quote default) nil (tramp))
- '(vc-handled-backends (quote (git RCS CVS SVN SCCS SRC Bzr Hg Mtn)))
- '(vlf-application (quote ask))
+ '(tramp-syntax 'default nil (tramp))
+ '(vc-handled-backends '(git RCS CVS SVN SCCS SRC Bzr Hg))
+ '(vlf-application 'ask)
  '(vlf-batch-size 10485760)
  '(vlf-tune-enabled t)
  '(vlf-tune-max 402702600)
  '(which-function-mode t)
- '(which-key-popup-type (quote side-window)))
+ '(which-key-popup-type 'side-window))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -816,6 +812,6 @@ This function is called at the very end of Spacemacs initialization."
  '(company-tooltip-common ((t (:inherit company-tooltip :foreground "white"))))
  '(company-tooltip-common-selection ((t (:foreground "white"))))
  '(company-tooltip-selection ((t (:background "red3" :foreground "white"))))
- '(which-func ((t (:foreground "white smoke"))))
- '(region ((t (:background "green" :foreground "black")))))
+ '(region ((t (:background "green" :foreground "black"))))
+ '(which-func ((t (:foreground "white smoke")))))
 )
