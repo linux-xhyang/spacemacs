@@ -664,7 +664,7 @@ This function is called at the very end of Spacemacs initialization."
  '(company-selection-wrap-around t)
  '(company-show-numbers t)
  '(counsel-rg-base-command
-   '("rg" "-M" "240" "--with-filename" "--no-heading" "--line-number" "--no-ignore" "--color" "never" "--max-columns" "150" "--max-columns-preview" "%s"))
+   '("rg" "-M" "240" "--with-filename" "--no-heading" "--line-number" "--no-ignore" "--color" "never" "--max-columns" "150" "--max-columns-preview" "%s" "."))
  '(custom-safe-themes
    '("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" default))
  '(default-input-method "rime" nil nil "Customized with use-package rime")
