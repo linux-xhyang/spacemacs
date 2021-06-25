@@ -37,9 +37,12 @@
   "docstring"
   (use-package clipetty
     :ensure t
-    :hook (after-init . global-clipetty-mode)
     :config
-    (message "enable clipetty")
+    (progn
+      (require 'clipetty)
+      (global-clipetty-mode t)
+      (message "enable clipetty")
+      )
     )
   )
 
