@@ -1,6 +1,6 @@
-
 (setq ome-org-packages
       '(
+        company-org-block
         (org-roam-server  :location (recipe
                               :fetcher github
                               :repo "org-roam/org-roam-server"
@@ -9,6 +9,15 @@
         org-clock-convenience
         org-noter
         ))
+
+(defun ome-org/init-company-org-block()
+  (use-package company-org-block
+    :ensure t
+    :custom
+    (company-org-block-edit-style 'inline) ;; 'auto, 'prompt, or 'inline
+    :hook ((org-mode . (lambda ()
+                         (setq-local company-backends '(company-org-block))
+                         (company-mode +1))))))
 
 (defun ome-org//org-roam-company-setup()
   (spacemacs|add-company-backends
@@ -46,7 +55,7 @@
            :unnarrowed t))))
 
 (with-eval-after-load 'org
-  (ome-org//org-roam-company-setup)
+  ;;(ome-org//org-roam-company-setup)
   (if (equal 'windows-nt system-type)
       (progn
         (if (file-exists-p "D:/note/my-org.el")
