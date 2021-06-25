@@ -472,7 +472,7 @@ in `dotspacemacs/user-config'."
   (require 'package)
   (setq configuration-layer-elpa-archives
         '(("gnu"          . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-          ("nongnu" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")
+          ("nongnu" . "https://elpa.nongnu.org/nongnu/")
           ("melpa"        . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
           ("melpa-stable" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa-stable/")
           ))
