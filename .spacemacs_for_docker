@@ -812,7 +812,6 @@ This function is called at the very end of Spacemacs initialization."
  '(company-tooltip-common ((t (:inherit company-tooltip :foreground "white"))))
  '(company-tooltip-common-selection ((t (:foreground "white"))))
  '(company-tooltip-selection ((t (:background "red3" :foreground "white"))))
- '(line-number ((t (:inherit default :background "#1c1c1c" :foreground "yellow"))))
  '(region ((t (:background "green" :foreground "black"))))
  '(which-func ((t (:foreground "white smoke")))))
 )
