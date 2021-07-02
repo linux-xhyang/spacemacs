@@ -41,6 +41,13 @@
     (progn
       (require 'clipetty)
       (global-clipetty-mode t)
+      (unless (display-graphic-p)
+        (advice-add #'tty-run-terminal-initialization :override #'ignore)
+        (add-hook 'window-setup-hook
+                  (lambda ()
+                    (advice-remove #'tty-run-terminal-initialization #'ignore)
+                    (tty-run-terminal-initialization (selected-frame) nil t))))
+
       (message "enable clipetty")
       )
     )
