@@ -46,7 +46,7 @@ values."
           git-enable-magit-todos-plugin t
           git-enable-magit-gitflow-plugin t
           git-enable-magit-svn-plugin nil)
-     cmake
+     (cmake :variables cmake-backend 'company-cmake)
      csv
      ;;chrome
      ;;confluence
