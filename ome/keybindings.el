@@ -2,8 +2,8 @@
 (evil-leader/set-key "oo" 'youdao-dictionary-search-from-input)
 ;; activate whitespace-mode to view all whitespace characters
 (evil-leader/set-key "ow" 'whitespace-mode)
-(evil-leader/set-key "orf" 'org-roam-find-file)
-(evil-leader/set-key "ori" 'org-roam-insert)
+(evil-leader/set-key "orf" 'org-roam-node-find)
+(evil-leader/set-key "ora" 'org-roam-alias-add)
 (evil-leader/set-key "org" 'org-roam-graph-show)
 (evil-leader/set-key "orU" 'org-roam-db-build-cache)
 (evil-leader/set-key "ort" 'org-roam-tag-add)

@@ -80,10 +80,6 @@ Fallback to `xref-find-definitions'."
           (candidates (all-completions -arg (citre-capf--get-collection -arg)))
           (ignore-case (not citre-completion-case-sensitive))))
 
-      (defun enable-lsp-citre-capf-backend ()
-        "Enable the lsp + Citre capf backend in current buffer."
-        (add-hook 'completion-at-point-functions #'lsp-citre-capf-function nil t))
-
       (add-hook 'citre-mode-hook #'enable-lsp-citre-capf-backend)))
   )
 
@@ -100,8 +96,8 @@ Fallback to `xref-find-definitions'."
   (define-key company-active-map (kbd "C-e") #'company-other-backend)
   (define-key company-active-map (kbd "<backspace>") 'company-backspace)
 
-  (spacemacs|add-company-backends :backends (company-capf company-citre :with company-yasnippet :separate)
-                                  :modes c-mode-common emacs-lisp-mode python-mode)
+  (spacemacs|add-company-backends :backends (company-citre company-capf :with company-yasnippet :separate)
+                                  :modes c-mode-common emacs-lisp-mode python-mode java-mode)
 
   (advice-add #'company-yasnippet :around #'company-yasnippet/disable-after-dot)
   (ome-company/init-company)

@@ -1,13 +1,10 @@
 (setq ome-org-packages
       '(
+        org
         company-org-block
-        (org-roam-server  :location (recipe
-                                     :fetcher github
-                                     :repo "org-roam/org-roam-server"
-                                     :files ("*.el" "assets"))
-                          )
         org-clock-convenience
         org-noter
+        org-roam
         (laas :location (recipe
                               :fetcher github
                               :repo "tecosaur/LaTeX-auto-activating-snippets"))
@@ -18,17 +15,11 @@
     :ensure t
     :custom
     (company-org-block-edit-style 'inline) ;; 'auto, 'prompt, or 'inline
-    :hook ((org-mode . (lambda ()
-                         (setq-local company-backends '(company-org-block))
-                         (company-mode +1))))))
-
-(defun ome-org//org-roam-company-setup()
-  (spacemacs|add-company-backends
-    :backends company-org-block
-    :modes org-mode
-    :append-hooks nil
-    :call-hooks t
-    ))
+    :init
+    (progn
+      (company-mode t)
+      (spacemacs|add-company-backends :backends company-org-block
+                                      :modes org-mode))))
 
 (defun ome-org/init-laas ()
   ""
@@ -55,7 +46,7 @@
                       ".," (lambda () (interactive) (laas-wrap-previous-object "bm"))))
   )
 
-(with-eval-after-load 'org-roam
+(defun ome-org/post-init-org-roam ()
   (require 'org-roam-protocol)
   (setq org-roam-capture-templates
         '(("d" "default" plain (function org-roam--capture-get-point)
@@ -80,10 +71,10 @@
 #+HUGO_SLUG: ${slug}
 #+TITLE: ${title}
 - source :: ${ref}"
-           :unnarrowed t))))
+           :unnarrowed t)))
+  )
 
-(with-eval-after-load 'org
-  ;;(ome-org//org-roam-company-setup)
+(defun ome-org/post-init-org ()
   (if (equal 'windows-nt system-type)
       (progn
         (if (file-exists-p "D:/note/my-org.el")
