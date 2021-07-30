@@ -2,16 +2,42 @@
   '(
     vlf
     dts-mode
-    ;;counsel-etags
-    company-ctags
     (code-compass :location (recipe
                              :fetcher github
                              :repo "ag91/code-compass"
                              :files ("*.el" "scripts" "pages")))
+    (xgtags :location (recipe :fetcher github :repo "linux-xhyang/xgtags"))
+    exec-path-from-shell
+    smartparens
     ))
+
+(defun ome-misc/init-exec-path-from-shell ()
+  (use-package exec-path-from-shell
+    :config
+    :init
+    (progn
+      (require 'exec-path-from-shell)
+      (exec-path-from-shell-initialize)
+      )
+    )
+  )
+
+(defun ome-misc/init-xgtags ()
+  (use-package xgtags
+    :defer t
+    :config
+    :init
+    (progn
+      (require 'xgtags)
+      (diminish 'xgtags-mode " ")
+      (add-hook 'prog-mode-hook
+                (lambda ()
+                  (xgtags-mode 1)))
+      )))
 
 (defun ome-misc/init-vlf ()
   (use-package vlf
+    :defer t
     :config
     (progn
       (require 'vlf-setup)
@@ -31,36 +57,6 @@
       ;;file auto mode
       )))
 
-
-;; (defun ome-misc/init-counsel-etags ()
-;;   (use-package counsel-etags
-;;     :defer t
-;;     :init
-;;     ;; Setup auto update now
-;;     (progn
-;;       (defun update-etags-hook ()
-;;         (add-hook 'after-save-hook
-;;                   'counsel-etags-virtual-update-tags 'append 'local))
-;;       (add-hook 'prog-mode-hook #'update-etags-hook)
-;;       ;; Don't ask before rereading the TAGS files if they have changed
-;;       (setq tags-revert-without-query t)
-;;       ;; Don't warn when TAGS files are large
-;;       (setq large-file-warning-threshold nil)
-;;       (global-set-key (kbd "C-c g d") 'counsel-etags-find-tag-at-point)
-;;       )
-;;     ))
-
-(defun ome-misc/init-company-ctags ()
-  "docstring"
-  (use-package company-ctags
-    :defer t
-    :init
-    (require 'company-ctags)
-    (with-eval-after-load 'company
-      (company-ctags-auto-setup))
-   )
-  )
-
 (defun ome-misc/init-code-compass ()
   (use-package code-compass
     :defer t
@@ -69,9 +65,61 @@
       (require 'code-compass)))
   )
 
-;; (defun c/produce-cloc-report (repository)
-;;   "Create cloc report for REPOSITORY."
-;;   (message "Producing cloc report...")
-;;   (shell-command
-;;    (format "(cd %s; cloc ./ --by-file --exclude-dir=.ccls-cache --csv --quiet) > cloc.csv" repository))
-;;   repository)
+(defun ome-misc/post-init-smartparens ()
+  "docstring"
+  (setq sp-ignore-modes-list (quote (minibuffer-inactive-mode
+                                     Info-mode
+                                     term-mode
+                                     org-mode
+                                     org-journal-mode
+                                     markdown-mode
+                                     ivy-occur-mode)))
+  (bind-keys
+   :map smartparens-mode-map
+   ("C-M-a" . sp-beginning-of-sexp)
+   ("C-M-e" . sp-end-of-sexp)
+
+   ("C-<down>" . sp-down-sexp)
+   ("C-<up>"   . sp-up-sexp)
+   ("M-<down>" . sp-backward-down-sexp)
+   ("M-<up>"   . sp-backward-up-sexp)
+
+   ("C-M-f" . sp-forward-sexp)
+   ("C-M-b" . sp-backward-sexp)
+
+   ("C-M-n" . sp-next-sexp)
+   ("C-M-p" . sp-previous-sexp)
+
+   ("C-S-f" . sp-forward-symbol)
+   ("C-S-b" . sp-backward-symbol)
+
+   ("C-<right>" . sp-forward-slurp-sexp)
+   ("M-<right>" . sp-forward-barf-sexp)
+   ("C-<left>"  . sp-backward-slurp-sexp)
+   ("M-<left>"  . sp-backward-barf-sexp)
+
+   ("C-M-t" . sp-transpose-sexp)
+   ("C-M-k" . sp-kill-sexp)
+   ("C-k"   . sp-kill-hybrid-sexp)
+   ("M-k"   . sp-backward-kill-sexp)
+   ("C-M-w" . sp-copy-sexp)
+   ("C-M-d" . kill-sexp)
+
+   ("M-<backspace>" . backward-kill-word)
+   ("C-<backspace>" . sp-backward-kill-word)
+   ([remap sp-backward-kill-word] . backward-kill-word)
+
+   ("C-M-u" . sp-backward-unwrap-sexp)
+   ("C-M-c" . sp-unwrap-sexp)
+
+   ("C-x C-t" . sp-transpose-hybrid-sexp)
+
+   ("C-c ("  . wrap-with-parens)
+   ("C-c ["  . wrap-with-brackets)
+   ("C-c {"  . wrap-with-braces)
+   ("C-c '"  . wrap-with-single-quotes)
+   ("C-c \"" . wrap-with-double-quotes)
+   ("C-c _"  . wrap-with-underscores)
+   ("C-c `"  . wrap-with-back-quotes)
+   )
+  )

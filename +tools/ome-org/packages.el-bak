@@ -1,59 +1,33 @@
 (setq ome-org-packages
       '(
-        company-org-block
         (org-roam-server  :location (recipe
+                              :fetcher github
+                              :repo "org-roam/org-roam-server"
+                              :files ("*.el" "assets"))
+                          )
+        (org-roam  :location (recipe
                                      :fetcher github
-                                     :repo "org-roam/org-roam-server"
+                                     :repo "org-roam/org-roam"
+                                     :branch "v2"
                                      :files ("*.el" "assets"))
                           )
         org-clock-convenience
         org-noter
-        (laas :location (recipe
-                              :fetcher github
-                              :repo "tecosaur/LaTeX-auto-activating-snippets"))
         ))
-
-(defun ome-org/init-company-org-block()
-  (use-package company-org-block
-    :ensure t
-    :custom
-    (company-org-block-edit-style 'inline) ;; 'auto, 'prompt, or 'inline
-    :hook ((org-mode . (lambda ()
-                         (setq-local company-backends '(company-org-block))
-                         (company-mode +1))))))
 
 (defun ome-org//org-roam-company-setup()
   (spacemacs|add-company-backends
-    :backends company-org-block
+    :backends (company-org-block company-dabbrev company-keywords)
     :modes org-mode
     :append-hooks nil
-    :call-hooks t
+    :call-hooks nil
     ))
 
-(defun ome-org/init-laas ()
-  ""
-  (use-package laas
-    :ensure t
-    :hook (org-mode . laas-mode)
-    :config
-    ;; 不自动插入空格
-    (setq laas-enable-auto-space nil)
-    (aas-set-snippets 'laas-mode
-                      ;; 只在 org latex 片段中展开
-                      :cond #'org-inside-LaTeX-fragment-p
-                      "tan" "\\tan"
-                      ;; 内积
-                      "i*" (lambda () (interactive)
-                             (yas-expand-snippet "\\langle $1\\rangle$0"))
-                      "sr" "^2"
-                      ;; 还可以绑定函数，和 yasnippet 联动
-                      "Sum" (lambda () (interactive)
-                              (yas-expand-snippet "\\sum_{$1}^{$2} $0"))
-                      ;; 这是 laas 中定义的用于包裹式 latex 代码的函数，实现 \bm{a}
-                      :cond #'laas-object-on-left-condition
-                      ",." (lambda () (interactive) (laas-wrap-previous-object "bm"))
-                      ".," (lambda () (interactive) (laas-wrap-previous-object "bm"))))
-  )
+
+;; (defun ome-org/init-org-roam ()
+;;   (use-package org-roam
+;;     :defer t)
+;;   )
 
 (with-eval-after-load 'org-roam
   (require 'org-roam-protocol)
@@ -83,7 +57,7 @@
            :unnarrowed t))))
 
 (with-eval-after-load 'org
-  ;;(ome-org//org-roam-company-setup)
+  (ome-org//org-roam-company-setup)
   (if (equal 'windows-nt system-type)
       (progn
         (if (file-exists-p "D:/note/my-org.el")
@@ -94,6 +68,11 @@
           (progn
             (load "~/note/my-org.el")))))
   )
+
+;; (defun ome-org/init-org-roam-server ()
+;;   (use-package org-roam-server
+;;     :defer t)
+;;   )
 
 (defun ome-org/init-org-clock-convenience ()
   (use-package org-clock-convenience
@@ -107,5 +86,5 @@
 (defun ome-org/init-org-noter ()
   "docstring"
   (use-package org-noter
-    :ensure t)
-  )
+    :defer t)
+   )

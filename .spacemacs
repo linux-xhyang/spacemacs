@@ -134,10 +134,11 @@ values."
                       auto-completion-complete-with-key-sequence nil
                       auto-completion-complete-with-key-sequence-delay 0.1
                       auto-completion-private-snippets-directory nil
-                      auto-completion-enable-snippets-in-popup t
+                      auto-completion-enable-snippets-in-popup nil
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-sort-by-usage t
-                      spacemacs-default-company-backends '((company-capf company-keywords)
+                      spacemacs-default-company-backends '(company-capf
+                                                           company-keywords
                                                            company-dabbrev-code
                                                            company-files
                                                            company-dabbrev)
@@ -149,28 +150,16 @@ values."
                       version-control-diff-side 'left
                       version-control-global-margin t
       )
-     android-mode
-     ;; ome-projectile
-     ;; ome-prepare
+     ;; source tools
      ome
-     ome-org
-     ;; ome-java
-     ;; ome-groovy
      ome-misc
      ome-kotlin
-     ome-speedbar
-     ;; ome-ecb
-     ;; ome-ccl
-     ;; ome-realgud
-     ;; ome-ggtags
-     ;; ome-systemtap
-     ome-gui
-     ;;autopair
+     ome-company
+     ;; tools
+     android-mode
      doxymacs
-     ;; ome-opengrok
-     ;; ome-lsp
-     ;; music
-     ;; symon
+     ome-gui
+     ome-org
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these

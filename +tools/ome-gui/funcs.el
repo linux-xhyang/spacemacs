@@ -119,3 +119,86 @@ DOCSTRING and BODY are as in `defun'.
                    (append (listify-key-sequence code)
                            unread-command-events))))
           (t (message "`+rime-convert-string-at-point' did nothing.")))))
+
+(defun get-word-boundary ()
+  "Return the boundary of the current word.
+     The return value is of the form: (cons pos1 pos2).
+     "
+  (save-excursion
+    (let (p1 p2)
+      (progn
+        (skip-chars-backward "-A-Za-z0-9_.") ;; here you can choose which symbols to use
+        (setq p1 (point))
+        (skip-chars-forward "-A-Za-z0-9_.") ;; put the same here
+        (setq p2 (point)))
+      (cons p1 p2)
+      ))
+  )
+(defun select-word ()
+  "Mark the url under cursor."
+  (interactive)
+                                        ;  (require 'thingatpt)
+  (let (bds)
+    (setq bds (get-word-boundary))
+
+    (set-mark (car bds))
+    (goto-char (cdr bds))
+    )
+  )
+
+(defun insert-datetime ()
+  "Insert date at point."
+  (interactive)
+  (insert (format-time-string "%Y-%m-%d %l:%M:%S")))
+
+(defun walk-directory (dirname fn &optional directories-p testfn)
+  (let ((directories (and directories-p t))
+        (test (or (if (functionp testfn) testfn nil) #'(lambda (name) t))))
+    (cl-labels
+        ((walk (name)
+               (let ((fnd (file-name-nondirectory name)))
+                 (cond
+                  ((file-directory-p name)
+                   (if (not (string-match "^\\.+$" fnd))
+                       (progn
+                         (when (and directories (funcall test name))
+                           (funcall fn name))
+                         (dolist (x (directory-files name t)) (walk x)))))
+                  ((funcall test name) (funcall fn name))))))
+      (walk dirname))))
+
+(defun list-to-string (list)
+  "thisandthat."
+  (interactive)
+  (when (consp list)
+    (let ((var1 (car list)))
+      (if (stringp (car list))
+          (cond ((consp (cdr list)) (concat (car list) " " (list-to-string (cdr list))))
+                (t (car list)))
+        (list-to-string (cdr list)))
+      )))
+
+(defun ascii-table ()
+  "Display basic ASCII table (0 thru 128)."
+  (interactive)
+  (switch-to-buffer "*ASCII*")
+  (erase-buffer)
+  (setq buffer-read-only nil)        ;; Not need to edit the content, just read mode (added)
+  (local-set-key "q" 'bury-buffer)   ;; Nice to have the option to bury the buffer (added)
+  (save-excursion (let ((i -1))
+                    (insert "ASCII characters 0 thru 127.\n\n")
+                    (insert " Hex  Dec  Char|  Hex  Dec  Char|  Hex  Dec  Char|  Hex  Dec  Char\n")
+                    (while (< i 31)
+                      (insert (format "%4x %4d %4s | %4x %4d %4s | %4x %4d %4s | %4x %4d %4s\n"
+                                      (setq i (+ 1  i)) i (single-key-description i)
+                                      (setq i (+ 32 i)) i (single-key-description i)
+                                      (setq i (+ 32 i)) i (single-key-description i)
+                                      (setq i (+ 32 i)) i (single-key-description i)))
+                      (setq i (- i 96))))))
+
+(defun replace-tab-with-space ()
+  (interactive)
+  (save-excursion
+    (delete-trailing-whitespace)
+    (untabify (point-min) (point-max)))
+  )
