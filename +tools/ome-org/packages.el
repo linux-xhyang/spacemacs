@@ -6,9 +6,52 @@
         org-noter
         org-roam
         (laas :location (recipe
-                              :fetcher github
-                              :repo "tecosaur/LaTeX-auto-activating-snippets"))
+                         :fetcher github
+                         :repo "tecosaur/LaTeX-auto-activating-snippets"))
+        anki-editor
         ))
+
+(defun ome-org/init-anki-editor ()
+  "docstring"
+  (use-package anki-editor
+    :defer 10
+    :bind (:map org-mode-map
+                ("<f12>" . anki-editor-cloze-region-dont-incr)
+                ("<f11>" . anki-editor-cloze-region-auto-incr)
+                ("<f10>" . anki-editor-reset-cloze-number)
+                ("<f9>"  . anki-editor-push-tree)
+                ("C-c o P"     . anki-editor-push-notes)
+                ("C-c o L"     . org-cliplink)
+                )
+    :hook (org-capture-after-finalize . anki-editor-reset-cloze-number) ; Reset cloze-number after each capture.
+    :config
+    (setq anki-editor-create-decks t
+          anki-editor-org-tags-as-anki-tags t)
+
+    (defun anki-editor-cloze-region-auto-incr (&optional arg)
+      "Cloze region without hint and increase card number."
+      (interactive)
+      (anki-editor-cloze-region my-anki-editor-cloze-number "")
+      (setq my-anki-editor-cloze-number (1+ my-anki-editor-cloze-number))
+      (forward-sexp))
+    (defun anki-editor-cloze-region-dont-incr (&optional arg)
+      "Cloze region without hint using the previous card number."
+      (interactive)
+      (anki-editor-cloze-region (1- my-anki-editor-cloze-number) "")
+      (forward-sexp))
+    (defun anki-editor-reset-cloze-number (&optional arg)
+      "Reset cloze number to ARG or 1"
+      (interactive)
+      (setq my-anki-editor-cloze-number (or arg 1)))
+    (defun anki-editor-push-tree ()
+      "Push all notes under a tree."
+      (interactive)
+      (anki-editor-push-notes '(4))
+      (anki-editor-reset-cloze-number))
+    ;; Initialize
+    (anki-editor-reset-cloze-number)
+    )
+  )
 
 (defun ome-org/init-company-org-block()
   (use-package company-org-block
@@ -48,29 +91,31 @@
 
 (defun ome-org/post-init-org-roam ()
   (require 'org-roam-protocol)
-  (setq org-roam-capture-templates
-        '(("d" "default" plain (function org-roam--capture-get-point)
-           "%?"
-           :file-name "${slug}"
-           :head "#+SETUPFILE:./hugo_setup.org
+  (setq-default org-roam-capture-templates
+        '(("d" "default" plain "%?"
+           :if-new
+           (file+head "${slug}.org"
+                      "#+date: %<%Y-%m-%d %T %:z>
+#+SETUPFILE:./hugo_setup.org
 #+HUGO_SECTION: zettels
 #+HUGO_SLUG: ${slug}
 #+TITLE: ${title}\n"
+                      )
            :unnarrowed t)
-          ("p" "private" plain (function org-roam-capture--get-point)
-           "%?"
-           :file-name "private-${slug}"
-           :head "#+TITLE: ${title}\n"
+          ("p" "private" plain "%?"
+           :if-new
+           (file+head "private-${slug}.org"
+                      "#+TITLE: ${title}\n")
            :unnarrowed t)))
-  (setq org-roam-ref-capture-templates
-        '(("r" "ref" plain (function org-roam-capture--get-point)
-           "%?"
-           :file-name "websites/${slug}"
-           :head "#+SETUPFILE:./hugo_setup.org
+  (setq-default org-roam-ref-capture-templates
+        '(("r" "ref" plain "%?"
+           :if-new
+           (file+head "websites/${slug}.org"
+                      "#+SETUPFILE:./hugo_setup.org
 #+ROAM_KEY: ${ref}
 #+HUGO_SLUG: ${slug}
 #+TITLE: ${title}
-- source :: ${ref}"
+- source :: ${ref}")
            :unnarrowed t)))
   )
 
