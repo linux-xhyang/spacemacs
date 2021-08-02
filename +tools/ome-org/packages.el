@@ -5,6 +5,11 @@
         org-clock-convenience
         org-noter
         org-roam
+        (org-roam-ui :location
+             (recipe
+               :fetcher github
+               :repo "org-roam/org-roam-ui"
+               :files ("*.el" "out")))
         (laas :location (recipe
                          :fetcher github
                          :repo "tecosaur/LaTeX-auto-activating-snippets"))
@@ -91,6 +96,7 @@
 
 (defun ome-org/post-init-org-roam ()
   (require 'org-roam-protocol)
+  (setq org-roam-v2-ack t)
   (setq-default org-roam-capture-templates
         '(("d" "default" plain "%?"
            :if-new
@@ -117,6 +123,13 @@
 #+TITLE: ${title}
 - source :: ${ref}")
            :unnarrowed t)))
+  )
+
+(defun ome-org/init-org-roam-ui ()
+  (use-package org-roam-ui
+    :after org-roam ;; or :after org
+    :hook (org-roam . org-roam-ui-mode)
+    )
   )
 
 (defun ome-org/post-init-org ()

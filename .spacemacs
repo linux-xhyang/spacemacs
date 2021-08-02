@@ -67,7 +67,7 @@ values."
           org-want-todo-bindings t
           org-enable-hugo-support t
           org-enable-roam-support t
-          org-enable-roam-server t
+          org-enable-roam-server nil
           org-enable-valign t)
      (chinese :variables
               chinese-enable-youdao-dict t)
