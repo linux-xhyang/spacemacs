@@ -15,6 +15,7 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
+   dotspacemacs-mode-line-theme '(spacemacs :separator bar :separator-scale 1.0)
    dotspacemacs-configuration-layers
    '(
      ;; ----------------------------------------------------------------
@@ -234,7 +235,6 @@ values."
                                     skewer-mode
                                     smeargle
                                     symon
-                                    spaceline
                                     spray
                                     test-simple
                                     vterm
