@@ -18,151 +18,152 @@ values."
    dotspacemacs-mode-line-theme '(spacemacs :separator bar :separator-scale 1.0)
    dotspacemacs-configuration-layers
    '(
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
-     ;;nlinum
-     debug
-     (lsp :variables
-          lsp-use-lsp-ui t
-          lsp-ui-sideline-enable t
-          lsp-remap-xref-keybindings t)
-     (spell-checking :variables
-                     spell-checking-enable-by-default nil)
-     (syntax-checking :variables
-                      syntax-checking-enable-by-default t
-                      syntax-checking-enable-tooltips t)
-     better-defaults
-     dash
-     ivy
-     (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
-     ;;helm
-     ;; xclipboard
-     ;;exwm
-     ;;slack
-     (git :variables
-          git-enable-magit-delta-plugin t
-          git-enable-magit-todos-plugin t
-          git-enable-magit-gitflow-plugin t
-          git-enable-magit-svn-plugin nil)
-     (cmake :variables cmake-backend 'company-cmake)
-     csv
-     ;;chrome
-     ;;confluence
-     (plantuml :variables
-               plantuml-jar-path "~/.emacs.d/plantuml.jar"
-               org-plantuml-jar-path "~/.emacs.d/plantuml.jar")
-     ansible
-     (ibuffer :variables ibuffer-group-buffers-by 'projects)
-     (treemacs :variables treemacs-use-follow-mode t
-               treemacs-use-filewatch-mode t
-               treemacs-use-collapsed-directories 3)
-     ;; markdown
-     (org :variables
-          org-enable-github-support t
-          org-enable-bootstrap-support t
-          org-enable-reveal-js t
-          org-enable-org-journal-support t
-          org-want-todo-bindings t
-          org-enable-hugo-support t
-          org-enable-roam-support t
-          org-enable-roam-server nil
-          org-enable-valign t)
-     (chinese :variables
-              chinese-enable-youdao-dict t)
-     semantic
-     dap
-     (clojure :variables
-              clojure-enable-linters 'clj-kondo
-              clojure-enable-sayid t
-              clojure-enable-clj-refactor t
-              clojure-backend 'cider
-              )
-     pdf
-     ;; gnus
-     (shell-scripts :variables
-                    shell-scripts-backend 'lsp
-                    )
-     emacs-lisp
-     ;;common-lisp
-     groovy
-     html
-     javascript
-     (shell :variables
-            shell-default-height 30
-            shell-default-position 'bottom)
-     (latex :variables
-            latex-build-command "Latex"
-            latex-enable-auto-fill t
-            latex-enable-folding t
-            latex-enable-magic t)
-     (java :variables
-           java-backend 'lsp
-           java--ensime-modes nil)
-     (python :variables
-             spacemacs--python-pyenv-modes '(python-mode)
-             python-auto-set-local-pyenv-version 'on-visit ;;'on-project-switch
-             python-auto-set-local-pyvenv-virtualenv 'on-visit ;;'on-project-switch
-             python-enable-yapf-format-on-save t
-             python-fill-column 99
-             python-formatter 'yapf
-             python-format-on-save t
-             python-sort-imports-on-save t
-             python-pipenv-activate t
-             python-backend 'lsp python-lsp-server 'pyright
-             python-lsp-server 'nil
-             python-lsp-git-root "~/src/python-language-server")
-     ipython-notebook
-     (go :variables
-             go-use-gometalinter t
-             gofmt-command "goimports"
-             go-backend 'lsp
-             godoc-at-point-function 'godoc-gogetdoc)
-     (c-c++ :variables
-            c-c++-lsp-sem-highlight-method 'font-lock
-            c-c++-lsp-sem-highlight-rainbow t
-            c-c++-default-mode-for-headers 'c++-mode
-            c-c++-enable-rtags-completion nil
-            c-c++-backend 'lsp-ccls
-            c-c++-adopt-subprojects t
-            c-c++-enable-google-style t)
-     (auto-completion :variables
-                      auto-completion-return-key-behavior 'complete
-                      auto-completion-use-company-box 't
-                      auto-completion-tab-key-behavior 'cycle
-                      auto-completion-complete-with-key-sequence nil
-                      auto-completion-complete-with-key-sequence-delay 0.1
-                      auto-completion-private-snippets-directory nil
-                      auto-completion-enable-snippets-in-popup nil
-                      auto-completion-enable-help-tooltip t
-                      auto-completion-enable-sort-by-usage t
-                      spacemacs-default-company-backends '(company-capf
-                                                           company-keywords
-                                                           company-dabbrev-code
-                                                           company-files
-                                                           company-dabbrev)
-                      )
+	 ;; ----------------------------------------------------------------
+	 ;; Example of useful layers you may want to use right away.
+	 ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
+	 ;; <M-m f e R> (Emacs style) to install them.
+	 ;; ----------------------------------------------------------------
+	 ;;nlinum
+	 debug
+	 spacemacs-editing
+	 (lsp :variables
+		  lsp-use-lsp-ui t
+		  lsp-ui-sideline-enable t
+		  lsp-remap-xref-keybindings t)
+	 (spell-checking :variables
+					 spell-checking-enable-by-default nil)
+	 (syntax-checking :variables
+					  syntax-checking-enable-by-default t
+					  syntax-checking-enable-tooltips t)
+	 better-defaults
+	 dash
+	 ivy
+	 (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
+	 ;;helm
+	 ;; xclipboard
+	 ;;exwm
+	 ;;slack
+	 (git :variables
+		  git-enable-magit-delta-plugin t
+		  git-enable-magit-todos-plugin t
+		  git-enable-magit-gitflow-plugin t
+		  git-enable-magit-svn-plugin nil)
+	 (cmake :variables cmake-backend 'company-cmake)
+	 csv
+	 ;;chrome
+	 ;;confluence
+	 (plantuml :variables
+			   plantuml-jar-path "~/.emacs.d/plantuml.jar"
+			   org-plantuml-jar-path "~/.emacs.d/plantuml.jar")
+	 ansible
+	 (ibuffer :variables ibuffer-group-buffers-by 'projects)
+	 (treemacs :variables treemacs-use-follow-mode t
+			   treemacs-use-filewatch-mode t
+			   treemacs-use-collapsed-directories 3)
+	 ;; markdown
+	 (org :variables
+		  org-enable-github-support t
+		  org-enable-bootstrap-support t
+		  org-enable-reveal-js t
+		  org-enable-org-journal-support t
+		  org-want-todo-bindings t
+		  org-enable-hugo-support t
+		  org-enable-roam-support t
+		  org-enable-roam-server nil
+		  org-enable-valign t)
+	 (chinese :variables
+			  chinese-enable-youdao-dict t)
+	 semantic
+	 dap
+	 (clojure :variables
+			  clojure-enable-linters 'clj-kondo
+			  clojure-enable-sayid t
+			  clojure-enable-clj-refactor t
+			  clojure-backend 'cider
+			  )
+	 pdf
+	 ;; gnus
+	 (shell-scripts :variables
+					shell-scripts-backend 'lsp
+					)
+	 emacs-lisp
+	 ;;common-lisp
+	 groovy
+	 html
+	 javascript
+	 (shell :variables
+			shell-default-height 30
+			shell-default-position 'bottom)
+	 (latex :variables
+			latex-build-command "Latex"
+			latex-enable-auto-fill t
+			latex-enable-folding t
+			latex-enable-magic t)
+	 (java :variables
+		   java-backend 'lsp
+		   java--ensime-modes nil)
+	 (python :variables
+			 spacemacs--python-pyenv-modes '(python-mode)
+			 python-auto-set-local-pyenv-version 'on-visit ;;'on-project-switch
+			 python-auto-set-local-pyvenv-virtualenv 'on-visit ;;'on-project-switch
+			 python-enable-yapf-format-on-save t
+			 python-fill-column 99
+			 python-formatter 'yapf
+			 python-format-on-save t
+			 python-sort-imports-on-save t
+			 python-pipenv-activate t
+			 python-backend 'lsp python-lsp-server 'pyright
+			 python-lsp-server 'nil
+			 python-lsp-git-root "~/src/python-language-server")
+	 ipython-notebook
+	 (go :variables
+			 go-use-gometalinter t
+			 gofmt-command "goimports"
+			 go-backend 'lsp
+			 godoc-at-point-function 'godoc-gogetdoc)
+	 (c-c++ :variables
+			c-c++-lsp-sem-highlight-method 'font-lock
+			c-c++-lsp-sem-highlight-rainbow t
+			c-c++-default-mode-for-headers 'c++-mode
+			c-c++-enable-rtags-completion nil
+			c-c++-backend 'lsp-ccls
+			c-c++-adopt-subprojects t
+			c-c++-enable-google-style t)
+	 (auto-completion :variables
+					  auto-completion-return-key-behavior 'complete
+					  auto-completion-use-company-box 't
+					  auto-completion-tab-key-behavior 'cycle
+					  auto-completion-complete-with-key-sequence nil
+					  auto-completion-complete-with-key-sequence-delay 0.1
+					  auto-completion-private-snippets-directory nil
+					  auto-completion-enable-snippets-in-popup nil
+					  auto-completion-enable-help-tooltip t
+					  auto-completion-enable-sort-by-usage t
+					  spacemacs-default-company-backends '(company-capf
+														   company-keywords
+														   company-dabbrev-code
+														   company-files
+														   company-dabbrev)
+					  )
 
-     (deft :variables deft-zetteldeft t)
-     (version-control :variables
-                      version-control-diff-tool 'diff-hl
-                      version-control-diff-side 'left
-                      version-control-global-margin t
-      )
-     ;; source tools
-     ome
-     ome-misc
-     ome-kotlin
-     ome-company
-     ;; tools
-     android-mode
-     doxymacs
-     ome-gui
-     ome-org
-     ome-pdf
-     )
+	 (deft :variables deft-zetteldeft t)
+	 (version-control :variables
+					  version-control-diff-tool 'diff-hl
+					  version-control-diff-side 'left
+					  version-control-global-margin t
+	  )
+	 ;; source tools
+	 ome
+	 ome-misc
+	 ome-kotlin
+	 ome-company
+	 ;; tools
+	 android-mode
+	 doxymacs
+	 ome-gui
+	 ome-org
+	 ome-pdf
+	 )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
@@ -171,91 +172,90 @@ values."
    ;;                                    (ggtags :location (recipe :fetcher github :repo "linux-xhyang/ggtags")))
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(
-                                    ac-ispell
-                                    aggressive-indent
-                                    anaphora
-                                    auto-dictionary
-                                    ace-jump-helm-line
-                                    anaconda-mode
-                                    auto-compile
-                                    bui
-                                    blacken
-                                    clean-aindent-mode
-                                    coffee-mode
-                                    chinese-wbim
-                                    company-rtags
-                                    company-etags
-                                    company-anaconda
-                                    company-ycmd
-                                    counsel-css
-                                    evil-tutor
-                                    eyebrowse
-                                    elisp-slime-nav
-                                    emr
-                                    epc
-                                    epl
-                                    evil-anzu
-                                    find-by-pinyin-dired
-                                    fish-mode
-                                    flycheck-ycmd
-                                    flycheck-elsa
-                                    gh-md
-                                    git-gutter
-                                    ghub
-                                    gntp
-                                    helm-make
-                                    haml-mode
-                                    insert-shebang
-                                    jinja2-mode
-                                    leuven-theme
-                                    lsp-python-ms
-                                    lorem-ipsum
-                                    magit-svn
-                                    maven-test-mode
-                                    multiple-cursors
-                                    mvn
-                                    meghanada
-                                    nodejs-repl
-                                    overseer
-                                    org-repo-todo
-                                    org-brain
-                                    org-pomodoro
-                                    org-superstar
-                                    org-trello
-                                    pcache
-                                    pinyinlib
-                                    pug-mode
-                                    pyim
-                                    rtags
-                                    sass-mode
-                                    scss-mode
-                                    smooth-scrolling
-                                    spacemacs-purpose-popwin
-                                    slim-mode
-                                    skewer-mode
-                                    smeargle
-                                    symon
-                                    spray
-                                    test-simple
-                                    vterm
-                                    vi-tilde-fringe
-                                    writeroom-mode
-                                    with-editor
-                                    ycmd
-                                    zenburn-theme
-                                    )
+									ac-ispell
+									anaphora
+									auto-dictionary
+									ace-jump-helm-line
+									anaconda-mode
+									auto-compile
+									bui
+									blacken
+									clean-aindent-mode
+									coffee-mode
+									chinese-wbim
+									company-rtags
+									company-etags
+									company-anaconda
+									company-ycmd
+									counsel-css
+									evil-tutor
+									eyebrowse
+									elisp-slime-nav
+									emr
+									epc
+									epl
+									evil-anzu
+									find-by-pinyin-dired
+									fish-mode
+									flycheck-ycmd
+									flycheck-elsa
+									gh-md
+									git-gutter
+									ghub
+									gntp
+									helm-make
+									haml-mode
+									insert-shebang
+									jinja2-mode
+									leuven-theme
+									lsp-python-ms
+									lorem-ipsum
+									magit-svn
+									maven-test-mode
+									multiple-cursors
+									mvn
+									meghanada
+									nodejs-repl
+									overseer
+									org-repo-todo
+									org-brain
+									org-pomodoro
+									org-superstar
+									org-trello
+									pcache
+									pinyinlib
+									pug-mode
+									pyim
+									rtags
+									sass-mode
+									scss-mode
+									smooth-scrolling
+									spacemacs-purpose-popwin
+									slim-mode
+									skewer-mode
+									smeargle
+									symon
+									spray
+									test-simple
+									vterm
+									vi-tilde-fringe
+									writeroom-mode
+									with-editor
+									ycmd
+									zenburn-theme
+									)
    dotspacemacs-additional-packages '(
-                                      lsp-pyright
-                                      org-caldav
-                                      )
+									  lsp-pyright
+									  org-caldav
+									  )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
    dotspacemacs-delete-orphan-packages t)
   (when (display-graphic-p)
-    (setq dotspacemacs-configuration-layers (seq-concatenate 'list
-                                                             dotspacemacs-configuration-layers
-                                                                   )))
+	(setq dotspacemacs-configuration-layers (seq-concatenate 'list
+															 dotspacemacs-configuration-layers
+																   )))
   )
 
 (defun dotspacemacs/init ()
@@ -297,8 +297,8 @@ values."
    ;; Possible values are: `recents' `bookmarks' `projects'.
    ;; (default '(recents projects))
    dotspacemacs-startup-lists '((recents  . 5)
-                                (projects . 7)
-                                (bookmarks . 5))
+								(projects . 7)
+								(bookmarks . 5))
    ;; Number of recent files to show in the startup buffer. Ignored if
    ;; `dotspacemacs-startup-lists' doesn't include `recents'. (default 5)
    dotspacemacs-startup-recent-list-size 5
@@ -308,30 +308,30 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(spacemacs-dark
-                         solarized-dark
-                         spacemacs-light
-                         solarized-light
-                         leuven
-                         monokai
-                         zenburn)
+						 solarized-dark
+						 spacemacs-light
+						 solarized-light
+						 leuven
+						 monokai
+						 zenburn)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '(;; $ sudo apt-get install fonts-inconsolata
-                               ;;"Inconsolata"
-                               ;; https://fonts.google.com/specimen/Source+Code+Pro#standard-styles
-                               ;; mkdir -p ~/.local/share/fonts
-                               ;; cp font ~/.local/share/fonts
-                               ;; fc-cache -f -v
-                               "Source Code Pro"
-                               :size 16
-                               :weight normal
-                               :width normal
-                               ;;:powerline-scale 1.3
-                               )
+							   ;;"Inconsolata"
+							   ;; https://fonts.google.com/specimen/Source+Code+Pro#standard-styles
+							   ;; mkdir -p ~/.local/share/fonts
+							   ;; cp font ~/.local/share/fonts
+							   ;; fc-cache -f -v
+							   "Source Code Pro"
+							   :size 16
+							   :weight normal
+							   :width normal
+							   ;;:powerline-scale 1.3
+							   )
 
-         ;; The leader key
+		 ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
    ;; (default "M-m")
@@ -462,18 +462,18 @@ any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
   (require 'package)
   (setq configuration-layer-elpa-archives
-        '(("gnu"          . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-          ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-          ("melpa"        . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-          ("melpa-stable" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa-stable/")
-          ))
+		'(("gnu"          . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+		  ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+		  ("melpa"        . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+		  ("melpa-stable" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa-stable/")
+		  ))
 
   (setq read-process-output-max (* 4 1024 1024))
   (defun my-minibuffer-setup-hook ()
-    (setq gc-cons-threshold most-positive-fixnum))
+	(setq gc-cons-threshold most-positive-fixnum))
 
   (defun my-minibuffer-exit-hook ()
-    (setq gc-cons-threshold 800000))
+	(setq gc-cons-threshold 800000))
 
   (add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
   (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
@@ -486,9 +486,6 @@ in `dotspacemacs/user-config'."
   (set-language-environment "UTF-8")
   ;; auto revert buffer globally
   (global-auto-revert-mode t)
-  ;; set TAB and indention
-  (setq-default tab-width 8)
-  (setq-default indent-tabs-mode nil)
   ;; y or n is suffice for a yes or no question
   (fset 'yes-or-no-p 'y-or-n-p)
   ;; always add new line to the end of a file
@@ -503,7 +500,7 @@ in `dotspacemacs/user-config'."
   (global-set-key "\M-r" 'replace-string)
   (setq-default dotspacemacs-large-file-size 10)
   (setq-default header-line-format
-                '((which-function-mode ("" which-func-format " "))))
+				'((which-function-mode ("" which-func-format " "))))
   (which-function-mode 1)
   (setq spaceline-org-clock-p t)
 
@@ -550,9 +547,9 @@ layers configuration. You are free to put any user code."
   ;; fc-cache -f -v
   ;; c-u c-x = ;;check current font
   (when (display-graphic-p)
-    (dolist (charset '(kana han cjk-misc bopomofo))
-      (set-fontset-font (frame-parameter nil 'font)
-                        charset (font-spec :family "Microsoft YaHei" :size 16))))
+	(dolist (charset '(kana han cjk-misc bopomofo))
+	  (set-fontset-font (frame-parameter nil 'font)
+						charset (font-spec :family "Microsoft YaHei" :size 16))))
   (server-start)
   (setenv "XAPIAN_CJK_NGRAM" "1")
   (dotspacemacs/emacs-custom-settings)
@@ -570,83 +567,83 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(LaTeX-mode-hook
    (quote
-    (spacemacs/load-yasnippet smartparens-mode flyspell-mode evil-matchit-mode turn-on-reftex TeX-PDF-mode TeX-source-correlate-mode LaTeX-math-mode TeX-fold-mode latex/auto-fill-mode spacemacs//init-company-LaTeX-mode company-mode pdf-tools-install)) t)
+	(spacemacs/load-yasnippet smartparens-mode flyspell-mode evil-matchit-mode turn-on-reftex TeX-PDF-mode TeX-source-correlate-mode LaTeX-math-mode TeX-fold-mode latex/auto-fill-mode spacemacs//init-company-LaTeX-mode company-mode pdf-tools-install)) t)
  '(TeX-command-list
    (quote
-    (("TeX" "%(PDF)%(tex) %(file-line-error) %`%(extraopts) %S%(PDFout)%(mode)%' %t" TeX-run-TeX nil
-      (latex-mode doctex-mode texinfo-mode ams-tex-mode)
-      :help "Run plain TeX")
-     ("LaTeX" "%`%l%(mode)%' %T" TeX-run-TeX nil
-      (latex-mode doctex-mode)
-      :help "Run LaTeX")
-     ("Makeinfo" "makeinfo %(extraopts) %t" TeX-run-compile nil
-      (texinfo-mode)
-      :help "Run Makeinfo with Info output")
-     ("Makeinfo HTML" "makeinfo %(extraopts) --html %t" TeX-run-compile nil
-      (texinfo-mode)
-      :help "Run Makeinfo with HTML output")
-     ("AmSTeX" "amstex %(PDFout) %`%(extraopts) %S%(mode)%' %t" TeX-run-TeX nil
-      (ams-tex-mode)
-      :help "Run AMSTeX")
-     ("ConTeXt" "%(cntxcom) --once --texutil %(extraopts) %(execopts)%t" TeX-run-TeX nil
-      (context-mode)
-      :help "Run ConTeXt once")
-     ("ConTeXt Full" "%(cntxcom) %(extraopts) %(execopts)%t" TeX-run-TeX nil
-      (context-mode)
-      :help "Run ConTeXt until completion")
-     ("BibTeX" "bibtex %s" TeX-run-BibTeX nil t :help "Run BibTeX")
-     ("Biber" "biber %s" TeX-run-Biber nil t :help "Run Biber")
-     ("View" "%V" TeX-run-discard-or-function t t :help "Run Viewer")
-     ("Print" "%p" TeX-run-command t t :help "Print the file")
-     ("Queue" "%q" TeX-run-background nil t :help "View the printer queue" :visible TeX-queue-command)
-     ("File" "%(o?)dvips %d -o %f " TeX-run-dvips t t :help "Generate PostScript file")
-     ("Dvips" "%(o?)dvips %d -o %f " TeX-run-dvips nil t :help "Convert DVI file to PostScript")
-     ("Dvipdfmx" "dvipdfmx %d" TeX-run-dvipdfmx nil t :help "Convert DVI file to PDF with dvipdfmx")
-     ("Ps2pdf" "ps2pdf %f" TeX-run-ps2pdf nil t :help "Convert PostScript file to PDF")
-     ("Glossaries" "makeglossaries %s" TeX-run-command nil t :help "Run makeglossaries to create glossary file")
-     ("Index" "makeindex %s" TeX-run-index nil t :help "Run makeindex to create index file")
-     ("upMendex" "upmendex %s" TeX-run-index t t :help "Run upmendex to create index file")
-     ("Xindy" "texindy %s" TeX-run-command nil t :help "Run xindy to create index file")
-     ("Check" "lacheck %s" TeX-run-compile nil
-      (latex-mode)
-      :help "Check LaTeX file for correctness")
-     ("ChkTeX" "chktex -v6 %s" TeX-run-compile nil
-      (latex-mode)
-      :help "Check LaTeX file for common mistakes")
-     ("Spell" "(TeX-ispell-document \"\")" TeX-run-function nil t :help "Spell-check the document")
-     ("Clean" "TeX-clean" TeX-run-function nil t :help "Delete generated intermediate files")
-     ("Clean All" "(TeX-clean t)" TeX-run-function nil t :help "Delete generated intermediate and output files")
-     ("Other" "" TeX-run-command t t :help "Run an arbitrary command"))))
+	(("TeX" "%(PDF)%(tex) %(file-line-error) %`%(extraopts) %S%(PDFout)%(mode)%' %t" TeX-run-TeX nil
+	  (latex-mode doctex-mode texinfo-mode ams-tex-mode)
+	  :help "Run plain TeX")
+	 ("LaTeX" "%`%l%(mode)%' %T" TeX-run-TeX nil
+	  (latex-mode doctex-mode)
+	  :help "Run LaTeX")
+	 ("Makeinfo" "makeinfo %(extraopts) %t" TeX-run-compile nil
+	  (texinfo-mode)
+	  :help "Run Makeinfo with Info output")
+	 ("Makeinfo HTML" "makeinfo %(extraopts) --html %t" TeX-run-compile nil
+	  (texinfo-mode)
+	  :help "Run Makeinfo with HTML output")
+	 ("AmSTeX" "amstex %(PDFout) %`%(extraopts) %S%(mode)%' %t" TeX-run-TeX nil
+	  (ams-tex-mode)
+	  :help "Run AMSTeX")
+	 ("ConTeXt" "%(cntxcom) --once --texutil %(extraopts) %(execopts)%t" TeX-run-TeX nil
+	  (context-mode)
+	  :help "Run ConTeXt once")
+	 ("ConTeXt Full" "%(cntxcom) %(extraopts) %(execopts)%t" TeX-run-TeX nil
+	  (context-mode)
+	  :help "Run ConTeXt until completion")
+	 ("BibTeX" "bibtex %s" TeX-run-BibTeX nil t :help "Run BibTeX")
+	 ("Biber" "biber %s" TeX-run-Biber nil t :help "Run Biber")
+	 ("View" "%V" TeX-run-discard-or-function t t :help "Run Viewer")
+	 ("Print" "%p" TeX-run-command t t :help "Print the file")
+	 ("Queue" "%q" TeX-run-background nil t :help "View the printer queue" :visible TeX-queue-command)
+	 ("File" "%(o?)dvips %d -o %f " TeX-run-dvips t t :help "Generate PostScript file")
+	 ("Dvips" "%(o?)dvips %d -o %f " TeX-run-dvips nil t :help "Convert DVI file to PostScript")
+	 ("Dvipdfmx" "dvipdfmx %d" TeX-run-dvipdfmx nil t :help "Convert DVI file to PDF with dvipdfmx")
+	 ("Ps2pdf" "ps2pdf %f" TeX-run-ps2pdf nil t :help "Convert PostScript file to PDF")
+	 ("Glossaries" "makeglossaries %s" TeX-run-command nil t :help "Run makeglossaries to create glossary file")
+	 ("Index" "makeindex %s" TeX-run-index nil t :help "Run makeindex to create index file")
+	 ("upMendex" "upmendex %s" TeX-run-index t t :help "Run upmendex to create index file")
+	 ("Xindy" "texindy %s" TeX-run-command nil t :help "Run xindy to create index file")
+	 ("Check" "lacheck %s" TeX-run-compile nil
+	  (latex-mode)
+	  :help "Check LaTeX file for correctness")
+	 ("ChkTeX" "chktex -v6 %s" TeX-run-compile nil
+	  (latex-mode)
+	  :help "Check LaTeX file for common mistakes")
+	 ("Spell" "(TeX-ispell-document \"\")" TeX-run-function nil t :help "Spell-check the document")
+	 ("Clean" "TeX-clean" TeX-run-function nil t :help "Delete generated intermediate files")
+	 ("Clean All" "(TeX-clean t)" TeX-run-function nil t :help "Delete generated intermediate and output files")
+	 ("Other" "" TeX-run-command t t :help "Run an arbitrary command"))))
  '(TeX-engine (quote xetex))
  '(TeX-source-correlate-start-server t t)
  '(TeX-view-program-list (quote (("pdf-tools" (TeX-pdf-tools-sync-view) ""))))
  '(TeX-view-program-selection
    (quote
-    (((output-dvi has-no-display-manager)
-      "dvi2tty")
-     ((output-dvi style-pstricks)
-      "dvips and gv")
-     (output-dvi "xdvi")
-     (output-pdf "PDF Tools")
-     (output-html "xdg-open"))))
+	(((output-dvi has-no-display-manager)
+	  "dvi2tty")
+	 ((output-dvi style-pstricks)
+	  "dvips and gv")
+	 (output-dvi "xdvi")
+	 (output-pdf "PDF Tools")
+	 (output-html "xdg-open"))))
  '(ahs-default-range (quote ahs-range-display))
  '(calculator-number-digits 6)
  '(ccls-member-hierarchy-qualified t)
  '(ccls-executable (file-truename "~/src/ccls/Release/ccls"))
  '(ccls-sem-highlight-method (quote font-lock))
  '(ccls-initialization-options '(:completion (:detailedLabel t)
-                                               :index (:initialReparseForDependency :json-false :comments 2 :threads 2)
-                                               :cache (:retainInMemory 2 :format "binary")
-                                               :diagnostics (:onChange 1000 :onOpen 0 :onSave 0)
-                                               :clang
-                                               (:excludeArgs
-                                                ;; Linux's gcc options. See ccls/wiki
-                                                ["-falign-jumps=1" "-falign-loops=1" "-fconserve-stack" "-fmerge-constants" "-fno-code-hoisting" "-fno-schedule-insns" "-fno-var-tracking-assignments" "-fsched-pressure"
-                                                 "-mhard-float" "-mindirect-branch-register" "-mindirect-branch=thunk-inline" "-mpreferred-stack-boundary=2" "-mpreferred-stack-boundary=3" "-mpreferred-stack-boundary=4"
-                                                 "-mrecord-mcount" "-mindirect-branch=thunk-extern" "-mno-fp-ret-in-387" "-mskip-rax-setup" "-fno-strict-aliasing" "-fno-common" "-fno-PIE" "-fno-PIE" "-fno-dwarf2-cfi-asm"
-                                                 "-fno-omit-frame-pointer" "-fno-ipa-sra" "-funwind-tables" "-march=armv8-a" "-march=armv7-a"
-                                                 "--param=allow-store-data-races=0" "-Wa arch/x86/kernel/macros.s" "-Wa -"]
-                                                :extraArgs ["--gcc-toolchain=/usr"])))
+											   :index (:initialReparseForDependency :json-false :comments 2 :threads 2)
+											   :cache (:retainInMemory 2 :format "binary")
+											   :diagnostics (:onChange 1000 :onOpen 0 :onSave 0)
+											   :clang
+											   (:excludeArgs
+												;; Linux's gcc options. See ccls/wiki
+												["-falign-jumps=1" "-falign-loops=1" "-fconserve-stack" "-fmerge-constants" "-fno-code-hoisting" "-fno-schedule-insns" "-fno-var-tracking-assignments" "-fsched-pressure"
+												 "-mhard-float" "-mindirect-branch-register" "-mindirect-branch=thunk-inline" "-mpreferred-stack-boundary=2" "-mpreferred-stack-boundary=3" "-mpreferred-stack-boundary=4"
+												 "-mrecord-mcount" "-mindirect-branch=thunk-extern" "-mno-fp-ret-in-387" "-mskip-rax-setup" "-fno-strict-aliasing" "-fno-common" "-fno-PIE" "-fno-PIE" "-fno-dwarf2-cfi-asm"
+												 "-fno-omit-frame-pointer" "-fno-ipa-sra" "-funwind-tables" "-march=armv8-a" "-march=armv7-a"
+												 "--param=allow-store-data-races=0" "-Wa arch/x86/kernel/macros.s" "-Wa -"]
+												:extraArgs ["--gcc-toolchain=/usr"])))
  '(company-auto-complete t)
  '(company-auto-complete-chars (quote (32 95 41 46 34 39 60 62)))
  '(company-idle-delay 0)
@@ -673,6 +670,7 @@ This function is called at the very end of Spacemacs initialization."
  '(global-semantic-highlight-func-mode t)
  '(global-semantic-idle-local-symbol-highlight-mode nil nil (semantic/idle))
  '(global-semantic-stickyfunc-mode t)
+ '(indent-tabs-mode t)
  '(gud-key-prefix "x")
  '(android-compilation-no-buildenv-warning nil)
  '(isend-send-region-function (quote isend--ipython-cpaste))
@@ -695,12 +693,12 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-kotlin-external-sources-use-kls-scheme nil)
  '(lsp-file-watch-ignored
    (quote
-    ("[/\\\\]\\.git$" "[/\\\\]\\.hg$" "[/\\\\]\\.bzr$" "[/\\\\]_darcs$" "[/\\\\]\\.svn$" "[/\\\\]_FOSSIL_$" "[/\\\\]\\.idea$" "[/\\\\]\\.ensime_cache$" "[/\\\\]\\.eunit$" "[/\\\\]node_modules$" "[/\\\\]\\.fslckout$" "[/\\\\]\\.tox$" "[/\\\\]\\.stack-work$" "[/\\\\]\\.bloop$" "[/\\\\]\\.metals$" "[/\\\\]target$" "[/\\\\]\\.deps$" "[/\\\\]build-aux$" "[/\\\\]autom4te.cache$" "[/\\\\]\\.meghanada$" "[/\\\\]\\.reference$" "[/\\\\]\\.cquery_cached_index$" "[/\\\\]\\.ccls-cache$" "[/\\\\]\\.repo$")))
+	("[/\\\\]\\.git$" "[/\\\\]\\.hg$" "[/\\\\]\\.bzr$" "[/\\\\]_darcs$" "[/\\\\]\\.svn$" "[/\\\\]_FOSSIL_$" "[/\\\\]\\.idea$" "[/\\\\]\\.ensime_cache$" "[/\\\\]\\.eunit$" "[/\\\\]node_modules$" "[/\\\\]\\.fslckout$" "[/\\\\]\\.tox$" "[/\\\\]\\.stack-work$" "[/\\\\]\\.bloop$" "[/\\\\]\\.metals$" "[/\\\\]target$" "[/\\\\]\\.deps$" "[/\\\\]build-aux$" "[/\\\\]autom4te.cache$" "[/\\\\]\\.meghanada$" "[/\\\\]\\.reference$" "[/\\\\]\\.cquery_cached_index$" "[/\\\\]\\.ccls-cache$" "[/\\\\]\\.repo$")))
  '(lsp-java-import-gradle-enabled nil)
  '(lsp-java-import-maven-enabled nil)
  '(lsp-java-vmargs
    (quote
-    ("-noverify" "-Xmx1G" "-XX:+UseG1GC" "-XX:+UseStringDeduplication")))
+	("-noverify" "-Xmx1G" "-XX:+UseG1GC" "-XX:+UseStringDeduplication")))
  '(lsp-java-jdt-download-url
    "https://mirrors.tuna.tsinghua.edu.cn/eclipse/jdtls/snapshots/jdt-language-server-latest.tar.gz")
  '(lsp-java-vmargs
@@ -718,48 +716,48 @@ This function is called at the very end of Spacemacs initialization."
  '(mouse-wheel-scroll-amount (quote (2)))
  '(org-emphasis-alist
    (quote
-    (("*" bold)
-     ("/" italic)
-     ("_" underline)
-     ("=" org-verbatim verbatim)
-     ("~" org-code verbatim)
-     ("+"
-      (:strike-through t)))))
+	(("*" bold)
+	 ("/" italic)
+	 ("_" underline)
+	 ("=" org-verbatim verbatim)
+	 ("~" org-code verbatim)
+	 ("+"
+	  (:strike-through t)))))
  '(org-html-table-default-attributes
    '(:border "2" :cellspacing "0" :cellpadding "6" :rules "all" :frame "border"))
  '(org-latex-hyperref-template nil)
  '(org-latex-pdf-process
    (quote
-    ("xelatex -synctex=1 -interaction nonstopmode -output-directory %o %f" "bibtex %b" "xelatex -synctex=1 -interaction nonstopmode -output-directory %o %f")))
+	("xelatex -synctex=1 -interaction nonstopmode -output-directory %o %f" "bibtex %b" "xelatex -synctex=1 -interaction nonstopmode -output-directory %o %f")))
  '(org-noter-notes-search-path '("~/note/org/books/"))
  '(org-preview-latex-default-process (quote dvisvgm))
  '(org-latex-inputenc-alist '(("utf8" . "utf8x")))
  '(org-preview-latex-process-alist
    (quote
-    ((dvipng :programs
-             ("latex" "dvipng")
-             :description "dvi > png" :message "you need to install the programs: latex and dvipng." :image-input-type "dvi" :image-output-type "png" :image-size-adjust
-             (1.0 . 1.0)
-             :latex-compiler
-             ("latex -output-format=dvi  -interaction nonstopmode -output-directory %o %f")
-             :image-converter
-             ("dvipng -fg %F -bg %B -D %D -T tight -o %O %f"))
-     (dvisvgm :programs
-              ("latex" "dvisvgm")
-              :description "xdv > svg" :message "you need to install the programs: latex and dvisvgm." :use-xcolor t :image-input-type "xdv" :image-output-type "svg" :image-size-adjust
-              (1.7 . 1.5)
-              :latex-compiler
-              ("xelatex -no-pdf -interaction nonstopmode -output-directory %o %f")
-              :image-converter
-              ("dvisvgm %f -n -b min -c %S -o %O"))
-     (imagemagick :programs
-                  ("latex" "convert")
-                  :description "pdf > png" :message "you need to install the programs: latex and imagemagick." :use-xcolor t :image-input-type "pdf" :image-output-type "png" :image-size-adjust
-                  (1.0 . 1.0)
-                  :latex-compiler
-                  ("xelatex -interaction nonstopmode -output-directory %o %f")
-                  :image-converter
-                  ("convert -density %D -trim -antialias %f -quality 100 %O")))))
+	((dvipng :programs
+			 ("latex" "dvipng")
+			 :description "dvi > png" :message "you need to install the programs: latex and dvipng." :image-input-type "dvi" :image-output-type "png" :image-size-adjust
+			 (1.0 . 1.0)
+			 :latex-compiler
+			 ("latex -output-format=dvi  -interaction nonstopmode -output-directory %o %f")
+			 :image-converter
+			 ("dvipng -fg %F -bg %B -D %D -T tight -o %O %f"))
+	 (dvisvgm :programs
+			  ("latex" "dvisvgm")
+			  :description "xdv > svg" :message "you need to install the programs: latex and dvisvgm." :use-xcolor t :image-input-type "xdv" :image-output-type "svg" :image-size-adjust
+			  (1.7 . 1.5)
+			  :latex-compiler
+			  ("xelatex -no-pdf -interaction nonstopmode -output-directory %o %f")
+			  :image-converter
+			  ("dvisvgm %f -n -b min -c %S -o %O"))
+	 (imagemagick :programs
+				  ("latex" "convert")
+				  :description "pdf > png" :message "you need to install the programs: latex and imagemagick." :use-xcolor t :image-input-type "pdf" :image-output-type "png" :image-size-adjust
+				  (1.0 . 1.0)
+				  :latex-compiler
+				  ("xelatex -interaction nonstopmode -output-directory %o %f")
+				  :image-converter
+				  ("convert -density %D -trim -antialias %f -quality 100 %O")))))
  '(org-startup-with-latex-preview t)
  '(projectile-enable-caching t)
  '(projectile-git-command "git ls-files -zco --exclude-standard -x \".ccls-cache\"")
@@ -767,10 +765,10 @@ This function is called at the very end of Spacemacs initialization."
    '(".idea" ".vscode" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" ".ccls-cache" ".cache" ".repo" ".clangd"))
  '(projectile-project-root-files-bottom-up
    (quote
-    ("compile_commands.json" ".git" ".projectile" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs")))
+	("compile_commands.json" ".git" ".projectile" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs")))
  '(projectile-project-root-files-top-down-recurring
    (quote
-    (".svn" "CVS" "Makefile" ".git" ".cquery" "compile_commands.json")))
+	(".svn" "CVS" "Makefile" ".git" ".cquery" "compile_commands.json")))
  '(projectile-require-project-root nil)
  '(scroll-conservatively 100)
  '(semantic-idle-scheduler-idle-time 1)
@@ -780,10 +778,9 @@ This function is called at the very end of Spacemacs initialization."
  '(semantic-idle-truncate-long-summaries nil)
  '(sr-speedbar-right-side nil)
  '(sr-speedbar-skip-other-window-p t)
- '(tab-always-indent (quote complete))
- '(tab-width 4)
  '(clipetty-assume-nested-mux t)
  '(tramp-syntax (quote default) nil (tramp))
+ '(tab-width 4)
  '(vc-handled-backends (quote (git RCS CVS SVN SCCS SRC Bzr Hg Mtn)))
  '(vlf-application (quote ask))
  '(vlf-batch-size 10485760)
