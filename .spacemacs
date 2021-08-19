@@ -628,6 +628,11 @@ This function is called at the very end of Spacemacs initialization."
 	 (output-html "xdg-open"))))
  '(ahs-default-range (quote ahs-range-display))
  '(calculator-number-digits 6)
+ '(c-basic-offset 4)
+ '(c-default-style
+   '((java-mode . "java")
+	 (awk-mode . "awk")
+	 (other . "stroustrup")))
  '(ccls-member-hierarchy-qualified t)
  '(ccls-executable (file-truename "~/src/ccls/Release/ccls"))
  '(ccls-sem-highlight-method (quote font-lock))
