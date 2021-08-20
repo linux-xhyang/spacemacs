@@ -12,3 +12,7 @@
 (evil-leader/set-key "ocl" 'eacl-complete-line)
 (evil-leader/set-key "ocm" 'eacl-complete-multiline)
 (evil-leader/set-key "oim" 'my-convert-mail-header-to-org-link)
+
+(evil-leader/set-key "oea" 'editorconfig-apply)
+(evil-leader/set-key "oed" 'editorconfig-display-current-properties)
+(evil-leader/set-key "oef" 'editorconfig-find-current-editorconfig)
