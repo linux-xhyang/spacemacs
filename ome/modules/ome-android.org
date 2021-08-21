@@ -87,9 +87,9 @@
                                  (define-key gud-mode-map [f6] 'gud-step)
                                  (define-key gud-mode-map [f7] 'gud-next)
                                  (define-key gud-mode-map [f8] 'gud-finish)
-                                 (define-key gud-minor-mode-map [f6] 'gud-next)
-                                 (define-key gud-minor-mode-map [f7] 'gud-finish)
-                                 (define-key gud-minor-mode-map [f8] 'gud-cont)
+                                 (define-key gud-minor-mode-map [f6] 'gud-step)
+                                 (define-key gud-minor-mode-map [f7] 'gud-next)
+                                 (define-key gud-minor-mode-map [f8] 'gud-finish)
                                  (auto-complete-mode 1))))
 
     (defun android-emulate ()
