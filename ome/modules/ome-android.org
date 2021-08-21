@@ -82,7 +82,16 @@
            (push jdb-command android-jdb-history))
        (jdb jdb-command)))
 
-    (add-hook 'gud-mode-hook (lambda () (auto-complete-mode 1)))
+    (add-hook 'gud-mode-hook (lambda ()
+                               (progn
+                                 (define-key gud-mode-map [f6] 'gud-step)
+                                 (define-key gud-mode-map [f7] 'gud-next)
+                                 (define-key gud-mode-map [f8] 'gud-finish)
+                                 (define-key gud-minor-mode-map [f6] 'gud-next)
+                                 (define-key gud-minor-mode-map [f7] 'gud-finish)
+                                 (define-key gud-minor-mode-map [f8] 'gud-cont)
+                                 (auto-complete-mode 1))))
+
     (defun android-emulate ()
      "Run the Android emulator. This expects the SDK tools directory to be in the current path."
      (interactive)
