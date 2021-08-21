@@ -25,6 +25,7 @@ values."
      ;; ----------------------------------------------------------------
      ;;nlinum
      debug
+	 spacemacs-editing
      (lsp :variables
           lsp-use-lsp-ui t
           lsp-ui-sideline-enable t
@@ -169,7 +170,6 @@ values."
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(
                                     ac-ispell
-                                    aggressive-indent
                                     anaphora
                                     auto-dictionary
                                     ace-jump-helm-line
@@ -448,7 +448,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup 'all
+   dotspacemacs-whitespace-cleanup 'trailing
    dotspacemacs-enable-lazy-installation nil
    ))
 
@@ -483,9 +483,6 @@ in `dotspacemacs/user-config'."
   (set-language-environment "UTF-8")
   ;; auto revert buffer globally
   (global-auto-revert-mode t)
-  ;; set TAB and indention
-  (setq-default tab-width 8)
-  (setq-default indent-tabs-mode nil)
   ;; y or n is suffice for a yes or no question
   (fset 'yes-or-no-p 'y-or-n-p)
   ;; always add new line to the end of a file
@@ -627,6 +624,12 @@ This function is called at the very end of Spacemacs initialization."
  '(android-compilation-no-buildenv-warning nil)
  '(android-jdb-command-name "/usr/bin/jdb")
  '(calculator-number-digits 6)
+ '(c-basic-offset 4)
+ '(c-default-style
+   '((java-mode . "java")
+	 (awk-mode . "awk")
+	 (other . "stroustrup")))
+
  '(ccls-args '("--log-file=/home/yangxiaohe/.emacs.d/ccls.log"))
  '(ccls-executable "/usr/local/bin/ccls")
  '(ccls-initialization-options
