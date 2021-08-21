@@ -86,8 +86,9 @@ Fallback to `xref-find-definitions'."
   )
 
 (defun ome-company/post-init-yasnippet-snippets ()
-  (push yasnippet-snippets-dir yas-snippet-dirs)
-  (yas-reload-all)
+    (require 'yasnippet-snippets)
+    (push yasnippet-snippets-dir yas-snippet-dirs)
+    (yas-reload-all)
   )
 
 (defun ome-company/post-init-company ()
