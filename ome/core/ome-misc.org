@@ -4,21 +4,6 @@
 * Basic GUI Settings
   #+NAME: gui-basics
   #+BEGIN_SRC emacs-lisp
-	;; show column number and line number
-	(dolist (mode '(column-number-mode line-number-mode))
-	  (when (fboundp mode) (funcall mode t)))
-	;; show unncessary whitespace that can mess up your diff
-	(add-hook 'prog-mode-hook (lambda () (interactive) (setq show-trailing-whitespace 1)))
-	(add-hook 'c-mode-common-hook   'hs-minor-mode)
-	;; (global-set-key (kbd "<f5>") (lambda ()
-	;; 							   (interactive)
-	;; 							   (setq-local compilation-read-command nil)
-	;; 							   (call-interactively 'compile)))
-
-	(fringe-mode 4)
-
-	;; show parenthesis match
-	(show-paren-mode 1)
 	(setq show-paren-style 'expression)
 	(defadvice show-paren-function
 		(around show-paren-closing-before
@@ -33,29 +18,9 @@
 	(global-hl-line-mode t)
 	(set-face-background 'hl-line "#3e4446")
 	(set-face-foreground 'highlight nil)
-
-	;;(add-hook 'org-mode-hook (lambda () (spacemacs/toggle-line-numbers-off)) 'append)
-	;;(add-hook 'find-file-hook 'spacemacs/check-large-file)
 	(global-visual-line-mode t)
 
-	;; set environment coding system
-	(set-language-environment "UTF-8")
-	;; auto revert buffer globally
-	(global-auto-revert-mode t)
-	;; set TAB and indention
-	;; y or n is suffice for a yes or no question
-	(fset 'yes-or-no-p 'y-or-n-p)
-	;; always add new line to the end of a file
-	(setq require-final-newline t)
-	;; add no new lines when "arrow-down key" at the end of a buffer
-	(setq next-line-add-newlines nil)
-	;; prevent the annoying beep on errors
 	(setq ring-bell-function 'ignore)
-	;; remove trailing whitespaces before save
-	(add-hook 'before-save-hook
-			  (lambda ()
-				(when (not (derived-mode-p 'ein:notebook-multilang-mode))
-				  (delete-trailing-whitespace))))
 	;; enable to support navigate in camelCase words
 	(global-subword-mode t)
 
@@ -63,36 +28,6 @@
 	(unless (eq system-type 'windows-nt)
 	  (setq explicit-shell-file-name "/bin/bash")
 	  (setq shell-file-name "/bin/bash"))
-	;; always insert at the bottom
-	(setq comint-scroll-to-bottom-on-input t)
-	;; no duplicates in command history
-	(setq comint-input-ignoredups t)
-	;; what to run when i press enter on a line above the current prompt
-	(setq comint-get-old-input (lambda () ""))
-	;; max shell history size
-	(setq comint-input-ring-size 1000)
-	;; show all in emacs interactive output
-	(setenv "PAGER" "cat")
-	;; set lang to enable Chinese display in shell-mode
-	(setenv "LANG" "en_US.UTF-8")
-
-	;; set text-mode as the default major mode, instead of fundamental-mode
-	;; The first of the two lines in parentheses tells Emacs to turn on Text mode
-	;; when you find a file, unless that file should go into some other mode, such
-	;; as C mode.
-	(setq-default major-mode 'text-mode)
-
-	;;; ido-mode
-	(setq ido-enable-prefix nil)
-	(setq ido-enable-case nil)
-	(setq ido-enable-flex-matching t)
-	;;(setq ido-everywhere t)
-
-	;; use icomplete in minibuffer
-	(icomplete-mode t)
-
-	;; delete the selection with a keypress
-	(delete-selection-mode t)
   #+END_SRC
 
 * Rainbow Delimiters
@@ -153,16 +88,6 @@
 	  (setq exec-path (append exec-path (cons (getenv "ANDROID_JAVA_TOOLCHAIN") nil)))
 	  (setenv "PATH" (concat (getenv "PATH") ":" (getenv "ANDROID_JAVA_TOOLCHAIN") )))
 	(setenv "WORKON_HOME" "~/.pyenv/versions/")
-  #+end_src
-
-* fix lsp-mode crash bug
-  #+begin_src emacs-lisp
-	(advice-add 'json-parse-string :around
-				(lambda (orig string &rest rest)
-				  (apply orig (s-replace "\\u0000" "" string)
-						 rest)))
-	;; fix lsp java company hang
-	(advice-add 'lsp :before (lambda (&rest _args) (eval '(setf (lsp-session-server-id->folders (lsp-session)) (ht)))))
   #+end_src
 
 * projectile
