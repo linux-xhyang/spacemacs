@@ -128,7 +128,7 @@ values."
 			c-c++-enable-rtags-completion nil
 			c-c++-backend 'lsp-ccls
 			c-c++-adopt-subprojects t
-			c-c++-enable-google-style t)
+			c-c++-enable-google-style nil)
 	 (auto-completion :variables
 					  auto-completion-return-key-behavior 'complete
 					  auto-completion-use-company-box 't
