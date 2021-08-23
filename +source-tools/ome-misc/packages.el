@@ -11,13 +11,12 @@
     smartparens
     ))
 
-(defun ome-misc/init-exec-path-from-shell ()
+(defun ome-misc/post-init-exec-path-from-shell ()
   (use-package exec-path-from-shell
     :config
-    :init
     (progn
       (require 'exec-path-from-shell)
-      (exec-path-from-shell-initialize)
+      ;;(exec-path-from-shell-initialize)
       )
     )
   )
