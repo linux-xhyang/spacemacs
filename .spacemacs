@@ -158,6 +158,7 @@ values."
 	 ome-prog
 	 ome-kotlin
 	 ome-company
+     ome-wolfram
 	 ;; tools
 	 android-mode
 	 doxymacs

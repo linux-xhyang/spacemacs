@@ -7,6 +7,7 @@
 (evil-leader/set-key "org" 'org-roam-graph-show)
 (evil-leader/set-key "orU" 'org-roam-db-build-cache)
 (evil-leader/set-key "ort" 'org-roam-tag-add)
+(evil-leader/set-key "ori" 'org-roam-node-insert)
 (add-hook 'prog-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
 
 (evil-leader/set-key "ocl" 'eacl-complete-line)
