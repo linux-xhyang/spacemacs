@@ -34,7 +34,6 @@
     (xgtags :location (recipe :fetcher github :repo "linux-xhyang/xgtags"))
     exec-path-from-shell
     ;;(company-tabnine :requires company)
-    ob-ipython
     eacl
     ))
 
@@ -119,15 +118,6 @@
       )
     )
   )
-
-(defun ome/init-ob-ipython ()
-  "docstring"
-  (use-package ob-ipython
-    :defer t
-    :config
-    (require 'ob-ipython)
-    ))
-
 
 (defun ome/post-init-company()
   (spacemacs|add-company-backends :backends company-elisp

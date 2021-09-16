@@ -115,7 +115,8 @@ values."
 			 python-backend 'lsp python-lsp-server 'pyright
 			 python-lsp-server 'nil
 			 python-lsp-git-root "~/src/python-language-server")
-	 ipython-notebook
+	 ;; (ipython-notebook :variables
+     ;;                   ein-backend 'jupyter)
 	 (go :variables
 			 go-use-gometalinter t
 			 gofmt-command "goimports"
@@ -159,6 +160,7 @@ values."
 	 ome-kotlin
 	 ome-company
      ome-wolfram
+     ome-jupyter
 	 ;; tools
 	 android-mode
 	 doxymacs
