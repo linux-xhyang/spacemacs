@@ -13,7 +13,7 @@
 
     (setq lsp-auto-execute-action nil
         lsp-auto-guess-root t
-
+        lsp--tcp-server-wait-seconds 20
         ;; Turn off for better performance
         lsp-enable-dap-auto-configure nil
         lsp-enable-file-watchers nil
