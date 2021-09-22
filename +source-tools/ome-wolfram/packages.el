@@ -3,6 +3,7 @@
          lsp-mode
          wolfram-mode
          company
+         ein
          ))
 
 
@@ -50,3 +51,14 @@
 
 (defun ome-wolfram/post-init-company ()
     (spacemacs|add-company-backends :backends company-capf :modes wolfram-mode))
+
+(defun ome-wolfram/post-init-ein ()
+    (setq-default ob-ein-languages
+        (quote
+            (("ein" . python)
+                ("ein-python" . python)
+                ("ein-R" . R)
+                ("ein-r" . R)
+                ("ein-julia" . julia)
+                ("ein-wolframlanguage12" . wolfram))))
+    )
