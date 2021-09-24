@@ -23,6 +23,7 @@
 
     (with-eval-after-load 'lsp-mode
         (add-to-list 'lsp-language-id-configuration '(wolfram-mode . "Mathematica"))
+        (add-to-list 'lsp-language-id-configuration '(wolfram-language-mode . "Mathematica"))
 
         ;;https://github.com/kenkangxgwe/lsp-wl
         (lsp-register-client
@@ -36,7 +37,7 @@
                                                   "--socket="
                                                   (number-to-string port)
                                                   ))))
-                :major-modes '(wolfram-mode)
+                :major-modes '(wolfram-mode wolfram-language-mode)
                 :server-id 'lsp-wl
                 ))
         ;; https://github.com/WolframResearch/LSPServer
