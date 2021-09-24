@@ -51,8 +51,7 @@ values."
 	 (cmake :variables cmake-backend 'company-cmake)
 	 csv
 	 ;;chrome
-	 ;;confluence
-	 (plantuml :variables
+     (plantuml :variables
 			   plantuml-jar-path "~/.emacs.d/plantuml.jar"
 			   org-plantuml-jar-path "~/.emacs.d/plantuml.jar")
 	 ansible
@@ -115,8 +114,8 @@ values."
 			 python-backend 'lsp python-lsp-server 'pyright
 			 python-lsp-server 'nil
 			 python-lsp-git-root "~/src/python-language-server")
-	 (ipython-notebook :variables
-                       ein-backend nil)
+	 ;;(ipython-notebook :variables
+     ;;                  ein-backend nil)
 	 (go :variables
 			 go-use-gometalinter t
 			 gofmt-command "goimports"
@@ -160,7 +159,7 @@ values."
 	 ome-kotlin
 	 ome-company
      ome-wolfram
-     ;;ome-jupyter
+     ome-jupyter
 	 ;; tools
 	 android-mode
 	 doxymacs
@@ -465,11 +464,12 @@ It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
   (require 'package)
+  ;;(setq package-check-signature nil)
+  (setq package-check-signature 'allow-unsigned)
   (setq configuration-layer-elpa-archives
-		'(("gnu"          . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-		  ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-		  ("melpa"        . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-		  ("melpa-stable" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa-stable/")
+		'(("nongnu" . "https://elpa.nongnu.org/nongnu/")
+		  ("melpa"  . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+          ("gnu"    . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
 		  ))
 
   (setq read-process-output-max (* 4 1024 1024))

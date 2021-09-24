@@ -2,12 +2,12 @@
   '(
     vlf
     dts-mode
-    (code-compass :location (recipe
-                             :fetcher github
-                             :repo "ag91/code-compass"
-                             :files ("*.el" "scripts" "pages")))
+    ;;(code-compass :location (recipe
+    ;;                         :fetcher github
+    ;;                         :repo "ag91/code-compass"
+    ;;                         :files ("*.el" "scripts" "pages")))
     (xgtags :location (recipe :fetcher github :repo "linux-xhyang/xgtags"))
-    exec-path-from-shell
+    ;;exec-path-from-shell
     smartparens
     ))
 

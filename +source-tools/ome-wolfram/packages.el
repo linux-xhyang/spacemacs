@@ -16,6 +16,7 @@
         :mode "\\.wl\\'"
         :init
         (progn
+            (define-derived-mode wolfram-language-mode wolfram-mode "WolframLanguage")
             (add-hook 'wolfram-mode-hook #'ome-wolfram/wolfram-setup-lsp))))
 
 (defun ome-wolfram/post-init-lsp-mode ()

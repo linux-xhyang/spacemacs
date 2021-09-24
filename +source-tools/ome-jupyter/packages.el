@@ -32,7 +32,9 @@
 (defconst ome-jupyter-packages
   '(
     company
-    jupyter
+    (jupyter :location (recipe
+                              :fetcher github
+                              :repo "nnicandro/emacs-jupyter"))
     smartparens
     (ox-ipynb :location (recipe
                          :fetcher github
