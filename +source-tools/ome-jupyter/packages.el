@@ -68,22 +68,21 @@
             (kbd "C-l") 'jupyter-repl-clear-cells
             (kbd "C-s") 'jupyter-repl-scratch-buffer
             (kbd "C-R") 'isearch-forward
-            (kbd "C-r") 'isearch-backward))
-          :config
-          (progn
-              (setq jupyter-repl-echo-eval-p t)))
+            (kbd "C-r") 'isearch-backward)
+            (setq jupyter-repl-echo-eval-p t)
+            )
+          )
     (message "jupyter was not found in your path, jupyter is not loaded")))
 
 (defun org-babel-edit-worlfram-post (babel-info)
     (let ((buffername (->> babel-info caddr (alist-get :tangle))))
-        (message buffername)
         (when buffername
             (setq-local buffer-file-name buffername))
         )
     )
 
 (defun ome-jupyter/post-init-jupyter ()
-    (advice-add 'org-babel-edit-worlfram-post :after #'org-babel-edit-prep:jupyter-Wolfram-Language))
+    (advice-add  'org-babel-edit-prep:jupyter :after #'org-babel-edit-worlfram-post))
 
 (defun ome-jupyter/post-init-company ()
   (spacemacs|add-company-backends :backends company-capf :modes jupyter-repl-mode))

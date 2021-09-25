@@ -13,10 +13,13 @@
     (use-package wolfram-mode
         :defer t
         :interpreter "\\(Wolfram\\|Mathematica\\)Script\\( -script\\)?"
-        :mode "\\.wl\\'"
+        ;;:mode "\\.wl\\'"
         :init
         (progn
             (define-derived-mode wolfram-language-mode wolfram-mode "WolframLanguage")
+            (add-to-list 'auto-mode-alist '("\\.m\\'" . wolfram-language-mode))
+            (add-to-list 'auto-mode-alist '("\\.wl\\'" . wolfram-language-mode))
+            (add-hook 'wolfram-language-mode-hook #'ome-wolfram/wolfram-setup-lsp)
             (add-hook 'wolfram-mode-hook #'ome-wolfram/wolfram-setup-lsp))))
 
 (defun ome-wolfram/post-init-lsp-mode ()
