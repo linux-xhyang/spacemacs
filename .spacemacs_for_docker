@@ -44,11 +44,13 @@ values."
      ;;exwm
      ;;slack
      (git :variables
+		  git-enable-magit-delta-plugin t
+		  git-enable-magit-todos-plugin t
+		  git-enable-magit-gitflow-plugin t
           git-enable-magit-svn-plugin nil)
      (cmake :variables cmake-backend 'company-cmake)
      csv
      ;;chrome
-     ;;confluence
      (plantuml :variables
                plantuml-jar-path "~/.emacs.d/plantuml.jar"
                org-plantuml-jar-path "~/.emacs.d/plantuml.jar")
@@ -112,7 +114,8 @@ values."
              python-backend 'lsp python-lsp-server 'pyright
              python-lsp-server 'nil
              python-lsp-git-root "~/src/python-language-server")
-     ipython-notebook
+	 ;;(ipython-notebook :variables
+     ;;                  ein-backend nil)
      (go :variables
              go-use-gometalinter t
              gofmt-command "goimports"
@@ -155,6 +158,8 @@ values."
      ome-prog
      ome-kotlin
      ome-company
+     ome-wolfram
+     ome-jupyter
      ;; tools
      android-mode
      doxymacs
@@ -459,11 +464,12 @@ It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
   (require 'package)
+  ;;(setq package-check-signature nil)
+  (setq package-check-signature 'allow-unsigned)
   (setq configuration-layer-elpa-archives
-        '(("gnu"          . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-          ("nongnu" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")
-          ("melpa"        . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-          ("melpa-stable" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa-stable/")
+		'(("nongnu" . "https://elpa.nongnu.org/nongnu/")
+		  ("melpa"  . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+          ("gnu"    . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
           ))
 
   (setq read-process-output-max (* 4 1024 1024))
@@ -679,7 +685,7 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-before-save-edits nil)
  '(lsp-clojure-custom-server-command '("bash" "-c" "~/src/clojure-lsp/target/clojure-lsp"))
  '(lsp-clojure-server-command '("bash" "-c" "~/src/clojure-lsp/target/clojure-lsp"))
- '(lsp-completion-enable t)
+ '(lsp-enable-completion-at-point t)
  '(lsp-eldoc-enable-hover nil)
  '(lsp-enable-file-watchers nil)
  '(lsp-enable-indentation nil)
