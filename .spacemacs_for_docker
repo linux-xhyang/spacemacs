@@ -653,6 +653,7 @@ This function is called at the very end of Spacemacs initialization."
  '(custom-safe-themes
    '("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" default))
  '(default-input-method "rime" nil nil "Customized with use-package rime")
+ '(delete-selection-mode t)
  '(ein:complete-on-dot t)
  '(ein:completion-backend 'ein:use-company-backend)
  '(ein:use-auto-complete-superpack t)
@@ -669,6 +670,7 @@ This function is called at the very end of Spacemacs initialization."
  '(global-semantic-highlight-func-mode t)
  '(global-semantic-idle-local-symbol-highlight-mode nil nil (semantic/idle))
  '(global-semantic-stickyfunc-mode t)
+ '(global-superword-mode t)
  '(indent-tabs-mode nil)
  '(gud-key-prefix "x")
  '(isend-send-region-function 'isend--ipython-cpaste)
