@@ -61,15 +61,15 @@ values."
 			   treemacs-use-collapsed-directories 3)
 	 ;; markdown
 	 (org :variables
-		  org-enable-github-support t
-		  org-enable-bootstrap-support t
+          org-want-todo-bindings t
+          org-enable-asciidoc-support t
 		  org-enable-reveal-js t
 		  org-enable-org-journal-support t
 		  org-want-todo-bindings t
 		  org-enable-hugo-support t
 		  org-enable-roam-support t
-		  org-enable-roam-server nil
-		  org-enable-valign t)
+		  org-enable-roam-server t
+          org-enable-roam-protocol t)
 	 (chinese :variables
 			  chinese-enable-youdao-dict t)
 	 semantic

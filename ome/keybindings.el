@@ -4,7 +4,7 @@
 (evil-leader/set-key "ow" 'whitespace-mode)
 (evil-leader/set-key "orf" 'org-roam-node-find)
 (evil-leader/set-key "ora" 'org-roam-alias-add)
-(evil-leader/set-key "org" 'org-roam-graph-show)
+(evil-leader/set-key "org" 'org-roam-graph)
 (evil-leader/set-key "orU" 'org-roam-db-build-cache)
 (evil-leader/set-key "ort" 'org-roam-tag-add)
 (evil-leader/set-key "ori" 'org-roam-node-insert)
