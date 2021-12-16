@@ -468,8 +468,8 @@ in `dotspacemacs/user-config'."
   (setq package-check-signature 'allow-unsigned)
   (setq configuration-layer-elpa-archives
 		'(("nongnu" . "https://elpa.nongnu.org/nongnu/")
-		  ("melpa"  . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-          ("gnu"    . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+                 ("melpa"  . "https://melpa.org/packages/")
+          ("gnu"    . "https://elpa.gnu.org/packages/")
           ))
 
   (setq read-process-output-max (* 4 1024 1024))
