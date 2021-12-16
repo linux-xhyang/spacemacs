@@ -453,10 +453,10 @@
   \\[viss-bookmark-prev-buffer]   - Move to the previous bookmark.
   \\[viss-bookmark-clear-all-buffer] - Clear all bookmarks."
     (interactive)
-    (define-key global-map [(f6)] 'viss-bookmark-toggle)
-    (define-key global-map [(shift f6)] 'viss-bookmark-prev-buffer)
-    (define-key global-map [(control f6)] 'viss-bookmark-next-buffer)
-    (define-key global-map [(control shift f6)] 'viss-bookmark-clear-all-buffer)
+    (define-key global-map [(f5)] 'viss-bookmark-toggle)
+    (define-key global-map [(shift f5)] 'viss-bookmark-prev-buffer)
+    (define-key global-map [(control f5)] 'viss-bookmark-next-buffer)
+    (define-key global-map [(control shift f5)] 'viss-bookmark-clear-all-buffer)
   )
 
   (provide 'linemark)

@@ -121,6 +121,7 @@
 #+ROAM_KEY: ${ref}
 #+HUGO_SLUG: ${slug}
 #+TITLE: ${title}
+#+STARTUP: indent
 - source :: ${ref}")
            :unnarrowed t)))
   )
