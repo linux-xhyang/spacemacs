@@ -8,7 +8,7 @@
 
 (defun doxymacs/init-doxymacs ()
   "Initialize my package"
-  (use-package android-mode
+  (use-package doxymacs
     :defer t
     :init
     (progn

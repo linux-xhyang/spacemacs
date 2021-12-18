@@ -161,7 +161,6 @@ values."
      ome-wolfram
      ome-jupyter
      ;; tools
-     android-mode
      doxymacs
      ome-gui
      ome-org
@@ -473,17 +472,7 @@ in `dotspacemacs/user-config'."
           ))
 
   (setq read-process-output-max (* 4 1024 1024))
-  (defun my-minibuffer-setup-hook ()
-    (setq gc-cons-threshold most-positive-fixnum))
-
-  (defun my-minibuffer-exit-hook ()
-    (setq gc-cons-threshold 800000))
-
-  (add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
-  (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
-
-  ;;(run-with-idle-timer 10 t #'garbage-collect)
-
+  (setq gc-cons-threshold (* 128 1024 1024))
   (setq garbage-collection-messages t)
   (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
   ;; set environment coding system

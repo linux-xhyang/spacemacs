@@ -161,8 +161,7 @@ values."
      ome-wolfram
      ome-jupyter
 	 ;; tools
-	 android-mode
-	 doxymacs
+     doxymacs
 	 ome-gui
 	 ome-org
 	 ome-pdf
@@ -473,16 +472,7 @@ in `dotspacemacs/user-config'."
 		  ))
 
   (setq read-process-output-max (* 4 1024 1024))
-  (defun my-minibuffer-setup-hook ()
-	(setq gc-cons-threshold most-positive-fixnum))
-
-  (defun my-minibuffer-exit-hook ()
-	(setq gc-cons-threshold 800000))
-
-  (add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
-  (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
-
-  ;;(run-with-idle-timer 10 t #'garbage-collect)
+  (setq gc-cons-threshold (* 128 1024 1024))
 
   (setq garbage-collection-messages t)
   (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
@@ -570,89 +560,91 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(LaTeX-mode-hook
-   (quote
-	(spacemacs/load-yasnippet smartparens-mode flyspell-mode evil-matchit-mode turn-on-reftex TeX-PDF-mode TeX-source-correlate-mode LaTeX-math-mode TeX-fold-mode latex/auto-fill-mode spacemacs//init-company-LaTeX-mode company-mode pdf-tools-install)) t)
+   '(spacemacs/load-yasnippet smartparens-mode flyspell-mode evil-matchit-mode turn-on-reftex TeX-PDF-mode TeX-source-correlate-mode LaTeX-math-mode TeX-fold-mode latex/auto-fill-mode spacemacs//init-company-LaTeX-mode company-mode pdf-tools-install) t)
  '(TeX-command-list
-   (quote
-	(("TeX" "%(PDF)%(tex) %(file-line-error) %`%(extraopts) %S%(PDFout)%(mode)%' %t" TeX-run-TeX nil
-	  (latex-mode doctex-mode texinfo-mode ams-tex-mode)
-	  :help "Run plain TeX")
-	 ("LaTeX" "%`%l%(mode)%' %T" TeX-run-TeX nil
-	  (latex-mode doctex-mode)
-	  :help "Run LaTeX")
-	 ("Makeinfo" "makeinfo %(extraopts) %t" TeX-run-compile nil
-	  (texinfo-mode)
-	  :help "Run Makeinfo with Info output")
-	 ("Makeinfo HTML" "makeinfo %(extraopts) --html %t" TeX-run-compile nil
-	  (texinfo-mode)
-	  :help "Run Makeinfo with HTML output")
-	 ("AmSTeX" "amstex %(PDFout) %`%(extraopts) %S%(mode)%' %t" TeX-run-TeX nil
-	  (ams-tex-mode)
-	  :help "Run AMSTeX")
-	 ("ConTeXt" "%(cntxcom) --once --texutil %(extraopts) %(execopts)%t" TeX-run-TeX nil
-	  (context-mode)
-	  :help "Run ConTeXt once")
-	 ("ConTeXt Full" "%(cntxcom) %(extraopts) %(execopts)%t" TeX-run-TeX nil
-	  (context-mode)
-	  :help "Run ConTeXt until completion")
-	 ("BibTeX" "bibtex %s" TeX-run-BibTeX nil t :help "Run BibTeX")
-	 ("Biber" "biber %s" TeX-run-Biber nil t :help "Run Biber")
-	 ("View" "%V" TeX-run-discard-or-function t t :help "Run Viewer")
-	 ("Print" "%p" TeX-run-command t t :help "Print the file")
-	 ("Queue" "%q" TeX-run-background nil t :help "View the printer queue" :visible TeX-queue-command)
-	 ("File" "%(o?)dvips %d -o %f " TeX-run-dvips t t :help "Generate PostScript file")
-	 ("Dvips" "%(o?)dvips %d -o %f " TeX-run-dvips nil t :help "Convert DVI file to PostScript")
-	 ("Dvipdfmx" "dvipdfmx %d" TeX-run-dvipdfmx nil t :help "Convert DVI file to PDF with dvipdfmx")
-	 ("Ps2pdf" "ps2pdf %f" TeX-run-ps2pdf nil t :help "Convert PostScript file to PDF")
-	 ("Glossaries" "makeglossaries %s" TeX-run-command nil t :help "Run makeglossaries to create glossary file")
-	 ("Index" "makeindex %s" TeX-run-index nil t :help "Run makeindex to create index file")
-	 ("upMendex" "upmendex %s" TeX-run-index t t :help "Run upmendex to create index file")
-	 ("Xindy" "texindy %s" TeX-run-command nil t :help "Run xindy to create index file")
-	 ("Check" "lacheck %s" TeX-run-compile nil
-	  (latex-mode)
-	  :help "Check LaTeX file for correctness")
-	 ("ChkTeX" "chktex -v6 %s" TeX-run-compile nil
-	  (latex-mode)
-	  :help "Check LaTeX file for common mistakes")
-	 ("Spell" "(TeX-ispell-document \"\")" TeX-run-function nil t :help "Spell-check the document")
-	 ("Clean" "TeX-clean" TeX-run-function nil t :help "Delete generated intermediate files")
-	 ("Clean All" "(TeX-clean t)" TeX-run-function nil t :help "Delete generated intermediate and output files")
-	 ("Other" "" TeX-run-command t t :help "Run an arbitrary command"))))
- '(TeX-engine (quote xetex))
+   '(("TeX" "%(PDF)%(tex) %(file-line-error) %`%(extraopts) %S%(PDFout)%(mode)%' %t" TeX-run-TeX nil
+      (latex-mode doctex-mode texinfo-mode ams-tex-mode)
+      :help "Run plain TeX")
+     ("LaTeX" "%`%l%(mode)%' %T" TeX-run-TeX nil
+      (latex-mode doctex-mode)
+      :help "Run LaTeX")
+     ("Makeinfo" "makeinfo %(extraopts) %t" TeX-run-compile nil
+      (texinfo-mode)
+      :help "Run Makeinfo with Info output")
+     ("Makeinfo HTML" "makeinfo %(extraopts) --html %t" TeX-run-compile nil
+      (texinfo-mode)
+      :help "Run Makeinfo with HTML output")
+     ("AmSTeX" "amstex %(PDFout) %`%(extraopts) %S%(mode)%' %t" TeX-run-TeX nil
+      (ams-tex-mode)
+      :help "Run AMSTeX")
+     ("ConTeXt" "%(cntxcom) --once --texutil %(extraopts) %(execopts)%t" TeX-run-TeX nil
+      (context-mode)
+      :help "Run ConTeXt once")
+     ("ConTeXt Full" "%(cntxcom) %(extraopts) %(execopts)%t" TeX-run-TeX nil
+      (context-mode)
+      :help "Run ConTeXt until completion")
+     ("BibTeX" "bibtex %s" TeX-run-BibTeX nil t :help "Run BibTeX")
+     ("Biber" "biber %s" TeX-run-Biber nil t :help "Run Biber")
+     ("View" "%V" TeX-run-discard-or-function t t :help "Run Viewer")
+     ("Print" "%p" TeX-run-command t t :help "Print the file")
+     ("Queue" "%q" TeX-run-background nil t :help "View the printer queue" :visible TeX-queue-command)
+     ("File" "%(o?)dvips %d -o %f " TeX-run-dvips t t :help "Generate PostScript file")
+     ("Dvips" "%(o?)dvips %d -o %f " TeX-run-dvips nil t :help "Convert DVI file to PostScript")
+     ("Dvipdfmx" "dvipdfmx %d" TeX-run-dvipdfmx nil t :help "Convert DVI file to PDF with dvipdfmx")
+     ("Ps2pdf" "ps2pdf %f" TeX-run-ps2pdf nil t :help "Convert PostScript file to PDF")
+     ("Glossaries" "makeglossaries %s" TeX-run-command nil t :help "Run makeglossaries to create glossary file")
+     ("Index" "makeindex %s" TeX-run-index nil t :help "Run makeindex to create index file")
+     ("upMendex" "upmendex %s" TeX-run-index t t :help "Run upmendex to create index file")
+     ("Xindy" "texindy %s" TeX-run-command nil t :help "Run xindy to create index file")
+     ("Check" "lacheck %s" TeX-run-compile nil
+      (latex-mode)
+      :help "Check LaTeX file for correctness")
+     ("ChkTeX" "chktex -v6 %s" TeX-run-compile nil
+      (latex-mode)
+      :help "Check LaTeX file for common mistakes")
+     ("Spell" "(TeX-ispell-document \"\")" TeX-run-function nil t :help "Spell-check the document")
+     ("Clean" "TeX-clean" TeX-run-function nil t :help "Delete generated intermediate files")
+     ("Clean All" "(TeX-clean t)" TeX-run-function nil t :help "Delete generated intermediate and output files")
+     ("Other" "" TeX-run-command t t :help "Run an arbitrary command")))
+ '(TeX-engine 'xetex t)
  '(TeX-source-correlate-start-server t t)
- '(TeX-view-program-list (quote (("pdf-tools" (TeX-pdf-tools-sync-view) ""))))
+ '(TeX-view-program-list '(("pdf-tools" (TeX-pdf-tools-sync-view) "")))
  '(TeX-view-program-selection
-   (quote
-	(((output-dvi has-no-display-manager)
-	  "dvi2tty")
-	 ((output-dvi style-pstricks)
-	  "dvips and gv")
-	 (output-dvi "xdvi")
-	 (output-pdf "PDF Tools")
-	 (output-html "xdg-open"))))
- '(ahs-default-range (quote ahs-range-display))
- '(calculator-number-digits 6)
+   '(((output-dvi has-no-display-manager)
+      "dvi2tty")
+     ((output-dvi style-pstricks)
+      "dvips and gv")
+     (output-dvi "xdvi")
+     (output-pdf "PDF Tools")
+     (output-html "xdg-open")))
+ '(ahs-default-range 'ahs-range-display t)
+ '(android-compilation-no-buildenv-warning nil)
  '(c-basic-offset 4)
  '(c-default-style
    '((java-mode . "java")
-	 (awk-mode . "awk")
-	 (other . "stroustrup")))
- '(ccls-member-hierarchy-qualified t)
+     (awk-mode . "awk")
+     (other . "stroustrup")))
+ '(calculator-number-digits 6)
+ '(ccls-args
+   (list
+    (concat "--log-file="
+            (expand-file-name "~/ccls.log"))))
  '(ccls-executable (file-truename "~/src/ccls/Release/ccls"))
- '(ccls-sem-highlight-method (quote font-lock))
- '(company-auto-complete t)
- '(company-auto-complete-chars (quote (32 95 41 46 34 39 60 62)))
+ '(ccls-member-hierarchy-qualified t)
+ '(ccls-sem-highlight-method 'font-lock)
+ '(clipetty-assume-nested-mux t)
+ '(company-auto-commit t)
+ '(company-auto-commit-chars '(32 95 41 46 34 39 60 62))
  '(company-idle-delay 0)
  '(company-minimum-prefix-length 1)
  '(company-selection-wrap-around t)
- '(company-show-numbers t)
+ '(company-show-quick-access t)
  '(counsel-rg-base-command
    '("rg" "-M" "240" "--with-filename" "--no-heading" "--line-number" "--no-ignore" "--color" "never" "--max-columns" "150" "--max-columns-preview" "%s"))
- '(ccls-args (list (concat "--log-file=" (expand-file-name "~/ccls.log"))))
  '(default-input-method "rime" nil nil "Customized with use-package rime")
  '(delete-selection-mode t)
  '(ein:complete-on-dot t)
- '(ein:completion-backend (quote ein:use-company-backend))
+ '(ein:completion-backend 'ein:use-company-backend)
  '(ein:use-auto-complete-superpack t)
  '(eopengrok-ignore-file-or-directory
    ".opengrok:out:*.so:*.a:*.o:*.gz:*.bz2:*.jar:*.zip:*.class:*.elc:GPATH:GRTAGS:GTAGS:.repo:.cquery_cached_index")
@@ -668,10 +660,9 @@ This function is called at the very end of Spacemacs initialization."
  '(global-semantic-idle-local-symbol-highlight-mode nil nil (semantic/idle))
  '(global-semantic-stickyfunc-mode t)
  '(global-superword-mode t)
- '(indent-tabs-mode nil)
  '(gud-key-prefix "x")
- '(android-compilation-no-buildenv-warning nil)
- '(isend-send-region-function (quote isend--ipython-cpaste))
+ '(indent-tabs-mode nil)
+ '(isend-send-region-function 'isend--ipython-cpaste)
  '(jit-lock-chunk-size 6000)
  '(jit-lock-context-time 0.1)
  '(jit-lock-contextually t)
@@ -681,111 +672,105 @@ This function is called at the very end of Spacemacs initialization."
  '(jit-lock-stealth-time 16)
  '(kotlin-tab-width 4)
  '(large-file-warning-threshold 10000)
- '(lsp-clojure-server-command '("bash" "-c" "~/src/clojure-lsp/target/clojure-lsp"))
  '(lsp-auto-guess-root t)
  '(lsp-before-save-edits nil)
- '(lsp-enable-completion-at-point t)
+ '(lsp-clojure-server-command '("bash" "-c" "~/src/clojure-lsp/target/clojure-lsp"))
+ '(lsp-completion-enable t)
  '(lsp-eldoc-enable-hover nil)
- '(lsp-enable-indentation nil)
  '(lsp-enable-file-watchers nil)
- '(lsp-kotlin-external-sources-use-kls-scheme nil)
+ '(lsp-enable-indentation nil)
  '(lsp-file-watch-ignored
-   (quote
-	("[/\\\\]\\.git$" "[/\\\\]\\.hg$" "[/\\\\]\\.bzr$" "[/\\\\]_darcs$" "[/\\\\]\\.svn$" "[/\\\\]_FOSSIL_$" "[/\\\\]\\.idea$" "[/\\\\]\\.ensime_cache$" "[/\\\\]\\.eunit$" "[/\\\\]node_modules$" "[/\\\\]\\.fslckout$" "[/\\\\]\\.tox$" "[/\\\\]\\.stack-work$" "[/\\\\]\\.bloop$" "[/\\\\]\\.metals$" "[/\\\\]target$" "[/\\\\]\\.deps$" "[/\\\\]build-aux$" "[/\\\\]autom4te.cache$" "[/\\\\]\\.meghanada$" "[/\\\\]\\.reference$" "[/\\\\]\\.cquery_cached_index$" "[/\\\\]\\.ccls-cache$" "[/\\\\]\\.repo$")))
+   '("[/\\\\]\\.git$" "[/\\\\]\\.hg$" "[/\\\\]\\.bzr$" "[/\\\\]_darcs$" "[/\\\\]\\.svn$" "[/\\\\]_FOSSIL_$" "[/\\\\]\\.idea$" "[/\\\\]\\.ensime_cache$" "[/\\\\]\\.eunit$" "[/\\\\]node_modules$" "[/\\\\]\\.fslckout$" "[/\\\\]\\.tox$" "[/\\\\]\\.stack-work$" "[/\\\\]\\.bloop$" "[/\\\\]\\.metals$" "[/\\\\]target$" "[/\\\\]\\.deps$" "[/\\\\]build-aux$" "[/\\\\]autom4te.cache$" "[/\\\\]\\.meghanada$" "[/\\\\]\\.reference$" "[/\\\\]\\.cquery_cached_index$" "[/\\\\]\\.ccls-cache$" "[/\\\\]\\.repo$"))
+ '(lsp-file-watch-ignored-directories
+   '("[/\\\\]\\.git$" "[/\\\\]\\.hg$" "[/\\\\]\\.bzr$" "[/\\\\]_darcs$" "[/\\\\]\\.svn$" "[/\\\\]_FOSSIL_$" "[/\\\\]\\.idea$" "[/\\\\]\\.ensime_cache$" "[/\\\\]\\.eunit$" "[/\\\\]node_modules$" "[/\\\\]\\.fslckout$" "[/\\\\]\\.tox$" "[/\\\\]\\.stack-work$" "[/\\\\]\\.bloop$" "[/\\\\]\\.metals$" "[/\\\\]target$" "[/\\\\]\\.deps$" "[/\\\\]build-aux$" "[/\\\\]autom4te.cache$" "[/\\\\]\\.meghanada$" "[/\\\\]\\.reference$" "[/\\\\]\\.cquery_cached_index$" "[/\\\\]\\.ccls-cache$" "[/\\\\]\\.repo$"))
  '(lsp-java-import-gradle-enabled nil)
  '(lsp-java-import-maven-enabled nil)
- '(lsp-java-vmargs
-   (quote
-	("-noverify" "-Xmx1G" "-XX:+UseG1GC" "-XX:+UseStringDeduplication")))
  '(lsp-java-jdt-download-url
    "https://mirrors.tuna.tsinghua.edu.cn/eclipse/jdtls/snapshots/jdt-language-server-latest.tar.gz")
  '(lsp-java-vmargs
    '("-noverify" "-Xmx2G" "-XX:+UseG1GC" "-XX:+UseStringDeduplication"))
  '(lsp-keep-workspace-alive nil)
+ '(lsp-kotlin-external-sources-use-kls-scheme nil)
  '(lsp-log-max nil)
  '(lsp-response-timeout 3)
  '(lsp-ui-doc-position 'bottom)
  '(lsp-ui-flycheck-enable t)
  '(lsp-ui-imenu-enable t)
  '(lsp-ui-sideline-show-flycheck t)
- '(lsp-ui-sideline-show-symbol nil)
+ '(lsp-ui-sideline-show-symbol nil t)
  '(lsp-ui-sideline-wait-for-all-symbols nil)
- '(org-habit-show-habits-only-for-today nil)
- '(mouse-wheel-scroll-amount (quote (2)))
+ '(mouse-wheel-scroll-amount '(2))
  '(org-emphasis-alist
-   (quote
-	(("*" bold)
-	 ("/" italic)
-	 ("_" underline)
-	 ("=" org-verbatim verbatim)
-	 ("~" org-code verbatim)
-	 ("+"
-	  (:strike-through t)))))
+   '(("*" bold)
+     ("/" italic)
+     ("_" underline)
+     ("=" org-verbatim verbatim)
+     ("~" org-code verbatim)
+     ("+"
+      (:strike-through t))))
+ '(org-habit-show-habits-only-for-today nil)
  '(org-html-table-default-attributes
    '(:border "2" :cellspacing "0" :cellpadding "6" :rules "all" :frame "border"))
  '(org-latex-hyperref-template nil)
- '(org-latex-pdf-process
-   (quote
-	("xelatex -synctex=1 -interaction nonstopmode -output-directory %o %f" "bibtex %b" "xelatex -synctex=1 -interaction nonstopmode -output-directory %o %f")))
- '(org-noter-notes-search-path '("~/note/org/books/"))
- '(org-preview-latex-default-process (quote dvisvgm))
  '(org-latex-inputenc-alist '(("utf8" . "utf8x")))
+ '(org-latex-pdf-process
+   '("xelatex -synctex=1 -interaction nonstopmode -output-directory %o %f" "bibtex %b" "xelatex -synctex=1 -interaction nonstopmode -output-directory %o %f"))
+ '(org-noter-notes-search-path '("~/note/org/books/"))
+ '(org-preview-latex-default-process 'dvisvgm)
  '(org-preview-latex-process-alist
-   (quote
-	((dvipng :programs
-			 ("latex" "dvipng")
-			 :description "dvi > png" :message "you need to install the programs: latex and dvipng." :image-input-type "dvi" :image-output-type "png" :image-size-adjust
-			 (1.0 . 1.0)
-			 :latex-compiler
-			 ("latex -output-format=dvi  -interaction nonstopmode -output-directory %o %f")
-			 :image-converter
-			 ("dvipng -fg %F -bg %B -D %D -T tight -o %O %f"))
-	 (dvisvgm :programs
-			  ("latex" "dvisvgm")
-			  :description "xdv > svg" :message "you need to install the programs: latex and dvisvgm." :use-xcolor t :image-input-type "xdv" :image-output-type "svg" :image-size-adjust
-			  (1.7 . 1.5)
-			  :latex-compiler
-			  ("xelatex -no-pdf -interaction nonstopmode -output-directory %o %f")
-			  :image-converter
-			  ("dvisvgm %f -n -b min -c %S -o %O"))
-	 (imagemagick :programs
-				  ("latex" "convert")
-				  :description "pdf > png" :message "you need to install the programs: latex and imagemagick." :use-xcolor t :image-input-type "pdf" :image-output-type "png" :image-size-adjust
-				  (1.0 . 1.0)
-				  :latex-compiler
-				  ("xelatex -interaction nonstopmode -output-directory %o %f")
-				  :image-converter
-				  ("convert -density %D -trim -antialias %f -quality 100 %O")))))
+   '((dvipng :programs
+             ("latex" "dvipng")
+             :description "dvi > png" :message "you need to install the programs: latex and dvipng." :image-input-type "dvi" :image-output-type "png" :image-size-adjust
+             (1.0 . 1.0)
+             :latex-compiler
+             ("latex -output-format=dvi  -interaction nonstopmode -output-directory %o %f")
+             :image-converter
+             ("dvipng -fg %F -bg %B -D %D -T tight -o %O %f"))
+     (dvisvgm :programs
+              ("latex" "dvisvgm")
+              :description "xdv > svg" :message "you need to install the programs: latex and dvisvgm." :use-xcolor t :image-input-type "xdv" :image-output-type "svg" :image-size-adjust
+              (1.7 . 1.5)
+              :latex-compiler
+              ("xelatex -no-pdf -interaction nonstopmode -output-directory %o %f")
+              :image-converter
+              ("dvisvgm %f -n -b min -c %S -o %O"))
+     (imagemagick :programs
+                  ("latex" "convert")
+                  :description "pdf > png" :message "you need to install the programs: latex and imagemagick." :use-xcolor t :image-input-type "pdf" :image-output-type "png" :image-size-adjust
+                  (1.0 . 1.0)
+                  :latex-compiler
+                  ("xelatex -interaction nonstopmode -output-directory %o %f")
+                  :image-converter
+                  ("convert -density %D -trim -antialias %f -quality 100 %O"))))
  '(org-startup-with-latex-preview t)
+ '(package-selected-packages
+   '(gnu-elpa-keyring-update queue parseedn parseclj zetteldeft zeal-at-point youdao-dictionary yasnippet-snippets yapfify yaml-mode xgtags ws-butler wolfram-mode winum which-key wgrep web-server web-mode web-beautify volatile-highlights vlf uuidgen use-package unfill undo-tree treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toc-org terminal-here tagedit symbol-overlay string-inflection string-edit stickyfunc-enhance srefactor sphinx-doc spaceline-all-the-icons solarized-theme smex shell-pop rime restart-emacs realgud rainbow-delimiters quickrun pytest pyenv-mode pydoc py-isort prettier-js popwin poetry plantuml-mode pippel pipenv pip-requirements pdf-view-restore password-generator paradox pangu-spacing ox-ipynb ox-hugo ox-asciidoc ov orgit-forge org-roam-ui org-rich-yank org-projectile org-present org-noter org-mime org-journal org-download org-contrib org-clock-convenience org-cliplink org-caldav open-junk-file npm-mode nose nameless mwim multi-term multi-line monokai-theme magit-todos magit-gitflow magit-delta magic-latex-buffer macrostep lsp-ui lsp-pyright lsp-origami lsp-latex lsp-java lsp-ivy livid-mode live-py-mode link-hint kotlin-mode keyfreq jupyter json-reformat json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra ivy-avy inspector info+ indent-guide importmagic impatient-mode ibuffer-projectile hybrid-mode hungry-delete highlight-parentheses highlight-numbers highlight-indentation groovy-mode groovy-imports google-translate google-c-style golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gnuplot gitignore-templates git-timemachine git-modes git-messenger git-link gendoxy fuzzy font-lock+ flyspell-correct-ivy flycheck-pos-tip flycheck-package flycheck-kotlin flycheck-clj-kondo flycheck-bashate flx-ido fancy-battery expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args eshell-z eshell-prompt-extras esh-help emmet-mode elogcat editorconfig eacl dumb-jump dts-mode drag-stuff doxymacs dotenv-mode disaster dired-quick-sort diminish diff-hl define-word cython-mode csv-mode cpp-auto-include counsel-projectile counsel-dash company-web company-statistics company-shell company-reftex company-quickhelp company-org-block company-math company-go company-c-headers company-box company-auctex company-ansible column-enforce-mode cmake-mode clojure-snippets clojure-mode clipetty clang-format citre cider-eval-sexp-fu chinese-conv centered-cursor-mode ccls cal-china-x browse-at-remote auto-yasnippet auto-highlight-symbol auto-complete ansible-doc ansible anki-editor android-mode android-emacs-ide aggressive-indent ace-pinyin ace-link))
  '(projectile-enable-caching t)
  '(projectile-git-command "git ls-files -zco --exclude-standard -x \".ccls-cache\"")
  '(projectile-globally-ignored-directories
    '(".idea" ".vscode" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" ".ccls-cache" ".cache" ".repo" ".clangd"))
  '(projectile-project-root-files-bottom-up
-   (quote
-	("compile_commands.json" ".git" ".projectile" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs")))
+   '("compile_commands.json" ".git" ".projectile" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs"))
  '(projectile-project-root-files-top-down-recurring
-   (quote
-	(".svn" "CVS" "Makefile" ".git" ".cquery" "compile_commands.json")))
+   '(".svn" "CVS" "Makefile" ".git" ".cquery" "compile_commands.json"))
  '(projectile-require-project-root nil)
  '(scroll-conservatively 100)
  '(semantic-idle-scheduler-idle-time 1)
  '(semantic-idle-scheduler-max-buffer-size 100000)
  '(semantic-idle-scheduler-work-idle-time 60)
- '(semantic-idle-summary-function (quote semantic-format-tag-short-doc))
+ '(semantic-idle-summary-function 'semantic-format-tag-short-doc)
  '(semantic-idle-truncate-long-summaries nil)
  '(sr-speedbar-right-side nil)
  '(sr-speedbar-skip-other-window-p t)
- '(clipetty-assume-nested-mux t)
- '(tramp-syntax (quote default) nil (tramp))
  '(tab-width 4)
- '(vc-handled-backends (quote (git RCS CVS SVN SCCS SRC Bzr Hg Mtn)))
- '(vlf-application (quote ask))
+ '(tramp-syntax 'default nil (tramp))
+ '(vc-handled-backends '(git RCS CVS SVN SCCS SRC Bzr Hg Mtn))
+ '(vlf-application 'ask)
  '(vlf-batch-size 10485760)
  '(vlf-tune-enabled t)
  '(vlf-tune-max 402702600)
  '(which-function-mode t)
- '(which-key-popup-type (quote side-window)))
+ '(which-key-popup-type 'side-window))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -802,6 +787,6 @@ This function is called at the very end of Spacemacs initialization."
  '(company-tooltip-common ((t (:inherit company-tooltip :foreground "white"))))
  '(company-tooltip-common-selection ((t (:foreground "white"))))
  '(company-tooltip-selection ((t (:background "red3" :foreground "white"))))
- '(which-func ((t (:foreground "white smoke"))))
- '(region ((t (:background "green" :foreground "black")))))
+ '(region ((t (:background "green" :foreground "black"))))
+ '(which-func ((t (:foreground "white smoke")))))
 )
