@@ -1,5 +1,7 @@
 (defconst ome-prog-packages '(
                                  lsp-mode
+                                 (lsp-ui :toggle lsp-use-lsp-ui)
+                                 flycheck
                                  ccls) "docstring")
 
 (defun ome-prog/post-init-lsp-mode ()
@@ -29,7 +31,7 @@
         ;; Disable lsp checker
         lsp-diagnostic-package :none
         ;; Lean on flycheck-check-syntax-automatically
-        lsp-flycheck-live-reporting nil
+        lsp-flycheck-live-reporting t
         ;; Auto kill lsp server
         lsp-keep-workspace-alive nil
 
@@ -42,6 +44,51 @@
         lsp-modeline-code-actions-enable nil
         lsp-modeline-diagnostics-enable nil
         lsp-modeline-workspace-status-enable nil)
+    )
+
+(defun ome-prog/post-init-lsp-ui ()
+    (progn
+        (setq lsp-ui-doc-show-with-cursor t)))
+
+(defun flycheck-java-infer-error-filter (errors)
+    (seq-remove
+        (lambda (err)
+            (-when-let (msg (flycheck-error-message err))
+                (string-match-p
+                    (rx
+                        (or (: "cannot find symbol")
+                            (: "does not exist")))
+                    msg)))
+        errors))
+
+(defun ome-prog/post-init-flycheck ()
+    ;;; Code:
+    (require 'flycheck)
+
+    ;; (flycheck-define-checker java-checkstyle
+    ;;     "A java syntax and style checker using checkstyle."
+    ;;     :command ("java" "-jar" "/home/xhyang/.emacs.d/private/checkstyle-9.2-all.jar"
+    ;;                  "-c" "google_checks.xml"
+    ;;                  "-f" "xml"
+    ;;                  source)
+    ;;     :error-parser flycheck-parse-checkstyle
+    ;;     :modes java-mode)
+    ;; (add-to-list 'flycheck-checkers 'java-checkstyle)
+
+    (flycheck-define-checker javac-infer
+        "A Java syntax and style checker using infer.
+See URL http://fbinfer.com/"
+        :command ("infer" "--" "javac" source)
+        :error-patterns
+        ((error line-start (file-name) ":" line ":" " error:" (message) line-end)
+            (warning line-start (file-name) ":" line ":" " warning:" (message) line-end)
+            (info line-start (file-name) ":" line ":" " info:" (message) line-end))
+        :error-filter
+        flycheck-java-infer-error-filter
+        :modes java-mode)
+    (add-to-list 'flycheck-checkers 'javac-infer)
+
+    ;;(provide 'flycheck-infer)
     )
 
 (defun ome-prog/post-init-ccls ()
