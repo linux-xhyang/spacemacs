@@ -546,6 +546,7 @@ layers configuration. You are free to put any user code."
   (server-start)
   (setenv "XAPIAN_CJK_NGRAM" "1")
   (dotspacemacs/emacs-custom-settings)
+  (global-flycheck-mode)
   )
 
 (defun dotspacemacs/emacs-custom-settings ()
@@ -648,6 +649,8 @@ This function is called at the very end of Spacemacs initialization."
  '(ein:use-auto-complete-superpack t)
  '(eopengrok-ignore-file-or-directory
    ".opengrok:out:*.so:*.a:*.o:*.gz:*.bz2:*.jar:*.zip:*.class:*.elc:GPATH:GRTAGS:GTAGS:.repo:.cquery_cached_index")
+ '(flycheck-global-modes
+   '(yaml-mode json-mode cider-clojure-interaction-mode cider-repl-mode clojurex-mode clojurescript-mode clojurec-mode clojure-mode sh-mode web-mode slim-mode scss-mode sass-mode pug-mode less-mode haml-mode js2-mode latex-mode python-mode go-mode kotlin-mode java-mode c++-mode c-mode))
  '(gdb-many-windows t)
  '(gdb-show-main t)
  '(git-gutter:added-sign "++")
