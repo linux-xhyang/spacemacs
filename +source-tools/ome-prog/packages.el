@@ -56,7 +56,8 @@
             (-when-let (msg (flycheck-error-message err))
                 (string-match-p
                     (rx
-                        (or (: "cannot find symbol")
+                        (or (: "encoding US-ASCII")
+                            (: "cannot find symbol")
                             (: "does not exist")))
                     msg)))
         errors))

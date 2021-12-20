@@ -61,15 +61,15 @@ values."
                treemacs-use-collapsed-directories 3)
      ;; markdown
      (org :variables
-          org-enable-github-support t
-          org-enable-bootstrap-support t
-          org-enable-reveal-js t
-          org-enable-org-journal-support t
-          org-want-todo-bindings t
-          org-enable-hugo-support t
-          org-enable-roam-support t
+          org-enable-github-support nil
+          org-enable-bootstrap-support nil
+          org-enable-reveal-js nil
+          org-enable-org-journal-support nil
+          org-want-todo-bindings nil
+          org-enable-hugo-support nil
+          org-enable-roam-support nil
           org-enable-roam-server nil
-          org-enable-valign t)
+          org-enable-valign nil)
      (chinese :variables
               chinese-enable-youdao-dict t)
      semantic
@@ -80,7 +80,6 @@ values."
               clojure-enable-clj-refactor t
               clojure-backend 'cider
               )
-     pdf
      ;; gnus
      (shell-scripts :variables
                     shell-scripts-backend 'lsp
@@ -158,13 +157,10 @@ values."
      ome-prog
      ome-kotlin
      ome-company
-     ome-wolfram
      ome-jupyter
      ;; tools
      doxymacs
      ome-gui
-     ome-org
-     ome-pdf
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
