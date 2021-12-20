@@ -1,9 +1,6 @@
 (defconst ome-company-packages
     '(
          company
-         (citre :location (recipe
-                              :fetcher github
-                              :repo "universal-ctags/citre"))
          yasnippet-snippets
          ))
 

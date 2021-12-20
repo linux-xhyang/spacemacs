@@ -39,10 +39,8 @@ values."
 	 dash
 	 ivy
 	 (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
-	 ;;helm
 	 ;; xclipboard
 	 ;;exwm
-	 ;;slack
 	 (git :variables
 		  git-enable-magit-delta-plugin t
 		  git-enable-magit-todos-plugin t
@@ -50,8 +48,7 @@ values."
 		  git-enable-magit-svn-plugin nil)
 	 (cmake :variables cmake-backend 'company-cmake)
 	 csv
-	 ;;chrome
-     (plantuml :variables
+         (plantuml :variables
 			   plantuml-jar-path "~/.emacs.d/plantuml.jar"
 			   org-plantuml-jar-path "~/.emacs.d/plantuml.jar")
 	 ansible
@@ -72,8 +69,8 @@ values."
           org-enable-roam-protocol t)
 	 (chinese :variables
 			  chinese-enable-youdao-dict t)
-	 semantic
-	 dap
+	 ;;semantic
+	 ;;dap
 	 (clojure :variables
 			  clojure-enable-linters 'clj-kondo
 			  clojure-enable-sayid t
@@ -81,13 +78,11 @@ values."
 			  clojure-backend 'cider
 			  )
 	 pdf
-	 ;; gnus
 	 (shell-scripts :variables
 					shell-scripts-backend 'lsp
 					)
 	 emacs-lisp
 	 ;;common-lisp
-	 groovy
 	 html
 	 javascript
 	 (shell :variables
@@ -116,11 +111,11 @@ values."
 			 python-lsp-git-root "~/src/python-language-server")
 	 ;;(ipython-notebook :variables
      ;;                  ein-backend nil)
-	 (go :variables
-			 go-use-gometalinter t
-			 gofmt-command "goimports"
-			 go-backend 'lsp
-			 godoc-at-point-function 'godoc-gogetdoc)
+	 ;;(go :variables
+	 ;;		 go-use-gometalinter t
+	 ;;		 gofmt-command "goimports"
+	 ;;		 go-backend 'lsp
+	 ;;		 godoc-at-point-function 'godoc-gogetdoc)
 	 (c-c++ :variables
 			c-c++-lsp-sem-highlight-method 'font-lock
 			c-c++-lsp-sem-highlight-rainbow t
@@ -158,10 +153,10 @@ values."
 	 ome-prog
 	 ome-kotlin
 	 ome-company
-     ome-wolfram
-     ome-jupyter
+         ome-wolfram
+         ome-jupyter
 	 ;; tools
-     doxymacs
+         doxymacs
 	 ome-gui
 	 ome-org
 	 ome-pdf
