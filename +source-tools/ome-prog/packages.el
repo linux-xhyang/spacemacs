@@ -14,6 +14,7 @@
 	(advice-add 'lsp :before (lambda (&rest _args) (eval '(setf (lsp-session-server-id->folders (lsp-session)) (ht)))))
 
     (setq lsp-auto-execute-action nil
+        lsp-lens-enable nil
         lsp-auto-guess-root t
         lsp--tcp-server-wait-seconds 20
         ;; Turn off for better performance

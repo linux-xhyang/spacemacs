@@ -97,7 +97,8 @@ Fallback to `xref-find-definitions'."
     (define-key company-active-map (kbd "C-e") #'company-other-backend)
     (define-key company-active-map (kbd "<backspace>") 'company-backspace)
 
-    (spacemacs|add-company-backends :backends (company-citre company-capf) ;:with company-yasnippet :separate
+    ;;company-citre
+    (spacemacs|add-company-backends :backends (company-capf) ;:with company-yasnippet :separate
         :modes c-mode-common emacs-lisp-mode python-mode java-mode)
 
     (advice-add #'company-yasnippet :around #'company-yasnippet/disable-after-dot)

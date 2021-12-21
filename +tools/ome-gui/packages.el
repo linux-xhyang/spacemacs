@@ -6,7 +6,7 @@
                            :files ("Makefile" "lib.c" "rime*.el")))
          (clipetty :location (recipe :fetcher github :repo "spudlyo/clipetty"))
          cal-china-x
-         keyfreq
+         ;;keyfreq
          ))
 
 (defun ome-gui/init-rime ()
