@@ -48,11 +48,10 @@ values."
 		  git-enable-magit-svn-plugin nil)
 	 (cmake :variables cmake-backend 'company-cmake)
 	 csv
-         (plantuml :variables
+     (plantuml :variables
 			   plantuml-jar-path "~/.emacs.d/plantuml.jar"
 			   org-plantuml-jar-path "~/.emacs.d/plantuml.jar")
-	 ansible
-	 (ibuffer :variables ibuffer-group-buffers-by 'projects)
+	 ;;(ibuffer :variables ibuffer-group-buffers-by 'projects)
 	 (treemacs :variables treemacs-use-follow-mode t
 			   treemacs-use-filewatch-mode t
 			   treemacs-use-collapsed-directories 3)

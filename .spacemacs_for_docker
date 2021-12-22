@@ -50,12 +50,7 @@ values."
           git-enable-magit-svn-plugin nil)
      (cmake :variables cmake-backend 'company-cmake)
      csv
-     ;;chrome
-     (plantuml :variables
-               plantuml-jar-path "~/.emacs.d/plantuml.jar"
-               org-plantuml-jar-path "~/.emacs.d/plantuml.jar")
-     ansible
-     (ibuffer :variables ibuffer-group-buffers-by 'projects)
+     ;;(ibuffer :variables ibuffer-group-buffers-by 'projects)
      (treemacs :variables treemacs-use-follow-mode t
                treemacs-use-filewatch-mode t
                treemacs-use-collapsed-directories 3)
@@ -72,8 +67,6 @@ values."
           org-enable-valign nil)
      (chinese :variables
               chinese-enable-youdao-dict t)
-     semantic
-     dap
      (clojure :variables
               clojure-enable-linters 'clj-kondo
               clojure-enable-sayid t
@@ -115,11 +108,6 @@ values."
              python-lsp-git-root "~/src/python-language-server")
 	 ;;(ipython-notebook :variables
      ;;                  ein-backend nil)
-     (go :variables
-             go-use-gometalinter t
-             gofmt-command "goimports"
-             go-backend 'lsp
-             godoc-at-point-function 'godoc-gogetdoc)
      (c-c++ :variables
             c-c++-lsp-sem-highlight-method 'font-lock
             c-c++-lsp-sem-highlight-rainbow t
