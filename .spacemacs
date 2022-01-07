@@ -88,7 +88,8 @@ values."
 			shell-default-height 30
 			shell-default-position 'bottom)
 	 (latex :variables
-			latex-build-command "Latex"
+			latex-build-command "LatexMk"
+            latex-backend 'company-auctex
 			latex-enable-auto-fill t
 			latex-enable-folding t
 			latex-enable-magic t)

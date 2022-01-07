@@ -49,7 +49,7 @@
 
 (defun ome-prog/post-init-lsp-ui ()
     (progn
-        (setq lsp-ui-doc-show-with-cursor t)))
+        (setq lsp-ui-doc-enable nil)))
 
 (defun flycheck-java-infer-error-filter (errors)
     (seq-remove
