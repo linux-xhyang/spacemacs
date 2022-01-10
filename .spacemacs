@@ -68,7 +68,6 @@ values."
           org-enable-roam-protocol t)
 	 (chinese :variables
 			  chinese-enable-youdao-dict t)
-	 ;;semantic
 	 ;;dap
 	 (clojure :variables
 			  clojure-enable-linters 'clj-kondo
@@ -124,6 +123,10 @@ values."
 			c-c++-backend 'lsp-ccls
 			c-c++-adopt-subprojects t
 			c-c++-enable-google-style nil)
+
+     (tree-sitter :variables
+                  tree-sitter-syntax-highlight-enable t
+                  tree-sitter-indent-enable t)
 	 (auto-completion :variables
 					  auto-completion-return-key-behavior 'complete
 					  auto-completion-use-company-box 't
@@ -519,7 +522,6 @@ layers configuration. You are free to put any user code."
   (add-hook 'js2-mode-hook 'spacemacs/toggle-spelling-checking-off)
   (add-hook 'clojure-mode-hook 'spacemacs/toggle-spelling-checking-off)
   (add-hook 'emacs-lisp-mode-hook 'spacemacs/toggle-spelling-checking-off)
-  ;;(add-hook 'semantic-mode-hook 'spacemacs/toggle-semantic-stickyfunc-globally-off)
   ;;remove all keybinds from insert-state keymap,use emacs-state when editing
   (setcdr evil-insert-state-map nil)
   ;;ESC to switch back normal-state
@@ -653,10 +655,6 @@ This function is called at the very end of Spacemacs initialization."
  '(git-gutter:diff-option "-w")
  '(git-gutter:hide-gutter t)
  '(git-gutter:modified-sign "  ")
- '(global-semantic-highlight-edits-mode t)
- '(global-semantic-highlight-func-mode t)
- '(global-semantic-idle-local-symbol-highlight-mode nil nil (semantic/idle))
- '(global-semantic-stickyfunc-mode t)
  '(global-superword-mode t)
  '(gud-key-prefix "x")
  '(indent-tabs-mode nil)
@@ -753,11 +751,6 @@ This function is called at the very end of Spacemacs initialization."
    '(".svn" "CVS" "Makefile" ".git" ".cquery" "compile_commands.json"))
  '(projectile-require-project-root nil)
  '(scroll-conservatively 100)
- '(semantic-idle-scheduler-idle-time 1)
- '(semantic-idle-scheduler-max-buffer-size 100000)
- '(semantic-idle-scheduler-work-idle-time 60)
- '(semantic-idle-summary-function 'semantic-format-tag-short-doc)
- '(semantic-idle-truncate-long-summaries nil)
  '(sr-speedbar-right-side nil)
  '(sr-speedbar-skip-other-window-p t)
  '(tab-width 4)
