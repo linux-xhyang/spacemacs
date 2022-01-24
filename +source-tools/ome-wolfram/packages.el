@@ -29,28 +29,28 @@
         (add-to-list 'lsp-language-id-configuration '(wolfram-language-mode . "Mathematica"))
 
         ;;https://github.com/kenkangxgwe/lsp-wl
-        (lsp-register-client
-            (make-lsp-client :language-id 'wolfram
-                :new-connection (lsp-tcp-server-command
-                                    (lambda (port)
-                                        `("wolfram" ;; or "wolframscript"
-                                             "-script" ;; or "-file"
-                                             "~/src/lsp-wl/init.wls"
-                                             ,(concat
-                                                  "--socket="
-                                                  (number-to-string port)
-                                                  ))))
-                :major-modes '(wolfram-mode wolfram-language-mode)
-                :server-id 'lsp-wl
-                ))
-        ;; https://github.com/WolframResearch/LSPServer
         ;; (lsp-register-client
         ;;     (make-lsp-client :language-id 'wolfram
-        ;;         :new-connection (lsp-stdio-connection
-        ;;                             (lambda () '("WolframKernel" "-noprompt" "-run" "Get\[\"~/src/LSPServer/server.wl\"\]")))
-        ;;         :major-modes '(wolfram-mode)
-        ;;         :server-id 'wolfram-lsp
+        ;;         :new-connection (lsp-tcp-server-command
+        ;;                             (lambda (port)
+        ;;                                 `("wolfram" ;; or "wolframscript"
+        ;;                                      "-script" ;; or "-file"
+        ;;                                      "~/src/lsp-wl/init.wls"
+        ;;                                      ,(concat
+        ;;                                           "--socket="
+        ;;                                           (number-to-string port)
+        ;;                                           ))))
+        ;;         :major-modes '(wolfram-mode wolfram-language-mode)
+        ;;         :server-id 'lsp-wl
         ;;         ))
+        ;; https://github.com/WolframResearch/LSPServer
+        (lsp-register-client
+            (make-lsp-client :language-id 'wolfram
+                :new-connection (lsp-stdio-connection
+                                    (lambda () '("WolframKernel" "-noprompt" "-run" "Get\[\"~/src/LSPServer/server.wl\"\]")))
+                :major-modes '(wolfram-mode wolfram-language-mode)
+                :server-id 'wolfram-lsp
+                ))
         )
     )
 
