@@ -636,7 +636,7 @@ This function is called at the very end of Spacemacs initialization."
  '(company-selection-wrap-around t)
  '(company-show-quick-access t)
  '(counsel-rg-base-command
-   '("rg" "-M" "240" "--with-filename" "--no-heading" "--line-number" "--no-ignore" "--color" "never" "--max-columns" "150" "--max-columns-preview" "%s"))
+    `("rg" "-M" "240" "--with-filename" "--no-heading" "--line-number" "--no-ignore" "--color" "never" "--max-columns-preview" "%s" ,@(unless (memq system-type '(ms-dos windows-nt)) (list "--path-separator" "/" "."))))
  '(default-input-method "rime" nil nil "Customized with use-package rime")
  '(delete-selection-mode t)
  '(ein:complete-on-dot t)
