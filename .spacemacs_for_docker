@@ -39,10 +39,7 @@ values."
      dash
      ivy
      (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
-     ;;helm
      ;; xclipboard
-     ;;exwm
-     ;;slack
      (git :variables
 		  git-enable-magit-delta-plugin t
 		  git-enable-magit-todos-plugin t
@@ -67,6 +64,7 @@ values."
           org-enable-valign nil)
      (chinese :variables
               chinese-enable-youdao-dict t)
+	 ;;dap
      (clojure :variables
               clojure-enable-linters 'clj-kondo
               clojure-enable-sayid t
@@ -86,7 +84,8 @@ values."
             shell-default-height 30
             shell-default-position 'bottom)
      (latex :variables
-            latex-build-command "Latex"
+			latex-build-command "LatexMk"
+            latex-backend 'company-auctex
             latex-enable-auto-fill t
             latex-enable-folding t
             latex-enable-magic t)
@@ -108,6 +107,11 @@ values."
              python-lsp-git-root "~/src/python-language-server")
 	 ;;(ipython-notebook :variables
      ;;                  ein-backend nil)
+	 ;;(go :variables
+	 ;;		 go-use-gometalinter t
+	 ;;		 gofmt-command "goimports"
+	 ;;		 go-backend 'lsp
+	 ;;		 godoc-at-point-function 'godoc-gogetdoc)
      (c-c++ :variables
             c-c++-lsp-sem-highlight-method 'font-lock
             c-c++-lsp-sem-highlight-rainbow t
@@ -119,7 +123,6 @@ values."
      (tree-sitter :variables
                   tree-sitter-syntax-highlight-enable t
                   tree-sitter-indent-enable t)
-
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete
                       auto-completion-use-company-box 't
@@ -604,17 +607,19 @@ This function is called at the very end of Spacemacs initialization."
      (output-dvi "xdvi")
      (output-pdf "PDF Tools")
      (output-html "xdg-open")))
- '(ahs-default-range 'ahs-range-display)
+ '(ahs-default-range 'ahs-range-display t)
  '(android-compilation-no-buildenv-warning nil)
  '(android-jdb-command-name "/usr/bin/jdb")
- '(calculator-number-digits 6)
  '(c-basic-offset 4)
  '(c-default-style
    '((java-mode . "java")
 	 (awk-mode . "awk")
 	 (other . "stroustrup")))
-
- '(ccls-args '("--log-file=/home/yangxiaohe/.emacs.d/ccls.log"))
+ '(calculator-number-digits 6)
+ '(ccls-args
+   (list
+    (concat "--log-file="
+            (expand-file-name "~/.emacs.d/ccls.log"))))
  '(ccls-executable "/usr/local/bin/ccls")
  '(ccls-member-hierarchy-qualified t)
  '(ccls-sem-highlight-method 'font-lock)
@@ -624,11 +629,9 @@ This function is called at the very end of Spacemacs initialization."
  '(company-idle-delay 0)
  '(company-minimum-prefix-length 1)
  '(company-selection-wrap-around t)
- '(company-show-numbers t)
+ '(company-show-quick-access t)
  '(counsel-rg-base-command
-   '("rg" "-M" "240" "--with-filename" "--no-heading" "--line-number" "--no-ignore" "--color" "never" "--max-columns" "150" "--max-columns-preview" "%s" "."))
- '(custom-safe-themes
-   '("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" default))
+   '("rg" "-M" "240" "--with-filename" "--no-heading" "--line-number" "--no-ignore" "--color" "never" "--max-columns" "150" "--max-columns-preview" "%s"))
  '(default-input-method "rime" nil nil "Customized with use-package rime")
  '(delete-selection-mode t)
  '(ein:complete-on-dot t)
@@ -646,8 +649,8 @@ This function is called at the very end of Spacemacs initialization."
  '(git-gutter:hide-gutter t)
  '(git-gutter:modified-sign "  ")
  '(global-superword-mode t)
- '(indent-tabs-mode nil)
  '(gud-key-prefix "x")
+ '(indent-tabs-mode nil)
  '(isend-send-region-function 'isend--ipython-cpaste)
  '(jit-lock-chunk-size 6000)
  '(jit-lock-context-time 0.1)
@@ -660,12 +663,13 @@ This function is called at the very end of Spacemacs initialization."
  '(large-file-warning-threshold 10000)
  '(lsp-auto-guess-root t)
  '(lsp-before-save-edits nil)
- '(lsp-clojure-custom-server-command '("bash" "-c" "~/src/clojure-lsp/target/clojure-lsp"))
  '(lsp-clojure-server-command '("bash" "-c" "~/src/clojure-lsp/target/clojure-lsp"))
- '(lsp-enable-completion-at-point t)
+ '(lsp-completion-enable t)
  '(lsp-eldoc-enable-hover nil)
  '(lsp-enable-file-watchers nil)
  '(lsp-enable-indentation nil)
+ '(lsp-file-watch-ignored
+   '("[/\\\\]\\.git$" "[/\\\\]\\.hg$" "[/\\\\]\\.bzr$" "[/\\\\]_darcs$" "[/\\\\]\\.svn$" "[/\\\\]_FOSSIL_$" "[/\\\\]\\.idea$" "[/\\\\]\\.ensime_cache$" "[/\\\\]\\.eunit$" "[/\\\\]node_modules$" "[/\\\\]\\.fslckout$" "[/\\\\]\\.tox$" "[/\\\\]\\.stack-work$" "[/\\\\]\\.bloop$" "[/\\\\]\\.metals$" "[/\\\\]target$" "[/\\\\]\\.deps$" "[/\\\\]build-aux$" "[/\\\\]autom4te.cache$" "[/\\\\]\\.meghanada$" "[/\\\\]\\.reference$" "[/\\\\]\\.cquery_cached_index$" "[/\\\\]\\.ccls-cache$" "[/\\\\]\\.repo$"))
  '(lsp-file-watch-ignored-directories
    '("[/\\\\]\\.git$" "[/\\\\]\\.hg$" "[/\\\\]\\.bzr$" "[/\\\\]_darcs$" "[/\\\\]\\.svn$" "[/\\\\]_FOSSIL_$" "[/\\\\]\\.idea$" "[/\\\\]\\.ensime_cache$" "[/\\\\]\\.eunit$" "[/\\\\]node_modules$" "[/\\\\]\\.fslckout$" "[/\\\\]\\.tox$" "[/\\\\]\\.stack-work$" "[/\\\\]\\.bloop$" "[/\\\\]\\.metals$" "[/\\\\]target$" "[/\\\\]\\.deps$" "[/\\\\]build-aux$" "[/\\\\]autom4te.cache$" "[/\\\\]\\.meghanada$" "[/\\\\]\\.reference$" "[/\\\\]\\.cquery_cached_index$" "[/\\\\]\\.ccls-cache$" "[/\\\\]\\.repo$"))
  '(lsp-java-import-gradle-enabled nil)
@@ -682,12 +686,8 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-ui-flycheck-enable t)
  '(lsp-ui-imenu-enable t)
  '(lsp-ui-sideline-show-flycheck t)
- '(lsp-ui-sideline-show-symbol nil)
+ '(lsp-ui-sideline-show-symbol nil t)
  '(lsp-ui-sideline-wait-for-all-symbols nil)
- '(magit-diff-arguments
-   '("--ignore-all-space" "--no-ext-diff" "--stat" "-- " "--diff-algorithm=default"))
- '(magit-diff-section-arguments
-   '("--ignore-all-space" "--no-ext-diff" "--diff-algorithm=default"))
  '(mouse-wheel-scroll-amount '(2))
  '(org-emphasis-alist
    '(("*" bold)
@@ -732,6 +732,8 @@ This function is called at the very end of Spacemacs initialization."
                   :image-converter
                   ("convert -density %D -trim -antialias %f -quality 100 %O"))))
  '(org-startup-with-latex-preview t)
+ '(package-selected-packages
+   '(gnu-elpa-keyring-update queue parseedn parseclj zetteldeft zeal-at-point youdao-dictionary yasnippet-snippets yapfify yaml-mode xgtags ws-butler wolfram-mode winum which-key wgrep web-server web-mode web-beautify volatile-highlights vlf uuidgen use-package unfill undo-tree treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toc-org terminal-here tagedit symbol-overlay string-inflection string-edit stickyfunc-enhance srefactor sphinx-doc spaceline-all-the-icons solarized-theme smex shell-pop rime restart-emacs realgud rainbow-delimiters quickrun pytest pyenv-mode pydoc py-isort prettier-js popwin poetry plantuml-mode pippel pipenv pip-requirements pdf-view-restore password-generator paradox pangu-spacing ox-ipynb ox-hugo ox-asciidoc ov orgit-forge org-roam-ui org-rich-yank org-projectile org-present org-noter org-mime org-journal org-download org-contrib org-clock-convenience org-cliplink org-caldav open-junk-file npm-mode nose nameless mwim multi-term multi-line monokai-theme magit-todos magit-gitflow magit-delta magic-latex-buffer macrostep lsp-ui lsp-pyright lsp-origami lsp-latex lsp-java lsp-ivy livid-mode live-py-mode link-hint kotlin-mode keyfreq jupyter json-reformat json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra ivy-avy inspector info+ indent-guide importmagic impatient-mode ibuffer-projectile hybrid-mode hungry-delete highlight-parentheses highlight-numbers highlight-indentation groovy-mode groovy-imports google-translate google-c-style golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gnuplot gitignore-templates git-timemachine git-modes git-messenger git-link gendoxy fuzzy font-lock+ flyspell-correct-ivy flycheck-pos-tip flycheck-package flycheck-kotlin flycheck-clj-kondo flycheck-bashate flx-ido fancy-battery expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args eshell-z eshell-prompt-extras esh-help emmet-mode elogcat editorconfig eacl dumb-jump dts-mode drag-stuff doxymacs dotenv-mode disaster dired-quick-sort diminish diff-hl define-word cython-mode csv-mode cpp-auto-include counsel-projectile counsel-dash company-web company-statistics company-shell company-reftex company-quickhelp company-org-block company-math company-go company-c-headers company-box company-auctex company-ansible column-enforce-mode cmake-mode clojure-snippets clojure-mode clipetty clang-format citre cider-eval-sexp-fu chinese-conv centered-cursor-mode ccls cal-china-x browse-at-remote auto-yasnippet auto-highlight-symbol auto-complete ansible-doc ansible anki-editor android-mode android-emacs-ide aggressive-indent ace-pinyin ace-link))
  '(projectile-enable-caching t)
  '(projectile-git-command "git ls-files -zco --exclude-standard -x \".ccls-cache\"")
  '(projectile-globally-ignored-directories
@@ -744,10 +746,9 @@ This function is called at the very end of Spacemacs initialization."
  '(scroll-conservatively 100)
  '(sr-speedbar-right-side nil)
  '(sr-speedbar-skip-other-window-p t)
- '(tab-always-indent 'complete)
  '(tab-width 4)
  '(tramp-syntax 'default nil (tramp))
- '(vc-handled-backends '(git RCS CVS SVN SCCS SRC Bzr Hg))
+ '(vc-handled-backends '(git RCS CVS SVN SCCS SRC Bzr Hg Mtn))
  '(vlf-application 'ask)
  '(vlf-batch-size 10485760)
  '(vlf-tune-enabled t)

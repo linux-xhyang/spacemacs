@@ -123,7 +123,6 @@ values."
 			c-c++-backend 'lsp-ccls
 			c-c++-adopt-subprojects t
 			c-c++-enable-google-style nil)
-
      (tree-sitter :variables
                   tree-sitter-syntax-highlight-enable t
                   tree-sitter-indent-enable t)
@@ -471,7 +470,6 @@ in `dotspacemacs/user-config'."
 
   (setq read-process-output-max (* 4 1024 1024))
   (setq gc-cons-threshold (* 128 1024 1024))
-
   (setq garbage-collection-messages t)
   (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
   ;; set environment coding system
