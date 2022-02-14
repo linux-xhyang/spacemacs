@@ -9,7 +9,6 @@
          (xgtags :location (recipe :fetcher github :repo "linux-xhyang/xgtags"))
          ;;exec-path-from-shell
          smartparens
-         which-func
          ))
 
 (defun ome-misc/post-init-exec-path-from-shell ()
@@ -22,18 +21,6 @@
         )
     )
 
-(defun ome-misc/post-init-which-func ()
-    (use-package which-func
-        :config
-        (progn
-            (defun my:which-func-update-avoid-minibuffer (orig-fun)
-                (if (minibuffer-window-active-p (selected-window))
-                    (with-selected-window (minibuffer-selected-window)
-                        (funcall orig-fun))
-                    (funcall orig-fun)))
-
-            (advice-add 'which-func-update :around #'my:which-func-update-avoid-minibuffer))))
-
 (defun ome-misc/init-xgtags ()
     (use-package xgtags
         :defer t
@@ -45,6 +32,15 @@
             (add-hook 'prog-mode-hook
                 (lambda ()
                     (xgtags-mode 1)))
+
+            (require 'which-func)
+            (defun my:which-func-update-avoid-minibuffer (orig-fun)
+                (if (minibuffer-window-active-p (selected-window))
+                    (with-selected-window (minibuffer-selected-window)
+                        (funcall orig-fun))
+                    (funcall orig-fun)))
+
+            (advice-add 'which-func-update :around #'my:which-func-update-avoid-minibuffer)
             )))
 
 (defun ome-misc/init-vlf ()
